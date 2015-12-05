@@ -27,10 +27,10 @@ public class QuranDatabaseHelper {
     private SQLiteDatabase sqliteDatabase; 
 
 	/**
-     * Copies the Quran database from assets to internal storage database
+     * Copies the Qur'an database from assets to internal storage database
      * if it does not already exist in internal storage.
      *
-     * @param context is non-null
+     * @param context is non-null.
      * */
     public void createDatabaseIfDoesNotExist(Context context) throws IOException {
     	if (!isDatabaseExistsInInternalStorage(context)) {
@@ -39,83 +39,8 @@ public class QuranDatabaseHelper {
     }
 
     /**
-     * Checks whether the Quran database exists in internal storage.
-     *
-	 * @param context is non-null
-     * @return true if it exists, false if it doesn't
+     * Closes the Qur'an database.
      */
-    private boolean isDatabaseExistsInInternalStorage(Context context) {
-    	SQLiteDatabase checkDatabase = null;
-
-    	try {
-    		String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
-    		checkDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-    	} catch (SQLiteException ex) { 
-    		//database does't exist
-    	}
-
-    	if (checkDatabase != null){
-    		checkDatabase.close();
-    	}
-
-    	return checkDatabase != null;
-    }
-
-    /**
-     * Copies the Quran database from assets to internal storage,
-     * so that it can be accessed and handled.
-     *
-     * @param context is non-null
-     * */
-    private void copyDatabaseFromAssetsToInternalStorage(Context context) throws IOException {
-    	// Read from the local database in assets
-    	InputStream inputStream = context.getAssets().open(DATABASE_NAME);
- 
-    	// Write to a local database in internal storage
-    	OutputStream outputStream = context.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
-
-    	// Transfer bytes from the input file to the output file
-    	byte[] buffer = new byte[1024];
-    	int length;
-    	while ((length = inputStream.read(buffer)) > 0) {
-    		outputStream.write(buffer, 0, length);
-    	}
-
-    	// Close the streams
-    	outputStream.flush();
-    	outputStream.close();
-    	inputStream.close();
-    }
-
-    /**
-     * @param context
-     * @throws SQLException
-     */
-    private void openDatabaseForReadingIfClosed(Context context) throws SQLException {
-    	if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
-	    	String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
-	    	sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-    	}
-    }
-
-    /**
-     * @param context is non-null
-     * @param table
-     * @param columns
-     * @param selection
-     * @param selectionArgs
-     * @param groupBy
-     * @param having
-     * @param orderBy
-     * @param limit
-     * @return
-     */
-    private Cursor queryDatabase(Context context, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
-    	openDatabaseForReadingIfClosed(context);
-//		DatabaseUtils.explainQueryPlanForSelectStatement(sqliteDatabase, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-		return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-    }
-
 	public void closeDatabase() {
     	if (sqliteDatabase != null) {
     		sqliteDatabase.close();
@@ -123,10 +48,10 @@ public class QuranDatabaseHelper {
 	}
 
 	/**
-     * @param context is non-null
-	 * @param surahNumber
-	 * @return the name of the specified surah,
-	 * or null if the surah number is not valid.
+     * @param context is non-null.
+	 * @param surahNumber >= 1 and <= 114.
+	 * @return the name of the specified Surah,
+	 * or null if the Surah number is not valid.
 	 */
 	public String getSurahName(Context context, int surahNumber) {
 		String surahName = null;
@@ -150,8 +75,8 @@ public class QuranDatabaseHelper {
 	}
 
 	/**
-     * @param context
-	 * @return the names of all the surahs in the Qur'an.
+     * @param context is non-null.
+	 * @return the names of all the Surahs in the Qur'an.
 	 */
 	public List<String> getSurahNames(Context context) {
 		List<String> surahNames = new ArrayList<>();
@@ -173,10 +98,10 @@ public class QuranDatabaseHelper {
 	}
 
 	/**
-     * @param context is non-null
-	 * @param surahNumber >= 1.
-	 * @return the ayahs of the specified surah,
-	 * or null if the surah number is not valid.
+     * @param context is non-null.
+	 * @param surahNumber >= 1 and <= 114.
+	 * @return the ayahs of the specified Surah,
+	 * or null if the Surah number is not valid.
 	 */
 	public List<String> getAyahsInSurah(Context context, int surahNumber) {
 		List<String> surahAyahs = new ArrayList<>();
@@ -200,11 +125,11 @@ public class QuranDatabaseHelper {
 	}
 
 	/**
-     * @param context is non-null
-	 * @param surahNumber >= 1.
+     * @param context is non-null.
+	 * @param surahNumber >= 1 and <= 114.
 	 * @param ayahNumber >= 1.
-	 * @return the text of the specified ayah,
-	 * or null if the surah and ayah number provided do not map to an ayah.
+	 * @return the text of the specified Ayah,
+	 * or null if the Surah and Ayah number provided do not map to an Ayah.
 	 */
 	public String getAyah(Context context, int surahNumber, int ayahNumber) {
 		String ayah = null;
@@ -225,5 +150,85 @@ public class QuranDatabaseHelper {
 		cursor.close();
 
 		return ayah;
+	}
+
+	/**
+	 * Checks whether the Qur'an database exists in internal storage.
+	 *
+	 * @param context is non-null.
+	 * @return true iff the Qur'an database exists in internal storage.
+	 */
+	private boolean isDatabaseExistsInInternalStorage(Context context) {
+		SQLiteDatabase checkDatabase = null;
+
+		try {
+			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+			checkDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+		} catch (SQLiteException ex) {
+			//database doesn't exist
+		}
+
+		if (checkDatabase != null){
+			checkDatabase.close();
+		}
+
+		return checkDatabase != null;
+	}
+
+	/**
+	 * Copies the Qur'an database from assets to internal storage,
+	 * so that it can be accessed and handled.
+	 *
+	 * @param context is non-null.
+	 * */
+	private void copyDatabaseFromAssetsToInternalStorage(Context context) throws IOException {
+		// Read from the local database in assets
+		InputStream inputStream = context.getAssets().open(DATABASE_NAME);
+
+		// Write to a local database in internal storage
+		OutputStream outputStream = context.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
+
+		// Transfer bytes from the input file to the output file
+		byte[] buffer = new byte[1024];
+		int length;
+		while ((length = inputStream.read(buffer)) > 0) {
+			outputStream.write(buffer, 0, length);
+		}
+
+		// Close the streams
+		outputStream.flush();
+		outputStream.close();
+		inputStream.close();
+	}
+
+	/**
+	 * @param context is non-null.
+	 * @throws SQLException
+	 */
+	private void openDatabaseForReadingIfClosed(Context context) throws SQLException {
+		if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
+			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+			sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+		}
+	}
+
+	/**
+     * Queries the local Qur'an database with the specified parameters.
+     *
+	 * @param context is non-null.
+	 * @param table
+	 * @param columns
+	 * @param selection
+	 * @param selectionArgs
+	 * @param groupBy
+	 * @param having
+	 * @param orderBy
+	 * @param limit
+	 * @return the result of the query.
+	 */
+	private Cursor queryDatabase(Context context, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+		openDatabaseForReadingIfClosed(context);
+//		DatabaseUtils.explainQueryPlanForSelectStatement(sqliteDatabase, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
+		return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
 	}
 }
