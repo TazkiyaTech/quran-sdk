@@ -1,0 +1,14 @@
+.metadata/
+.recommenders/
+QuranUtils/QuranUtilsLibrary/build/
+QuranUtils/bin/
+QuranUtils/build/
+QuranUtils/gen/
+QuranUtils/local.properties
+QuranUtils/.gradle/
+QuranUtils/.idea/gradle.xml
+QuranUtils/.idea/libraries/*.xml
+QuranUtils/.idea/tasks.xml
+QuranUtils/.idea/workspace.xml
+QuranUtilsTest/bin/
+QuranUtilsTest/gen/
