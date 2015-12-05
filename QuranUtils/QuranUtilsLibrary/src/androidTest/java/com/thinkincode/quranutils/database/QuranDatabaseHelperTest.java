@@ -16,8 +16,7 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
 	}
 
 	public void testGetAyahsInSurah() {
-		// go through and test method call for each surah of the Qur'an
-
+		// Given.
 		SurahEnum[] surahs = SurahEnum.values();
 
 		for (int i = 1; i <= surahs.length; i++) {
