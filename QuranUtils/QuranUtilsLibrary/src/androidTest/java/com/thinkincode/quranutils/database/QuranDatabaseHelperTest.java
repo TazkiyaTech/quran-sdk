@@ -2,14 +2,16 @@ package com.thinkincode.quranutils.database;
 
 import com.thinkincode.quranutils.BaseTestCase;
 
+import java.util.List;
+
 public class QuranDatabaseHelperTest extends BaseTestCase {
 
 	public void testGetSurahNames() {
 		// When.
-//		List<String> surahNames = QuranTesterApplication.getInstance().getQuranDatabaseHelper().getSurahNames();
-//
-//		// Then.
-//		assertEquals(ChapterEnum.values().length, surahNames.size());
+		List<String> surahNames = getQuranDatabaseHelper().getSurahNames(getContext());
+
+		// Then.
+		assertEquals(114, surahNames.size());
 	}
 
 	public void testGetAyahsInSurah() {
