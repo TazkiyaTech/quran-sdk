@@ -135,16 +135,16 @@ public enum SurahEnum {
         }
     }
 
-    private int surahNumber;
-    private int numVerses;
+    private final int surahNumber;
+    private final int numVerses;
 
     /**
-     * @return the index of this target within its type category.
+     * @return the number (not index) of this Surah.
      * */
     public int getSurahNumber() { return surahNumber; }
 
     /**
-     * @return the number of verses (ayahs) that this target consists of.
+     * @return the number of verses (Ayahs) that this target consists of.
      * */
     public int getNumVerses() { return numVerses; }
 
