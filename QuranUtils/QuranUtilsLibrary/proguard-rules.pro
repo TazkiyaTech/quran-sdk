@@ -15,3 +15,27 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keepclasseswithmembers public class com.thinkincode.quranutils.** {
+    public <init>(...);
+}
+
+-keepclasseswithmembers public class com.thinkincode.quranutils.** {
+    public <fields>;
+}
+
+-keepclasseswithmembers public class com.thinkincode.quranutils.** {
+    public <methods>;
+}
+
+-keepclasseswithmembers public enum com.thinkincode.quranutils.** {
+    public <init>(...);
+}
+
+-keepclasseswithmembers public enum com.thinkincode.quranutils.** {
+    public <fields>;
+}
+
+-keepclasseswithmembers public enum com.thinkincode.quranutils.** {
+    public <methods>;
+}
