@@ -16,26 +16,24 @@
 #   public *;
 #}
 
--keepclasseswithmembers public class com.thinkincode.quranutils.** {
+-keepparameternames
+
+-keep public interface com.thinkincode.quranutils.** {
+    <methods>;
+}
+
+-keep public class com.thinkincode.quranutils.** {
     public <init>(...);
-}
-
--keepclasseswithmembers public class com.thinkincode.quranutils.** {
     public <fields>;
-}
-
--keepclasseswithmembers public class com.thinkincode.quranutils.** {
+    public static <fields>;
     public <methods>;
+    public static <methods>;
 }
 
--keepclasseswithmembers public enum com.thinkincode.quranutils.** {
+-keep public enum com.thinkincode.quranutils.** {
     public <init>(...);
-}
-
--keepclasseswithmembers public enum com.thinkincode.quranutils.** {
     public <fields>;
-}
-
--keepclasseswithmembers public enum com.thinkincode.quranutils.** {
+    public static <fields>;
     public <methods>;
+    public static <methods>;
 }
