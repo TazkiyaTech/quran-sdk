@@ -37,7 +37,7 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file://${System.properties['user.home']}/.m2")
+            repository(url: "file://${System.properties['user.home']}/.m2/repository")
         }
     }
 }
