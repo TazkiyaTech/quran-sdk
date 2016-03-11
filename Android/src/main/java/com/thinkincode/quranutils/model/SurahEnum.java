@@ -1,4 +1,4 @@
-package com.thinkincode.quranutils.database.model;
+package com.thinkincode.quranutils.model;
 
 /**
  * An enum representation of the Surahs that make up the Qur'an.

@@ -2,8 +2,6 @@ package com.thinkincode.quranutils.model;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thinkincode.quranutils.database.model.JuzEnum;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

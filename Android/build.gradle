@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 1
         versionName "${projectVersionName}"
@@ -41,8 +41,8 @@ dependencies {
 
 publishing {
     publications {
-        QuranUtilsLibrary(MavenPublication) {
-            artifact "$buildDir/outputs/aar/QuranUtilsLibrary-release.aar"
+        Android(MavenPublication) {
+            artifact "$buildDir/outputs/aar/Android-release.aar"
 
             //The publication doesn't know about our dependencies, so we have to manually add them to the pom
             pom.withXml {

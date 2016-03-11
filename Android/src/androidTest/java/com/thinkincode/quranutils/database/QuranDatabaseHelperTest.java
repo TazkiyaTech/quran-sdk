@@ -3,7 +3,7 @@ package com.thinkincode.quranutils.database;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quranutils.BaseTestCase;
-import com.thinkincode.quranutils.database.model.SurahEnum;
+import com.thinkincode.quranutils.model.SurahEnum;
 
 import org.junit.After;
 import org.junit.Before;
