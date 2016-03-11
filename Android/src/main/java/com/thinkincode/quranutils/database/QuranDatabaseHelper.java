@@ -19,13 +19,13 @@ public class QuranDatabaseHelper {
 
     private static final String DATABASE_NAME = "quran.db";
 
-    private static final String TABLE_NAME_QURAN_TEXT = "quran_text";
-    private static final String TABLE_NAME_SURA_NAMES = "sura_names";
+    static final String TABLE_NAME_QURAN_TEXT = "quran_text";
+    static final String TABLE_NAME_SURA_NAMES = "sura_names";
 
-    private static final String COLUMN_NAME_AYA = "aya";
-    private static final String COLUMN_NAME_NAME = "name";
-    private static final String COLUMN_NAME_SURA = "sura";
-    private static final String COLUMN_NAME_TEXT = "text";
+    static final String COLUMN_NAME_AYA = "aya";
+    static final String COLUMN_NAME_NAME = "name";
+    static final String COLUMN_NAME_SURA = "sura";
+    static final String COLUMN_NAME_TEXT = "text";
 
     private SQLiteDatabase sqliteDatabase; 
 
@@ -156,6 +156,15 @@ public class QuranDatabaseHelper {
 	}
 
 	/**
+	 * (Default package-private visibility for unit testing purposes.)
+	 *
+	 * @return the {@link #sqliteDatabase}.
+	 */
+	SQLiteDatabase getSQLiteDatabase() {
+		return sqliteDatabase;
+	}
+
+	/**
 	 * Checks whether the Qur'an database exists in internal storage.
 	 *
 	 * @param context is non-null.
@@ -208,7 +217,7 @@ public class QuranDatabaseHelper {
 	 * @param context is non-null.
 	 * @throws SQLException
 	 */
-	private void openDatabaseForReadingIfClosed(Context context) throws SQLException {
+    void openDatabaseForReadingIfClosed(Context context) throws SQLException {
 		if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
 			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
 			sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
@@ -231,7 +240,6 @@ public class QuranDatabaseHelper {
 	 */
 	private Cursor queryDatabase(Context context, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
 		openDatabaseForReadingIfClosed(context);
-//		DatabaseUtils.explainQueryPlanForSelectStatement(sqliteDatabase, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
 		return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
 	}
 }

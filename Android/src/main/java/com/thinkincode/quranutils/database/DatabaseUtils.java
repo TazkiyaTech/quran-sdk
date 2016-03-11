@@ -3,31 +3,30 @@ package com.thinkincode.quranutils.database;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class DatabaseUtils {
 
-	private final static String TAG = DatabaseUtils.class.getSimpleName();
-
 	/**
-	 * Composes and executes an EXECUTE QUERY PLAN command
-	 * for the select query provided.
+	 * Composes and executes an "EXECUTE QUERY PLAN" command
+	 * for the SELECT query provided.
 	 * 
-	 * @param database is non-null.
-	 * @param sql non-null.
+	 * @param database the (non-null) SQLite database object against which to run the "EXPLAIN QUERY PLAN" query.
+	 * @param sql the (non-null) SQLite SELECT statement for which to run the "EXPLAIN QUERY PLAN" query.
+	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
 	 */
-	public static void explainQueryPlanForSelectStatement(SQLiteDatabase database, String sql) {
+	public static QueryPlan explainQueryPlanForSelectStatement(SQLiteDatabase database, String sql) {
 		sql = "EXPLAIN QUERY PLAN " + sql;
-		executeExplainQueryPlanStatement(database, sql, null);
+		return executeExplainQueryPlanStatement(database, sql, null);
 	}
 
 	/**
-	 * Composes and executes an EXECUTE QUERY PLAN command
+	 * Composes and executes an "EXECUTE QUERY PLAN" command
 	 * for the SELECT query that would be composed from the parameters provided.
-	 * 
-	 * @see {@link SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)} for a description of this method's parameters.
+	 *
+	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+	 * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
 	 */
-	public static void explainQueryPlanForSelectStatement(SQLiteDatabase database, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+	public static QueryPlan explainQueryPlanForSelectStatement(SQLiteDatabase database, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("EXPLAIN QUERY PLAN SELECT ");
 
@@ -75,35 +74,42 @@ public class DatabaseUtils {
 			sb.append(limit);
 		}
 
-		executeExplainQueryPlanStatement(database, sb.toString(), selectionArgs);
+		return executeExplainQueryPlanStatement(database, sb.toString(), selectionArgs);
 	}
 
 	/**
-	 * Executes <code>sql</code> using <code>database</code>
-	 * and prints the result to logs.
+	 * Executes the sql command provided using the database object provided.
 	 * 
-	 * @param database the {@link SQLiteDatabase} instance to use to execute the query.
-	 * @param sql is an EXPLAIN QUERY PLAN command which must not be ; terminated.
-	 * @param selectionArgs the values to replace the ?s in the where clause of <code>sql</code>.
+	 * @param database the (non-null) SQLite database object against which to run the "EXPLAIN QUERY PLAN" query.
+	 * @param sql the (non-null) "EXPLAIN QUERY PLAN" command which must not be ; terminated.
+	 * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
+	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
 	 */
-	public static void executeExplainQueryPlanStatement(SQLiteDatabase database, String sql, String[] selectionArgs) {
-		final Cursor cursor = database.rawQuery(sql, selectionArgs);
+	private static QueryPlan executeExplainQueryPlanStatement(SQLiteDatabase database, String sql, String[] selectionArgs) {
+		Cursor cursor = null;
 
-		if (cursor.moveToFirst()) {
-			final int colIndexSelectId = cursor.getColumnIndex("selectid");
-			final int colIndexOrder = cursor.getColumnIndex("order");
-			final int colIndexFrom = cursor.getColumnIndex("from");
-			final int colIndexDetail = cursor.getColumnIndex("detail");
+		try {
+			cursor = database.rawQuery(sql, selectionArgs);
 
-			final int selectId = cursor.getInt(colIndexSelectId);
-			final int order = cursor.getInt(colIndexOrder);
-			final int from = cursor.getInt(colIndexFrom);
-			final String detail = cursor.getString(colIndexDetail);
+			if (cursor.moveToFirst()) {
+				final int colIndexSelectId = cursor.getColumnIndex("selectid");
+				final int colIndexOrder = cursor.getColumnIndex("order");
+				final int colIndexFrom = cursor.getColumnIndex("from");
+				final int colIndexDetail = cursor.getColumnIndex("detail");
 
-			Log.d(TAG, sql);
-			Log.d(TAG, String.format("%d | %d | %d | %s", selectId, order, from, detail));
+				final int selectId = cursor.getInt(colIndexSelectId);
+				final int order = cursor.getInt(colIndexOrder);
+				final int from = cursor.getInt(colIndexFrom);
+				final String detail = cursor.getString(colIndexDetail);
+
+				return new QueryPlan(selectId, order, from, detail);
+			} else {
+				return null;
+			}
+		} finally {
+			if (cursor != null) {
+				cursor.close();
+			}
 		}
-
-		cursor.close();
 	}
 }
