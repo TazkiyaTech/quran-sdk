@@ -16,6 +16,8 @@ import java.util.List;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
@@ -32,6 +34,15 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
     @After
     public void tearDown() {
         quranDatabaseHelper.closeDatabase();
+    }
+
+    @Test
+    public void testGetSurahName() {
+        // When.
+        String surahName = quranDatabaseHelper.getSurahName(getTargetContext(), 1);
+
+        // Then.
+        assertThat(surahName, is(not(nullValue())));
     }
 
     @Test
@@ -59,4 +70,13 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
             assertThat(ayahsInSurah.size(), is(equalTo(surahEnum.getNumVerses())));
 		}
 	}
+
+    @Test
+    public void testGetAyah() {
+        // When.
+        String ayah = quranDatabaseHelper.getAyah(getTargetContext(), 1, 1);
+
+        // Then.
+        assertThat(ayah, is(not(nullValue())));
+    }
 }
