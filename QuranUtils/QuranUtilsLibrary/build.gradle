@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group = 'com.thinkincode.quranutils'
 version = '0.0.1'
@@ -30,14 +30,26 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "file://${System.properties['user.home']}/.m2/repository")
+publishing {
+    publications {
+        QuranUtilsLibrary(MavenPublication) {
+            artifact "$buildDir/outputs/aar/QuranUtilsLibrary-release.aar"
+
+            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+
+                //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.compile.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', it.group)
+                    dependencyNode.appendNode('artifactId', it.name)
+                    dependencyNode.appendNode('version', it.version)
+                }
+            }
         }
     }
 }
