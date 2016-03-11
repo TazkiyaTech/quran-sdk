@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import com.google.common.io.ByteStreams;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -201,11 +203,7 @@ public class QuranDatabaseHelper {
 		OutputStream outputStream = context.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
 
 		// Transfer bytes from the input file to the output file
-		byte[] buffer = new byte[1024];
-		int length;
-		while ((length = inputStream.read(buffer)) > 0) {
-			outputStream.write(buffer, 0, length);
-		}
+        ByteStreams.copy(inputStream, outputStream);
 
 		// Close the streams
 		outputStream.flush();
