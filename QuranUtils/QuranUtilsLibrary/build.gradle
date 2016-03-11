@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-group = 'com.thinkincode.quranutils'
-version = '0.0.1'
+group = "${projectGroupName}"
+version = "${projectVersionName}"
 
 android {
     compileSdkVersion 23
@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "0.0.1"
+        versionName "${projectVersionName}"
     }
 
     buildTypes {
@@ -50,6 +50,15 @@ publishing {
                     dependencyNode.appendNode('version', it.version)
                 }
             }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "${artifactory_username}"
+                password "${artifactory_password}"
+            }
+            url "${artifactory_url}/libs-release-local"
         }
     }
 }
