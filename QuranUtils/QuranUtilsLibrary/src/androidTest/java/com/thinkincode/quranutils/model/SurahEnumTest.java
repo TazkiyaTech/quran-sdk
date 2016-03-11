@@ -1,23 +1,32 @@
 package com.thinkincode.quranutils.model;
 
-import com.thinkincode.quranutils.BaseTestCase;
+import android.support.test.runner.AndroidJUnit4;
+
 import com.thinkincode.quranutils.database.model.SurahEnum;
 
-public class SurahEnumTest extends BaseTestCase {
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
+
+@RunWith(AndroidJUnit4.class)
+public class SurahEnumTest {
+
+    @Test
     public void testGetNumVerses() {
         // Given.
         SurahEnum[] surahs = SurahEnum.values();
 
         // When.
 
-        int count = 0;
+        int verseCount = 0;
 
         for (SurahEnum chapterEnum : surahs) {
-            count += chapterEnum.getNumVerses();
+            verseCount += chapterEnum.getNumVerses();
         }
 
         // Then.
-        assertEquals(6236, count);
+        assertThat(verseCount, equalTo(6236));
     }
 }

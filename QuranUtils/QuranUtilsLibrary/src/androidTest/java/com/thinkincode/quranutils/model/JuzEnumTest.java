@@ -1,31 +1,46 @@
 package com.thinkincode.quranutils.model;
 
-import com.thinkincode.quranutils.BaseTestCase;
+import android.support.test.runner.AndroidJUnit4;
+
 import com.thinkincode.quranutils.database.model.JuzEnum;
 
-public class JuzEnumTest extends BaseTestCase {
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
+
+@RunWith(AndroidJUnit4.class)
+public class JuzEnumTest {
+
+	@Test
     public void testNumberOfVersesInJuz01() {
         // When.
         int numVerses = JuzEnum.Juz_01.getNumVerses();
+
         // Then.
-        assertEquals(148, numVerses);
+		assertThat(numVerses, equalTo(148));
     }
 
+	@Test
 	public void testNumberOfVersesInJuz27() {
         // When.
 		int numVerses = JuzEnum.Juz_27.getNumVerses();
+
         // Then.
-		assertEquals(399, numVerses);
+		assertThat(numVerses, equalTo(399));
 	}
 
+	@Test
 	public void testNumberOfVersesInJuz30() {
         // When.
 		int numVerses = JuzEnum.Juz_30.getNumVerses();
+
 		// Then.
-		assertEquals(564, numVerses);
+		assertThat(numVerses, equalTo(564));
 	}
 
+	@Test
 	public void testTotalNumberOfVersesInAllJuzs() {
         // Given.
         JuzEnum[] juzs = JuzEnum.values();
@@ -40,6 +55,6 @@ public class JuzEnumTest extends BaseTestCase {
 		}
 
         // Then.
-		assertEquals(6236, verseCount);
+		assertThat(verseCount, equalTo(6236));
 	}
 }
