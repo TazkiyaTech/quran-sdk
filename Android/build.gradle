@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 1
+        versionCode Integer.parseInt("${projectVersionCode}")
         versionName "${projectVersionName}"
     }
 
