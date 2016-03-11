@@ -1,5 +1,4 @@
 
-
 --
 -- Table structure for table `android_metadata`
 --
@@ -11,7 +10,6 @@ CREATE TABLE `android_metadata` (
 );
 
 INSERT INTO `android_metadata` (`locale`) VALUES ('en_US');
-
 
 --
 -- Table structure for table `sura_names`
@@ -142,7 +140,6 @@ INSERT INTO `sura_names` (`_id`, `sura`, `name`) VALUES
 (112, 112, 'الإخلاص'),
 (113, 113, 'الفلق'),
 (114, 114, 'الناس');
-
 
 --
 -- Table structure for table `quran_text`
