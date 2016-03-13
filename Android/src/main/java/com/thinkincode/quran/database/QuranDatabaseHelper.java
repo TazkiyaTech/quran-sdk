@@ -1,4 +1,4 @@
-package com.thinkincode.quranutils.database;
+package com.thinkincode.quran.database;
 
 import android.content.Context;
 import android.database.Cursor;

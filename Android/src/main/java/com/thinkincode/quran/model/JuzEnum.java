@@ -1,4 +1,4 @@
-package com.thinkincode.quranutils.model;
+package com.thinkincode.quran.model;
 
 /**
  * An enum representation of the Juzs that make up the Qur'an.

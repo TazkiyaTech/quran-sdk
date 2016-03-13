@@ -1,4 +1,4 @@
-package com.thinkincode.quranutils;
+package com.thinkincode.quran;
 
 import org.junit.Test;
 

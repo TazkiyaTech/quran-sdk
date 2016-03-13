@@ -1,4 +1,4 @@
-package com.thinkincode.quranutils.database;
+package com.thinkincode.quran.database;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

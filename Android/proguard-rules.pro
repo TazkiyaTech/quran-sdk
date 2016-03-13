@@ -18,11 +18,11 @@
 
 -keepparameternames
 
--keep public interface com.thinkincode.quranutils.** {
+-keep public interface com.thinkincode.quran.** {
     <methods>;
 }
 
--keep public class com.thinkincode.quranutils.** {
+-keep public class com.thinkincode.quran.** {
     public <init>(...);
     public <fields>;
     public static <fields>;
@@ -30,7 +30,7 @@
     public static <methods>;
 }
 
--keep public enum com.thinkincode.quranutils.** {
+-keep public enum com.thinkincode.quran.** {
     public <init>(...);
     public <fields>;
     public static <fields>;

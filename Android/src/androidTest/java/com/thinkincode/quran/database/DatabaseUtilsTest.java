@@ -1,9 +1,9 @@
-package com.thinkincode.quranutils.database;
+package com.thinkincode.quran.database;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thinkincode.quranutils.BaseTestCase;
+import com.thinkincode.quran.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;
