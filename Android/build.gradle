@@ -1,5 +1,9 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.jfrog.bintray' version '1.6'
+}
+
 apply plugin: 'maven-publish'
+apply plugin: 'com.android.library'
 
 group = "${projectGroupName}"
 version = "${projectVersionName}"
@@ -43,8 +47,11 @@ dependencies {
 
 publishing {
     publications {
-        Android(MavenPublication) {
+        QuranSDK(MavenPublication) {
             artifact "$buildDir/outputs/aar/Android-release.aar"
+
+            groupId "${projectGroupName}"
+            version "${projectVersionName}"
 
             //The publication doesn't know about our dependencies, so we have to manually add them to the pom
             pom.withXml {
@@ -60,13 +67,24 @@ publishing {
             }
         }
     }
-    repositories {
-        maven {
-            credentials {
-                username "${artifactory_username}"
-                password "${artifactory_password}"
-            }
-            url "${artifactory_url}/libs-release-local"
+}
+
+bintray {
+    user = "${bintray_user}"
+    key = "${bintray_api_key}"
+    publications = ['QuranSDK']
+    pkg {
+        repo = 'maven'
+        name = 'quran-sdk'
+//        userOrg = 'Think In Code' // optional
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://bitbucket.org/adilson05uk/quran-sdk.git'
+
+        version {
+            name = "${projectVersionName}"
+            desc = 'Latest release!'
+            released  = new Date()
+            vcsTag = "release_" + "${projectVersionName}"
         }
     }
 }
