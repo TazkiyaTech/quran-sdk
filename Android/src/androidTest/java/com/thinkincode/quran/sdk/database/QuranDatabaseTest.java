@@ -20,6 +20,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class QuranDatabaseTest extends BaseTestCase {
@@ -35,6 +36,24 @@ public class QuranDatabaseTest extends BaseTestCase {
     @After
     public void tearDown() {
         quranDatabase.closeDatabase();
+    }
+
+    @Test
+    public void testIsDatabaseExistsInInternalStorage() {
+        // When.
+        boolean result = quranDatabase.isDatabaseExistsInInternalStorage(getTargetContext());
+
+        // Then.
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIsDatabaseOpen() {
+        // When.
+        boolean result = quranDatabase.isDatabaseOpen();
+
+        // Then.
+        assertTrue(result);
     }
 
     @Test

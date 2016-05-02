@@ -165,17 +165,26 @@ public class QuranDatabase {
 	}
 
 	/**
-	 * Checks whether the Qur'an database exists in internal storage.
+	 * (Default package-private visibility for unit testing purposes.)
 	 *
 	 * @param context is non-null.
 	 * @return true iff the Qur'an database exists in internal storage.
 	 */
-	private boolean isDatabaseExistsInInternalStorage(Context context) {
+    boolean isDatabaseExistsInInternalStorage(Context context) {
 		String path = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
 		File file = new File(path);
 
 		return file.isFile();
 	}
+
+    /**
+     * (Default package-private visibility for unit testing purposes.)
+     *
+     * @return true iff the Qur'an database is open for reading.
+     */
+    boolean isDatabaseOpen() {
+        return sqliteDatabase != null && sqliteDatabase.isOpen();
+    }
 
 	/**
 	 * Copies the Qur'an database from assets to internal storage,
@@ -204,7 +213,7 @@ public class QuranDatabase {
 	 * @throws SQLException
 	 */
     private void openDatabaseForReadingIfClosed(Context context) {
-        if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
+        if (!isDatabaseOpen()) {
             String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
             sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         }
@@ -224,7 +233,7 @@ public class QuranDatabase {
 	 * @return the result of the query.
 	 */
 	private Cursor queryDatabase(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
-        if (sqliteDatabase == null) {
+        if (!isDatabaseOpen()) {
             String message = "Could not query the Qur'an database. " +
                     "Ensure that the QuranDatabase.openDatabase(Context) method has been called before attempting to read from the database.";
 
