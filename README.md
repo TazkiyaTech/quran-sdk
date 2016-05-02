@@ -14,13 +14,13 @@ Next, you need to add the library as a dependency in your app. You can do this b
         compile 'com.thinkincode.quran.sdk:Android:0.0.1'
     }
 
-Next, on startup of your app, call the `QuranDatabaseHelper.openDatabase(Context)` method. Be sure to pass in the application context rather than the activity context.
+Next, on startup of your app, call the `QuranDatabase.openDatabase(Context)` method. Be sure to pass in the application context rather than the activity context.
 
-Now that the Qur'an database is setup for your application, you can call any of the public getter methods of the `QuranDatabaseHelper` class to access information in the Qur'an database. These methods are as follows:
+Now that the Qur'an database is setup for your application, you can call any of the public getter methods of the `QuranDatabase` class to access information in the Qur'an database. These methods are as follows:
 
-* `QuranDatabaseHelper.getSurahName(Context context, int surahNumber)` – returns the name of the specified Surah.
-* `QuranDatabaseHelper.getSurahNames(Context context)` – return the names of all of the Surahs in the Qur'an.
-* `QuranDatabaseHelper.getAyahsInSurah(Context context, int surahNumber)` – return all of the ayahs of the specified Surah.
-* `QuranDatabaseHelper.getAyah(Context context, int surahNumber, int ayahNumber)` – returns the text of the specified Ayah.
+* `QuranDatabase.getSurahName(Context context, int surahNumber)` – returns the name of the specified Surah.
+* `QuranDatabase.getSurahNames(Context context)` – return the names of all of the Surahs in the Qur'an.
+* `QuranDatabase.getAyahsInSurah(Context context, int surahNumber)` – return all of the ayahs of the specified Surah.
+* `QuranDatabase.getAyah(Context context, int surahNumber, int ayahNumber)` – returns the text of the specified Ayah.
 
-We advise calling all of the above methods (especially the `QuranDatabaseHelper.openDatabase(Context)` method) in a background thread since the methods are accessing file storage.
+We advise calling all of the above methods (especially the `QuranDatabase.openDatabase(Context)` method) in a background thread since the methods are accessing file storage.

@@ -21,25 +21,25 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class QuranDatabaseHelperTest extends BaseTestCase {
+public class QuranDatabaseTest extends BaseTestCase {
 
-    private QuranDatabaseHelper quranDatabaseHelper;
+    private QuranDatabase quranDatabase;
 
     @Before
     public void setUp() throws IOException {
-        quranDatabaseHelper = new QuranDatabaseHelper();
-        quranDatabaseHelper.openDatabase(getTargetContext());
+        quranDatabase = new QuranDatabase();
+        quranDatabase.openDatabase(getTargetContext());
     }
 
     @After
     public void tearDown() {
-        quranDatabaseHelper.closeDatabase();
+        quranDatabase.closeDatabase();
     }
 
     @Test
     public void testGetSurahName() {
         // When.
-        String surahName = quranDatabaseHelper.getSurahName(getTargetContext(), 1);
+        String surahName = quranDatabase.getSurahName(getTargetContext(), 1);
 
         // Then.
         assertThat(surahName, is(not(nullValue())));
@@ -48,7 +48,7 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
     @Test
 	public void testGetSurahNames() {
 		// When.
-		List<String> surahNames = quranDatabaseHelper.getSurahNames(getTargetContext());
+		List<String> surahNames = quranDatabase.getSurahNames(getTargetContext());
 
 		// Then.
         assertThat(surahNames, hasSize(114));
@@ -64,7 +64,7 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
             SurahEnum surahEnum = surahs[i - 1];
 
 			// When.
-			List<String> ayahsInSurah = quranDatabaseHelper.getAyahsInSurah(getTargetContext(), i);
+			List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(getTargetContext(), i);
 
 			// Then.
             assertThat(ayahsInSurah.size(), is(equalTo(surahEnum.getNumVerses())));
@@ -74,7 +74,7 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
     @Test
     public void testGetAyah() {
         // When.
-        String ayah = quranDatabaseHelper.getAyah(getTargetContext(), 1, 1);
+        String ayah = quranDatabase.getAyah(getTargetContext(), 1, 1);
 
         // Then.
         assertThat(ayah, is(not(nullValue())));

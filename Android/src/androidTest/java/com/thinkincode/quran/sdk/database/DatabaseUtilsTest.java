@@ -22,10 +22,10 @@ public class DatabaseUtilsTest extends BaseTestCase {
 
     @Before
     public void setUp() throws IOException {
-        QuranDatabaseHelper quranDatabaseHelper = new QuranDatabaseHelper();
-        quranDatabaseHelper.openDatabase(getTargetContext());
+        QuranDatabase quranDatabase = new QuranDatabase();
+        quranDatabase.openDatabase(getTargetContext());
 
-        sqLiteDatabase = quranDatabaseHelper.getSQLiteDatabase();
+        sqLiteDatabase = quranDatabase.getSQLiteDatabase();
     }
 
     @Test
@@ -33,7 +33,7 @@ public class DatabaseUtilsTest extends BaseTestCase {
         // When.
         QueryPlan result = DatabaseUtils.explainQueryPlanForSelectStatement(
                 sqLiteDatabase,
-                QuranDatabaseHelper.TABLE_NAME_SURA_NAMES,
+                QuranDatabase.TABLE_NAME_SURA_NAMES,
                 null,
                 null,
                 null,
@@ -50,9 +50,9 @@ public class DatabaseUtilsTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsSuraNames_and_whereClauseProvided() {
         // When.
         QueryPlan result = DatabaseUtils.explainQueryPlanForSelectStatement(sqLiteDatabase,
-                QuranDatabaseHelper.TABLE_NAME_SURA_NAMES,
+                QuranDatabase.TABLE_NAME_SURA_NAMES,
                 null,
-                QuranDatabaseHelper.COLUMN_NAME_SURA + " = ? ",
+                QuranDatabase.COLUMN_NAME_SURA + " = ? ",
                 new String[] { "1" },
                 null,
                 null,
@@ -68,7 +68,7 @@ public class DatabaseUtilsTest extends BaseTestCase {
         // When.
         QueryPlan result = DatabaseUtils.explainQueryPlanForSelectStatement(
                 sqLiteDatabase,
-                QuranDatabaseHelper.TABLE_NAME_QURAN_TEXT,
+                QuranDatabase.TABLE_NAME_QURAN_TEXT,
                 null,
                 null,
                 null,
@@ -85,9 +85,9 @@ public class DatabaseUtilsTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_1() {
         // When.
         QueryPlan result = DatabaseUtils.explainQueryPlanForSelectStatement(sqLiteDatabase,
-                QuranDatabaseHelper.TABLE_NAME_QURAN_TEXT,
+                QuranDatabase.TABLE_NAME_QURAN_TEXT,
                 null,
-                QuranDatabaseHelper.COLUMN_NAME_SURA + " = ? ",
+                QuranDatabase.COLUMN_NAME_SURA + " = ? ",
                 new String[] { "1" },
                 null,
                 null,
@@ -102,11 +102,11 @@ public class DatabaseUtilsTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_2() {
         // When.
         QueryPlan result = DatabaseUtils.explainQueryPlanForSelectStatement(sqLiteDatabase,
-                QuranDatabaseHelper.TABLE_NAME_QURAN_TEXT,
+                QuranDatabase.TABLE_NAME_QURAN_TEXT,
                 null,
-                QuranDatabaseHelper.COLUMN_NAME_SURA + " = ? " +
+                QuranDatabase.COLUMN_NAME_SURA + " = ? " +
                         " AND " +
-                        QuranDatabaseHelper.COLUMN_NAME_AYA + " = ? ",
+                        QuranDatabase.COLUMN_NAME_AYA + " = ? ",
                 new String[] { "1", "1" },
                 null,
                 null,

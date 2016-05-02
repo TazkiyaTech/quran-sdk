@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Helper class which is able to create and access the local Qur'an SQLite database.
  */
-public class QuranDatabaseHelper {
+public class QuranDatabase {
 
     private static final String DATABASE_NAME = "quran.db";
 
