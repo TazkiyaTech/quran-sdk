@@ -1,4 +1,4 @@
-package com.thinkincode.quran.model;
+package com.thinkincode.quran.sdk.model;
 
 import android.support.test.runner.AndroidJUnit4;
 

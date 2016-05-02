@@ -1,4 +1,4 @@
-package com.thinkincode.quran;
+package com.thinkincode.quran.sdk;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

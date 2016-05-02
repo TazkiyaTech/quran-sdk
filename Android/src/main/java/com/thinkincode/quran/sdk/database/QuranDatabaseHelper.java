@@ -1,4 +1,4 @@
-package com.thinkincode.quran.database;
+package com.thinkincode.quran.sdk.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -32,15 +32,16 @@ public class QuranDatabaseHelper {
     private SQLiteDatabase sqliteDatabase; 
 
 	/**
-     * Copies the Qur'an database from assets to internal storage database
-     * if it does not already exist in internal storage.
+     * Creates and opens the database for reading.
      *
      * @param context is non-null.
      * */
-    public void createDatabaseIfDoesNotExist(Context context) throws IOException {
+    public void openDatabase(Context context) throws IOException {
     	if (!isDatabaseExistsInInternalStorage(context)) {
         	copyDatabaseFromAssetsToInternalStorage(context);
     	}
+
+		openDatabaseForReadingIfClosed(context);
     }
 
     /**
@@ -215,7 +216,7 @@ public class QuranDatabaseHelper {
 	 * @param context is non-null.
 	 * @throws SQLException
 	 */
-    void openDatabaseForReadingIfClosed(Context context) throws SQLException {
+    private void openDatabaseForReadingIfClosed(Context context) throws SQLException {
 		if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
 			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
 			sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);

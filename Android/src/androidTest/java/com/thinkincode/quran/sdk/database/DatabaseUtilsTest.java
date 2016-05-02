@@ -1,9 +1,9 @@
-package com.thinkincode.quran.database;
+package com.thinkincode.quran.sdk.database;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thinkincode.quran.BaseTestCase;
+import com.thinkincode.quran.sdk.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +23,7 @@ public class DatabaseUtilsTest extends BaseTestCase {
     @Before
     public void setUp() throws IOException {
         QuranDatabaseHelper quranDatabaseHelper = new QuranDatabaseHelper();
-        quranDatabaseHelper.createDatabaseIfDoesNotExist(getTargetContext());
-        quranDatabaseHelper.openDatabaseForReadingIfClosed(getTargetContext());
+        quranDatabaseHelper.openDatabase(getTargetContext());
 
         sqLiteDatabase = quranDatabaseHelper.getSQLiteDatabase();
     }

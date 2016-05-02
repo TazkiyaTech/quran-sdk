@@ -1,4 +1,4 @@
-package com.thinkincode.quran.database;
+package com.thinkincode.quran.sdk.database;
 
 /**
  * Represents the result of an "EXPLAIN QUERY PLAN" query.

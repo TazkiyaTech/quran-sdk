@@ -84,7 +84,7 @@ bintray {
             name = "${projectVersionName}"
             desc = 'Latest release!'
             released  = new Date()
-            vcsTag = "release_" + "${projectVersionName}"
+//            vcsTag = "release_" + "${projectVersionName}"
         }
     }
 }

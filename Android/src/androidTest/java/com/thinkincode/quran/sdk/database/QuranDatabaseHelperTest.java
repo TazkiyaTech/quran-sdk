@@ -1,9 +1,9 @@
-package com.thinkincode.quran.database;
+package com.thinkincode.quran.sdk.database;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thinkincode.quran.BaseTestCase;
-import com.thinkincode.quran.model.SurahEnum;
+import com.thinkincode.quran.sdk.BaseTestCase;
+import com.thinkincode.quran.sdk.model.SurahEnum;
 
 import org.junit.After;
 import org.junit.Before;
@@ -28,7 +28,7 @@ public class QuranDatabaseHelperTest extends BaseTestCase {
     @Before
     public void setUp() throws IOException {
         quranDatabaseHelper = new QuranDatabaseHelper();
-        quranDatabaseHelper.createDatabaseIfDoesNotExist(getTargetContext());
+        quranDatabaseHelper.openDatabase(getTargetContext());
     }
 
     @After
