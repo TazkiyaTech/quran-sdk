@@ -4,10 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 
 import com.google.common.io.ByteStreams;
+import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class QuranDatabase {
 
-    private static final String DATABASE_NAME = "quran.db";
+    private static final String DATABASE_NAME = "com.thinkincode.quran.db";
 
     static final String TABLE_NAME_QURAN_TEXT = "quran_text";
     static final String TABLE_NAME_SURA_NAMES = "sura_names";
@@ -32,7 +33,7 @@ public class QuranDatabase {
     private SQLiteDatabase sqliteDatabase; 
 
 	/**
-     * Creates and opens the database for reading.
+     * Opens the Qur'an database for reading.
      *
      * @param context is non-null.
      * */
@@ -54,12 +55,11 @@ public class QuranDatabase {
 	}
 
 	/**
-     * @param context is non-null.
 	 * @param surahNumber >= 1 and <= 114.
 	 * @return the name of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
-	public String getSurahName(Context context, int surahNumber) {
+	public String getSurahName(int surahNumber) {
 		String surahName = null;
 
 		String[] columns = new String[] { COLUMN_NAME_NAME };
@@ -67,7 +67,7 @@ public class QuranDatabase {
 		String[] selectionArgs = new String[] { String.valueOf(surahNumber) };
 		String limit = "1";
 
-		Cursor cursor = queryDatabase(context, TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, null, null, limit);
+		Cursor cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, null, null, limit);
 
 		int columnIndexName = cursor.getColumnIndex(COLUMN_NAME_NAME);
 
@@ -81,16 +81,15 @@ public class QuranDatabase {
 	}
 
 	/**
-     * @param context is non-null.
 	 * @return the names of all the Surahs in the Qur'an.
 	 */
-	public List<String> getSurahNames(Context context) {
+	public List<String> getSurahNames() {
 		List<String> surahNames = new ArrayList<>();
 
 		String[] columns = new String[] { COLUMN_NAME_NAME };
 		String orderBy = COLUMN_NAME_SURA + " ASC ";
 
-		Cursor cursor = queryDatabase(context, TABLE_NAME_SURA_NAMES, columns, null, null, null, null, orderBy, null);
+		Cursor cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, null, null, null, null, orderBy, null);
 
 		int columnIndexName = cursor.getColumnIndex(COLUMN_NAME_NAME);
 
@@ -104,12 +103,11 @@ public class QuranDatabase {
 	}
 
 	/**
-     * @param context is non-null.
 	 * @param surahNumber >= 1 and <= 114.
 	 * @return the ayahs of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
-	public List<String> getAyahsInSurah(Context context, int surahNumber) {
+	public List<String> getAyahsInSurah(int surahNumber) {
 		List<String> surahAyahs = new ArrayList<>();
 
 		String[] columns = new String[] { COLUMN_NAME_TEXT };
@@ -117,7 +115,7 @@ public class QuranDatabase {
 		String[] selectionArgs = new String[] { String.valueOf(surahNumber) };
 		String orderBy = COLUMN_NAME_AYA + " ASC ";
 
-		Cursor cursor = queryDatabase(context, TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, orderBy, null);
+		Cursor cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, orderBy, null);
 
 		int columnIndexText = cursor.getColumnIndex(COLUMN_NAME_TEXT);
 
@@ -131,13 +129,12 @@ public class QuranDatabase {
 	}
 
 	/**
-     * @param context is non-null.
 	 * @param surahNumber >= 1 and <= 114.
 	 * @param ayahNumber >= 1.
 	 * @return the text of the specified Ayah,
 	 * or null if the Surah and Ayah number provided do not map to an Ayah.
 	 */
-	public String getAyah(Context context, int surahNumber, int ayahNumber) {
+	public String getAyah(int surahNumber, int ayahNumber) {
 		String ayah = null;
 
 		String[] columns = new String[] { COLUMN_NAME_TEXT };
@@ -145,7 +142,7 @@ public class QuranDatabase {
 		String[] selectionArgs = new String[] { String.valueOf(surahNumber), String.valueOf(ayahNumber) };
 		String limit = "1";
 
-		Cursor cursor = queryDatabase(context, TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, null, limit);
+		Cursor cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, null, limit);
 
 		int columnIndexText = cursor.getColumnIndex(COLUMN_NAME_TEXT);
 
@@ -174,20 +171,10 @@ public class QuranDatabase {
 	 * @return true iff the Qur'an database exists in internal storage.
 	 */
 	private boolean isDatabaseExistsInInternalStorage(Context context) {
-		SQLiteDatabase checkDatabase = null;
+		String path = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+		File file = new File(path);
 
-		try {
-			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
-			checkDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-		} catch (SQLiteException ex) {
-			//database doesn't exist
-		}
-
-		if (checkDatabase != null){
-			checkDatabase.close();
-		}
-
-		return checkDatabase != null;
+		return file.isFile();
 	}
 
 	/**
@@ -216,17 +203,16 @@ public class QuranDatabase {
 	 * @param context is non-null.
 	 * @throws SQLException
 	 */
-    private void openDatabaseForReadingIfClosed(Context context) throws SQLException {
-		if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
-			String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
-			sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-		}
+    private void openDatabaseForReadingIfClosed(Context context) {
+        if (sqliteDatabase == null || !sqliteDatabase.isOpen()) {
+            String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+            sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        }
 	}
 
 	/**
      * Queries the local Qur'an database with the specified parameters.
      *
-	 * @param context is non-null.
 	 * @param table
 	 * @param columns
 	 * @param selection
@@ -237,8 +223,14 @@ public class QuranDatabase {
 	 * @param limit
 	 * @return the result of the query.
 	 */
-	private Cursor queryDatabase(Context context, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
-		openDatabaseForReadingIfClosed(context);
+	private Cursor queryDatabase(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+        if (sqliteDatabase == null) {
+            String message = "Could not query the Qur'an database. " +
+                    "Ensure that the QuranDatabase.openDatabase(Context) method has been called before attempting to read from the database.";
+
+            throw new QuranDatabaseException(message);
+        }
+
 		return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
 	}
 }

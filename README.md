@@ -18,9 +18,9 @@ Next, on startup of your app, call the `QuranDatabase.openDatabase(Context)` met
 
 Now that the Qur'an database is setup for your application, you can call any of the public getter methods of the `QuranDatabase` class to access information in the Qur'an database. These methods are as follows:
 
-* `QuranDatabase.getSurahName(Context context, int surahNumber)` – returns the name of the specified Surah.
-* `QuranDatabase.getSurahNames(Context context)` – return the names of all of the Surahs in the Qur'an.
-* `QuranDatabase.getAyahsInSurah(Context context, int surahNumber)` – return all of the ayahs of the specified Surah.
-* `QuranDatabase.getAyah(Context context, int surahNumber, int ayahNumber)` – returns the text of the specified Ayah.
+* `QuranDatabase.getSurahName(int surahNumber)` – returns the name of the specified Surah.
+* `QuranDatabase.getSurahNames()` – return the names of all of the Surahs in the Qur'an.
+* `QuranDatabase.getAyahsInSurah(int surahNumber)` – return all of the ayahs of the specified Surah.
+* `QuranDatabase.getAyah(int surahNumber, int ayahNumber)` – returns the text of the specified Ayah.
 
 We advise calling all of the above methods (especially the `QuranDatabase.openDatabase(Context)` method) in a background thread since the methods are accessing file storage.

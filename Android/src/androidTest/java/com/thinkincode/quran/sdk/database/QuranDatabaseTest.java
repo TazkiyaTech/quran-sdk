@@ -3,6 +3,7 @@ package com.thinkincode.quran.sdk.database;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
+import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 import com.thinkincode.quran.sdk.model.SurahEnum;
 
 import org.junit.After;
@@ -39,7 +40,7 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Test
     public void testGetSurahName() {
         // When.
-        String surahName = quranDatabase.getSurahName(getTargetContext(), 1);
+        String surahName = quranDatabase.getSurahName(1);
 
         // Then.
         assertThat(surahName, is(not(nullValue())));
@@ -48,7 +49,7 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Test
 	public void testGetSurahNames() {
 		// When.
-		List<String> surahNames = quranDatabase.getSurahNames(getTargetContext());
+		List<String> surahNames = quranDatabase.getSurahNames();
 
 		// Then.
         assertThat(surahNames, hasSize(114));
@@ -59,12 +60,12 @@ public class QuranDatabaseTest extends BaseTestCase {
 		// Given.
 		SurahEnum[] surahs = SurahEnum.values();
 
-		for (int i = 1; i <= surahs.length; i++) {
+		for (int surahNumber = 1; surahNumber <= surahs.length; surahNumber++) {
             // Given.
-            SurahEnum surahEnum = surahs[i - 1];
+            SurahEnum surahEnum = surahs[surahNumber - 1];
 
 			// When.
-			List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(getTargetContext(), i);
+			List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(surahNumber);
 
 			// Then.
             assertThat(ayahsInSurah.size(), is(equalTo(surahEnum.getNumVerses())));
@@ -74,9 +75,14 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Test
     public void testGetAyah() {
         // When.
-        String ayah = quranDatabase.getAyah(getTargetContext(), 1, 1);
+        String ayah = quranDatabase.getAyah(1, 1);
 
         // Then.
         assertThat(ayah, is(not(nullValue())));
+    }
+
+    @Test(expected = QuranDatabaseException.class)
+    public void testGetAyah_WhenDatabaseNotOpen() {
+        new QuranDatabase().getAyah(1, 1);
     }
 }
