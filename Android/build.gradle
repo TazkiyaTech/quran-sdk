@@ -51,6 +51,7 @@ publishing {
             artifact "$buildDir/outputs/aar/Android-release.aar"
 
             groupId "${projectGroupName}"
+//            artifactId "Android"
             version "${projectVersionName}"
 
             //The publication doesn't know about our dependencies, so we have to manually add them to the pom
