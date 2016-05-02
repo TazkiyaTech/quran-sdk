@@ -1,4 +1,4 @@
-This Android SDK (library) has been put together to make it easy for developers to access verses of the Qur'an in thier apps.
+This Android SDK (library) has been put together to make it easy for developers to access verses of the Qur'an in their apps.
 
 To start using the library you'll need to declare the repository from which you'll get the library. You can do this by copying the following declaration in the `build.gradle` file of your app:
 
