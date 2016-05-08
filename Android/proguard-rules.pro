@@ -37,3 +37,6 @@
     public <methods>;
     public static <methods>;
 }
+
+-keep class com.google.** { *; }
+-keep class android.** { *; }

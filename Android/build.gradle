@@ -28,7 +28,7 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -51,23 +51,21 @@ task generateSourcesJar(type: Jar) {
     classifier 'sources'
 }
 
-//task generateJavadocs(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//}
-//
-//task generateJavadocsJar(type: Jar) {
-//    from generateJavadocs.destinationDir
-//    classifier 'javadoc'
-//}
-//
-//generateJavadocsJar.dependsOn generateJavadocs
+task generateJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task generateJavadocsJar(type: Jar, dependsOn: generateJavadocs) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
 
 publishing {
     publications {
         QuranSDK(MavenPublication) {
             artifact "$buildDir/outputs/aar/Android-release.aar"
-//            artifact generateJavaDocsJar
+            artifact generateJavadocsJar
             artifact generateSourcesJar
 
             groupId "${projectGroupName}"
