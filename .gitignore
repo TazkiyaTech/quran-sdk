@@ -1,15 +1,14 @@
-.gradle/
-.metadata/
-.recommenders/
-/bin/
-/local.properties
+.gradle
+.metadata
+.recommenders
+/bin
 
 # Build folders
-/build/
-/Android/build/
+/build
+/Android/build
 
 # IntelliJ (User-specific files):
-/.idea/dictionaries/
+/.idea/dictionaries
 /.idea/tasks.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
@@ -24,4 +23,4 @@
 
 # IntelliJ Config (Gradle files):
 /.idea/gradle.xml
-/.idea/libraries/
+/.idea/libraries
