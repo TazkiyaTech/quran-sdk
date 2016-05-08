@@ -2,8 +2,8 @@ package com.thinkincode.quran.sdk.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.google.common.io.ByteStreams;
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
@@ -37,7 +37,7 @@ public class QuranDatabase {
      *
      * @param context is non-null.
      * */
-    public void openDatabase(Context context) throws IOException {
+    public void openDatabase(Context context) throws IOException, SQLiteException {
     	if (!isDatabaseExistsInInternalStorage(context)) {
         	copyDatabaseFromAssetsToInternalStorage(context);
     	}
@@ -59,7 +59,7 @@ public class QuranDatabase {
 	 * @return the name of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
-	public String getSurahName(int surahNumber) {
+	public String getSurahName(int surahNumber) throws QuranDatabaseException {
 		String surahName = null;
 
 		String[] columns = new String[] { COLUMN_NAME_NAME };
@@ -83,7 +83,7 @@ public class QuranDatabase {
 	/**
 	 * @return the names of all the Surahs in the Qur'an.
 	 */
-	public List<String> getSurahNames() {
+	public List<String> getSurahNames() throws QuranDatabaseException {
 		List<String> surahNames = new ArrayList<>();
 
 		String[] columns = new String[] { COLUMN_NAME_NAME };
@@ -107,7 +107,7 @@ public class QuranDatabase {
 	 * @return the ayahs of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
-	public List<String> getAyahsInSurah(int surahNumber) {
+	public List<String> getAyahsInSurah(int surahNumber) throws QuranDatabaseException {
 		List<String> surahAyahs = new ArrayList<>();
 
 		String[] columns = new String[] { COLUMN_NAME_TEXT };
@@ -134,7 +134,7 @@ public class QuranDatabase {
 	 * @return the text of the specified Ayah,
 	 * or null if the Surah and Ayah number provided do not map to an Ayah.
 	 */
-	public String getAyah(int surahNumber, int ayahNumber) {
+	public String getAyah(int surahNumber, int ayahNumber) throws QuranDatabaseException {
 		String ayah = null;
 
 		String[] columns = new String[] { COLUMN_NAME_TEXT };
@@ -209,10 +209,11 @@ public class QuranDatabase {
 	}
 
 	/**
+	 * Opens the Qur'an database for reading, if it's not already open.
+	 *
 	 * @param context is non-null.
-	 * @throws SQLException
 	 */
-    private void openDatabaseForReadingIfClosed(Context context) {
+    private void openDatabaseForReadingIfClosed(Context context) throws SQLiteException {
         if (!isDatabaseOpen()) {
             String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
             sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
@@ -232,7 +233,7 @@ public class QuranDatabase {
 	 * @param limit
 	 * @return the result of the query.
 	 */
-	private Cursor queryDatabase(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+	private Cursor queryDatabase(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) throws QuranDatabaseException {
         if (!isDatabaseOpen()) {
             String message = "Could not query the Qur'an database. " +
                     "Ensure that the QuranDatabase.openDatabase(Context) method has been called before attempting to read from the database.";
