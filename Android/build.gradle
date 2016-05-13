@@ -20,6 +20,11 @@ android {
         versionName "${projectVersionName}"
     }
 
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "1024M"
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
