@@ -2,6 +2,7 @@
 .metadata
 .recommenders
 /bin
+/local.properties
 
 # Build folders
 /build
