@@ -39,4 +39,7 @@
 }
 
 #-keep class com.google.** { *; }
+#-keep interface com.google.** { *; }
+
 #-keep class android.** { *; }
+#-keep interface android.** { *; }
