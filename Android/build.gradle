@@ -25,7 +25,7 @@ android {
 
     dexOptions {
         incremental true
-        javaMaxHeapSize "1024M"
+        javaMaxHeapSize '1024m'
     }
 
     buildTypes {
@@ -46,7 +46,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError true
     }
 }
 
@@ -55,7 +55,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
-    androidTestCompile 'com.android.support:support-annotations:23.3.0'
+    androidTestCompile 'com.android.support:support-annotations:23.4.0'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
