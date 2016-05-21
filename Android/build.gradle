@@ -105,7 +105,7 @@ publishing {
 
 bintray {
     user = "${bintray_user}"
-    key = "${bintray_api_key_quran_sdk}"
+    key = "${bintray_api_key}"
     publications = ['QuranSDK']
     pkg {
         repo = 'maven'
