@@ -1,3 +1,7 @@
+--
+-- SQL script for creating the Quran database.
+-- (Taken from http://tanzil.net/download)
+--
 
 --
 -- Table structure for table `android_metadata`
