@@ -16,7 +16,7 @@ android {
     buildToolsVersion '24.0.0'
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 24
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         versionCode Integer.parseInt(getProperty('projectVersionCode'))

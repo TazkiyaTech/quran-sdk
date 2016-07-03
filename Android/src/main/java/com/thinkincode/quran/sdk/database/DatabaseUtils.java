@@ -4,6 +4,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+/**
+ * TODO: move this out to the Android Utils library.
+ */
 public class DatabaseUtils {
 
 	/**

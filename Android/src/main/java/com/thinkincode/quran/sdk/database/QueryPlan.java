@@ -1,7 +1,9 @@
 package com.thinkincode.quran.sdk.database;
 
 /**
- * Represents the result of an "EXPLAIN QUERY PLAN" query.
+ * <p>Represents the result of an "EXPLAIN QUERY PLAN" query.</p>
+ *
+ * <p>TODO: move this out to the Android Utils library.</p>
  */
 public class QueryPlan {
 

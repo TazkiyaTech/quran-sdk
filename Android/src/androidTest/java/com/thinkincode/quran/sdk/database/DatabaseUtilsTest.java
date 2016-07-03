@@ -15,6 +15,9 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
+/**
+ * TODO: move this out to the Android Utils library.
+ */
 @RunWith(AndroidJUnit4.class)
 public class DatabaseUtilsTest extends BaseTestCase {
 
