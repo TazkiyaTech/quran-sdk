@@ -121,7 +121,7 @@ public enum SurahEnum {
     Surah_114 (114, 6);
 
     /**
-     * @param surahNumber >= 1 and <= 114.
+     * @param surahNumber is a value between 1 and 114 (inclusive).
      * @return the {@link SurahEnum} corresponding to the {@code surahNumber} provided,
      * or null if no matching {@link SurahEnum} is found.
      * */

@@ -55,7 +55,7 @@ public class QuranDatabase {
 	}
 
 	/**
-	 * @param surahNumber >= 1 and <= 114.
+	 * @param surahNumber is a value between 1 and 114 (inclusive).
 	 * @return the name of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
@@ -103,7 +103,7 @@ public class QuranDatabase {
 	}
 
 	/**
-	 * @param surahNumber >= 1 and <= 114.
+	 * @param surahNumber is a value between 1 and 114 (inclusive).
 	 * @return the ayahs of the specified Surah,
 	 * or null if the Surah number is not valid.
 	 */
@@ -129,8 +129,8 @@ public class QuranDatabase {
 	}
 
 	/**
-	 * @param surahNumber >= 1 and <= 114.
-	 * @param ayahNumber >= 1.
+	 * @param surahNumber is a value between 1 and 114 (inclusive).
+	 * @param ayahNumber is a value greater than or equal to 1.
 	 * @return the text of the specified Ayah,
 	 * or null if the Surah and Ayah number provided do not map to an Ayah.
 	 */
