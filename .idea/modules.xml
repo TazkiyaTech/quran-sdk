@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android/Android.iml" filepath="$PROJECT_DIR$/Android/Android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/quran-sdk.iml" filepath="$PROJECT_DIR$/quran-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android/Android.iml" filepath="$PROJECT_DIR$/.idea/modules/Android/Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/quran-sdk.iml" filepath="$PROJECT_DIR$/.idea/modules/quran-sdk.iml" />
     </modules>
   </component>
 </project>
