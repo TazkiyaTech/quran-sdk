@@ -19,8 +19,6 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-        versionCode Integer.parseInt(getProperty('projectVersionCode'))
-        versionName getProperty('projectVersionName')
     }
 
     dexOptions {
