@@ -14,11 +14,6 @@ public class QueryPlan {
 
     /**
      * Constructor.
-     *
-     * @param selectId
-     * @param order
-     * @param from
-     * @param detail
      */
     public QueryPlan(int selectId, int order, int from, String detail) {
         this.selectId = selectId;

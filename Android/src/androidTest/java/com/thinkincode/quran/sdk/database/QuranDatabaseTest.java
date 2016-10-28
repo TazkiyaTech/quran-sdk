@@ -29,8 +29,8 @@ public class QuranDatabaseTest extends BaseTestCase {
 
     @Before
     public void setUp() throws IOException {
-        quranDatabase = new QuranDatabase();
-        quranDatabase.openDatabase(getTargetContext());
+        quranDatabase = new QuranDatabase(getTargetContext());
+        quranDatabase.openDatabase();
     }
 
     @After
@@ -41,7 +41,7 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Test
     public void testIsDatabaseExistsInInternalStorage() {
         // When.
-        boolean result = quranDatabase.isDatabaseExistsInInternalStorage(getTargetContext());
+        boolean result = quranDatabase.isDatabaseExistsInInternalStorage();
 
         // Then.
         assertTrue(result);
@@ -102,6 +102,6 @@ public class QuranDatabaseTest extends BaseTestCase {
 
     @Test(expected = QuranDatabaseException.class)
     public void testGetAyah_WhenDatabaseNotOpen() {
-        new QuranDatabase().getAyah(1, 1);
+        new QuranDatabase(getTargetContext()).getAyah(1, 1);
     }
 }

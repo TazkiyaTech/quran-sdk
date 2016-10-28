@@ -25,8 +25,8 @@ public class DatabaseUtilsTest extends BaseTestCase {
 
     @Before
     public void setUp() throws IOException {
-        QuranDatabase quranDatabase = new QuranDatabase();
-        quranDatabase.openDatabase(getTargetContext());
+        QuranDatabase quranDatabase = new QuranDatabase(getTargetContext());
+        quranDatabase.openDatabase();
 
         sqLiteDatabase = quranDatabase.getSQLiteDatabase();
     }

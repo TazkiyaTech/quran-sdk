@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.support.annotation.NonNull;
 
 import com.google.common.io.ByteStreams;
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
@@ -30,19 +31,27 @@ public class QuranDatabase {
     static final String COLUMN_NAME_SURA = "sura";
     static final String COLUMN_NAME_TEXT = "text";
 
-    private SQLiteDatabase sqliteDatabase; 
+	private Context applicationContext;
+    private SQLiteDatabase sqliteDatabase;
+
+    /**
+     * Constructor.
+     *
+     * @param applicationContext the application context (and not the activity or service context).
+     */
+	public QuranDatabase(@NonNull Context applicationContext) {
+		this.applicationContext = applicationContext;
+	}
 
 	/**
      * Opens the Qur'an database for reading.
-     *
-     * @param context is non-null.
      * */
-    public void openDatabase(Context context) throws IOException, SQLiteException {
-    	if (!isDatabaseExistsInInternalStorage(context)) {
-        	copyDatabaseFromAssetsToInternalStorage(context);
+    public void openDatabase() throws IOException, SQLiteException {
+    	if (!isDatabaseExistsInInternalStorage()) {
+        	copyDatabaseFromAssetsToInternalStorage();
     	}
 
-		openDatabaseForReadingIfClosed(context);
+		openDatabaseForReadingIfClosed();
     }
 
     /**
@@ -167,11 +176,10 @@ public class QuranDatabase {
 	/**
 	 * (Default package-private visibility for unit testing purposes.)
 	 *
-	 * @param context is non-null.
 	 * @return true iff the Qur'an database exists in internal storage.
 	 */
-    boolean isDatabaseExistsInInternalStorage(Context context) {
-		String path = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+    boolean isDatabaseExistsInInternalStorage() {
+		String path = applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
 		File file = new File(path);
 
 		return file.isFile();
@@ -189,15 +197,13 @@ public class QuranDatabase {
 	/**
 	 * Copies the Qur'an database from assets to internal storage,
 	 * so that it can be accessed and handled.
-	 *
-	 * @param context is non-null.
 	 * */
-	private void copyDatabaseFromAssetsToInternalStorage(Context context) throws IOException {
+	private void copyDatabaseFromAssetsToInternalStorage() throws IOException {
 		// Read from the local database in assets
-		InputStream inputStream = context.getAssets().open(DATABASE_NAME);
+		InputStream inputStream = applicationContext.getAssets().open(DATABASE_NAME);
 
 		// Write to a local database in internal storage
-		OutputStream outputStream = context.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
+		OutputStream outputStream = applicationContext.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
 
 		// Transfer bytes from the input file to the output file
         ByteStreams.copy(inputStream, outputStream);
@@ -210,12 +216,10 @@ public class QuranDatabase {
 
 	/**
 	 * Opens the Qur'an database for reading, if it's not already open.
-	 *
-	 * @param context is non-null.
 	 */
-    private void openDatabaseForReadingIfClosed(Context context) throws SQLiteException {
+    private void openDatabaseForReadingIfClosed() throws SQLiteException {
         if (!isDatabaseOpen()) {
-            String myPath = context.getFilesDir().getPath() + "/" + DATABASE_NAME;
+            String myPath = applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
             sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         }
 	}
@@ -223,20 +227,19 @@ public class QuranDatabase {
 	/**
      * Queries the local Qur'an database with the specified parameters.
      *
-	 * @param table
-	 * @param columns
-	 * @param selection
-	 * @param selectionArgs
-	 * @param groupBy
-	 * @param having
-	 * @param orderBy
-	 * @param limit
 	 * @return the result of the query.
 	 */
-	private Cursor queryDatabase(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) throws QuranDatabaseException {
+	private Cursor queryDatabase(String table,
+                                 String[] columns,
+                                 String selection,
+                                 String[] selectionArgs,
+                                 String groupBy,
+                                 String having,
+                                 String orderBy,
+                                 String limit) throws QuranDatabaseException {
         if (!isDatabaseOpen()) {
             String message = "Could not query the Qur'an database. " +
-                    "Ensure that the QuranDatabase.openDatabase(Context) method has been called before attempting to read from the database.";
+                    "Ensure that the QuranDatabase.openDatabase() method has been called before attempting to read from the database.";
 
             throw new QuranDatabaseException(message);
         }
