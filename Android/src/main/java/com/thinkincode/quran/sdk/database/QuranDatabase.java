@@ -23,15 +23,15 @@ public class QuranDatabase {
 
     private static final String DATABASE_NAME = "com.thinkincode.quran.db";
 
-    static final String TABLE_NAME_QURAN_TEXT = "quran_text";
-    static final String TABLE_NAME_SURA_NAMES = "sura_names";
+    private static final String TABLE_NAME_QURAN_TEXT = "quran_text";
+	private static final String TABLE_NAME_SURA_NAMES = "sura_names";
 
-    static final String COLUMN_NAME_AYA = "aya";
-    static final String COLUMN_NAME_NAME = "name";
-    static final String COLUMN_NAME_SURA = "sura";
-    static final String COLUMN_NAME_TEXT = "text";
+	private static final String COLUMN_NAME_AYA = "aya";
+	private static final String COLUMN_NAME_NAME = "name";
+	private static final String COLUMN_NAME_SURA = "sura";
+	private static final String COLUMN_NAME_TEXT = "text";
 
-	private Context applicationContext;
+	private final Context applicationContext;
     private SQLiteDatabase sqliteDatabase;
 
     /**

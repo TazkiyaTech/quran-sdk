@@ -35,7 +35,7 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsSuraNames_and_noWhereClauseProvided() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                QuranDatabase.TABLE_NAME_SURA_NAMES,
+                "sura_names",
                 null,
                 null,
                 null,
@@ -52,9 +52,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsSuraNames_and_whereClauseProvided() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                QuranDatabase.TABLE_NAME_SURA_NAMES,
+                "sura_names",
                 null,
-                QuranDatabase.COLUMN_NAME_SURA + " = ? ",
+                "sura = ?",
                 new String[] { "1" },
                 null,
                 null,
@@ -69,7 +69,7 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_noWhereClauseProvided() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                QuranDatabase.TABLE_NAME_QURAN_TEXT,
+                "quran_text",
                 null,
                 null,
                 null,
@@ -86,9 +86,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_1() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                QuranDatabase.TABLE_NAME_QURAN_TEXT,
+                "quran_text",
                 null,
-                QuranDatabase.COLUMN_NAME_SURA + " = ? ",
+                "sura = ?",
                 new String[] { "1" },
                 null,
                 null,
@@ -103,11 +103,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_2() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                QuranDatabase.TABLE_NAME_QURAN_TEXT,
+                "quran_text",
                 null,
-                QuranDatabase.COLUMN_NAME_SURA + " = ? " +
-                        " AND " +
-                        QuranDatabase.COLUMN_NAME_AYA + " = ? ",
+                "sura = ? AND aya = ?",
                 new String[] { "1", "1" },
                 null,
                 null,
