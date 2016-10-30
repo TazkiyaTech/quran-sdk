@@ -54,7 +54,7 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
-    androidTestCompile 'com.thinkincode.utils:Android:0.1.2'
+    androidTestCompile 'com.thinkincode.utils:Android:0.1.3'
 }
 
 task generateSourcesJar(type: Jar) {
