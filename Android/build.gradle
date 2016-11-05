@@ -60,25 +60,28 @@ dependencies {
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier 'sources'
+    group = 'build'
 }
 
-task generateJavadocs(type: Javadoc) {
+task generateJavadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += configurations.compile
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     failOnError false
+    group = 'build'
 }
 
-task generateJavadocsJar(type: Jar, dependsOn: generateJavadocs) {
-    from generateJavadocs.destinationDir
+task generateJavadocJar(type: Jar) {
+    from generateJavadoc
     classifier 'javadoc'
+    group = 'build'
 }
 
 publishing {
     publications {
         QuranSDK(MavenPublication) {
             artifact "$buildDir/outputs/aar/Android-release.aar"
-            artifact generateJavadocsJar
+            artifact generateJavadocJar
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName')

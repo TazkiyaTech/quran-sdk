@@ -16,7 +16,7 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-    group = 'Build'
+    group = 'build'
 }
 
 task wrapper(type: Wrapper) {
