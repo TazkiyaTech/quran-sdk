@@ -31,7 +31,9 @@ public class QuranDatabase {
 	private static final String COLUMN_NAME_SURA = "sura";
 	private static final String COLUMN_NAME_TEXT = "text";
 
+    @NonNull
 	private final Context applicationContext;
+
     private SQLiteDatabase sqliteDatabase;
 
     /**
@@ -45,6 +47,9 @@ public class QuranDatabase {
 
 	/**
      * Opens the Qur'an database for reading.
+	 *
+	 * @throws IOException if there was an I/O error.
+	 * @throws SQLiteException if the database could not be opened.
      * */
     public void openDatabase() throws IOException, SQLiteException {
     	if (!isDatabaseExistsInInternalStorage()) {
@@ -67,6 +72,7 @@ public class QuranDatabase {
 	 * @param surahNumber is a value between 1 and 114 (inclusive).
 	 * @return the name of the specified Surah,
 	 * or null if the Surah number is not valid.
+	 * @throws QuranDatabaseException if there was an error encountered on reading from the database.
 	 */
 	public String getSurahName(int surahNumber) throws QuranDatabaseException {
 		String surahName = null;
@@ -91,6 +97,7 @@ public class QuranDatabase {
 
 	/**
 	 * @return the names of all the Surahs in the Qur'an.
+	 * @throws QuranDatabaseException if there was an error encountered on reading from the database.
 	 */
 	public List<String> getSurahNames() throws QuranDatabaseException {
 		List<String> surahNames = new ArrayList<>();
@@ -115,6 +122,7 @@ public class QuranDatabase {
 	 * @param surahNumber is a value between 1 and 114 (inclusive).
 	 * @return the ayahs of the specified Surah,
 	 * or null if the Surah number is not valid.
+	 * @throws QuranDatabaseException if there was an error encountered on reading from the database.
 	 */
 	public List<String> getAyahsInSurah(int surahNumber) throws QuranDatabaseException {
 		List<String> surahAyahs = new ArrayList<>();
@@ -142,6 +150,7 @@ public class QuranDatabase {
 	 * @param ayahNumber is a value greater than or equal to 1.
 	 * @return the text of the specified Ayah,
 	 * or null if the Surah and Ayah number provided do not map to an Ayah.
+	 * @throws QuranDatabaseException if there was an error encountered on reading from the database.
 	 */
 	public String getAyah(int surahNumber, int ayahNumber) throws QuranDatabaseException {
 		String ayah = null;
@@ -197,6 +206,8 @@ public class QuranDatabase {
 	/**
 	 * Copies the Qur'an database from assets to internal storage,
 	 * so that it can be accessed and handled.
+     *
+     * @throws IOException if there was an I/O error.
 	 * */
 	private void copyDatabaseFromAssetsToInternalStorage() throws IOException {
 		// Read from the local database in assets
@@ -217,6 +228,8 @@ public class QuranDatabase {
 
 	/**
 	 * Opens the Qur'an database for reading, if it's not already open.
+     *
+     * @throws SQLiteException if the database could not be opened.
 	 */
     private void openDatabaseForReadingIfClosed() throws SQLiteException {
         if (!isDatabaseOpen()) {
@@ -229,6 +242,7 @@ public class QuranDatabase {
      * Queries the local Qur'an database with the specified parameters.
      *
 	 * @return the result of the query.
+     * @throws QuranDatabaseException if the database is not open for reading.
 	 */
 	private Cursor queryDatabase(String table,
                                  String[] columns,
