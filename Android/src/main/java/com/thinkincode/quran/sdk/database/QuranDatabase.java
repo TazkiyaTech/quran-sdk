@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
 
-import com.google.common.io.ByteStreams;
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
+import com.thinkincode.utils.streams.StreamCopier;
 
 import java.io.File;
 import java.io.IOException;
@@ -206,7 +206,8 @@ public class QuranDatabase {
 		OutputStream outputStream = applicationContext.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
 
 		// Transfer bytes from the input file to the output file
-        ByteStreams.copy(inputStream, outputStream);
+		StreamCopier streamCopier = new StreamCopier();
+		streamCopier.copy(inputStream, outputStream);
 
 		// Close the streams
 		outputStream.flush();
