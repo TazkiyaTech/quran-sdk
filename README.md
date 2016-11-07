@@ -9,7 +9,7 @@ To start using the library you'll need to declare the repository from which you'
 Next, you need to add the library as a dependency in your app. You can do this by copying the following declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.quran.sdk:Android:0.1.0'
+        compile 'com.thinkincode.quran.sdk:Android:0.1.1'
     }
 
 Next, on startup of your app, call the `QuranDatabase.openDatabase()` method. Be sure to pass the application context into the `QuranDatabase` constructor rather than the activity context.
