@@ -4,18 +4,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
-import com.thinkincode.utils.database.QueryPlan;
 import com.thinkincode.utils.database.QueryPlanExplainer;
+import com.thinkincode.utils.database.QueryPlanRow;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 public class QuranDatabaseQueryPlanTest extends BaseTestCase {
@@ -32,77 +32,92 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_tableNameIsSuraNames_and_noWhereClauseProvided() {
+    public void test_explainQueryPlan_for_getSurahNames() {
+        // Given.
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
+                0,
+                0,
+                0,
+                "SCAN TABLE sura_names USING INDEX index_sura_number_on_table_sura_names"
+        ));
+
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "sura_names",
+                new String[] { "name" },
                 null,
                 null,
                 null,
                 null,
-                null,
-                null,
+                "sura ASC",
                 null);
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SCAN TABLE sura_names")));
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_tableNameIsSuraNames_and_whereClauseProvided() {
+    public void test_explainQueryPlan_for_getSurahName() {
+        // Given.
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
+                0,
+                0,
+                0,
+                "SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)"
+        ));
+
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "sura_names",
-                null,
+                new String[] { "name" },
                 "sura = ?",
                 new String[] { "1" },
                 null,
                 null,
                 null,
-                null);
+                "1");
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)")));
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_noWhereClauseProvided() {
-        // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
-                "quran_text",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
+    public void test_explainQueryPlan_for_getAyahsInSurah() {
+        // Given.
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
+                0,
+                0,
+                0,
+                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)"
+        ));
 
-        // Then.
-        assertThat(result.getDetail(), is(equalTo("SCAN TABLE quran_text")));
-    }
-
-    @Test
-    public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "quran_text",
                 null,
                 "sura = ?",
                 new String[] { "1" },
                 null,
                 null,
-                null,
+                "aya ASC",
                 null);
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE quran_text USING INDEX index_sura_number_on_table_quran_text (sura=?)")));
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_tableNameIsQuranText_and_whereClauseProvided_2() {
+    public void test_explainQueryPlan_for_getAyah() {
+        // Given.
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
+                0,
+                0,
+                0,
+                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)"
+        ));
+
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "quran_text",
                 null,
                 "sura = ? AND aya = ?",
@@ -110,9 +125,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
                 null,
                 null,
                 null,
-                null);
+                "1");
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)")));
+        assertEquals(expected, actual);
     }
 }
