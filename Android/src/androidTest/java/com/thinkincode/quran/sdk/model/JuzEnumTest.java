@@ -47,8 +47,8 @@ public class JuzEnumTest {
 
 		int verseCount = 0;
 
-		for (int i = 0; i < juzs.length; i++) {
-			int numVerses = juzs[i].getNumVerses();
+		for (JuzEnum juz : juzs) {
+			int numVerses = juz.getNumVerses();
 			verseCount += numVerses;
 		}
 

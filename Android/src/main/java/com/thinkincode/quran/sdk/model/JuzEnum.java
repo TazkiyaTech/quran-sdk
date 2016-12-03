@@ -54,9 +54,9 @@ public enum JuzEnum {
 	/**
 	 * Constructor.
 	 *
-     * @param juzNumber
-	 * @param fromSurah
-	 * @param fromVerse
+     * @param juzNumber the number (not index) of the Juz.
+	 * @param fromSurah the number (not index) of the Surah in which the Juz begins.
+	 * @param fromVerse the number (not index) of the Verse within {@code fromSurah} at which the Juz begins.
 	 * */
 	JuzEnum(int juzNumber, int fromSurah, int fromVerse) {
         this.juzNumber = juzNumber;

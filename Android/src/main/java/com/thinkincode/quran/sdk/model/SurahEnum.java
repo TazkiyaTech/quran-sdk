@@ -1,5 +1,7 @@
 package com.thinkincode.quran.sdk.model;
 
+import android.support.annotation.NonNull;
+
 /**
  * An enum representation of the Surahs that make up the Qur'an.
  */
@@ -121,15 +123,17 @@ public enum SurahEnum {
     Surah_114 (114, 6);
 
     /**
+     * Parses the given surah number to an instance of {@link SurahEnum}.
+     *
      * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the {@link SurahEnum} corresponding to the {@code surahNumber} provided,
-     * or null if no matching {@link SurahEnum} is found.
+     * @return the {@link SurahEnum} corresponding to the {@code surahNumber} provided.
      * */
+    @NonNull
     public static SurahEnum parse(int surahNumber) {
-        final SurahEnum[] surahEnumValues = SurahEnum.values();
+        SurahEnum[] surahEnumValues = SurahEnum.values();
 
         if (surahNumber < 1 || surahNumber > surahEnumValues.length) {
-            return null;
+            throw new IllegalArgumentException("Bad Surah number passed in.");
         } else {
             return surahEnumValues[surahNumber - 1];
         }
