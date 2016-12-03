@@ -10,7 +10,7 @@ File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.1'
 
     defaultConfig {
         minSdkVersion 15
@@ -46,7 +46,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-annotations:25.0.1'
-    compile 'com.thinkincode.utils:Android:0.1.7'
+    compile 'com.thinkincode.utils:Android:0.1.8'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
