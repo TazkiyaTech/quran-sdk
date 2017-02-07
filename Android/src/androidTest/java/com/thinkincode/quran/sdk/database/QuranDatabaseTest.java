@@ -66,30 +66,30 @@ public class QuranDatabaseTest extends BaseTestCase {
     }
 
     @Test
-	public void testGetSurahNames() {
-		// When.
-		List<String> surahNames = quranDatabase.getSurahNames();
+    public void testGetSurahNames() {
+        // When.
+        List<String> surahNames = quranDatabase.getSurahNames();
 
-		// Then.
+        // Then.
         assertThat(surahNames, hasSize(114));
-	}
+    }
 
     @Test
-	public void testGetAyahsInSurah() {
-		// Given.
-		SurahEnum[] surahs = SurahEnum.values();
+    public void testGetAyahsInSurah() {
+        // Given.
+        SurahEnum[] surahs = SurahEnum.values();
 
-		for (int surahNumber = 1; surahNumber <= surahs.length; surahNumber++) {
+        for (int surahNumber = 1; surahNumber <= surahs.length; surahNumber++) {
             // Given.
             SurahEnum surahEnum = surahs[surahNumber - 1];
 
-			// When.
-			List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(surahNumber);
+            // When.
+            List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(surahNumber);
 
-			// Then.
+            // Then.
             assertThat(ayahsInSurah.size(), is(equalTo(surahEnum.getNumVerses())));
-		}
-	}
+        }
+    }
 
     @Test
     public void testGetAyah() {

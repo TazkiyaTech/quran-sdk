@@ -44,7 +44,7 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "sura_names",
-                new String[] { "name" },
+                new String[]{"name"},
                 null,
                 null,
                 null,
@@ -69,9 +69,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "sura_names",
-                new String[] { "name" },
+                new String[]{"name"},
                 "sura = ?",
-                new String[] { "1" },
+                new String[]{"1"},
                 null,
                 null,
                 null,
@@ -96,7 +96,7 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
                 "quran_text",
                 null,
                 "sura = ?",
-                new String[] { "1" },
+                new String[]{"1"},
                 null,
                 null,
                 "aya ASC",
@@ -121,7 +121,7 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
                 "quran_text",
                 null,
                 "sura = ? AND aya = ?",
-                new String[] { "1", "1" },
+                new String[]{"1", "1"},
                 null,
                 null,
                 null,
