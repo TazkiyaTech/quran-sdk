@@ -1,7 +1,5 @@
 #Quran Android SDK
 
-##About
-
 This Quran Android SDK (library) has been put together to make it easy for developers to access verses of the Quran in their Android apps.
 
 ##Setup
