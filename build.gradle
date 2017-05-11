@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
     }
 }
@@ -20,5 +20,7 @@ task clean(type: Delete) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.2.1'
+    gradleVersion = '3.5'
+    group = 'build setup'
+    description = "Adds the Gradle wrapper with the specified Gradle version to the project."
 }
