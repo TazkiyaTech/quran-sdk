@@ -9,6 +9,7 @@
         <item>@string/inspiration_quran_13_028</item>
         <item>@string/inspiration_quran_15_009</item>
         <item>@string/inspiration_quran_16_098</item>
+        <item>@string/inspiration_quran_17_009</item>
         <item>@string/inspiration_quran_19_052</item>
         <item>@string/inspiration_quran_38_029</item>
         <item>@string/inspiration_quran_54_017</item>
@@ -26,6 +27,7 @@
         <item>@string/inspiration_quote_uthman_01</item>
         <item>@string/inspiration_quote_uthman_02</item>
         <item>@string/inspiration_dua_01</item>
+        <item>@string/inspiration_dua_02</item>
 
     </string-array>
 
@@ -69,6 +71,12 @@
 		(16:98)
 	</string>
 
+    <string name="inspiration_quran_17_009">
+        #VerseOfTheDay:
+		\"Indeed, this Qur\'an guides to that which is most suitable&#8230;\"
+		(17:9)
+	</string>
+
     <string name="inspiration_quran_19_052">
         #VerseOfTheDay:
 		\"&#8230;When the verses of the Most Merciful were recited to them,
@@ -79,8 +87,7 @@
     <string name="inspiration_quran_38_029">
         #VerseOfTheDay:
 		\"This is a blessed Book We have revealed to you,
-        that they may might reflect upon its verses
-        and that those of understanding would be reminded.\"
+        that they may might reflect upon its verses&#8230;\"
 		(38:29)
 	</string>
 
@@ -201,7 +208,18 @@
     <string name="inspiration_dua_01">
 	    #DuaOfTheDay:
 	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an the Spring of my heart
-        and the light of my breast, and a departure for my sorrow and a release for my anxiety.\"
+        and the light of my breast&#8230;\"
+	    (Musnad Ahmad)
+	</string>
+
+    <!--
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
+       - and cited to Al Musnad of Imam Ahmad (3712)
+       -->
+    <string name="inspiration_dua_02">
+	    #DuaOfTheDay:
+	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an&#8230;a departure for my sorrow
+        and a release for my anxiety.\"
 	    (Musnad Ahmad)
 	</string>
 
