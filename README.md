@@ -13,7 +13,7 @@ To start using the library in your app you'll need to first declare the reposito
 Next, you need to add this library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.quran.sdk:Android:0.1.6'
+        compile 'com.thinkincode.quran.sdk:Android:0.1.7'
     }
 
 ##Initialisation
