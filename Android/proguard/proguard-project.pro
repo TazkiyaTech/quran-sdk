@@ -37,11 +37,3 @@
     public <methods>;
     public static <methods>;
 }
-
-#-dontwarn class com.google.**
-#-keep class com.google.** { *; }
-#-keep interface com.google.** { *; }
-
-#-dontwarn class android.**
-#-keep class android.** { *; }
-#-keep interface android.** { *; }

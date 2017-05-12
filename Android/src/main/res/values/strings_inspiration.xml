@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string-array name="array_inspiration">
+
+        <item>@string/inspiration_quran_03_103</item>
+        <item>@string/inspiration_quran_10_057</item>
+        <item>@string/inspiration_quran_13_028</item>
+        <item>@string/inspiration_quran_15_009</item>
+        <item>@string/inspiration_quran_16_098</item>
+        <item>@string/inspiration_quran_54_017</item>
+        <item>@string/inspiration_hadith_bukhari_01</item>
+        <item>@string/inspiration_hadith_bukhari_02</item>
+        <item>@string/inspiration_hadith_tirmidhi_01</item>
+        <item>@string/inspiration_hadith_tirmidhi_02</item>
+        <item>@string/inspiration_hadith_nasai_01</item>
+        <item>@string/inspiration_quote_uthman_01</item>
+        <item>@string/inspiration_quote_uthman_02</item>
+
+    </string-array>
+
+    <string name="inspiration_quran_03_103">
+	    #VerseOfTheDay:
+	    \"And hold fast, all of you together, to the Rope of Allah
+        and be not divided among yourselves&#8230;\"
+	    (3:103)
+	</string>
+
+    <string name="inspiration_quran_10_057">
+	    #VerseOfTheDay:
+	    \"O mankind, there has come to you instruction from your Lord
+        and healing for what is in the breasts&#8230;\"
+	    (10:57)
+	</string>
+
+    <string name="inspiration_quran_13_028">
+	    #VerseOfTheDay:
+	    \"&#8230; truly it is in the remembrance of Allah that hearts find peace.\"
+	    (13:28)
+	</string>
+
+    <string name="inspiration_quran_15_009">
+        #VerseOfTheDay:
+		\"We have, without doubt, sent down the Qur\'an;
+        and We will assuredly guard it.\"
+		(15:9)
+	</string>
+
+    <string name="inspiration_quran_16_098">
+        #VerseOfTheDay:
+		\"So when you recite the Qur\'an, seek refuge in Allah from Satan, the expelled.\"
+		(16:98)
+	</string>
+
+    <string name="inspiration_quran_54_017">
+        #VerseOfTheDay:
+		\"And We have certainly made the Qur\'an easy for remembrance,
+	    so is there any who will remember?\"
+		(54:17)
+	</string>
+
+    <string name="inspiration_hadith_bukhari_01">
+        #HadithOfTheDay:
+        \"The example of a believer who recites the Qur\'an regularly is like that of a citrus fruit,
+        it has a good taste and a good fragrance.\"
+		(Al-Bukhari)
+    </string>
+
+    <string name="inspiration_hadith_bukhari_02">
+        #HadithOfTheDay:
+        \"The best of you are those who learn the Qur\'an and teach it.\"
+		(Al-Bukhari)
+    </string>
+
+    <string name="inspiration_hadith_tirmidhi_01">
+        #HadithOfTheDay:
+        \"It will be said to the companion of the Qur\'an:
+        \'Recite and rise in status,
+        recite as you used to recite in the world&#8230;\'\"
+        (Al-Tirmidhi)
+	</string>
+
+    <string name="inspiration_hadith_tirmidhi_02">
+        #HadithOfTheDay:
+        \"Whoever recites a letter from the Book of Allah, he will be credited with a good deed&#8230;\"
+        (Al-Tirmidhi)
+	</string>
+
+    <string name="inspiration_hadith_nasai_01">
+	    #HadithOfTheDay:
+	    \"The people of the Qur\'an are the people of Allah and His special servants.\"
+	    (Al-Nasa\'i)
+	</string>
+
+    <!--
+       - Quote found in Meadows of the Divine by Alomgir Ali
+       - and attributed to Hilyah al Awliyaa' (300/7) & al Zuhd by Imam Ahmad (244/1)
+       -->
+    <string name="inspiration_quote_uthman_01">
+	    #QuoteOfTheDay:
+	    \"If your hearts were truly pure, you would not have enough of reciting the Qur\'an&#8230;\"
+	    (Uthman ibn Affan)
+	</string>
+
+    <!--
+       - Quote found in Meadows of the Divine by Alomgir Ali
+       - and attributed to Hilyah al Awliyaa' (300/7) & al Zuhd by Imam Ahmad (244/1)
+       -->
+    <string name="inspiration_quote_uthman_02">
+	    #QuoteOfTheDay:
+	    \"&#8230; I do not like for one day and night to pass by
+        except that I have to look at the book of Allah.\"
+	    (Uthman ibn Affan)
+	</string>
+
+</resources>
