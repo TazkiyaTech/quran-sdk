@@ -4,18 +4,28 @@
     <string-array name="array_inspiration">
 
         <item>@string/inspiration_quran_03_103</item>
+        <item>@string/inspiration_quran_03_190</item>
         <item>@string/inspiration_quran_10_057</item>
         <item>@string/inspiration_quran_13_028</item>
         <item>@string/inspiration_quran_15_009</item>
         <item>@string/inspiration_quran_16_098</item>
+        <item>@string/inspiration_quran_19_052</item>
+        <item>@string/inspiration_quran_38_029</item>
         <item>@string/inspiration_quran_54_017</item>
         <item>@string/inspiration_hadith_bukhari_01</item>
         <item>@string/inspiration_hadith_bukhari_02</item>
+        <item>@string/inspiration_hadith_muslim_01</item>
+        <item>@string/inspiration_hadith_muslim_02</item>
         <item>@string/inspiration_hadith_tirmidhi_01</item>
         <item>@string/inspiration_hadith_tirmidhi_02</item>
+        <item>@string/inspiration_hadith_tirmidhi_03</item>
         <item>@string/inspiration_hadith_nasai_01</item>
+        <item>@string/inspiration_hadith_ibn_hibban_01</item>
+        <item>@string/inspiration_quote_ghazali_01</item>
+        <item>@string/inspiration_quote_nawawi_01</item>
         <item>@string/inspiration_quote_uthman_01</item>
         <item>@string/inspiration_quote_uthman_02</item>
+        <item>@string/inspiration_dua_01</item>
 
     </string-array>
 
@@ -24,6 +34,13 @@
 	    \"And hold fast, all of you together, to the Rope of Allah
         and be not divided among yourselves&#8230;\"
 	    (3:103)
+	</string>
+
+    <string name="inspiration_quran_03_190">
+	    #VerseOfTheDay:
+	    \"Indeed, in the creation of the heavens and the earth
+        and the alternation of the night and the day are signs for those of understanding.\"
+	    (3:190)
 	</string>
 
     <string name="inspiration_quran_10_057">
@@ -35,7 +52,7 @@
 
     <string name="inspiration_quran_13_028">
 	    #VerseOfTheDay:
-	    \"&#8230; truly it is in the remembrance of Allah that hearts find peace.\"
+	    \"&#8230;truly it is in the remembrance of Allah that hearts find peace.\"
 	    (13:28)
 	</string>
 
@@ -52,6 +69,21 @@
 		(16:98)
 	</string>
 
+    <string name="inspiration_quran_19_052">
+        #VerseOfTheDay:
+		\"&#8230;Whenever the verses of the Most Merciful were recited to them,
+        they would fall down prostrating and weeping.\"
+		(19:52)
+	</string>
+
+    <string name="inspiration_quran_38_029">
+        #VerseOfTheDay:
+		\"This is a blessed Book We have revealed to you,
+        that they may might reflect upon its verses
+        and that those of understanding would be reminded.\"
+		(38:29)
+	</string>
+
     <string name="inspiration_quran_54_017">
         #VerseOfTheDay:
 		\"And We have certainly made the Qur\'an easy for remembrance,
@@ -61,8 +93,8 @@
 
     <string name="inspiration_hadith_bukhari_01">
         #HadithOfTheDay:
-        \"The example of a believer who recites the Qur\'an regularly is like that of a citrus fruit,
-        it has a good taste and a good fragrance.\"
+        \"The example of a believer who recites the Qur\'an regularly is like a citron
+        whose fragrance is sweet and whose taste is good&#8230;\"
 		(Al-Bukhari)
     </string>
 
@@ -72,6 +104,20 @@
 		(Al-Bukhari)
     </string>
 
+    <string name="inspiration_hadith_muslim_01">
+        #HadithOfTheDay:
+        \"Do not make your houses as graveyards
+        for Satan runs away from the house in which Surah al Baqarah is recited.\"
+		(Muslim)
+    </string>
+
+    <string name="inspiration_hadith_muslim_02">
+        #HadithOfTheDay:
+        \"Recite the Qur\'an regularly, for, by Him in Whose Hand is my life,
+        the Qur\'an escapes one's memory faster than camels that are released from their typing ropes.\"
+		(Muslim)
+    </string>
+    
     <string name="inspiration_hadith_tirmidhi_01">
         #HadithOfTheDay:
         \"It will be said to the companion of the Qur\'an:
@@ -86,31 +132,73 @@
         (Al-Tirmidhi)
 	</string>
 
+    <string name="inspiration_hadith_tirmidhi_03">
+        #HadithOfTheDay:
+        \"&#8230;the superiority of Allah\'s speech over the speech of others
+        is like the superiority of Allah over His creation.\"
+        (Al-Tirmidhi)
+	</string>
+
     <string name="inspiration_hadith_nasai_01">
 	    #HadithOfTheDay:
 	    \"The people of the Qur\'an are the people of Allah and His special servants.\"
 	    (Al-Nasa\'i)
 	</string>
 
+    <string name="inspiration_hadith_ibn_hibban_01">
+	    #HadithOfTheDay:
+	    \"Hold fast to the recitation of the Qur\'an,
+        for it will be a light for you on this earth and a treasure for you in the heavens.\"
+	    (Ibn Hibban)
+	</string>
+
     <!--
        - Quote found in Meadows of the Divine by Alomgir Ali
-       - and attributed to Hilyah al Awliyaa' (300/7) & al Zuhd by Imam Ahmad (244/1)
+       - and cited to Al Tibyaan, p.63 by al Nawawi
+       -->
+    <string name="inspiration_quote_ghazali_01">
+	    #QuoteOfTheDay:
+	    \"Weeping is recommended while reciting the Qur\'an or witnessing its recitation&#8230;\"
+	    (Al-Ghazali)
+	</string>
+
+    <!--
+       - Quote found in Meadows of the Divine by Alomgir Ali
+       - and cited to Fath al Baari (98/9)
+       -->
+    <string name="inspiration_quote_nawawi_01">
+	    #QuoteOfTheDay:
+	    \"Crying when reciting the Qur\'an is the characteristic of those who knew Allah
+        and is the distinguishing mark of the righteous.\"
+	    (Al-Nawawi)
+	</string>
+
+    <!--
+       - Quote found in Meadows of the Divine by Alomgir Ali
+       - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
        -->
     <string name="inspiration_quote_uthman_01">
 	    #QuoteOfTheDay:
-	    \"If your hearts were truly pure, you would not have enough of reciting the Qur\'an&#8230;\"
+	    \"If your hearts were truly pure, you would not have enough of the Qur\'an&#8230;\"
 	    (Uthman ibn Affan)
 	</string>
 
     <!--
        - Quote found in Meadows of the Divine by Alomgir Ali
-       - and attributed to Hilyah al Awliyaa' (300/7) & al Zuhd by Imam Ahmad (244/1)
+       - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
        -->
     <string name="inspiration_quote_uthman_02">
 	    #QuoteOfTheDay:
-	    \"&#8230; I do not like for one day and night to pass by
+	    \"&#8230;I do not like for one day and night to pass by
         except that I have to look at the book of Allah.\"
 	    (Uthman ibn Affan)
+	</string>
+
+    <string name="inspiration_dua_01">
+	    #DuaOfTheDay:
+	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an the Spring of my heart
+        and the light of my breast, and a departure for my sorrow and a release for my anxiety.\"
+	    (Musnad Ahmad ibn Hanbal)
 	</string>
 
 </resources>
