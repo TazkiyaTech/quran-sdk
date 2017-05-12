@@ -71,7 +71,7 @@
 
     <string name="inspiration_quran_19_052">
         #VerseOfTheDay:
-		\"&#8230;Whenever the verses of the Most Merciful were recited to them,
+		\"&#8230;When the verses of the Most Merciful were recited to them,
         they would fall down prostrating and weeping.\"
 		(19:52)
 	</string>
@@ -113,8 +113,8 @@
 
     <string name="inspiration_hadith_muslim_02">
         #HadithOfTheDay:
-        \"Recite the Qur\'an regularly, for, by Him in Whose Hand is my life,
-        the Qur\'an escapes one\'s memory faster than camels that are released from their typing ropes.\"
+        \"Recite the Qur\'an regularly,
+        for&#8230;the Qur\'an escapes one\'s memory faster than camels that are released from their tying ropes.\"
 		(Muslim)
     </string>
 
@@ -153,7 +153,7 @@
 	</string>
 
     <!--
-       - Quote found in Meadows of the Divine by Alomgir Ali
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
        - and cited to Al Tibyaan, p.63 by al Nawawi
        -->
     <string name="inspiration_quote_ghazali_01">
@@ -163,7 +163,7 @@
 	</string>
 
     <!--
-       - Quote found in Meadows of the Divine by Alomgir Ali
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
        - and cited to Fath al Baari (98/9)
        -->
     <string name="inspiration_quote_nawawi_01">
@@ -174,7 +174,7 @@
 	</string>
 
     <!--
-       - Quote found in Meadows of the Divine by Alomgir Ali
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
        - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
        -->
     <string name="inspiration_quote_uthman_01">
@@ -184,7 +184,7 @@
 	</string>
 
     <!--
-       - Quote found in Meadows of the Divine by Alomgir Ali
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
        - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
        -->
     <string name="inspiration_quote_uthman_02">
@@ -194,11 +194,15 @@
 	    (Uthman ibn Affan)
 	</string>
 
+    <!--
+       - Quote found in 'Meadows of the Divine' by Alomgir Ali
+       - and cited to Al Musnad of Imam Ahmad (3712)
+       -->
     <string name="inspiration_dua_01">
 	    #DuaOfTheDay:
 	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an the Spring of my heart
         and the light of my breast, and a departure for my sorrow and a release for my anxiety.\"
-	    (Musnad Ahmad ibn Hanbal)
+	    (Musnad Ahmad)
 	</string>
 
 </resources>
