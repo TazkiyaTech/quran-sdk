@@ -29,9 +29,16 @@ Be sure to pass the application context into the [QuranDatabase](Android/src/mai
 
 Once the Quran database is setup for your application (see above), you can call any of the public getter methods of the [QuranDatabase](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranDatabase.java) class to access Surahs and Ayahs in the Quran database. These methods are as follows:
 
-* `QuranDatabase.getSurahName(int surahNumber)` – returns the name of the specified Surah.
-* `QuranDatabase.getSurahNames()` – returns the names of all of the Surahs in the Quran.
-* `QuranDatabase.getAyahsInSurah(int surahNumber)` – returns all of the Ayahs of the specified Surah.
-* `QuranDatabase.getAyah(int surahNumber, int ayahNumber)` – returns the text of the specified Ayah.
+    // get the name of the specified Surah
+    String surahName = QuranDatabase.getSurahName(surahNumber);
+    
+    // get the names of all of the Surahs in the Quran
+    List<String> surahNames = QuranDatabase.getSurahNames();
+    
+    // get the text of all of the Ayahs in the specified Surah
+    List<String> ayahs = QuranDatabase.getAyahsInSurah(surahNumber);
+    
+    // get the text of the specified Ayah
+    String ayah = QuranDatabase.getAyah(surahNumber, ayahNumber);
 
 We advise calling all of the above methods in a background thread since the methods access file storage.
