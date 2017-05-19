@@ -47,5 +47,5 @@ We advise calling all of the above methods in a background thread since the meth
 
 As a bonus feature we have also included within the library some short quotes on the virtues and rulings of the Quran. These quotes can be accessed by means of the [QuranQuotes](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranQuotes.java) class as follows:
 
-    QuranQuotes quranQuotes = new QuranDatabase(myApplicationContext.getResources());
+    QuranQuotes quranQuotes = new QuranQuotes(myApplicationContext.getResources());
     String quranQuote = quranQuotes.getNextRandom();
