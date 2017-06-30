@@ -4,12 +4,12 @@
     <string-array name="array_inspiration">
 
         <item>@string/inspiration_quran_03_103</item>
-        <item>@string/inspiration_quran_03_190</item>
         <item>@string/inspiration_quran_10_057</item>
         <item>@string/inspiration_quran_13_028</item>
         <item>@string/inspiration_quran_15_009</item>
         <item>@string/inspiration_quran_16_098</item>
         <item>@string/inspiration_quran_17_009</item>
+        <item>@string/inspiration_quran_17_106</item>
         <item>@string/inspiration_quran_19_052</item>
         <item>@string/inspiration_quran_38_029</item>
         <item>@string/inspiration_quran_54_017</item>
@@ -36,13 +36,6 @@
 	    \"And hold fast, all of you together, to the Rope of Allah
         and be not divided among yourselves&#8230;\"
 	    (3:103)
-	</string>
-
-    <string name="inspiration_quran_03_190">
-	    #VerseOfTheDay:
-	    \"Indeed, in the creation of the heavens and the earth
-        and the alternation of the night and the day are signs for those of understanding.\"
-	    (3:190)
 	</string>
 
     <string name="inspiration_quran_10_057">
@@ -75,6 +68,14 @@
         #VerseOfTheDay:
 		\"Indeed, this Qur\'an guides to that which is most suitable&#8230;\"
 		(17:9)
+	</string>
+
+    <string name="inspiration_quran_17_106">
+	    #VerseOfTheDay:
+	    \"We have divided the Qur\'an in portions,
+        so that you may recite it to the people gradually,
+        and We have revealed it little by little.\"
+	    (17:106)
 	</string>
 
     <string name="inspiration_quran_19_052">
@@ -207,8 +208,8 @@
        -->
     <string name="inspiration_dua_01">
 	    #DuaOfTheDay:
-	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an the Spring of my heart
-        and the light of my breast&#8230;\"
+	    \"[O Allah! I ask You that You make the Qur\'an] the Spring of my heart
+        and the light of my breast.\"
 	    (Musnad Ahmad)
 	</string>
 
@@ -218,7 +219,7 @@
        -->
     <string name="inspiration_dua_02">
 	    #DuaOfTheDay:
-	    \"O Allah&#8230;I ask You&#8230;that You make the Qur\'an&#8230;a departure for my sorrow
+	    \"[O Allah! I ask You that You make the Qur\'an] a departure for my sorrow
         and a release for my anxiety.\"
 	    (Musnad Ahmad)
 	</string>
