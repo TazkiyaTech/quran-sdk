@@ -23,10 +23,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    dexOptions {
-        javaMaxHeapSize '2048m'
-    }
-
     lintOptions {
         abortOnError true
     }
