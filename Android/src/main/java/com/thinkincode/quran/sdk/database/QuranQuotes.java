@@ -31,6 +31,7 @@ public class QuranQuotes {
     /**
      * @return a randomly selected quote.
      */
+    @NonNull
     public String getNextRandom() {
         String[] inspirationMessages = resources.getStringArray(R.array.array_inspiration);
 

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 import com.thinkincode.utils.streams.StreamCopier;
@@ -34,6 +35,7 @@ public class QuranDatabase {
     @NonNull
     private final Context applicationContext;
 
+    @Nullable
     private SQLiteDatabase sqliteDatabase;
 
     /**
@@ -71,10 +73,10 @@ public class QuranDatabase {
 
     /**
      * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the name of the specified Surah,
-     * or null if the Surah number is not valid.
-     * @throws QuranDatabaseException if there was an error encountered on reading from the database.
+     * @return the name of the specified Surah.
+     * @throws QuranDatabaseException if there was an error getting the Surah name from the database.
      */
+    @NonNull
     public String getSurahName(int surahNumber) throws QuranDatabaseException {
         String surahName = null;
 
@@ -93,13 +95,19 @@ public class QuranDatabase {
 
         cursor.close();
 
+        if (surahName == null) {
+            String message = String.format("Failed getting Surah name from the Quran database for Surah %s", surahNumber);
+            throw new QuranDatabaseException(message);
+        }
+
         return surahName;
     }
 
     /**
      * @return the names of all the Surahs in the Quran.
-     * @throws QuranDatabaseException if there was an error encountered on reading from the database.
+     * @throws QuranDatabaseException if there was an error getting the Surah names from the database.
      */
+    @NonNull
     public List<String> getSurahNames() throws QuranDatabaseException {
         List<String> surahNames = new ArrayList<>();
 
@@ -116,15 +124,20 @@ public class QuranDatabase {
 
         cursor.close();
 
+        if (surahNames.isEmpty()) {
+            String message = "Failed getting Surah names from the Quran database";
+            throw new QuranDatabaseException(message);
+        }
+
         return surahNames;
     }
 
     /**
      * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the ayahs of the specified Surah,
-     * or null if the Surah number is not valid.
-     * @throws QuranDatabaseException if there was an error encountered on reading from the database.
+     * @return the ayahs of the specified Surah.
+     * @throws QuranDatabaseException if there was an error getting the Ayahs from the database.
      */
+    @NonNull
     public List<String> getAyahsInSurah(int surahNumber) throws QuranDatabaseException {
         List<String> surahAyahs = new ArrayList<>();
 
@@ -143,16 +156,21 @@ public class QuranDatabase {
 
         cursor.close();
 
+        if (surahAyahs.isEmpty()) {
+            String message = String.format("Failed getting Ayahs from the Quran database for Surah %s", surahNumber);
+            throw new QuranDatabaseException(message);
+        }
+
         return surahAyahs;
     }
 
     /**
      * @param surahNumber is a value between 1 and 114 (inclusive).
      * @param ayahNumber  is a value greater than or equal to 1.
-     * @return the text of the specified Ayah,
-     * or null if the Surah and Ayah number provided do not map to an Ayah.
-     * @throws QuranDatabaseException if there was an error encountered on reading from the database.
+     * @return the text of the specified Ayah.
+     * @throws QuranDatabaseException if there was an error getting the Ayah from the database.
      */
+    @NonNull
     public String getAyah(int surahNumber, int ayahNumber) throws QuranDatabaseException {
         String ayah = null;
 
@@ -171,6 +189,11 @@ public class QuranDatabase {
 
         cursor.close();
 
+        if (ayah == null) {
+            String message = String.format("Failed getting Ayah from the Quran database for Surah %s, Ayah %s", surahNumber, ayahNumber);
+            throw new QuranDatabaseException(message);
+        }
+
         return ayah;
     }
 
@@ -179,6 +202,7 @@ public class QuranDatabase {
      *
      * @return the {@link #sqliteDatabase}.
      */
+    @NonNull
     SQLiteDatabase getSQLiteDatabase() {
         if (!isDatabaseOpen()) {
             openDatabase();
@@ -249,6 +273,7 @@ public class QuranDatabase {
      * @return the result of the query.
      * @throws QuranDatabaseException if the database is not open for reading.
      */
+    @NonNull
     private Cursor queryDatabase(String table,
                                  String[] columns,
                                  String selection,

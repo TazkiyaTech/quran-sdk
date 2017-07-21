@@ -3,6 +3,7 @@ package com.thinkincode.quran.sdk.database;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
+import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 import com.thinkincode.quran.sdk.model.SurahEnum;
 
 import org.junit.After;
@@ -68,12 +69,18 @@ public class QuranDatabaseTest extends BaseTestCase {
     }
 
     @Test
-    public void testGetSurahName() {
+    public void testGetSurahName_withValidSurahNumber() {
         // When.
         String surahName = quranDatabase.getSurahName(1);
 
         // Then.
         assertThat(surahName, is(not(nullValue())));
+    }
+
+    @Test(expected = QuranDatabaseException.class)
+    public void testGetSurahName_withInvalidSurahNumber() {
+        // When.
+        quranDatabase.getSurahName(115);
     }
 
     @Test
@@ -86,7 +93,7 @@ public class QuranDatabaseTest extends BaseTestCase {
     }
 
     @Test
-    public void testGetAyahsInSurah() {
+    public void testGetAyahsInSurah_withValidSurahNumber() {
         // Given.
         SurahEnum[] surahs = SurahEnum.values();
 
@@ -102,12 +109,29 @@ public class QuranDatabaseTest extends BaseTestCase {
         }
     }
 
+    @Test(expected = QuranDatabaseException.class)
+    public void testGetAyahsInSurah_withInvalidSurahNumber() {
+        quranDatabase.getAyahsInSurah(115);
+    }
+
     @Test
-    public void testGetAyah() {
+    public void testGetAyah_withValidSurahNumberAndAyahNumber() {
         // When.
         String ayah = quranDatabase.getAyah(1, 1);
 
         // Then.
         assertThat(ayah, is(not(nullValue())));
+    }
+
+    @Test(expected = QuranDatabaseException.class)
+    public void testGetAyah_withInvalidSurahNumber() {
+        // When.
+        quranDatabase.getAyah(115, 1);
+    }
+
+    @Test(expected = QuranDatabaseException.class)
+    public void testGetAyah_withInvalidAyahNumber() {
+        // When.
+        quranDatabase.getAyah(1, 8);
     }
 }
