@@ -8,7 +8,7 @@ import com.thinkincode.quran.sdk.R;
 import java.util.Random;
 
 /**
- * Helper class which provides inspirational quotes and reminders relating to the virtues of the Qur'an.
+ * Helper class which provides inspirational quotes and reminders relating to the virtues of the Quran.
  */
 public class QuranQuotes {
 

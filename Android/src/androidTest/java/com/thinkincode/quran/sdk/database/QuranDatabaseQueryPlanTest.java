@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,9 +22,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     private QueryPlanExplainer queryPlanExplainer;
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws Exception {
         QuranDatabase quranDatabase = new QuranDatabase(getTargetContext());
-        quranDatabase.openDatabase();
+        quranDatabase.initialise();
 
         SQLiteDatabase sqLiteDatabase = quranDatabase.getSQLiteDatabase();
         queryPlanExplainer = new QueryPlanExplainer(sqLiteDatabase);

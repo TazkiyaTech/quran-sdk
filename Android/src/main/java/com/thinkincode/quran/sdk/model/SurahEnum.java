@@ -3,7 +3,7 @@ package com.thinkincode.quran.sdk.model;
 import android.support.annotation.NonNull;
 
 /**
- * An enum representation of the Surahs that make up the Qur'an.
+ * An enum representation of the Surahs that make up the Quran.
  */
 public enum SurahEnum {
 

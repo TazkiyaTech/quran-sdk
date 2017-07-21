@@ -1,7 +1,7 @@
 package com.thinkincode.quran.sdk.model;
 
 /**
- * An enum representation of the Juzs that make up the Qur'an.
+ * An enum representation of the Juzs that make up the Quran.
  */
 public enum JuzEnum {
 

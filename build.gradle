@@ -11,14 +11,12 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com'
-        }
+        google()
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0.1'
     group = 'build setup'
     description = "Adds the Gradle wrapper with the specified Gradle version to the project."
 }

@@ -3,7 +3,6 @@ package com.thinkincode.quran.sdk.database;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
-import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 import com.thinkincode.quran.sdk.model.SurahEnum;
 
 import org.junit.After;
@@ -11,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -19,6 +17,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -28,9 +27,9 @@ public class QuranDatabaseTest extends BaseTestCase {
     private QuranDatabase quranDatabase;
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws Exception {
         quranDatabase = new QuranDatabase(getTargetContext());
-        quranDatabase.openDatabase();
+        quranDatabase.initialise();
     }
 
     @After
@@ -48,12 +47,24 @@ public class QuranDatabaseTest extends BaseTestCase {
     }
 
     @Test
-    public void testIsDatabaseOpen() {
+    public void testIsDatabaseOpen_whenDatabaseOpened() {
+        // Given.
+        quranDatabase.openDatabase();
+
         // When.
         boolean result = quranDatabase.isDatabaseOpen();
 
         // Then.
         assertTrue(result);
+    }
+
+    @Test
+    public void testIsDatabaseOpen_whenDatabaseNotOpened() {
+        // When.
+        boolean result = quranDatabase.isDatabaseOpen();
+
+        // Then.
+        assertFalse(result);
     }
 
     @Test
@@ -98,10 +109,5 @@ public class QuranDatabaseTest extends BaseTestCase {
 
         // Then.
         assertThat(ayah, is(not(nullValue())));
-    }
-
-    @Test(expected = QuranDatabaseException.class)
-    public void testGetAyah_WhenDatabaseNotOpen() {
-        new QuranDatabase(getTargetContext()).getAyah(1, 1);
     }
 }

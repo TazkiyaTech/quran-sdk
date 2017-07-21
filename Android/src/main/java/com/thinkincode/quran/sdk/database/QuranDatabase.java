@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper class which is able to create and access the local Qur'an SQLite database.
+ * Helper class which is able to create and access the local Quran SQLite database.
  */
 public class QuranDatabase {
 
@@ -46,21 +46,22 @@ public class QuranDatabase {
     }
 
     /**
-     * Opens the Qur'an database for reading.
+     * Initialises the Quran database for reading.
      *
-     * @throws IOException     if there was an I/O error.
-     * @throws SQLiteException if the database could not be opened.
+     * @throws QuranDatabaseException if the database could not be initialised.
      */
-    public void openDatabase() throws IOException, SQLiteException {
-        if (!isDatabaseExistsInInternalStorage()) {
-            copyDatabaseFromAssetsToInternalStorage();
+    public void initialise() throws QuranDatabaseException {
+        try {
+            if (!isDatabaseExistsInInternalStorage()) {
+                copyDatabaseFromAssetsToInternalStorage();
+            }
+        } catch (IOException e) {
+            throw new QuranDatabaseException("Failed initialising the Quran database", e);
         }
-
-        openDatabaseForReadingIfClosed();
     }
 
     /**
-     * Closes the Qur'an database.
+     * Closes the Quran database.
      */
     public void closeDatabase() {
         if (sqliteDatabase != null) {
@@ -96,7 +97,7 @@ public class QuranDatabase {
     }
 
     /**
-     * @return the names of all the Surahs in the Qur'an.
+     * @return the names of all the Surahs in the Quran.
      * @throws QuranDatabaseException if there was an error encountered on reading from the database.
      */
     public List<String> getSurahNames() throws QuranDatabaseException {
@@ -179,13 +180,17 @@ public class QuranDatabase {
      * @return the {@link #sqliteDatabase}.
      */
     SQLiteDatabase getSQLiteDatabase() {
+        if (!isDatabaseOpen()) {
+            openDatabase();
+        }
+
         return sqliteDatabase;
     }
 
     /**
      * (Default package-private visibility for unit testing purposes.)
      *
-     * @return true iff the Qur'an database exists in internal storage.
+     * @return true iff the Quran database exists in internal storage.
      */
     boolean isDatabaseExistsInInternalStorage() {
         String path = applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
@@ -197,14 +202,26 @@ public class QuranDatabase {
     /**
      * (Default package-private visibility for unit testing purposes.)
      *
-     * @return true iff the Qur'an database is open for reading.
+     * @return true iff the Quran database is open for reading.
      */
     boolean isDatabaseOpen() {
         return sqliteDatabase != null && sqliteDatabase.isOpen();
     }
 
     /**
-     * Copies the Qur'an database from assets to internal storage,
+     * Opens the Quran database for reading, if it's not already open.
+     *
+     * @throws SQLiteException if the database could not be opened.
+     */
+    void openDatabase() throws SQLiteException {
+        if (!isDatabaseOpen()) {
+            String myPath = applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
+            sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        }
+    }
+
+    /**
+     * Copies the Quran database from assets to internal storage,
      * so that it can be accessed and handled.
      *
      * @throws IOException if there was an I/O error.
@@ -227,19 +244,7 @@ public class QuranDatabase {
     }
 
     /**
-     * Opens the Qur'an database for reading, if it's not already open.
-     *
-     * @throws SQLiteException if the database could not be opened.
-     */
-    private void openDatabaseForReadingIfClosed() throws SQLiteException {
-        if (!isDatabaseOpen()) {
-            String myPath = applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
-            sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-        }
-    }
-
-    /**
-     * Queries the local Qur'an database with the specified parameters.
+     * Queries the local Quran database with the specified parameters.
      *
      * @return the result of the query.
      * @throws QuranDatabaseException if the database is not open for reading.
@@ -252,12 +257,14 @@ public class QuranDatabase {
                                  String having,
                                  String orderBy,
                                  String limit) throws QuranDatabaseException {
-        if (!isDatabaseOpen()) {
-            String message = "Could not query the Qur'an database. " +
-                    "Ensure that the QuranDatabase.openDatabase() method has been called before attempting to read from the database.";
+        if (!isDatabaseExistsInInternalStorage()) {
+            String message = "Could not query the Quran database. " +
+                    "Ensure that the QuranDatabase.initialise() method has been called before attempting to read from the database.";
 
             throw new QuranDatabaseException(message);
         }
+
+        openDatabase();
 
         return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     }
