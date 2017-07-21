@@ -13,7 +13,7 @@ To start using the library in your app you'll need to first declare the reposito
 Next, you need to add this library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.quran.sdk:Android:0.1.8'
+        compile 'com.thinkincode.quran.sdk:Android:0.1.9'
     }
 
 ## Initialisation
@@ -21,9 +21,9 @@ Next, you need to add this library as a dependency in your app. You can do this 
 On startup of your app, create a [QuranDatabase](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranDatabase.java) instance as follows:
 
     QuranDatabase quranDatabase = new QuranDatabase(myApplicationContext);
-    quranDatabase.openDatabase();
+    quranDatabase.initialise();
 
-Be sure to pass the application context into the [QuranDatabase](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranDatabase.java) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.openDatabase()` method in a background thread since it accesses file storage.
+Be sure to pass the application context into the [QuranDatabase](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranDatabase.java) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.initialise()` method in a background thread since it accesses file storage.
 
 ## Accessing Surahs and Ayahs
 
