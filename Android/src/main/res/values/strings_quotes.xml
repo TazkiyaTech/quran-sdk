@@ -119,6 +119,28 @@
 		(Al-Bukhari)
     </string>
 
+    <string name="inspiration_hadith_bukhari_03">
+        #HadithOfTheDay:
+        \"The metaphor of someone who knows the Qur\'an is that of tied camels.
+        If he keeps them tied, he will control them.
+        If he releases them, they will run away.\"
+        (Al-Bukhari)
+    </string>
+
+    <string name="inspiration_hadith_bukhari_04">
+        #HadithOfTheDay:
+        \"&#8230;you must keep on reciting the Qur\'an
+        because it escapes from the hearts of men faster than camel do.\"
+        (Al-Bukhari)
+    </string>
+
+    <string name="inspiration_hadith_bukhari_05">
+        #HadithOfTheDay:
+        \"Keep on reciting the Qur\'an&#8230;
+        it slips away faster than a camel gets loose from its tying rope.\"
+        (Al-Bukhari)
+    </string>
+
     <string name="inspiration_hadith_muslim_01">
         #HadithOfTheDay:
         \"Do not make your houses as graveyards
@@ -128,8 +150,8 @@
 
     <string name="inspiration_hadith_muslim_02">
         #HadithOfTheDay:
-        \"Recite the Qur\'an regularly,
-        for&#8230;the Qur\'an escapes one\'s memory faster than camels that are released from their tying ropes.\"
+        \"Recite the Qur\'an regularly&#8230;
+        it escapes one\'s memory faster than camels that are released from their tying ropes.\"
 		(Muslim)
     </string>
 
