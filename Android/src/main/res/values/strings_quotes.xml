@@ -11,10 +11,16 @@
         <item>@string/inspiration_quran_17_009</item>
         <item>@string/inspiration_quran_17_106</item>
         <item>@string/inspiration_quran_19_052</item>
+        <item>@string/inspiration_quran_29_051_a</item>
+        <item>@string/inspiration_quran_29_051_b</item>
         <item>@string/inspiration_quran_38_029</item>
         <item>@string/inspiration_quran_54_017</item>
+        <item>@string/inspiration_quran_87_006</item>
         <item>@string/inspiration_hadith_bukhari_01</item>
         <item>@string/inspiration_hadith_bukhari_02</item>
+        <item>@string/inspiration_hadith_bukhari_03</item>
+        <item>@string/inspiration_hadith_bukhari_04</item>
+        <item>@string/inspiration_hadith_bukhari_05</item>
         <item>@string/inspiration_hadith_muslim_01</item>
         <item>@string/inspiration_hadith_muslim_02</item>
         <item>@string/inspiration_hadith_tirmidhi_01</item>
@@ -92,6 +98,18 @@
 		(20:2-3)
 	</string>
 
+    <string name="inspiration_quran_29_051_a">
+        #VerseOfTheDay:
+        \"Is it not sufficient for them that We have sent down to you the Book that is being recited to them?&#8230;\"
+        (29:51)
+    </string>
+
+    <string name="inspiration_quran_29_051_b">
+        #VerseOfTheDay:
+        \"&#8230;Indeed in that [the Qur\'an] is a mercy and reminder for a people who believe.\"
+        (29:51)
+    </string>
+
     <string name="inspiration_quran_38_029">
         #VerseOfTheDay:
 		\"This is a blessed Book We have revealed to you,
@@ -105,6 +123,12 @@
 	    so is there any who will remember?\"
 		(54:17)
 	</string>
+
+    <string name="inspiration_quran_87_006">
+        #VerseOfTheDay:
+        \"We shall teach you [the Qur\'an] and you will not forget – unless God wishes; He knows both what is open and what is hidden.\"
+        (87: 6-7)
+    </string>
 
     <string name="inspiration_hadith_bukhari_01">
         #HadithOfTheDay:
