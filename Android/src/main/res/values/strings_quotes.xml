@@ -7,9 +7,12 @@
         <item>@string/inspiration_quran_10_057</item>
         <item>@string/inspiration_quran_13_028</item>
         <item>@string/inspiration_quran_15_009</item>
+        <item>@string/inspiration_quran_16_089</item>
         <item>@string/inspiration_quran_16_098</item>
-        <item>@string/inspiration_quran_17_009</item>
+        <item>@string/inspiration_quran_17_009_a</item>
+        <item>@string/inspiration_quran_17_009_b</item>
         <item>@string/inspiration_quran_17_106</item>
+        <item>@string/inspiration_quran_18_027</item>
         <item>@string/inspiration_quran_19_052</item>
         <item>@string/inspiration_quran_29_051_a</item>
         <item>@string/inspiration_quran_29_051_b</item>
@@ -64,15 +67,29 @@
 		(15:9)
 	</string>
 
+    <string name="inspiration_quran_16_089">
+        #VerseOfTheDay:
+		\"&#8230; We have sent down to you the Book as clarification for all things
+        and as guidance and mercy and good tidings for the Muslims.\"
+		(16:89)
+	</string>
+
     <string name="inspiration_quran_16_098">
         #VerseOfTheDay:
 		\"So when you recite the Qur\'an, seek refuge in Allah from Satan, the expelled.\"
 		(16:98)
 	</string>
 
-    <string name="inspiration_quran_17_009">
+    <string name="inspiration_quran_17_009_a">
         #VerseOfTheDay:
 		\"Indeed, this Qur\'an guides to that which is most suitable&#8230;\"
+		(17:9)
+	</string>
+
+    <string name="inspiration_quran_17_009_b">
+        #VerseOfTheDay:
+		\"&#8230;[this Qur\'an] gives good tidings to the believers who do righteous deeds
+        that they will have a great reward.\"
 		(17:9)
 	</string>
 
@@ -82,6 +99,14 @@
         so that you may recite it to the people gradually,
         and We have revealed it little by little.\"
 	    (17:106)
+	</string>
+
+    <string name="inspiration_quran_18_027">
+	    #VerseOfTheDay:
+	    \"And recite what has been revealed to you of the Book of your Lord.
+        There is no one to change His words,
+        and you will never find a refuge beside Him.\"
+	    (18:27)
 	</string>
 
     <string name="inspiration_quran_19_052">
@@ -126,7 +151,8 @@
 
     <string name="inspiration_quran_87_006">
         #VerseOfTheDay:
-        \"We shall teach you [the Qur\'an] and you will not forget – unless God wishes; He knows both what is open and what is hidden.\"
+        \"We shall teach you [the Qur\'an] and you will not forget – unless God wishes;
+        He knows both what is open and what is hidden.\"
         (87: 6-7)
     </string>
 
