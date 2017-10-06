@@ -33,10 +33,19 @@ public class QuranQuotes {
      */
     @NonNull
     public String getNextRandom() {
-        String[] inspirationMessages = resources.getStringArray(R.array.array_inspiration);
+        int index = random.nextInt(getSize());
+        return getQuote(index);
+    }
 
-        int inspirationMessageIndex = random.nextInt(inspirationMessages.length);
+    String getQuote(int index) {
+        return getQuotesArray()[index];
+    }
 
-        return inspirationMessages[inspirationMessageIndex];
+    int getSize() {
+        return getQuotesArray().length;
+    }
+
+    private String[] getQuotesArray() {
+        return resources.getStringArray(R.array.quran_quotes);
     }
 }
