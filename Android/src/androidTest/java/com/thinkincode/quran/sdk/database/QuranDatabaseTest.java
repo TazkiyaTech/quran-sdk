@@ -4,7 +4,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
-import com.thinkincode.quran.sdk.model.SurahEnum;
+import com.thinkincode.quran.sdk.model.Surah;
 
 import org.junit.After;
 import org.junit.Before;
@@ -95,17 +95,17 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Test
     public void testGetAyahsInSurah_withValidSurahNumber() {
         // Given.
-        SurahEnum[] surahs = SurahEnum.values();
+        Surah[] surahs = Surah.values();
 
         for (int surahNumber = 1; surahNumber <= surahs.length; surahNumber++) {
             // Given.
-            SurahEnum surahEnum = surahs[surahNumber - 1];
+            Surah surah = surahs[surahNumber - 1];
 
             // When.
             List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(surahNumber);
 
             // Then.
-            assertThat(ayahsInSurah.size(), is(equalTo(surahEnum.getNumVerses())));
+            assertThat(ayahsInSurah.size(), is(equalTo(surah.getNumVerses())));
         }
     }
 

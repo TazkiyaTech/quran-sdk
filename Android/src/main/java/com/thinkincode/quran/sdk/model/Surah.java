@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 /**
  * An enum representation of the Surahs that make up the Quran.
  */
-public enum SurahEnum {
+public enum Surah {
 
     Surah_001(1, 7),
     Surah_002(2, 286),
@@ -123,19 +123,19 @@ public enum SurahEnum {
     Surah_114(114, 6);
 
     /**
-     * Parses the given surah number to an instance of {@link SurahEnum}.
+     * Parses the given surah number to an instance of {@link Surah}.
      *
      * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the {@link SurahEnum} corresponding to the {@code surahNumber} provided.
+     * @return the {@link Surah} corresponding to the {@code surahNumber} provided.
      */
     @NonNull
-    public static SurahEnum parse(int surahNumber) {
-        SurahEnum[] surahEnumValues = SurahEnum.values();
+    public static Surah parse(int surahNumber) {
+        Surah[] surahValues = Surah.values();
 
-        if (surahNumber < 1 || surahNumber > surahEnumValues.length) {
+        if (surahNumber < 1 || surahNumber > surahValues.length) {
             throw new IllegalArgumentException("Bad Surah number passed in.");
         } else {
-            return surahEnumValues[surahNumber - 1];
+            return surahValues[surahNumber - 1];
         }
     }
 
@@ -159,7 +159,7 @@ public enum SurahEnum {
     /**
      * Constructor.
      */
-    SurahEnum(int surahNumber, int numVerses) {
+    Surah(int surahNumber, int numVerses) {
         this.surahNumber = surahNumber;
         this.numVerses = numVerses;
     }

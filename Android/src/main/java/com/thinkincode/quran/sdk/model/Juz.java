@@ -3,7 +3,7 @@ package com.thinkincode.quran.sdk.model;
 /**
  * An enum representation of the Juzs that make up the Quran.
  */
-public enum JuzEnum {
+public enum Juz {
 
     Juz_01(1, 1, 1),
     Juz_02(2, 2, 142),
@@ -58,7 +58,7 @@ public enum JuzEnum {
      * @param fromSurah the number (not index) of the Surah in which the Juz begins.
      * @param fromVerse the number (not index) of the Verse within {@code fromSurah} at which the Juz begins.
      */
-    JuzEnum(int juzNumber, int fromSurah, int fromVerse) {
+    Juz(int juzNumber, int fromSurah, int fromVerse) {
         this.juzNumber = juzNumber;
         this.fromSurah = fromSurah;
         this.fromVerse = fromVerse;
@@ -75,7 +75,7 @@ public enum JuzEnum {
             toSurah = 115;
             toVerse = 1;
         } else {
-            JuzEnum juzNext = JuzEnum.values()[juzNumber];
+            Juz juzNext = Juz.values()[juzNumber];
 
             toSurah = juzNext.fromSurah;
             toVerse = juzNext.fromVerse;
@@ -89,7 +89,7 @@ public enum JuzEnum {
         int verseCount = 0;
 
         for (int surahNumber = fromSurah; surahNumber < toSurah; surahNumber++) {
-            SurahEnum surah = SurahEnum.parse(surahNumber);
+            Surah surah = Surah.parse(surahNumber);
 
             if (surahNumber == fromSurah) {
                 verseCount += surah.getNumVerses() - fromVerse + 1;

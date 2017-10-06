@@ -8,12 +8,12 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class JuzEnumTest {
+public class JuzTest {
 
     @Test
     public void testNumberOfVersesInJuz01() {
         // When.
-        int numVerses = JuzEnum.Juz_01.getNumVerses();
+        int numVerses = Juz.Juz_01.getNumVerses();
 
         // Then.
         assertThat(numVerses, equalTo(148));
@@ -22,7 +22,7 @@ public class JuzEnumTest {
     @Test
     public void testNumberOfVersesInJuz27() {
         // When.
-        int numVerses = JuzEnum.Juz_27.getNumVerses();
+        int numVerses = Juz.Juz_27.getNumVerses();
 
         // Then.
         assertThat(numVerses, equalTo(399));
@@ -31,7 +31,7 @@ public class JuzEnumTest {
     @Test
     public void testNumberOfVersesInJuz30() {
         // When.
-        int numVerses = JuzEnum.Juz_30.getNumVerses();
+        int numVerses = Juz.Juz_30.getNumVerses();
 
         // Then.
         assertThat(numVerses, equalTo(564));
@@ -40,13 +40,13 @@ public class JuzEnumTest {
     @Test
     public void testTotalNumberOfVersesInAllJuzs() {
         // Given.
-        JuzEnum[] juzs = JuzEnum.values();
+        Juz[] juzs = Juz.values();
 
         // When.
 
         int verseCount = 0;
 
-        for (JuzEnum juz : juzs) {
+        for (Juz juz : juzs) {
             int numVerses = juz.getNumVerses();
             verseCount += numVerses;
         }
