@@ -8,8 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static com.thinkincode.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGreaterThan;
+import static com.thinkincode.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessThan;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -40,7 +41,7 @@ public class QuranQuotesTest extends BaseTestCase {
         int size = quranQuotes.getSize();
 
         // Then.
-        assertThat(size, greaterThan(0));
+        assertThat(size, is(greaterThan(0)));
     }
 
     @Test
@@ -48,8 +49,8 @@ public class QuranQuotesTest extends BaseTestCase {
         // When / Then.
         for (int i = 0; i < quranQuotes.getSize(); i++) {
             String quote = quranQuotes.getQuote(i);
-            assertThat(quote.length(), greaterThan(0));
-            assertThat(quote.length(), lessThan(281));
+            assertThat(quote, hasLengthGreaterThan(0));
+            assertThat(quote, hasLengthLessThan(281));
         }
     }
 }
