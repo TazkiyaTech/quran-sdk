@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string-array name="hifdh_tips">
+
+        <item>
+            #HifdhTip:
+            Strive for utmost sincerity.
+            Regularly renew your intention.
+	        You\'re not in this to show off or for worldly gains.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Repetition, repetition, repetition.
+            There are no shortcuts in memorising the #Quran.
+            Continuous repetition is key.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Dedicate at least 30 minutes every day for memorising the #Quran.
+            This is easily possible.
+            Remember that there are people who recite and review the #Quran for several hours a day.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Begin your memorisation journey with a small and realistic goal.
+            Build upon it steadily.
+            This will be more fruitful in the long run.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Learn the proper pronunciation of the Arabic letters.
+            But do not let this stop you from memorising.
+            Work on both simultaneously.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Protect your eyes from looking at that which is impermissible.
+            Protect your tongue from saying that which is sinful.
+            Be conscious of Allah and Allah will teach you.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Trust in Allah.
+            Memorising and retaining the #Quran is a monumental task.
+            But do your best and Allah will take care of the rest.
+        </item>
+
+        <item>
+            #HifdhTip:
+            If you fall short of your memorisation or revision target on a given day,
+            force yourself to do a little more the next day.
+            Consistency is key.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Clear your mind from any worries, problems or thoughts that will distract you.
+            Seek refuge in Allah from the accursed Satan.
+            Then proceed with the Basmala.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Listening to the #Quran frequently will engrave it into your mind and heart.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Read the translation of each verse that you memorise and try to connect the words with their meanings.
+            Understanding the words will boost your effectiveness to learn and remember.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Use the same Mus-haf (i.e. printed copy of the #Quran) every time you memorise and recite.
+            This will help your mind visually recall where particular verses and pages begin and end.
+        </item>
+
+    </string-array>
+
+</resources>

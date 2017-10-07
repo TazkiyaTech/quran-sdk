@@ -8,9 +8,9 @@ import com.thinkincode.quran.sdk.R;
 import java.util.Random;
 
 /**
- * Helper class which provides quotes and reminders relating to the importance and virtues of the Quran.
+ * Helper class which provides Hifdh tips.
  */
-public class QuranQuotes {
+public class HifdhTips {
 
     @NonNull
     private final Resources resources;
@@ -23,29 +23,29 @@ public class QuranQuotes {
      *
      * @param resources the application's {@link Resources} instance.
      */
-    public QuranQuotes(@NonNull Resources resources) {
+    public HifdhTips(@NonNull Resources resources) {
         this.resources = resources;
         this.random = new Random();
     }
 
     /**
-     * @return a randomly selected quote.
+     * @return a randomly selected Hifdh tip.
      */
     @NonNull
     public String getNextRandom() {
         int index = random.nextInt(getSize());
-        return getQuote(index);
+        return getTip(index);
     }
 
-    String getQuote(int index) {
-        return getQuotesArray()[index];
+    String getTip(int index) {
+        return getTipsArray()[index];
     }
 
     int getSize() {
-        return getQuotesArray().length;
+        return getTipsArray().length;
     }
 
-    private String[] getQuotesArray() {
-        return resources.getStringArray(R.array.quran_quotes);
+    private String[] getTipsArray() {
+        return resources.getStringArray(R.array.hifdh_tips);
     }
 }
