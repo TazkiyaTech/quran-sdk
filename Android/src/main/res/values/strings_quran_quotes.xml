@@ -179,7 +179,7 @@
 
         <item>
             #HadithOfTheDay:
-            \"The best of you are those who learn the #Quran and teach it.\"
+            \"The best of you is the one who learns the #Quran and teaches it (to others).\"
 		    (Al-Bukhari)
         </item>
 
@@ -246,11 +246,32 @@
 	        (Al-Nasa\'i)
         </item>
 
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"Indeed, Allah has people from amongst mankind:
+            the people of #Quran,
+            they are the people of Allah and His characteristics&#8230;\"
+	        (Ahmad)
+        </item>
+
         <item>
             #HadithOfTheDay:
 	        \"Hold fast to the recitation of the #Quran,
             for it will be a light for you on this earth and a treasure for you in the heavens.\"
 	        (Ibn Hibban)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"If the #Quran was to be gathered inside a vessel (i.e. the heart),
+            Allah will never punish it with the Hellfire.\"
+	        (Al-Bayhaqi)
         </item>
 
         <!--
@@ -371,6 +392,27 @@
             #QuoteOfTheDay:
 	        \"When your heart is inclined towards the #Quran,
             you\'ll love to recite, memorise and listen to the words of Allah frequently.\"
+	        (Suleiman Hani)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"When your heart is inclined towards the #Quran,
+            you\'ll love to recite, memorise and listen to the words of Allah frequently.\"
+	        (Suleiman Hani)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"While people are pursuing wealth, fame, power, social validation
+            and acceptance into different groups and labels,
+            the true believers are pursuing the #Quran and the love of their Lord.\"
 	        (Suleiman Hani)
         </item>
 
