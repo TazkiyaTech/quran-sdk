@@ -200,16 +200,16 @@
 
         <item>
             #HadithOfTheDay:
-            \"The metaphor of someone who knows the #Quran is that of tied camels.
-            If he keeps them tied, he will control them.
-            If he releases them, they will run away.\"
+            \"The example of someone who knows the #Quran is like the owner of tied camels.
+            If he keeps them tied, he will control them,
+            but if he releases them, they will run away.\"
             (Al-Bukhari)
         </item>
 
         <item>
             #HadithOfTheDay:
             \"&#8230;you must keep on reciting the #Quran
-            because it escapes from the hearts of men faster than camel do.\"
+            because it escapes from the hearts of men faster than camels (escape).\"
             (Al-Bukhari)
         </item>
 
@@ -253,6 +253,17 @@
             #HadithOfTheDay:
             \"Recite the #Quran regularly&#8230;
             it escapes one\'s memory faster than camels that are released from their tying ropes.\"
+		    (Muslim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+            \"If the companion of the #Quran persists in reciting it by night and day,
+            he will remember it,
+            but if he does not do that he will forget it.\"
 		    (Muslim)
         </item>
 
@@ -397,24 +408,16 @@
 	        (Al-Bayhaqi)
         </item>
 
-        <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
-           -->
         <item>
             #QuoteOfTheDay:
-	        \"If your hearts were truly pure, you would not have enough of the #Quran&#8230;\"
+	        \"If your hearts were truly pure, you would never get enough of the #Quran&#8230;\"
 	        (Uthman ibn Affan)
         </item>
 
-        <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
-           -->
         <item>
             #QuoteOfTheDay:
 	        \"&#8230;I do not like for one day and night to pass by
-            except that I have to look at the book of Allah.\"
+            except that I have to look at the Book of Allah.\"
 	        (Uthman ibn Affan)
         </item>
 
@@ -664,6 +667,16 @@
 	        \"The more one studies the #Quran
             and increases in knowledge of its meanings and legislations,
             the more one increases in love for Allah.\"
+	        (Suleiman Hani)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"The People of the #Quran do not think of the #Quran as a \"daily task\",
+            but instead they view it as a part and parcel of life that one cannot do without.\"
 	        (Suleiman Hani)
         </item>
 

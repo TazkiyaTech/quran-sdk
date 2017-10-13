@@ -28,7 +28,7 @@
             #HifdhTip:
             Begin your memorisation journey with a small and realistic goal.
             Build upon it steadily.
-            This will be more fruitful in the long run.
+            Moderation is better than an overwhelming goal that causes you to give up.
         </item>
 
         <item>
@@ -54,6 +54,13 @@
 
         <item>
             #HifdhTip:
+            Never let a day go by in which you do not revise some #Quran.
+            Regardless of your weekly of monthly target,
+            have a minimum amount that you absolutely must revise every day.
+        </item>
+
+        <item>
+            #HifdhTip:
             If you fall short of your memorisation or revision target on a given day,
             force yourself to do a little more the next day.
             Consistency is key.
@@ -68,12 +75,22 @@
 
         <item>
             #HifdhTip:
-            Listening to the #Quran frequently will engrave it into your mind and heart.
+            Listening to the #Quran frequently,
+            whether from people or recordings,
+            will engrave it into your mind and heart.
         </item>
 
         <item>
             #HifdhTip:
-            Listening to the #Quran being recited will help you catch any mistakes in your memorisation.
+            Listening to the #Quran being recited,
+            whether from people or recordings,
+            will help you catch any mistakes in your memorisation.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Record your recitation of #Quran and listen to the recording.
+            This will help you find mistakes and improve your articulation of the verses.
         </item>
 
         <item>
@@ -120,9 +137,9 @@
 
         <item>
             #HifdhTip:
-            Be confident.
             Recite the verses of #Quran that you have memorised in your prayers.
-            Avoid reciting the same verses in every prayer.
+            Avoid reciting the same sequence of verses again and again in every prayer
+            out of laziness or lack of confidence.
         </item>
 
         <item>
@@ -158,6 +175,20 @@
             #HifdhTip:
             Beware of reviewing your memorisation at a rapid speed for the sake of completing the words.
             Concentrate and reflect on the meanings.
+        </item>
+
+        <item>
+            #HifdhTip:
+            Teach others.
+            The one who teaches the #Quran is likely to remember it,
+            at times even more than the one being taught.
+        </item>
+
+        <item>
+            #HifdhTip:
+            When revising a page, recite it at least once without looking at the Mus-haf
+            (printed copy of the #Quran).
+            This will strengthen your memory and decrease your dependence on the Mus-haf.
         </item>
 
     </string-array>
