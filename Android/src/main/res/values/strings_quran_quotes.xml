@@ -110,6 +110,12 @@
 
         <item>
             #VerseOfTheDay:
+	        \"And We send down of the #Quran that which is healing and a mercy for the believers&#8230;\"
+	        (17:82)
+        </item>
+
+        <item>
+            #VerseOfTheDay:
 	        \"We have divided the #Quran in portions,
             so that you may recite it to the people gradually,
             and We have revealed it little by little.\"
@@ -287,6 +293,15 @@
             (Al-Tirmidhi)
         </item>
 
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"The heart that has no #Quran in it is like an abandoned ruined dwelling.\"
+	        (Al-Tirmidhi)
+        </item>
+        
         <item>
             #HadithOfTheDay:
 	        \"The people of the #Quran are the people of Allah and His special servants.\"
@@ -374,37 +389,6 @@
 
         <!--
            - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Al Tibyaan, p.63 by al Nawawi
-           -->
-        <item>
-            #QuoteOfTheDay:
-	        \"Weeping is recommended while reciting the #Quran or witnessing its recitation&#8230;\"
-	        (Al-Ghazali)
-        </item>
-
-        <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Fath al Baari (98/9)
-           -->
-        <item>
-            #QuoteOfTheDay:
-	        \"Crying when reciting the #Quran is the characteristic of those who knew Allah
-            and is the distinguishing mark of the righteous.\"
-	        (Al-Nawawi)
-        </item>
-
-        <!--
-           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
-           -->
-        <item>
-            #QuoteOfTheDay:
-	        \"The pious predecessors would never teach Hadith and Fiqh
-            except to someone who had memorised the #Quran.\"
-	        (Al-Nawawi)
-        </item>
-
-        <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
            - and cited to Hilyah al Awliyaa' (300/7) and al Zuhd by Imam Ahmad (244/1)
            -->
         <item>
@@ -441,6 +425,47 @@
             #QuoteOfTheDay:
 	        \"If anything will improve it (your memory), it is giving up sin.\"
 	        (Malik ibn Anas)
+        </item>
+
+        <!--
+           - Quote found in 'Meadows of the Divine' by Alomgir Ali
+           - and cited to Al Tibyaan, p.63 by al Nawawi
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Weeping is recommended while reciting the #Quran or witnessing its recitation&#8230;\"
+	        (Al-Ghazali)
+        </item>
+
+        <!--
+           - Quote found in 'Meadows of the Divine' by Alomgir Ali
+           - and cited to Fath al Baari (98/9)
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Crying when reciting the #Quran is the characteristic of those who knew Allah
+            and is the distinguishing mark of the righteous.\"
+	        (Al-Nawawi)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"The pious predecessors would never teach Hadith and Fiqh
+            except to someone who had memorised the #Quran.\"
+	        (Al-Nawawi)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Reciting the #Quran is the most important of Adhkaar (remembrance of Allah)&#8230;
+            No day or night should be without it and it may be attained by reciting a few verses.\"
+	        (Al-Nawawi)
         </item>
 
         <!--
@@ -540,24 +565,21 @@
         </item>
 
         <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Al Musnad of Imam Ahmad (3712)
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #DuaOfTheDay:
-	        \"[O Allah! I ask You that You make the #Quran] the Spring of my heart
-            and the light of my breast.\"
-	        (Musnad Ahmad)
+            #QuoteOfTheDay:
+	        \"The wise believer takes advantage
+            and holds firmly to the habit of reciting the #Quran
+            as a cure for all types of illnesses in this world.\"
+	        (Suleiman Hani)
         </item>
 
-        <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Al Musnad of Imam Ahmad (3712)
-           -->
         <item>
             #DuaOfTheDay:
-	        \"[O Allah! I ask You that You make the #Quran] a departure for my sorrow
-            and a release for my anxiety.\"
+	        \"[O Allah! I ask You that You make the #Quran]
+            the life of my heart and the light of my chest,
+            and a departure for my sorrow and a release for my anxiety.\"
 	        (Musnad Ahmad)
         </item>
 
