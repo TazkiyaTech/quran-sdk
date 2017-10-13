@@ -301,7 +301,7 @@
 	        \"The heart that has no #Quran in it is like an abandoned ruined dwelling.\"
 	        (Al-Tirmidhi)
         </item>
-        
+
         <item>
             #HadithOfTheDay:
 	        \"The people of the #Quran are the people of Allah and His special servants.\"
@@ -406,6 +406,16 @@
 	        \"&#8230;I do not like for one day and night to pass by
             except that I have to look at the book of Allah.\"
 	        (Uthman ibn Affan)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"The house in which the #Quran is not recited
+            is like a derelict house that has no one to maintain it.\"
+	        (Abdullah Ibn Mas\'ud)
         </item>
 
         <!--
