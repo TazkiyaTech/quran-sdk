@@ -16,7 +16,7 @@ allprojects {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.2'
+    gradleVersion = '4.2.1'
     group = 'build setup'
     description = "Adds the Gradle wrapper with the specified Gradle version to the project."
 }

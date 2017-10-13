@@ -19,6 +19,15 @@
 
         <item>
             #VerseOfTheDay:
+	        \"The believers are those who&#8230;
+            when His (Allah\'s) verses are recited to them,
+            it increases them in faith;
+            and upon their Lord they rely.\"
+	        (8:2)
+        </item>
+
+        <item>
+            #VerseOfTheDay:
 	        \"O mankind, there has come to you instruction from your Lord
             and healing for what is in the breasts&#8230;\"
 	        (10:57)
@@ -131,7 +140,7 @@
 
         <item>
             #VerseOfTheDay:
-            \"&#8230;(the #Quran has been sent down) in this way (i.e. in parts)
+            \"&#8230;(the #Quran has been sent down) in this way (in parts)
             so that We make your heart firm,
             and We revealed it little by little.\"
             (25:32)
@@ -205,6 +214,27 @@
             (Al-Bukhari)
         </item>
 
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+            \"The likeness of the one who reads #Quran and memorises it
+            is that he is with the righteous honorable scribes (the angels)&#8230;\"
+            (Al-Bukhari)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+            \"&#8230;The likeness of one who reads it (the #Quran)
+            and tries hard to memorise it even though it is difficult for him,
+            he will have two rewards.\"
+            (Al-Bukhari)
+        </item>
+
         <item>
             #HadithOfTheDay:
             \"Do not make your houses as graveyards
@@ -217,6 +247,23 @@
             \"Recite the #Quran regularly&#8230;
             it escapes one\'s memory faster than camels that are released from their tying ropes.\"
 		    (Muslim)
+        </item>
+
+        <item>
+            #HadithOfTheDay:
+            \"It will be said to the companion of the #Quran:
+            \'Recite, ascend and recite like you used to recite in the world&#8230;\'\"
+            (Muslim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+            \"Read the #Quran,
+            for indeed it will come on the Day of Resurrection as an intercessor for its companion.\"
+            (Muslim)
         </item>
 
         <item>
@@ -269,7 +316,58 @@
            -->
         <item>
             #HadithOfTheDay:
-	        \"If the #Quran was to be gathered inside a vessel (i.e. the heart),
+	        \"Indeed, this #Quran is the banquet of Allah,
+            so learn as much as you can from the banquet of Allah&#8230;\"
+	        (Al-Hakim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"&#8230;(this #Quran) is the strong rope of Allah
+            and it is clear guidance and it is a beautiful cure&#8230;\"
+	        (Al-Hakim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"&#8230;(this #Quran) is a protection for those who cling to it
+            and a salvation for those who follow it&#8230;\"
+	        (Al-Hakim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"&#8230;(the #Quran\'s) marvels do not fade
+            nor the sweetness of it decreased by the frequency of those who recite it&#8230;\"
+	        (Al-Hakim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"&#8230;recite it (the #Quran),
+            for indeed Allah will bestow upon you ten times the single reward
+            for your recitation of each letter&#8230;\"
+	        (Al-Hakim)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"If the #Quran was to be gathered inside a vessel (the heart),
             Allah will never punish it with the Hellfire.\"
 	        (Al-Bayhaqi)
         </item>
@@ -292,6 +390,16 @@
             #QuoteOfTheDay:
 	        \"Crying when reciting the #Quran is the characteristic of those who knew Allah
             and is the distinguishing mark of the righteous.\"
+	        (Al-Nawawi)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"The pious predecessors would never teach Hadith and Fiqh
+            except to someone who had memorised the #Quran.\"
 	        (Al-Nawawi)
         </item>
 
@@ -331,7 +439,7 @@
            -->
         <item>
             #QuoteOfTheDay:
-	        \"If anything will improve it (i.e. your memory), it is giving up sin.\"
+	        \"If anything will improve it (your memory), it is giving up sin.\"
 	        (Malik ibn Anas)
         </item>
 
@@ -411,8 +519,23 @@
         <item>
             #QuoteOfTheDay:
 	        \"While people are pursuing wealth, fame, power, social validation
-            and acceptance into different groups and labels,
+            and acceptance&#8230;
             the true believers are pursuing the #Quran and the love of their Lord.\"
+	        (Suleiman Hani)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"The #Quran is a cure,
+            a source of guidance,
+            a salvation,
+            a rectification of corruption,
+            a powerful shield,
+            everlasting sweetness,
+            and a source of abundant reward.\"
 	        (Suleiman Hani)
         </item>
 

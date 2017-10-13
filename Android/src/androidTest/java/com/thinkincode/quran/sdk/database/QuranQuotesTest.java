@@ -50,7 +50,7 @@ public class QuranQuotesTest extends BaseTestCase {
         for (int i = 0; i < quranQuotes.getSize(); i++) {
             String quote = quranQuotes.getQuote(i);
             assertThat(quote, hasLengthGreaterThan(0));
-            assertThat(quote, hasLengthLessThan(281));
+            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH));
         }
     }
 }

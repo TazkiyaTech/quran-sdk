@@ -50,7 +50,7 @@ public class HifdhTipsTest extends BaseTestCase {
         for (int i = 0; i < hifdhTips.getSize(); i++) {
             String quote = hifdhTips.getTip(i);
             assertThat(quote, hasLengthGreaterThan(0));
-            assertThat(quote, hasLengthLessThan(281));
+            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH));
         }
     }
 }
