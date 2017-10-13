@@ -215,8 +215,9 @@
 
         <item>
             #HadithOfTheDay:
-            \"Keep on reciting the #Quran&#8230;
-            it slips away faster than camels that are released from their tying rope.\"
+            \"Keep on reciting the #Quran,
+            for, by Him in Whose Hand my life is,
+            it slips away (is forgotten) faster than camels that are released from their tying ropes.\"
             (Al-Bukhari)
         </item>
 
@@ -468,6 +469,24 @@
             has little good in it,
             and the devils come to it.\"
 	        (Abu Hurayrah)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Learn Arabic just as you learn to memorise the #Quran.\"
+	        (Ubayy Ibn Ka\'b)
+        </item>
+
+        <!--
+           - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"&#8230;forgetting the #Quran is among the greatest calamities.\"
+	        (Ad-Dahhaak Ibn Muzaahim)
         </item>
 
         <!--
