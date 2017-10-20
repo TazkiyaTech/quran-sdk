@@ -251,20 +251,11 @@ public class QuranDatabase {
      * @throws IOException if there was an I/O error.
      */
     private void copyDatabaseFromAssetsToInternalStorage() throws IOException {
-        // Read from the local database in assets
-        InputStream inputStream = applicationContext.getAssets().open(DATABASE_NAME);
-
-        // Write to a local database in internal storage
-        OutputStream outputStream = applicationContext.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE);
-
-        // Transfer bytes from the input file to the output file
-        StreamCopier streamCopier = new StreamCopier();
-        streamCopier.copy(inputStream, outputStream);
-
-        // Close the streams
-        outputStream.flush();
-        outputStream.close();
-        inputStream.close();
+        try (InputStream inputStream = applicationContext.getAssets().open(DATABASE_NAME);
+             OutputStream outputStream = applicationContext.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE)) {
+            StreamCopier streamCopier = new StreamCopier();
+            streamCopier.copy(inputStream, outputStream);
+        }
     }
 
     /**
