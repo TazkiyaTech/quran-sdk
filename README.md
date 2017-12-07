@@ -13,7 +13,7 @@ To start using the library in your app you'll need to first declare the reposito
 Next, you need to add this library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.quran.sdk:Android:0.2.7'
+        compile 'com.thinkincode.quran.sdk:Android:0.2.8'
     }
 
 ## Initialisation
@@ -43,9 +43,14 @@ Once the Quran database is setup for your application (see above), you can call 
 
 We advise calling all of the above methods in a background thread since the methods access file storage.
 
-## Quran Quotes
+## Quran Quotes and Hifdh Tips
 
-As a bonus feature we have also included within the library some short quotes on the virtues and rulings of the Quran. These quotes can be accessed by means of the [QuranQuotes](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranQuotes.java) class as follows:
+As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran. The quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranQuotes.java) class as follows:
 
     QuranQuotes quranQuotes = new QuranQuotes(myApplicationContext.getResources());
     String quranQuote = quranQuotes.getNextRandom();
+
+The practical tips for those memorising the Quran can be accessed by means of the [HifdhTips](Android/src/main/java/com/thinkincode/quran/sdk/database/HifdhTips.java) class as follows:
+
+    HifdhTips hifdhTips = new HifdhTips(myApplicationContext.getResources());
+    String hifdhTip = hifdhTips.getNextRandom();
