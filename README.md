@@ -45,12 +45,12 @@ We advise calling all of the above methods in a background thread since the meth
 
 ## Quran Quotes and Hifdh Tips
 
-As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran. The quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranQuotes.java) class as follows:
+As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran. Quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/thinkincode/quran/sdk/database/QuranQuotes.java) class as follows:
 
     QuranQuotes quranQuotes = new QuranQuotes(myApplicationContext.getResources());
     String quranQuote = quranQuotes.getNextRandom();
 
-The practical tips for those memorising the Quran can be accessed by means of the [HifdhTips](Android/src/main/java/com/thinkincode/quran/sdk/database/HifdhTips.java) class as follows:
+Practical tips about how to learn and remember the Quran can be accessed by means of the [HifdhTips](Android/src/main/java/com/thinkincode/quran/sdk/database/HifdhTips.java) class as follows:
 
     HifdhTips hifdhTips = new HifdhTips(myApplicationContext.getResources());
     String hifdhTip = hifdhTips.getNextRandom();
