@@ -64,6 +64,18 @@ public enum Juz {
         this.fromVerse = fromVerse;
     }
 
+    public int getJuzNumber() {
+        return juzNumber;
+    }
+
+    public int getFromSurah() {
+        return fromSurah;
+    }
+
+    public int getFromVerse() {
+        return fromVerse;
+    }
+
     /**
      * @return the number of verses in the specified Juz.
      */
