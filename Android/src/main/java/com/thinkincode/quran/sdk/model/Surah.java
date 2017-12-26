@@ -123,7 +123,7 @@ public enum Surah {
     Surah_114(114, 6);
 
     /**
-     * Parses the given surah number to an instance of {@link Surah}.
+     * Parses the given Surah number to an instance of {@link Surah}.
      *
      * @param surahNumber is a value between 1 and 114 (inclusive).
      * @return the {@link Surah} corresponding to the {@code surahNumber} provided.
@@ -139,7 +139,14 @@ public enum Surah {
         }
     }
 
+    /**
+     * The number (not index) of this Surah.
+     */
     private final int surahNumber;
+
+    /**
+     * The number of Verses/Ayahs in this Surah.
+     */
     private final int numVerses;
 
     /**
@@ -158,7 +165,7 @@ public enum Surah {
     }
 
     /**
-     * @return the number of verses (Ayahs) that this target consists of.
+     * @return the number of Verses/Ayahs in this Surah.
      */
     public int getNumVerses() {
         return numVerses;
