@@ -143,6 +143,14 @@ public enum Surah {
     private final int numVerses;
 
     /**
+     * Constructor.
+     */
+    Surah(int surahNumber, int numVerses) {
+        this.surahNumber = surahNumber;
+        this.numVerses = numVerses;
+    }
+
+    /**
      * @return the number (not index) of this Surah.
      */
     public int getSurahNumber() {
@@ -154,13 +162,5 @@ public enum Surah {
      */
     public int getNumVerses() {
         return numVerses;
-    }
-
-    /**
-     * Constructor.
-     */
-    Surah(int surahNumber, int numVerses) {
-        this.surahNumber = surahNumber;
-        this.numVerses = numVerses;
     }
 }

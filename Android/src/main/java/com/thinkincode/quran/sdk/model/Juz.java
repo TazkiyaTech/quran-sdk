@@ -1,5 +1,7 @@
 package com.thinkincode.quran.sdk.model;
 
+import android.support.annotation.NonNull;
+
 /**
  * An enum representation of the Juzs that make up the Quran.
  */
@@ -35,6 +37,23 @@ public enum Juz {
     Juz_28(28, 58, 1),
     Juz_29(29, 67, 1),
     Juz_30(30, 78, 1);
+
+    /**
+     * Parses the given juz number to an instance of {@link Juz}.
+     *
+     * @param juzNumber is a value between 1 and 30 (inclusive).
+     * @return the {@link Juz} corresponding to the {@code juzNumber} provided.
+     */
+    @NonNull
+    public static Juz parse(int juzNumber) {
+        Juz[] juzValues = Juz.values();
+
+        if (juzNumber < 1 || juzNumber > juzValues.length) {
+            throw new IllegalArgumentException("Bad Juz number passed in.");
+        } else {
+            return juzValues[juzNumber - 1];
+        }
+    }
 
     /**
      * The number (not index) of this Juz.
