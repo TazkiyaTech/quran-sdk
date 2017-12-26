@@ -33,12 +33,14 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlan_for_getSurahNames() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
-                0,
-                0,
-                0,
-                "SCAN TABLE sura_names USING INDEX index_sura_number_on_table_sura_names"
-        ));
+        List<QueryPlanRow> expected = Collections.singletonList(
+                new QueryPlanRow(
+                        0,
+                        0,
+                        0,
+                        "SCAN TABLE sura_names USING INDEX index_sura_number_on_table_sura_names"
+                )
+        );
 
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
@@ -58,12 +60,14 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlan_for_getSurahName() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)"
-        ));
+        List<QueryPlanRow> expected = Collections.singletonList(
+                new QueryPlanRow(
+                        0,
+                        0,
+                        0,
+                        "SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)"
+                )
+        );
 
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
@@ -83,12 +87,14 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlan_for_getAyahsInSurah() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)"
-        ));
+        List<QueryPlanRow> expected = Collections.singletonList(
+                new QueryPlanRow(
+                        0,
+                        0,
+                        0,
+                        "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)"
+                )
+        );
 
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
@@ -108,12 +114,14 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlan_for_getAyah() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)"
-        ));
+        List<QueryPlanRow> expected = Collections.singletonList(
+                new QueryPlanRow(
+                        0,
+                        0,
+                        0,
+                        "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)"
+                )
+        );
 
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
