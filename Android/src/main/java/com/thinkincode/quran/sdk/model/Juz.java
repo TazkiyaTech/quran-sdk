@@ -66,7 +66,7 @@ public enum Juz {
     private final int numVerses;
 
     /**
-     * The number (not index) of the Surah in which the Juz begins.
+     * The number (not index) of the Surah in which this Juz begins.
      */
     private final int fromSurah;
 
@@ -78,7 +78,10 @@ public enum Juz {
     /**
      * Constructor.
      */
-    Juz(int juzNumber, int numVerses, int fromSurah, int fromVerse) {
+    Juz(int juzNumber,
+        int numVerses,
+        int fromSurah,
+        int fromVerse) {
         this.juzNumber = juzNumber;
         this.numVerses = numVerses;
         this.fromSurah = fromSurah;
@@ -100,7 +103,7 @@ public enum Juz {
     }
 
     /**
-     * @return the number (not index) of the Surah in which the Juz begins.
+     * @return the number (not index) of the Surah in which this Juz begins.
      */
     public int getFromSurah() {
         return fromSurah;

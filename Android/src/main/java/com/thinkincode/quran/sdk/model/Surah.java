@@ -152,7 +152,8 @@ public enum Surah {
     /**
      * Constructor.
      */
-    Surah(int surahNumber, int numVerses) {
+    Surah(int surahNumber,
+          int numVerses) {
         this.surahNumber = surahNumber;
         this.numVerses = numVerses;
     }
