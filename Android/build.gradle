@@ -29,7 +29,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             useProguard false
             proguardFile(getDefaultProguardFile('proguard-android.txt'))
             proguardFiles(proGuardFileCollection)
@@ -37,7 +37,7 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             useProguard false
             proguardFile(getDefaultProguardFile('proguard-android.txt'))
             proguardFiles(proGuardFileCollection)
@@ -46,8 +46,8 @@ android {
 }
 
 dependencies {
-    api 'com.android.support:support-annotations:27.1.1'
-    implementation 'com.thinkincode.utils:Android:0.3.5'
+    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.thinkincode.utils:Android:0.3.8'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-library:1.3'
