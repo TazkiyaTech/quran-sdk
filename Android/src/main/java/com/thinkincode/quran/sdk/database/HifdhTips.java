@@ -12,11 +12,8 @@ import java.util.Random;
  */
 public class HifdhTips {
 
-    @NonNull
-    private final Resources resources;
-
-    @NonNull
-    private final Random random;
+    @NonNull private final Resources resources;
+    @NonNull private final Random random;
 
     /**
      * Constructor.

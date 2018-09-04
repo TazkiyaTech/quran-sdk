@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
 import com.thinkincode.utils.streams.StreamCopier;
@@ -32,10 +31,7 @@ public class QuranDatabase {
     private static final String COLUMN_NAME_SURA = "sura";
     private static final String COLUMN_NAME_TEXT = "text";
 
-    @NonNull
-    private final Context applicationContext;
-
-    @Nullable
+    @NonNull private final Context applicationContext;
     private SQLiteDatabase sqliteDatabase;
 
     /**
