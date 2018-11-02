@@ -32,7 +32,7 @@ public class QuranQuotesTest extends BaseTestCase {
         String quote = quranQuotes.getNextRandom();
 
         // Then.
-        assertThat(quote, is(not(nullValue())));
+        assertThat(quote, hasLengthGreaterThan(0));
     }
 
     @Test

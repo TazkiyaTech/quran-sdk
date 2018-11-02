@@ -32,7 +32,7 @@ public class HifdhTipsTest extends BaseTestCase {
         String quote = hifdhTips.getNextRandom();
 
         // Then.
-        assertThat(quote, is(not(nullValue())));
+        assertThat(quote, hasLengthGreaterThan(0));
     }
 
     @Test
