@@ -13,3 +13,11 @@ local.properties
 # Build folders
 /build
 /Android/build
+/iOS/build
+
+# iOS workspace folders
+xcuserdata
+/iOS/Index/
+/iOS/Pods/
+/iOS/.idea
+/iOS/.ruby-version
