@@ -194,8 +194,8 @@
 
         <item>
             #HadithOfTheDay:
-            \"The example of a believer who recites the #Quran regularly is like a citron
-            whose fragrance is sweet and whose taste is good&#8230;\"
+            \"The example of a believer who recites the #Quran regularly is like a citron –
+            its smell is pleasant and its taste is pleasant&#8230;\"
 		    (Al-Bukhari)
         </item>
 
@@ -275,13 +275,6 @@
 		    (Muslim)
         </item>
 
-        <item>
-            #HadithOfTheDay:
-            \"It will be said to the companion of the #Quran:
-            \'Recite, ascend and recite like you used to recite in the world&#8230;\'\"
-            (Muslim)
-        </item>
-
         <!--
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
@@ -304,8 +297,9 @@
         <item>
             #HadithOfTheDay:
             \"It will be said to the companion of the #Quran:
-            \'Recite and rise in status,
-            recite as you used to recite in the world&#8230;\'\"
+            \'Recite and ascend!
+            Recite measuredly just as you used to recite in the world!
+            Your station will be at the last verse you recite.\'\"
             (Al-Tirmidhi)
         </item>
 
@@ -331,6 +325,17 @@
 	        (Al-Tirmidhi)
         </item>
 
+        <!--
+           - Quote found in 'The Crowning Venture' by Saadia Mian
+           -->
+        <item>
+            #HadithOfTheDay:
+	        \"The Lord, Blessed and Most High is He, has said:
+            \'Whoever is too busy with the #Quran for remembering Me and asking Me,
+            then I shall give him more than what I give to those who ask.\'\"
+	        (Al-Tirmidhi)
+        </item>
+
         <item>
             #HadithOfTheDay:
 	        \"The people of the #Quran are the people of Allah and His special servants.\"
@@ -342,7 +347,7 @@
            -->
         <item>
             #HadithOfTheDay:
-	        \"Adorn the #Quran with your voices.\"
+	        \"Beautify the #Quran with your voices.\"
 	        (Al-Nasa\'i)
         </item>
 
@@ -726,6 +731,29 @@
             #QuoteOfTheDay:
 	        \"Memorising the #Quran is not an achievement to be conquered,
             it\'s a journey to savour.\"
+	        (Saadia Mian)
+        </item>
+
+        <!--
+           - Quote found in 'The Crowning Venture' by Saadia Mian
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Be around people who have already memorised #Quran
+            and people who are currently memorising –
+            Seeing people who have reached the end goal makes it seem doable,
+            and the presence of other memorisers helps keep everyone motivated.\"
+	        (Saadia Mian)
+        </item>
+
+        <!--
+           - Quote found in 'The Crowning Venture' by Saadia Mian
+           -->
+        <item>
+            #QuoteOfTheDay:
+	        \"Always be grateful for any moment you spend with the #Quran
+            and any amount you memorise.
+            Consider it an invitation from Allah to spend time with His words.\"
 	        (Saadia Mian)
         </item>
 
