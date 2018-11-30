@@ -92,7 +92,7 @@ public class QuranDatabase {
         Cursor cursor;
 
         try {
-            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, null, null, null, null, orderBy, null);
+            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, null, null, orderBy, null);
         } catch (QuranDatabaseException ex) {
             String message = "Failed getting Surah names";
             throw new QuranDatabaseException(message, ex);
@@ -133,7 +133,7 @@ public class QuranDatabase {
         Cursor cursor;
 
         try {
-            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, null, null, limit);
+            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, limit);
         } catch (QuranDatabaseException ex) {
             String message = String.format("Failed getting Surah name for Surah %s", surahNumber);
             throw new QuranDatabaseException(message, ex);
@@ -174,7 +174,7 @@ public class QuranDatabase {
         Cursor cursor;
 
         try {
-            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, orderBy, null);
+            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, orderBy, null);
         } catch (QuranDatabaseException ex) {
             String message = String.format("Failed getting Ayahs for Surah %s", surahNumber);
             throw new QuranDatabaseException(message, ex);
@@ -216,7 +216,7 @@ public class QuranDatabase {
         Cursor cursor;
 
         try {
-            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, null, limit);
+            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, limit);
         } catch (QuranDatabaseException ex) {
             String message = String.format("Failed getting Ayah for Surah %s, Ayah %s", surahNumber, ayahNumber);
             throw new QuranDatabaseException(message, ex);
@@ -298,13 +298,11 @@ public class QuranDatabase {
                                  String[] columns,
                                  String selection,
                                  String[] selectionArgs,
-                                 String groupBy,
-                                 String having,
                                  String orderBy,
                                  String limit) throws QuranDatabaseException {
         if (!isDatabaseOpen()) {
             openDatabase();
         }
-        return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
+        return sqliteDatabase.query(table, columns, selection, selectionArgs, null, null, orderBy, limit);
     }
 }

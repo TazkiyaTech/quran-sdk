@@ -32,7 +32,7 @@ class QuranDatabase: NSObject {
             databaseExistsInDocumentsDirectory = try isDatabaseExistsInDocumentsDirectory()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                message: "Failed determining whether Quran database exists in Documents directory",
+                "Failed determining whether database exists in Documents directory",
                 underlyingError: error
             )
         }
@@ -43,7 +43,7 @@ class QuranDatabase: NSObject {
             }
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                message: "Failed copying database from Bundle to Documents directory",
+                "Failed copying database from Bundle to Documents directory",
                 underlyingError: error
             )
         }
@@ -54,17 +54,17 @@ class QuranDatabase: NSObject {
             documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    message: "Failed created Documents directory URL",
-                    underlyingError: error
+                "Failed created Documents directory URL",
+                underlyingError: error
             )
         }
 
-        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &db, SQLITE_OPEN_READWRITE, nil)
+        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &db, SQLITE_OPEN_READONLY, nil)
 
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    message: "Failed opening database: \(resultCode)",
-                    underlyingError: nil
+                "SQLite result code = \(resultCode)",
+                underlyingError: nil
             )
         }
     }
@@ -82,7 +82,7 @@ class QuranDatabase: NSObject {
         let resultCode = sqlite3_close(db)
 
         if (resultCode != SQLITE_OK) {
-            throw QuranDatabaseError.FailedClosingDatabase(message: "Failed closing database: \(resultCode)")
+            throw QuranDatabaseError.FailedClosingDatabase("SQLite result code = \(resultCode)")
         }
 
         db = nil;
@@ -99,7 +99,7 @@ class QuranDatabase: NSObject {
             return try query("SELECT name FROM sura_names;")
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                message: "Failed getting Surah names",
+                "Failed getting Surah names",
                 underlyingError: error
             )
         }
@@ -117,7 +117,7 @@ class QuranDatabase: NSObject {
             return try query("SELECT name FROM sura_names WHERE sura=\(surahNumber);")[0]
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                message: "Failed getting Surah name for Surah \(surahNumber)",
+                "Failed getting Surah name for Surah \(surahNumber)",
                 underlyingError: error
             )
         }
@@ -135,7 +135,7 @@ class QuranDatabase: NSObject {
             return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber);")
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                message: "Failed getting Ayahs for Surah \(surahNumber)",
+                "Failed getting Ayahs for Surah \(surahNumber)",
                 underlyingError: error
             )
         }
@@ -154,49 +154,46 @@ class QuranDatabase: NSObject {
             return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);")[0]
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                message: "Failed Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
+                "Failed Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
                 underlyingError: error
             )
         }
     }
 
     internal func isDatabaseExistsInDocumentsDirectory() throws -> Bool {
-        return try getURLForQuranDatabaseInDocumentsDirectory().checkResourceIsReachable()
+        let documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+        
+        return (try? documentsDirectoryURL.checkResourceIsReachable()) ?? false
     }
     
     /**
      * Queries the Quran database with the specified SQL query.
      *
-     * - Parameter queryStatementString: the SQL query to perform.
+     * - Parameter sql: the SQL query to perform.
      * - Returns: the result of the query.
      */
-    private func query(_ queryStatementString: String) throws -> [String] {
+    private func query(_ sql: String) throws -> [String] {
         if (db == nil) {
             try openDatabase()
         }
         
-        var queryStatement: OpaquePointer? = nil
+        var statementHandle: OpaquePointer? = nil
+        
+        defer { sqlite3_finalize(statementHandle) }
+        
+        let resultCode = sqlite3_prepare_v2(db, sql, -1, &statementHandle, nil)
 
-        let resultCode = sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil)
-
-        var rows: [String] = []
-
-        if (resultCode == SQLITE_OK) {
-            while (sqlite3_step(queryStatement) == SQLITE_ROW) {
-                let columnText = sqlite3_column_text(queryStatement, 0)
-                let name = String(cString: columnText!)
-                rows.append(name)
-            }
-        } else {
-            if let errorPointer = sqlite3_errmsg(db) {
-                let message = String.init(cString: errorPointer)
-                throw QuranDatabaseError.FailedPreparingQuery(message: message)
-            } else {
-                throw QuranDatabaseError.FailedPreparingQuery(message: "No error message provided from sqlite.")
-            }
+        if (resultCode != SQLITE_OK) {
+            throw QuranDatabaseError.FailedPreparingQuery("SQLite result code = \(resultCode)")
         }
-
-        sqlite3_finalize(queryStatement)
+        
+        var rows: [String] = []
+        
+        while (sqlite3_step(statementHandle) == SQLITE_ROW) {
+            let columnTextPointer = sqlite3_column_text(statementHandle, 0)
+            let columnText = String(cString: columnTextPointer!)
+            rows.append(columnText)
+        }
 
         return rows
     }
@@ -228,10 +225,10 @@ class QuranDatabase: NSObject {
 
 enum QuranDatabaseError: Error {
 
-    case FailedOpeningDatabase(message: String, underlyingError: Error?)
-    case FailedPreparingQuery(message: String)
-    case FailedExecutingQuery(message: String, underlyingError: Error)
-    case FailedClosingDatabase(message: String)
+    case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
+    case FailedPreparingQuery(_ message: String)
+    case FailedExecutingQuery(_ message: String, underlyingError: Error)
+    case FailedClosingDatabase(_ message: String)
     case FailedLocatingQuranDatabaseInFrameworkBundle
 
 }
