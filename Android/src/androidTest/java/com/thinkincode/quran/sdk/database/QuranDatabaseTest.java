@@ -31,7 +31,6 @@ public class QuranDatabaseTest extends BaseTestCase {
     @Before
     public void setUp() {
         quranDatabase = new QuranDatabase(getTargetContext());
-        quranDatabase.initialise();
     }
 
     @After
@@ -40,7 +39,10 @@ public class QuranDatabaseTest extends BaseTestCase {
     }
 
     @Test
-    public void isDatabaseExistsInInternalStorage() {
+    public void isDatabaseExistsInInternalStorage_when_database_opened() {
+        // Given.
+        quranDatabase.openDatabase();
+
         // When.
         boolean result = quranDatabase.isDatabaseExistsInInternalStorage();
 

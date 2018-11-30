@@ -22,9 +22,9 @@ public class QuranDatabaseQueryPlanTest extends BaseTestCase {
     private QueryPlanExplainer queryPlanExplainer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         QuranDatabase quranDatabase = new QuranDatabase(getTargetContext());
-        quranDatabase.initialise();
+        quranDatabase.openDatabase();
 
         SQLiteDatabase sqLiteDatabase = quranDatabase.getSQLiteDatabase();
         queryPlanExplainer = new QueryPlanExplainer(sqLiteDatabase);
