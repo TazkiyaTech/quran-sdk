@@ -77,6 +77,44 @@ public class QuranDatabase {
     }
 
     /**
+     * Gets the names of all of the Surahs in the Quran.
+     *
+     * @return the names of all of the Surahs in the Quran.
+     * @throws QuranDatabaseException if there was an error getting the Surah names from the database.
+     */
+    @NonNull
+    public List<String> getSurahNames() throws QuranDatabaseException {
+        List<String> surahNames = new ArrayList<>();
+
+        String[] columns = new String[]{COLUMN_NAME_NAME};
+        String orderBy = COLUMN_NAME_SURA + " ASC ";
+
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, null, null, null, null, orderBy, null);
+        } catch (QuranDatabaseException ex) {
+            String message = "Failed getting Surah names";
+            throw new QuranDatabaseException(message, ex);
+        }
+
+        int columnIndexName = cursor.getColumnIndex(COLUMN_NAME_NAME);
+
+        while (cursor.moveToNext()) {
+            surahNames.add(cursor.getString(columnIndexName));
+        }
+
+        cursor.close();
+
+        if (surahNames.isEmpty()) {
+            String message = "Failed getting Surah names";
+            throw new QuranDatabaseException(message);
+        }
+
+        return surahNames;
+    }
+
+    /**
      * Gets the name of the specified Surah.
      *
      * @param surahNumber is a value between 1 and 114 (inclusive).
@@ -92,7 +130,14 @@ public class QuranDatabase {
         String[] selectionArgs = new String[]{String.valueOf(surahNumber)};
         String limit = "1";
 
-        Cursor cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, null, null, limit);
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, selection, selectionArgs, null, null, null, limit);
+        } catch (QuranDatabaseException ex) {
+            String message = String.format("Failed getting Surah name for Surah %s", surahNumber);
+            throw new QuranDatabaseException(message, ex);
+        }
 
         int columnIndexName = cursor.getColumnIndex(COLUMN_NAME_NAME);
 
@@ -103,7 +148,7 @@ public class QuranDatabase {
         cursor.close();
 
         if (surahName == null) {
-            String message = String.format("Failed getting Surah name from the Quran database for Surah %s", surahNumber);
+            String message = String.format("Failed getting Surah name for Surah %s", surahNumber);
             throw new QuranDatabaseException(message);
         }
 
@@ -111,41 +156,10 @@ public class QuranDatabase {
     }
 
     /**
-     * Gets the names of all of the Surahs in the Quran.
-     *
-     * @return the names of all the Surahs in the Quran.
-     * @throws QuranDatabaseException if there was an error getting the Surah names from the database.
-     */
-    @NonNull
-    public List<String> getSurahNames() throws QuranDatabaseException {
-        List<String> surahNames = new ArrayList<>();
-
-        String[] columns = new String[]{COLUMN_NAME_NAME};
-        String orderBy = COLUMN_NAME_SURA + " ASC ";
-
-        Cursor cursor = queryDatabase(TABLE_NAME_SURA_NAMES, columns, null, null, null, null, orderBy, null);
-
-        int columnIndexName = cursor.getColumnIndex(COLUMN_NAME_NAME);
-
-        while (cursor.moveToNext()) {
-            surahNames.add(cursor.getString(columnIndexName));
-        }
-
-        cursor.close();
-
-        if (surahNames.isEmpty()) {
-            String message = "Failed getting Surah names from the Quran database";
-            throw new QuranDatabaseException(message);
-        }
-
-        return surahNames;
-    }
-
-    /**
      * Gets all of the Ayahs in the specified Surah.
      *
      * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the ayahs of the specified Surah.
+     * @return the Ayahs of the specified Surah.
      * @throws QuranDatabaseException if there was an error getting the Ayahs from the database.
      */
     @NonNull
@@ -157,7 +171,14 @@ public class QuranDatabase {
         String[] selectionArgs = new String[]{String.valueOf(surahNumber)};
         String orderBy = COLUMN_NAME_AYA + " ASC ";
 
-        Cursor cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, orderBy, null);
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, orderBy, null);
+        } catch (QuranDatabaseException ex) {
+            String message = String.format("Failed getting Ayahs for Surah %s", surahNumber);
+            throw new QuranDatabaseException(message, ex);
+        }
 
         int columnIndexText = cursor.getColumnIndex(COLUMN_NAME_TEXT);
 
@@ -168,7 +189,7 @@ public class QuranDatabase {
         cursor.close();
 
         if (surahAyahs.isEmpty()) {
-            String message = String.format("Failed getting Ayahs from the Quran database for Surah %s", surahNumber);
+            String message = String.format("Failed getting Ayahs for Surah %s", surahNumber);
             throw new QuranDatabaseException(message);
         }
 
@@ -176,7 +197,7 @@ public class QuranDatabase {
     }
 
     /**
-     * Gets the Ayah at the specified position.
+     * Gets the text of the specified Ayah.
      *
      * @param surahNumber is a value between 1 and 114 (inclusive).
      * @param ayahNumber  is a value greater than or equal to 1.
@@ -192,7 +213,14 @@ public class QuranDatabase {
         String[] selectionArgs = new String[]{String.valueOf(surahNumber), String.valueOf(ayahNumber)};
         String limit = "1";
 
-        Cursor cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, null, limit);
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_QURAN_TEXT, columns, selection, selectionArgs, null, null, null, limit);
+        } catch (QuranDatabaseException ex) {
+            String message = String.format("Failed getting Ayah for Surah %s, Ayah %s", surahNumber, ayahNumber);
+            throw new QuranDatabaseException(message, ex);
+        }
 
         int columnIndexText = cursor.getColumnIndex(COLUMN_NAME_TEXT);
 
@@ -203,7 +231,7 @@ public class QuranDatabase {
         cursor.close();
 
         if (ayah == null) {
-            String message = String.format("Failed getting Ayah from the Quran database for Surah %s, Ayah %s", surahNumber, ayahNumber);
+            String message = String.format("Failed getting Ayah for Surah %s, Ayah %s", surahNumber, ayahNumber);
             throw new QuranDatabaseException(message);
         }
 
@@ -260,7 +288,7 @@ public class QuranDatabase {
     }
 
     /**
-     * Queries the local Quran database with the specified parameters.
+     * Queries the Quran database with the specified parameters.
      *
      * @return the result of the query.
      * @throws QuranDatabaseException if the database is not open for reading.
@@ -277,7 +305,6 @@ public class QuranDatabase {
         if (!isDatabaseOpen()) {
             openDatabase();
         }
-
         return sqliteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     }
 }
