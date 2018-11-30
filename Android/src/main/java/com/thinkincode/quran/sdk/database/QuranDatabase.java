@@ -58,10 +58,10 @@ public class QuranDatabase {
             copyDatabaseFromAssetsToInternalStorage();
         }
 
-        String myPath = getQuranDatabaseInternalStoragePath();
+        String path = getPathToQuranDatabaseInInternalStorage();
 
         try {
-            sqliteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            sqliteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
             throw new QuranDatabaseException("Failed opening the Quran database", e);
         }
@@ -251,7 +251,7 @@ public class QuranDatabase {
      * @return true iff the Quran database exists in internal storage.
      */
     boolean isDatabaseExistsInInternalStorage() {
-        String path = getQuranDatabaseInternalStoragePath();
+        String path = getPathToQuranDatabaseInInternalStorage();
         File file = new File(path);
 
         return file.isFile();
@@ -267,7 +267,7 @@ public class QuranDatabase {
     }
 
     @NonNull
-    private String getQuranDatabaseInternalStoragePath() {
+    private String getPathToQuranDatabaseInInternalStorage() {
         return applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
     }
 

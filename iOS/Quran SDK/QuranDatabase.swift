@@ -15,7 +15,7 @@ import SQLite3
 class QuranDatabase: NSObject {
 
     var db: OpaquePointer? = nil
-
+    
     /**
      * Opens the Quran database for reading, if it's not already open.
      *
@@ -26,40 +26,40 @@ class QuranDatabase: NSObject {
             return
         }
 
-        let fileManager = FileManager.default
-
-        var documentsURL: URL
-
+        var databaseExistsInDocumentsDirectory: Bool
+        
         do {
-            documentsURL = try fileManager.url(
-                    for: .documentDirectory,
-                    in: .userDomainMask,
-                    appropriateFor: nil,
-                    create: true
-            ).appendingPathComponent("com.tazkiyatech.quran.db")
+            databaseExistsInDocumentsDirectory = try isDatabaseExistsInDocumentsDirectory()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    message: "Failed created document directory URL",
+                message: "Failed determining whether Quran database exists in Documents directory",
+                underlyingError: error
+            )
+        }
+        
+        do {
+            if (!databaseExistsInDocumentsDirectory) {
+                try copyDatabaseFromBundleToDocumentsDirectory()
+            }
+        } catch {
+            throw QuranDatabaseError.FailedOpeningDatabase(
+                message: "Failed copying database from Bundle to Documents directory",
+                underlyingError: error
+            )
+        }
+        
+        var documentsDirectoryURL: URL
+
+        do {
+            documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+        } catch {
+            throw QuranDatabaseError.FailedOpeningDatabase(
+                    message: "Failed created Documents directory URL",
                     underlyingError: error
             )
         }
 
-        var resultCode = sqlite3_open_v2(documentsURL.path, &db, SQLITE_OPEN_READWRITE, nil)
-
-        if resultCode == SQLITE_CANTOPEN {
-            let bundle = Bundle(for: type(of: self))
-            let bundleURL = bundle.url(forResource: "com.tazkiyatech.quran", withExtension: "db")!
-            
-            do {
-                try fileManager.copyItem(at: bundleURL, to: documentsURL)
-            } catch {
-                throw QuranDatabaseError.FailedOpeningDatabase(
-                        message: "Failed copying database from Bundle to Document directory URL",
-                        underlyingError: error
-                )
-            }
-            resultCode = sqlite3_open_v2(documentsURL.path, &db, SQLITE_OPEN_READWRITE, nil)
-        }
+        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &db, SQLITE_OPEN_READWRITE, nil)
 
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
@@ -160,6 +160,10 @@ class QuranDatabase: NSObject {
         }
     }
 
+    internal func isDatabaseExistsInDocumentsDirectory() throws -> Bool {
+        return try getURLForQuranDatabaseInDocumentsDirectory().checkResourceIsReachable()
+    }
+    
     /**
      * Queries the Quran database with the specified SQL query.
      *
@@ -196,6 +200,30 @@ class QuranDatabase: NSObject {
 
         return rows
     }
+    
+    private func copyDatabaseFromBundleToDocumentsDirectory() throws {
+        let documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+        
+        guard let bundleURL = getURLForQuranDatabaseInFrameworkBundle() else {
+            throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle
+        }
+        
+        try FileManager.default.copyItem(at: bundleURL, to: documentsDirectoryURL)
+    }
+    
+    private func getURLForQuranDatabaseInDocumentsDirectory() throws -> URL {
+        return try FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("com.tazkiyatech.quran.db")
+    }
+    
+    private func getURLForQuranDatabaseInFrameworkBundle() -> URL? {
+        let bundle = Bundle(for: type(of: self))
+        return bundle.url(forResource: "com.tazkiyatech.quran", withExtension: "db")!
+    }
 }
 
 enum QuranDatabaseError: Error {
@@ -204,5 +232,6 @@ enum QuranDatabaseError: Error {
     case FailedPreparingQuery(message: String)
     case FailedExecutingQuery(message: String, underlyingError: Error)
     case FailedClosingDatabase(message: String)
+    case FailedLocatingQuranDatabaseInFrameworkBundle
 
 }
