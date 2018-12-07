@@ -51,7 +51,8 @@ public class QuranDatabaseQueryPlanTests extends BaseTestCase {
                 null,
                 null,
                 "sura ASC",
-                null);
+                null
+        );
 
         // Then.
         assertEquals(expected, actual);
@@ -78,7 +79,8 @@ public class QuranDatabaseQueryPlanTests extends BaseTestCase {
                 null,
                 null,
                 null,
-                "1");
+                "1"
+        );
 
         // Then.
         assertEquals(expected, actual);
@@ -105,7 +107,8 @@ public class QuranDatabaseQueryPlanTests extends BaseTestCase {
                 null,
                 null,
                 "aya ASC",
-                null);
+                null
+        );
 
         // Then.
         assertEquals(expected, actual);
@@ -132,7 +135,8 @@ public class QuranDatabaseQueryPlanTests extends BaseTestCase {
                 null,
                 null,
                 null,
-                "1");
+                "1"
+        );
 
         // Then.
         assertEquals(expected, actual);
