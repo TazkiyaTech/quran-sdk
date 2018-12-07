@@ -18,11 +18,6 @@ android {
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     lintOptions {
         abortOnError true
     }
@@ -47,7 +42,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:support-annotations:28.0.0'
-    implementation 'com.thinkincode.utils:Android:0.4.0'
+    implementation 'com.thinkincode.utils:Android:0.4.2'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-library:1.3'
