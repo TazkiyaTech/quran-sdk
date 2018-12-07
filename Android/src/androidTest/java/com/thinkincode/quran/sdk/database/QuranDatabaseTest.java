@@ -13,8 +13,8 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static com.thinkincode.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGreaterThan;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -88,15 +88,133 @@ public class QuranDatabaseTest extends BaseTestCase {
 
     @Test
     public void getSurahNames() {
+        // Given.
+        String[] expected = {
+                "الفاتحة",
+                "البقرة",
+                "آل عمران",
+                "النساء",
+                "المائدة",
+                "الأنعام",
+                "الأعراف",
+                "الأنفال",
+                "التوبة",
+                "يونس",
+                "هود",
+                "يوسف",
+                "الرعد",
+                "ابراهيم",
+                "الحجر",
+                "النحل",
+                "الإسراء",
+                "الكهف",
+                "مريم",
+                "طه",
+                "الأنبياء",
+                "الحج",
+                "المؤمنون",
+                "النور",
+                "الفرقان",
+                "الشعراء",
+                "النمل",
+                "القصص",
+                "العنكبوت",
+                "الروم",
+                "لقمان",
+                "السجدة",
+                "الأحزاب",
+                "سبإ",
+                "فاطر",
+                "يس",
+                "الصافات",
+                "ص",
+                "الزمر",
+                "غافر",
+                "فصلت",
+                "الشورى",
+                "الزخرف",
+                "الدخان",
+                "الجاثية",
+                "الأحقاف",
+                "محمد",
+                "الفتح",
+                "الحجرات",
+                "ق",
+                "الذاريات",
+                "الطور",
+                "النجم",
+                "القمر",
+                "الرحمن",
+                "الواقعة",
+                "الحديد",
+                "المجادلة",
+                "الحشر",
+                "الممتحنة",
+                "الصف",
+                "الجمعة",
+                "المنافقون",
+                "التغابن",
+                "الطلاق",
+                "التحريم",
+                "الملك",
+                "القلم",
+                "الحاقة",
+                "المعارج",
+                "نوح",
+                "الجن",
+                "المزمل",
+                "المدثر",
+                "القيامة",
+                "الانسان",
+                "المرسلات",
+                "النبإ",
+                "النازعات",
+                "عبس",
+                "التكوير",
+                "الإنفطار",
+                "المطففين",
+                "الإنشقاق",
+                "البروج",
+                "الطارق",
+                "الأعلى",
+                "الغاشية",
+                "الفجر",
+                "البلد",
+                "الشمس",
+                "الليل",
+                "الضحى",
+                "الشرح",
+                "التين",
+                "العلق",
+                "القدر",
+                "البينة",
+                "الزلزلة",
+                "العاديات",
+                "القارعة",
+                "التكاثر",
+                "العصر",
+                "الهمزة",
+                "الفيل",
+                "قريش",
+                "الماعون",
+                "الكوثر",
+                "الكافرون",
+                "النصر",
+                "المسد",
+                "الإخلاص",
+                "الفلق",
+                "الناس"
+        };
+
         // When.
-        List<String> surahNames = quranDatabase.getSurahNames();
+        List<String> actual = quranDatabase.getSurahNames();
 
         // Then.
-        assertThat(surahNames, hasSize(114));
+        assertThat(actual, contains(expected));
     }
 
     @Test
-    public void getAyahsInSurah_with_valid_surah_number() {
+    public void getAyahsInSurah_for_each_and_every_surah() {
         // Given.
         Surah[] surahs = Surah.values();
 
@@ -110,6 +228,26 @@ public class QuranDatabaseTest extends BaseTestCase {
             // Then.
             assertThat(ayahsInSurah, hasSize(expectedNumberOfVerses));
         }
+    }
+
+    @Test
+    public void getAyahsInSurah_with_valid_surah_number() {
+        // Given.
+        String[] expected = {
+                "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+                "الرَّحْمَٰنِ الرَّحِيمِ",
+                "مَالِكِ يَوْمِ الدِّينِ",
+                "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+                "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+                "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ"
+        };
+
+        // When.
+        List<String> actual = quranDatabase.getAyahsInSurah(1);
+
+        // Then.
+        assertThat(actual, contains(expected));
     }
 
     @Test(expected = QuranDatabaseException.class)
@@ -139,15 +277,6 @@ public class QuranDatabaseTest extends BaseTestCase {
 
         // Then.
         assertEquals(expected, actual);
-    }
-
-    @Test
-    public void getAyah_with_valid_surah_number_and_ayah_number() {
-        // When.
-        String ayah = quranDatabase.getAyah(1, 1);
-
-        // Then.
-        assertThat(ayah, hasLengthGreaterThan(0));
     }
 
     @Test(expected = QuranDatabaseException.class)

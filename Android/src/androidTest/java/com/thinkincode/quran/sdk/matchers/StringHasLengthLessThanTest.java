@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertTrue;
 public class StringHasLengthLessThanTest {
 
     @Test
-    public void test_matches_whenStringLengthIsGreaterThanMatchValue() {
+    public void test_matches_when_string_length_is_greater_than_match_value() {
         // Given.
         Matcher<String> matcher = new StringHasLengthLessThan(4);
 
@@ -25,7 +25,7 @@ public class StringHasLengthLessThanTest {
     }
 
     @Test
-    public void test_matches_whenStringLengthIsEqualToMatchValue() {
+    public void test_matches_when_string_length_is_equal_to_match_value() {
         // Given.
         Matcher<String> matcher = new StringHasLengthLessThan(5);
 
@@ -37,7 +37,7 @@ public class StringHasLengthLessThanTest {
     }
 
     @Test
-    public void test_matches_whenStringLengthIsLessThanMatchValue() {
+    public void test_matches_when_string_length_is_less_than_match_value() {
         // Given.
         Matcher<String> matcher = new StringHasLengthLessThan(6);
 
