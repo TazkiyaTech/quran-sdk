@@ -1,6 +1,5 @@
 package com.thinkincode.quran.sdk.model;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -18,7 +17,7 @@ public class JuzTest {
         Juz juz = Juz.parse(1);
 
         // Then.
-        Assert.assertEquals(Juz.Juz_01, juz);
+        assertEquals(Juz.Juz_01, juz);
     }
 
     @Test
@@ -27,7 +26,7 @@ public class JuzTest {
         Juz juz = Juz.parse(30);
 
         // Then.
-        Assert.assertEquals(Juz.Juz_30, juz);
+        assertEquals(Juz.Juz_30, juz);
     }
 
     @Test
