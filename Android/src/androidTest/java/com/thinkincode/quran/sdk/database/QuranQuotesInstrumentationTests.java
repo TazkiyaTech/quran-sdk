@@ -12,24 +12,22 @@ import static com.thinkincode.quran.sdk.matchers.StringHasLengthGreaterThan.hasL
 import static com.thinkincode.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessThan;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class HifdhTipsTest extends BaseTestCase {
+public class QuranQuotesInstrumentationTests extends BaseTestCase {
 
-    private HifdhTips hifdhTips;
+    private QuranQuotes quranQuotes;
 
     @Before
     public void setUp() {
-        hifdhTips = new HifdhTips(getTargetContext().getResources());
+        quranQuotes = new QuranQuotes(getTargetContext().getResources());
     }
 
     @Test
     public void getNextRandom() {
         // When.
-        String quote = hifdhTips.getNextRandom();
+        String quote = quranQuotes.getNextRandom();
 
         // Then.
         assertThat(quote, hasLengthGreaterThan(0));
@@ -38,7 +36,7 @@ public class HifdhTipsTest extends BaseTestCase {
     @Test
     public void getSize() {
         // When.
-        int size = hifdhTips.getSize();
+        int size = quranQuotes.getSize();
 
         // Then.
         assertThat(size, is(greaterThan(0)));
@@ -47,8 +45,8 @@ public class HifdhTipsTest extends BaseTestCase {
     @Test
     public void allQuotesHaveLessThan281Characters() {
         // When / Then.
-        for (int i = 0; i < hifdhTips.getSize(); i++) {
-            String quote = hifdhTips.getTip(i);
+        for (int i = 0; i < quranQuotes.getSize(); i++) {
+            String quote = quranQuotes.getQuote(i);
             assertThat(quote, hasLengthGreaterThan(0));
             assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH));
         }

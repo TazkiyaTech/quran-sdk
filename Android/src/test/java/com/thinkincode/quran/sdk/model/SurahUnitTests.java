@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class SurahTest {
+public class SurahUnitTests {
 
     @Test
     public void test_getSurahNumber_forAllSurahs() {

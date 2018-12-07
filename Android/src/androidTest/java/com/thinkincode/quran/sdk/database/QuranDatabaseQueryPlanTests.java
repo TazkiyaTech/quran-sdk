@@ -17,7 +17,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class QuranDatabaseQueryPlanTest extends BaseTestCase {
+public class QuranDatabaseQueryPlanTests extends BaseTestCase {
 
     private QueryPlanExplainer queryPlanExplainer;
 

@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class JuzTest {
+public class JuzUnitTests {
 
     @Test
     public void test_parse_forJuz1() {

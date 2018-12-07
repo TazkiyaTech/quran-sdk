@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class HizbQuarterTest {
+public class HizbQuarterUnitTests {
 
     @Test
     public void test_parse_forHizbNumber1andQuarterNumber1() {

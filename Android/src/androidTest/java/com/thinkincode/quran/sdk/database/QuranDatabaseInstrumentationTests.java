@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class QuranDatabaseTest extends BaseTestCase {
+public class QuranDatabaseInstrumentationTests extends BaseTestCase {
 
     private QuranDatabase quranDatabase;
 
