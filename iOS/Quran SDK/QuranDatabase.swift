@@ -12,16 +12,16 @@ import SQLite3
  * Helper class which handles the creation and opening of the SQLite-based Quran database
  * and provides easy methods for accessing its content.
  */
-class QuranDatabase: NSObject {
+public class QuranDatabase: NSObject {
 
-    var db: OpaquePointer? = nil
+    private var db: OpaquePointer? = nil
 
     /**
      * Opens the Quran database for reading, if it's not already open.
      *
      * - Throws: `QuranDatabaseError.FailedOpeningDatabase` if the database could not be opened.
      */
-    func openDatabase() throws {
+    public func openDatabase() throws {
         if (isDatabaseOpen()) {
             return
         }
@@ -74,7 +74,7 @@ class QuranDatabase: NSObject {
      *
      * - Throws: `QuranDatabaseError.FailedClosingDatabase` if the database could not be closed.
      */
-    func closeDatabase() throws {
+    public func closeDatabase() throws {
         if (!isDatabaseOpen()) {
             return;
         }
@@ -94,7 +94,7 @@ class QuranDatabase: NSObject {
      * - Returns: the names of all of the Surahs in the Quran.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah names from the database.
      */
-    func getSurahNames() throws -> [String] {
+    public func getSurahNames() throws -> [String] {
         do {
             return try query("SELECT name FROM sura_names;")
         } catch {
@@ -112,7 +112,7 @@ class QuranDatabase: NSObject {
      * - Returns: the name of the specified Surah.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah name from the database.
      */
-    func getSurahName(_ surahNumber: Int) throws -> String {
+    public func getSurahName(_ surahNumber: Int) throws -> String {
         do {
             return try query("SELECT name FROM sura_names WHERE sura=\(surahNumber);")[0]
         } catch {
@@ -130,7 +130,7 @@ class QuranDatabase: NSObject {
      * - Returns: the Ayahs of the specified Surah.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayahs from the database.
      */
-    func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
+    public func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
         do {
             return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber);")
         } catch {
@@ -149,7 +149,7 @@ class QuranDatabase: NSObject {
      * - Returns: the text of the specified Ayah.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayah from the database.
      */
-    func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
+    public func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
         do {
             return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);")[0]
         } catch {
@@ -229,7 +229,7 @@ class QuranDatabase: NSObject {
     }
 }
 
-enum QuranDatabaseError: Error {
+public enum QuranDatabaseError: Error {
 
     case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
     case FailedPreparingQuery(_ message: String)
