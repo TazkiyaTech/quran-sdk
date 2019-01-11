@@ -1,7 +1,8 @@
 package com.thinkincode.quran.sdk;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+
+import androidx.test.core.app.ApplicationProvider;
 
 public class BaseTestCase {
 
@@ -9,6 +10,6 @@ public class BaseTestCase {
      * @return the {@link Context} for the target application being instrumented.
      */
     protected Context getTargetContext() {
-        return InstrumentationRegistry.getTargetContext();
+        return ApplicationProvider.getApplicationContext();
     }
 }

@@ -1,6 +1,6 @@
 package com.thinkincode.quran.sdk.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * An enum representation of the Juzs that make up the Quran.

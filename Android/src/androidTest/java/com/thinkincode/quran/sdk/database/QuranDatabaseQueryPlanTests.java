@@ -1,7 +1,6 @@
 package com.thinkincode.quran.sdk.database;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.test.runner.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
 import com.thinkincode.utils.database.QueryPlanExplainer;
@@ -13,6 +12,8 @@ import org.junit.runner.RunWith;
 
 import java.util.Collections;
 import java.util.List;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,12 +1,12 @@
 package com.thinkincode.quran.sdk.database;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import com.thinkincode.quran.sdk.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static com.thinkincode.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGreaterThan;
 import static com.thinkincode.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessThan;

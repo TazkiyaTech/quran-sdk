@@ -1,6 +1,6 @@
 package com.thinkincode.quran.sdk.database;
 
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;

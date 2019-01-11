@@ -1,7 +1,7 @@
 package com.thinkincode.quran.sdk.database;
 
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thinkincode.quran.sdk.R;
 
