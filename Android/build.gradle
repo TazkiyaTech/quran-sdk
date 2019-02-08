@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
+apply plugin: 'org.jetbrains.dokka-android'
 apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 group = getProperty('projectGroupName').toString()
 version = getProperty('projectVersionName').toString()
@@ -59,17 +60,18 @@ task generateSourcesJar(type: Jar) {
     group = 'build'
 }
 
-task generateJavadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += configurations.compile
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    failOnError false
-    group = 'build'
+task generateJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/docs/javadoc"
+    description = "Generates the Javadoc for this module."
+    group = 'documentation'
 }
 
 task generateJavadocJar(type: Jar) {
     from generateJavadoc
     classifier 'javadoc'
+    destinationDir = file("$buildDir/outputs/javadoc")
+    description = "Builds up a jar of this module's Javadoc."
     group = 'build'
 }
 
