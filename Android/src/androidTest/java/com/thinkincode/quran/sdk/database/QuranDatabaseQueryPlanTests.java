@@ -3,8 +3,8 @@ package com.thinkincode.quran.sdk.database;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.thinkincode.quran.sdk.BaseTestCase;
-import com.thinkincode.utils.database.QueryPlanExplainer;
-import com.thinkincode.utils.database.QueryPlanRow;
+import com.tazkiyatech.utils.database.QueryPlanExplainer;
+import com.tazkiyatech.utils.database.QueryPlanRow;
 
 import org.junit.Before;
 import org.junit.Test;

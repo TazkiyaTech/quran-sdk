@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteException;
 import androidx.annotation.NonNull;
 
 import com.thinkincode.quran.sdk.exception.QuranDatabaseException;
-import com.thinkincode.utils.streams.StreamCopier;
+import com.tazkiyatech.utils.streams.StreamCopier;
 
 import java.io.File;
 import java.io.IOException;
