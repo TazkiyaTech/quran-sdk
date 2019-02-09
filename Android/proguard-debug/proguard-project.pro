@@ -1,3 +1,3 @@
--keep public interface com.thinkincode.quran.sdk.** { *; }
--keep public class com.thinkincode.quran.sdk.** { *; }
--keep public enum com.thinkincode.quran.sdk.** { *; }
+-keep public interface com.tazkiyatech.quran.sdk.** { *; }
+-keep public class com.tazkiyatech.quran.sdk.** { *; }
+-keep public enum com.tazkiyatech.quran.sdk.** { *; }
