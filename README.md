@@ -1,6 +1,6 @@
 # Quran Android SDK
 
-This Quran Android SDK (library) has been put together to make it easy for developers to access verses of the Quran in their Android apps.
+An Android library that makes it easy for developers to access verses of the Quran in their Android projects.
 
 ## Setup
 
@@ -45,7 +45,9 @@ We advise calling all of the above methods in a background thread since the meth
 
 ## Quran Quotes and Hifdh Tips
 
-As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran. Quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranQuotes.java) class as follows:
+As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran.
+
+Quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranQuotes.java) class as follows:
 
     QuranQuotes quranQuotes = new QuranQuotes(myApplicationContext.getResources());
     String quranQuote = quranQuotes.getNextRandom();
