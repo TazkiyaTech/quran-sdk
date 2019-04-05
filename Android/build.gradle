@@ -43,7 +43,7 @@ android {
 
 dependencies {
     implementation 'androidx.annotation:annotation:1.0.2'
-    implementation 'com.tazkiyatech:android-utils:0.0.3'
+    implementation 'com.tazkiyatech:android-utils:0.0.4'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-library:1.3'
@@ -56,7 +56,7 @@ dependencies {
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier 'sources'
+    archiveClassifier.set('sources')
     group = 'build'
 }
 
@@ -69,8 +69,8 @@ task generateJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
 
 task generateJavadocJar(type: Jar) {
     from generateJavadoc
-    classifier 'javadoc'
-    destinationDir = file("$buildDir/outputs/javadoc")
+    archiveClassifier.set('javadoc')
+    destinationDirectory.set(file("$buildDir/outputs/javadoc"))
     description = "Builds up a jar of this module's Javadoc."
     group = 'build'
 }
