@@ -44,7 +44,7 @@ public class QuranDatabaseInstrumentationTests extends BaseTestCase {
         quranDatabase.openDatabase();
 
         // When.
-        boolean result = quranDatabase.isDatabaseExistsInInternalStorage();
+        boolean result = quranDatabase.isFileExistsInInternalStorage("com.tazkiyatech.quran.db");
 
         // Then.
         assertTrue(result);

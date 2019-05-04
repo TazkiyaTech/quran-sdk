@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+
 import androidx.annotation.NonNull;
 
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException;
@@ -22,7 +23,8 @@ import java.util.List;
  */
 public class QuranDatabase {
 
-    private static final String DATABASE_NAME = "com.thinkincode.quran.db";
+    private static final String DATABASE_NAME = "com.tazkiyatech.quran.db";
+    private static final String LEGACY_DATABASE_NAME = "com.thinkincode.quran.db";
 
     private static final String TABLE_NAME_QURAN_TEXT = "quran_text";
     private static final String TABLE_NAME_SURA_NAMES = "sura_names";
@@ -54,17 +56,19 @@ public class QuranDatabase {
             return;
         }
 
-        if (!isDatabaseExistsInInternalStorage()) {
-            copyDatabaseFromAssetsToInternalStorage();
+        if (!isFileExistsInInternalStorage(DATABASE_NAME)) {
+            copyFileFromAssetsToInternalStorage(DATABASE_NAME);
         }
 
-        String path = getPathToQuranDatabaseInInternalStorage();
+        String path = getPathToFileInInternalStorage(DATABASE_NAME);
 
         try {
             sqliteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
             throw new QuranDatabaseException("Failed opening the Quran database", e);
         }
+
+        deleteFileInInternalStorage(LEGACY_DATABASE_NAME);
     }
 
     /**
@@ -248,10 +252,19 @@ public class QuranDatabase {
     /**
      * (Default package-private visibility for unit testing purposes.)
      *
-     * @return true iff the Quran database exists in internal storage.
+     * @return true iff the Quran database is open for reading.
      */
-    boolean isDatabaseExistsInInternalStorage() {
-        String path = getPathToQuranDatabaseInInternalStorage();
+    boolean isDatabaseOpen() {
+        return sqliteDatabase != null && sqliteDatabase.isOpen();
+    }
+
+    /**
+     * (Default package-private visibility for unit testing purposes.)
+     *
+     * @return true iff the file with the given name exists in internal storage.
+     */
+    boolean isFileExistsInInternalStorage(String filename) {
+        String path = getPathToFileInInternalStorage(filename);
         File file = new File(path);
 
         return file.isFile();
@@ -260,15 +273,18 @@ public class QuranDatabase {
     /**
      * (Default package-private visibility for unit testing purposes.)
      *
-     * @return true iff the Quran database is open for reading.
+     * @return true iff the file with the give name is deleted from internal storage.
      */
-    boolean isDatabaseOpen() {
-        return sqliteDatabase != null && sqliteDatabase.isOpen();
+    private boolean deleteFileInInternalStorage(String filename) {
+        String path = getPathToFileInInternalStorage(filename);
+        File file = new File(path);
+
+        return !file.exists() || file.delete();
     }
 
     @NonNull
-    private String getPathToQuranDatabaseInInternalStorage() {
-        return applicationContext.getFilesDir().getPath() + "/" + DATABASE_NAME;
+    private String getPathToFileInInternalStorage(String filename) {
+        return applicationContext.getFilesDir().getPath() + "/" + filename;
     }
 
     /**
@@ -277,9 +293,9 @@ public class QuranDatabase {
      *
      * @throws QuranDatabaseException if the database could not be copied.
      */
-    private void copyDatabaseFromAssetsToInternalStorage() {
-        try (InputStream inputStream = applicationContext.getAssets().open(DATABASE_NAME);
-             OutputStream outputStream = applicationContext.openFileOutput(DATABASE_NAME, Context.MODE_PRIVATE)) {
+    private void copyFileFromAssetsToInternalStorage(String filename) {
+        try (InputStream inputStream = applicationContext.getAssets().open(filename);
+             OutputStream outputStream = applicationContext.openFileOutput(filename, Context.MODE_PRIVATE)) {
             StreamCopier streamCopier = new StreamCopier();
             streamCopier.copy(inputStream, outputStream);
         } catch (IOException e) {
