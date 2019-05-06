@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 
 /**
  * An enum representation of the Hizb-Quarters that make up the Quran.
+ *
+ * @deprecated Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapters(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.
  */
+@Deprecated
 public enum HizbQuarter {
 
     Hizb_01_Quarter_01(1, 1, 32, 1, 1),

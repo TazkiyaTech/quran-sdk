@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 
 /**
  * An enum representation of the Surahs that make up the Quran.
+ *
+ * @deprecated Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapters(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.
  */
+@Deprecated
 public enum Surah {
 
     Surah_001(1, 7),
