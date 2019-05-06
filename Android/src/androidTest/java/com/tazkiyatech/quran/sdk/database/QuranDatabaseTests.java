@@ -1,8 +1,8 @@
 package com.tazkiyatech.quran.sdk.database;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.tazkiyatech.quran.sdk.BaseTestCase;
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException;
 import com.tazkiyatech.quran.sdk.model.Surah;
 
@@ -24,13 +24,13 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class QuranDatabaseInstrumentationTests extends BaseTestCase {
+public class QuranDatabaseTests {
 
     private QuranDatabase quranDatabase;
 
     @Before
     public void setUp() {
-        quranDatabase = new QuranDatabase(getTargetContext());
+        quranDatabase = new QuranDatabase(ApplicationProvider.getApplicationContext());
     }
 
     @After

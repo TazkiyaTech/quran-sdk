@@ -6,8 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException;
+import com.tazkiyatech.quran.sdk.model.ChapterMetadata;
+import com.tazkiyatech.quran.sdk.model.ChapterType;
 import com.tazkiyatech.utils.streams.StreamCopier;
 
 import java.io.File;
@@ -26,10 +29,14 @@ public class QuranDatabase {
     private static final String DATABASE_NAME = "com.tazkiyatech.quran.db";
     private static final String LEGACY_DATABASE_NAME = "com.thinkincode.quran.db";
 
+    private static final String TABLE_NAME_QURAN_METADATA = "quran_metadata";
     private static final String TABLE_NAME_QURAN_TEXT = "quran_text";
     private static final String TABLE_NAME_SURA_NAMES = "sura_names";
 
     private static final String COLUMN_NAME_AYA = "aya";
+    private static final String COLUMN_NAME_AYA_COUNT = "aya_count";
+    private static final String COLUMN_NAME_CHAPTER_TYPE = "chapter_type";
+    private static final String COLUMN_NAME_CHAPTER_NUMBER = "chapter_number";
     private static final String COLUMN_NAME_NAME = "name";
     private static final String COLUMN_NAME_SURA = "sura";
     private static final String COLUMN_NAME_TEXT = "text";
@@ -243,6 +250,111 @@ public class QuranDatabase {
     }
 
     /**
+     * Gets the metadata for the chapters of the specified chapter type.
+     *
+     * @param chapterType the chapter type for which to get metadata.
+     * @return the metadata for the chapters of the specified chapter type.
+     * @throws QuranDatabaseException if there was an error getting the metadata from the database.
+     */
+    @NonNull
+    public List<ChapterMetadata> getMetadataForChapters(@NonNull ChapterType chapterType) throws QuranDatabaseException {
+        List<ChapterMetadata> chapterMetadataList = new ArrayList<>();
+
+        String selection = COLUMN_NAME_CHAPTER_TYPE + " = ? ";
+        String[] selectionArgs = new String[]{chapterType.getNameInDatabase()};
+        String orderBy = COLUMN_NAME_CHAPTER_TYPE + " ASC, " + COLUMN_NAME_CHAPTER_NUMBER + " ASC";
+
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_QURAN_METADATA, null, selection, selectionArgs, orderBy, null);
+        } catch (QuranDatabaseException ex) {
+            String message = String.format("Failed getting metadata for chapter type = %s", chapterType.name());
+            throw new QuranDatabaseException(message, ex);
+        }
+
+        int chapterTypeColumnIndex = cursor.getColumnIndex(COLUMN_NAME_CHAPTER_TYPE);
+        int chapterNumberColumnIndex = cursor.getColumnIndex(COLUMN_NAME_CHAPTER_NUMBER);
+        int ayaCountColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA_COUNT);
+        int suraColumnIndex = cursor.getColumnIndex(COLUMN_NAME_SURA);
+        int ayaColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA);
+
+        while (cursor.moveToNext()) {
+            chapterMetadataList.add(
+                    new ChapterMetadata(
+                            cursor.getString(chapterTypeColumnIndex),
+                            cursor.getInt(chapterNumberColumnIndex),
+                            cursor.getInt(ayaCountColumnIndex),
+                            cursor.getInt(suraColumnIndex),
+                            cursor.getInt(ayaColumnIndex)
+                    ));
+        }
+
+        cursor.close();
+
+        if (chapterMetadataList.isEmpty()) {
+            String message = String.format("Failed getting metadata for chapter type = %s", chapterType.name());
+            throw new QuranDatabaseException(message);
+        }
+
+        return chapterMetadataList;
+    }
+
+    /**
+     * Gets the metadata for the specified chapter.
+     *
+     * @param chapterType   the chapter type for which to get metadata.
+     * @param chapterNumber the number of the chapter within the given chapter type.
+     * @return the metadata for the specified chapter.
+     * @throws QuranDatabaseException if there was an error getting the metadata from the database.
+     */
+    @NonNull
+    public ChapterMetadata getMetadataForChapter(@NonNull ChapterType chapterType, int chapterNumber) throws QuranDatabaseException {
+        ChapterMetadata chapterMetadata = null;
+
+        String[] columns = new String[]{COLUMN_NAME_AYA_COUNT, COLUMN_NAME_SURA, COLUMN_NAME_AYA};
+        String selection = COLUMN_NAME_CHAPTER_TYPE + " = ? AND " + COLUMN_NAME_CHAPTER_NUMBER + " = ? ";
+        String[] selectionArgs = new String[]{chapterType.getNameInDatabase(), String.valueOf(chapterNumber)};
+        String limit = "1";
+
+        Cursor cursor;
+
+        try {
+            cursor = queryDatabase(TABLE_NAME_QURAN_METADATA, columns, selection, selectionArgs, null, limit);
+        } catch (QuranDatabaseException ex) {
+            String message = String.format("Failed getting chapter metadata for chapter type = %s, chapter number = %s", chapterType.name(), chapterNumber);
+            throw new QuranDatabaseException(message, ex);
+        }
+
+        int ayaCountColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA_COUNT);
+        int suraColumnIndex = cursor.getColumnIndex(COLUMN_NAME_SURA);
+        int ayaColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA);
+
+        if (cursor.moveToFirst()) {
+            int ayaCount = cursor.getInt(ayaCountColumnIndex);
+            int sura = cursor.getInt(suraColumnIndex);
+            int aya = cursor.getInt(ayaColumnIndex);
+
+            chapterMetadata = new ChapterMetadata(
+                    chapterType.getNameInDatabase(),
+                    chapterNumber,
+                    ayaCount,
+                    sura,
+                    aya
+            );
+        }
+
+        cursor.close();
+
+        if (chapterMetadata == null) {
+            String message = String.format("Failed getting chapter metadata for chapter type = %s, chapter number = %s", chapterType.name(), chapterNumber);
+            throw new QuranDatabaseException(message);
+        }
+
+        return chapterMetadata;
+    }
+
+    /**
      * This method exists for testing purposes only.
      */
     SQLiteDatabase getSQLiteDatabase() {
@@ -263,7 +375,7 @@ public class QuranDatabase {
      *
      * @return true iff the file with the given name exists in internal storage.
      */
-    boolean isFileExistsInInternalStorage(String filename) {
+    boolean isFileExistsInInternalStorage(@NonNull String filename) {
         String path = getPathToFileInInternalStorage(filename);
         File file = new File(path);
 
@@ -275,7 +387,7 @@ public class QuranDatabase {
      *
      * @return true iff the file with the give name is deleted from internal storage.
      */
-    private boolean deleteFileInInternalStorage(String filename) {
+    private boolean deleteFileInInternalStorage(@NonNull String filename) {
         String path = getPathToFileInInternalStorage(filename);
         File file = new File(path);
 
@@ -283,7 +395,7 @@ public class QuranDatabase {
     }
 
     @NonNull
-    private String getPathToFileInInternalStorage(String filename) {
+    private String getPathToFileInInternalStorage(@NonNull String filename) {
         return applicationContext.getFilesDir().getPath() + "/" + filename;
     }
 
@@ -293,7 +405,7 @@ public class QuranDatabase {
      *
      * @throws QuranDatabaseException if the database could not be copied.
      */
-    private void copyFileFromAssetsToInternalStorage(String filename) {
+    private void copyFileFromAssetsToInternalStorage(@NonNull String filename) {
         try (InputStream inputStream = applicationContext.getAssets().open(filename);
              OutputStream outputStream = applicationContext.openFileOutput(filename, Context.MODE_PRIVATE)) {
             StreamCopier streamCopier = new StreamCopier();
@@ -310,12 +422,12 @@ public class QuranDatabase {
      * @throws QuranDatabaseException if the database is not open for reading.
      */
     @NonNull
-    private Cursor queryDatabase(String table,
-                                 String[] columns,
-                                 String selection,
-                                 String[] selectionArgs,
-                                 String orderBy,
-                                 String limit) throws QuranDatabaseException {
+    private Cursor queryDatabase(@NonNull String table,
+                                 @Nullable String[] columns,
+                                 @Nullable String selection,
+                                 @Nullable String[] selectionArgs,
+                                 @Nullable String orderBy,
+                                 @Nullable String limit) throws QuranDatabaseException {
         if (!isDatabaseOpen()) {
             openDatabase();
         }

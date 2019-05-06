@@ -1,11 +1,10 @@
 package com.tazkiyatech.quran.sdk.database;
 
-import com.tazkiyatech.quran.sdk.BaseTestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static com.tazkiyatech.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGreaterThan;
@@ -15,13 +14,13 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class QuranQuotesInstrumentationTests extends BaseTestCase {
+public class QuranQuotesTests {
 
     private QuranQuotes quranQuotes;
 
     @Before
     public void setUp() {
-        quranQuotes = new QuranQuotes(getTargetContext().getResources());
+        quranQuotes = new QuranQuotes(ApplicationProvider.getApplicationContext().getResources());
     }
 
     @Test
@@ -43,7 +42,7 @@ public class QuranQuotesInstrumentationTests extends BaseTestCase {
     }
 
     @Test
-    public void allQuotesHaveLessThan281Characters() {
+    public void allQuotesHaveLessThanMaximumAllowedQuoteLength() {
         // When / Then.
         for (int i = 0; i < quranQuotes.getSize(); i++) {
             String quote = quranQuotes.getQuote(i);
