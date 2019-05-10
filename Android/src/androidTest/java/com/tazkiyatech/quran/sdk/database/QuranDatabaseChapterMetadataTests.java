@@ -57,12 +57,12 @@ public class QuranDatabaseChapterMetadataTests {
     }
 
     @Test
-    public void getMetadataForChapters_with_chapter_type_surah() {
+    public void getMetadataForChapterType_with_chapter_type_surah() {
         // Given.
         ChapterType chapterType = ChapterType.SURAH;
 
         // When.
-        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapters(chapterType);
+        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType);
 
         // Then.
         assertEquals(114, chapterMetadataList.size());
@@ -75,12 +75,12 @@ public class QuranDatabaseChapterMetadataTests {
     }
 
     @Test
-    public void getMetadataForChapters_with_chapter_type_juz() {
+    public void getMetadataForChapterType_with_chapter_type_juz() {
         // Given.
         ChapterType chapterType = ChapterType.JUZ;
 
         // When.
-        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapters(chapterType);
+        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType);
 
         // Then.
         assertEquals(30, chapterMetadataList.size());
@@ -93,12 +93,12 @@ public class QuranDatabaseChapterMetadataTests {
     }
 
     @Test
-    public void getMetadataForChapters_with_chapter_type_hizb() {
+    public void getMetadataForChapterType_with_chapter_type_hizb() {
         // Given.
         ChapterType chapterType = ChapterType.HIZB;
 
         // When.
-        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapters(chapterType);
+        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType);
 
         // Then.
         assertEquals(60, chapterMetadataList.size());
@@ -111,12 +111,12 @@ public class QuranDatabaseChapterMetadataTests {
     }
 
     @Test
-    public void getMetadataForChapters_with_chapter_type_hizb_quarter() {
+    public void getMetadataForChapterType_with_chapter_type_hizb_quarter() {
         // Given.
         ChapterType chapterType = ChapterType.HIZB_QUARTER;
 
         // When.
-        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapters(chapterType);
+        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType);
 
         // Then.
         assertEquals(240, chapterMetadataList.size());
@@ -130,8 +130,8 @@ public class QuranDatabaseChapterMetadataTests {
 
     @Test
     public void number_of_verses_in_each_hizb_matches_the_number_of_verses_in_each_hizb_quarter() {
-        List<ChapterMetadata> hizbMetadataList = quranDatabase.getMetadataForChapters(ChapterType.HIZB);
-        List<ChapterMetadata> hizbQuarterMetadataList = quranDatabase.getMetadataForChapters(ChapterType.HIZB_QUARTER);
+        List<ChapterMetadata> hizbMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.HIZB);
+        List<ChapterMetadata> hizbQuarterMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.HIZB_QUARTER);
 
         for (int i = 0; i < hizbMetadataList.size(); i++) {
             int expected = hizbMetadataList.get(i).getNumAyahs();
@@ -147,8 +147,8 @@ public class QuranDatabaseChapterMetadataTests {
 
     @Test
     public void number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_hizb() {
-        List<ChapterMetadata> juzMetadataList = quranDatabase.getMetadataForChapters(ChapterType.JUZ);
-        List<ChapterMetadata> hizbMetadataList = quranDatabase.getMetadataForChapters(ChapterType.HIZB);
+        List<ChapterMetadata> juzMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.JUZ);
+        List<ChapterMetadata> hizbMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.HIZB);
 
         for (int i = 0; i < juzMetadataList.size(); i++) {
             int expected = juzMetadataList.get(i).getNumAyahs();
@@ -161,7 +161,7 @@ public class QuranDatabaseChapterMetadataTests {
 
     @Test
     public void surahNumber_and_ayahNumber_in_each_surah_is_as_expected() {
-        List<ChapterMetadata> surahMetadataList = quranDatabase.getMetadataForChapters(ChapterType.SURAH);
+        List<ChapterMetadata> surahMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.SURAH);
 
         for (int i = 0; i < surahMetadataList.size(); i++) {
             ChapterMetadata surahMetadata = surahMetadataList.get(i);
@@ -208,7 +208,7 @@ public class QuranDatabaseChapterMetadataTests {
     }
 
     private void assertSurahAndVerseNumberOfFirstVerseInEachTarget(ChapterType chapterType) {
-        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapters(chapterType);
+        List<ChapterMetadata> chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType);
 
         for (int i = 0; i < chapterMetadataList.size(); i++) {
             int surahNumberA = chapterMetadataList.get(i).getSurahNumber();

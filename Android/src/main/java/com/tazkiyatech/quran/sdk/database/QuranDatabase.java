@@ -257,7 +257,7 @@ public class QuranDatabase {
      * @throws QuranDatabaseException if there was an error getting the metadata from the database.
      */
     @NonNull
-    public List<ChapterMetadata> getMetadataForChapters(@NonNull ChapterType chapterType) throws QuranDatabaseException {
+    public List<ChapterMetadata> getMetadataForChapterType(@NonNull ChapterType chapterType) throws QuranDatabaseException {
         List<ChapterMetadata> chapterMetadataList = new ArrayList<>();
 
         String selection = COLUMN_NAME_CHAPTER_TYPE + " = ? ";

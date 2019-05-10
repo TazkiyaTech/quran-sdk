@@ -144,7 +144,7 @@ public class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    public void test_explainQueryPlan_for_getMetadataForChapters() {
+    public void test_explainQueryPlan_for_getMetadataForChapterType() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
                 new QueryPlanRow(
