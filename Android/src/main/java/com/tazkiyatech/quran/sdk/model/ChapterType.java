@@ -19,4 +19,8 @@ public enum ChapterType {
     public String getNameInDatabase() {
         return nameInDatabase;
     }
+
+    public static ChapterType parseOrdinal(int ordinal) {
+        return ChapterType.values()[ordinal];
+    }
 }
