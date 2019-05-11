@@ -1,15 +1,16 @@
-package com.tazkiyatech.quran.sdk.model;
-
-import androidx.annotation.NonNull;
+package com.tazkiyatech.quran.sdk.model
 
 /**
  * An enum representation of the Surahs that make up the Quran.
  *
- * @deprecated Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapterType(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.
+ * @property surahNumber The number (not index) of this Surah.
+ * @property numVerses The number of Verses/Ayahs in this Surah.
  */
-@Deprecated
-public enum Surah {
-
+@Deprecated("Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapterType(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.")
+enum class Surah(
+    val surahNumber: Int,
+    val numVerses: Int
+) {
     Surah_001(1, 7),
     Surah_002(2, 286),
     Surah_003(3, 200),
@@ -125,53 +126,23 @@ public enum Surah {
     Surah_113(113, 5),
     Surah_114(114, 6);
 
-    /**
-     * Parses the given Surah number to an instance of {@link Surah}.
-     *
-     * @param surahNumber is a value between 1 and 114 (inclusive).
-     * @return the {@link Surah} corresponding to the {@code surahNumber} provided.
-     */
-    @NonNull
-    public static Surah parse(int surahNumber) {
-        Surah[] surahValues = Surah.values();
+    companion object {
 
-        if (surahNumber < 1 || surahNumber > surahValues.length) {
-            throw new IllegalArgumentException("Bad Surah number passed in.");
-        } else {
-            return surahValues[surahNumber - 1];
+        /**
+         * Parses the given Surah number to an instance of [Surah].
+         *
+         * @param surahNumber is a value between 1 and 114 (inclusive).
+         * @return the [Surah] corresponding to the [surahNumber] provided.
+         */
+        @JvmStatic
+        fun parse(surahNumber: Int): Surah {
+            val surahValues = values()
+
+            return if (surahNumber < 1 || surahNumber > surahValues.size) {
+                throw IllegalArgumentException("Bad Surah number passed in.")
+            } else {
+                surahValues[surahNumber - 1]
+            }
         }
-    }
-
-    /**
-     * The number (not index) of this Surah.
-     */
-    private final int surahNumber;
-
-    /**
-     * The number of Verses/Ayahs in this Surah.
-     */
-    private final int numVerses;
-
-    /**
-     * Constructor.
-     */
-    Surah(int surahNumber,
-          int numVerses) {
-        this.surahNumber = surahNumber;
-        this.numVerses = numVerses;
-    }
-
-    /**
-     * @return the number (not index) of this Surah.
-     */
-    public int getSurahNumber() {
-        return surahNumber;
-    }
-
-    /**
-     * @return the number of Verses/Ayahs in this Surah.
-     */
-    public int getNumVerses() {
-        return numVerses;
     }
 }

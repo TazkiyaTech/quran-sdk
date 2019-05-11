@@ -1,15 +1,22 @@
-package com.tazkiyatech.quran.sdk.model;
-
-import androidx.annotation.NonNull;
+package com.tazkiyatech.quran.sdk.model
 
 /**
  * An enum representation of the Hizb-Quarters that make up the Quran.
  *
- * @deprecated Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapterType(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.
+ * @property hizbNumber The Hizb number (not index) that this Hizb-quarter corresponds to.
+ * @property quarterNumber The quarter (1 to 4) within the Hizb that this Hizb-Quarter corresponds to.
+ * @property numVerses The number of Verses/Ayahs in this Hizb-Quarter.
+ * @property fromSurah The number (not index) of the Surah in which this Hizb-Quarter begins.
+ * @property fromVerse The number (not index) of the Verse/Ayah within [fromSurah] at which this Hizb-Quarter begins.
  */
-@Deprecated
-public enum HizbQuarter {
-
+@Deprecated("Use the QuranDatabase.getMetadataForChapterType(ChapterType) and QuranDatabase.getMetadataForChapter(ChapterType, int) methods instead.")
+enum class HizbQuarter(
+    val hizbNumber: Int,
+    val quarterNumber: Int,
+    val numVerses: Int,
+    val fromSurah: Int,
+    val fromVerse: Int
+) {
     Hizb_01_Quarter_01(1, 1, 32, 1, 1),
     Hizb_01_Quarter_02(1, 2, 18, 2, 26),
     Hizb_01_Quarter_03(1, 3, 16, 2, 44),
@@ -251,100 +258,28 @@ public enum HizbQuarter {
     Hizb_60_Quarter_03(60, 3, 64, 94, 1),
     Hizb_60_Quarter_04(60, 4, 82, 100, 9);
 
-    /**
-     * Parses the given Hizb number and Quarter number values to an instance of {@link HizbQuarter}.
-     *
-     * @param hizbNumber    is a value between 1 and 60 (inclusive).
-     * @param quarterNumber is a value between 1 and 4 (inclusive).
-     * @return the {@link HizbQuarter} corresponding to the provided {@code hizbNumber} and {@code quarterNumber} values.
-     */
-    @NonNull
-    public static HizbQuarter parse(int hizbNumber, int quarterNumber) {
-        if (hizbNumber < 1 || hizbNumber > 60) {
-            throw new IllegalArgumentException("Bad hizbNumber passed in.");
-        } else if (quarterNumber < 1 || quarterNumber > 4) {
-            throw new IllegalArgumentException("Bad quarterNumber passed in.");
-        } else {
-            HizbQuarter[] hizbQuarters = HizbQuarter.values();
+    companion object {
 
-            int index = ((hizbNumber - 1) * 4) + (quarterNumber - 1);
+        /**
+         * Parses the given Hizb number and Quarter number values to an instance of [HizbQuarter].
+         *
+         * @param hizbNumber    is a value between 1 and 60 (inclusive).
+         * @param quarterNumber is a value between 1 and 4 (inclusive).
+         * @return the [HizbQuarter] corresponding to the provided [hizbNumber] and [quarterNumber] values.
+         */
+        @JvmStatic
+        fun parse(hizbNumber: Int, quarterNumber: Int): HizbQuarter {
+            if (hizbNumber < 1 || hizbNumber > 60) {
+                throw IllegalArgumentException("Bad hizbNumber passed in.")
+            } else if (quarterNumber < 1 || quarterNumber > 4) {
+                throw IllegalArgumentException("Bad quarterNumber passed in.")
+            } else {
+                val hizbQuarters = values()
 
-            return hizbQuarters[index];
+                val index = (hizbNumber - 1) * 4 + (quarterNumber - 1)
+
+                return hizbQuarters[index]
+            }
         }
-    }
-
-    /**
-     * The Hizb number (not index) that this Hizb-quarter corresponds to.
-     */
-    private final int hizbNumber;
-
-    /**
-     * The quarter (1 to 4) within the Hizb that this Hizb-Quarter corresponds to.
-     */
-    private final int quarterNumber;
-
-    /**
-     * The number of Verses/Ayahs in this Hizb-Quarter.
-     */
-    private final int numVerses;
-
-    /**
-     * The number (not index) of the Surah in which this Hizb-Quarter begins.
-     */
-    private final int fromSurah;
-
-    /**
-     * The number (not index) of the Verse/Ayah within {@link #fromSurah} at which this Hizb-Quarter begins.
-     */
-    private final int fromVerse;
-
-    /**
-     * Constructor.
-     */
-    HizbQuarter(int hizbNumber,
-                int quarterNumber,
-                int numVerses,
-                int fromSurah,
-                int fromVerse) {
-        this.hizbNumber = hizbNumber;
-        this.quarterNumber = quarterNumber;
-        this.numVerses = numVerses;
-        this.fromSurah = fromSurah;
-        this.fromVerse = fromVerse;
-    }
-
-    /**
-     * @return the Hizb number (not index) that this Hizb-quarter corresponds to.
-     */
-    public int getHizbNumber() {
-        return hizbNumber;
-    }
-
-    /**
-     * @return the quarter (1 to 4) within the Hizb that this Hizb-Quarter corresponds to.
-     */
-    public int getQuarterNumber() {
-        return quarterNumber;
-    }
-
-    /**
-     * @return the number of Verses/Ayahs in this Hizb-Quarter.
-     */
-    public int getNumVerses() {
-        return numVerses;
-    }
-
-    /**
-     * @return the number (not index) of the Surah in which this Hizb-Quarter begins.
-     */
-    public int getFromSurah() {
-        return fromSurah;
-    }
-
-    /**
-     * @return the number (not index) of the Verse/Ayah within {@link #fromSurah} at which this Hizb-Quarter begins.
-     */
-    public int getFromVerse() {
-        return fromVerse;
     }
 }
