@@ -24,7 +24,7 @@ class QuranQuotes(private val resources: Resources) {
     /**
      * The number of quotes available.
      */
-    internal val size: Int
+    val size: Int
         get() = quotesArray.size
 
     /**
@@ -37,7 +37,7 @@ class QuranQuotes(private val resources: Resources) {
      * @param index the index of the quote to get.
      * @return the quote at the specified index.
      */
-    internal fun getQuote(index: Int): String {
+    fun getQuote(index: Int): String {
         return quotesArray[index]
     }
 }

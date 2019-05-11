@@ -24,7 +24,7 @@ class HifdhTips(private val resources: Resources) {
     /**
      * The number of Hifdh tips available.
      */
-    internal val size: Int
+    val size: Int
         get() = tipsArray.size
 
     /**
@@ -37,7 +37,7 @@ class HifdhTips(private val resources: Resources) {
      * @param index the index of the Hifdh tip to get.
      * @return the Hifdh tip at the specified index.
      */
-    internal fun getTip(index: Int): String {
+    fun getTip(index: Int): String {
         return tipsArray[index]
     }
 }
