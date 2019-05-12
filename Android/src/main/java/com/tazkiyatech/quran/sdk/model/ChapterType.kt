@@ -1,5 +1,7 @@
 package com.tazkiyatech.quran.sdk.model
 
+import java.lang.IllegalArgumentException
+
 /**
  * @property nameInDatabase The name of the chapter type in the 'chapter_type' column of the 'quran_metadata' table.
  */
@@ -12,7 +14,13 @@ enum class ChapterType(val nameInDatabase: String) {
 
     companion object {
         fun parseOrdinal(ordinal: Int): ChapterType {
-            return values()[ordinal]
+            val values = values()
+
+            return if (ordinal < 0 || ordinal >= values.size) {
+                throw IllegalArgumentException("Bad chapter type ordinal ($ordinal) passed in.")
+            } else {
+                values[ordinal]
+            }
         }
     }
 }

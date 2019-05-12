@@ -1,5 +1,7 @@
 package com.tazkiyatech.quran.sdk.model
 
+import java.lang.IllegalArgumentException
+
 /**
  * An enum representation of the Hizb-Quarters that make up the Quran.
  *
@@ -270,15 +272,12 @@ enum class HizbQuarter(
         @JvmStatic
         fun parse(hizbNumber: Int, quarterNumber: Int): HizbQuarter {
             if (hizbNumber < 1 || hizbNumber > 60) {
-                throw IllegalArgumentException("Bad hizbNumber passed in.")
+                throw IllegalArgumentException("Bad hizbNumber ($hizbNumber) passed in.")
             } else if (quarterNumber < 1 || quarterNumber > 4) {
-                throw IllegalArgumentException("Bad quarterNumber passed in.")
+                throw IllegalArgumentException("Bad quarterNumber ($quarterNumber) passed in.")
             } else {
-                val hizbQuarters = values()
-
                 val index = (hizbNumber - 1) * 4 + (quarterNumber - 1)
-
-                return hizbQuarters[index]
+                return values()[index]
             }
         }
     }

@@ -4,7 +4,8 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException;
-import com.tazkiyatech.quran.sdk.model.Surah;
+import com.tazkiyatech.quran.sdk.model.ChapterMetadata;
+import com.tazkiyatech.quran.sdk.model.ChapterType;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +14,6 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -216,17 +216,19 @@ public class QuranDatabaseTests {
     @Test
     public void getAyahsInSurah_for_each_and_every_surah() {
         // Given.
-        Surah[] surahs = Surah.values();
+        List<ChapterMetadata> surahMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.SURAH);
 
-        for (int surahNumber = 1; surahNumber <= surahs.length; surahNumber++) {
+        assertEquals(114, surahMetadataList.size());
+
+        for (ChapterMetadata surahMetadata : surahMetadataList) {
             // Given.
-            int expectedNumberOfVerses = surahs[surahNumber - 1].getNumVerses();
+            int expectedNumberOfVerses = surahMetadata.getNumAyahs();
 
             // When.
-            List<String> ayahsInSurah = quranDatabase.getAyahsInSurah(surahNumber);
+            int actualNumberOfVerses = quranDatabase.getAyahsInSurah(surahMetadata.getChapterNumber()).size();
 
             // Then.
-            assertThat(ayahsInSurah, hasSize(expectedNumberOfVerses));
+            assertEquals(expectedNumberOfVerses, actualNumberOfVerses);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.tazkiyatech.quran.sdk.model
 
+import java.lang.IllegalArgumentException
+
 /**
  * An enum representation of the Surahs that make up the Quran.
  *
@@ -136,12 +138,12 @@ enum class Surah(
          */
         @JvmStatic
         fun parse(surahNumber: Int): Surah {
-            val surahValues = values()
+            val values = values()
 
-            return if (surahNumber < 1 || surahNumber > surahValues.size) {
-                throw IllegalArgumentException("Bad Surah number passed in.")
+            return if (surahNumber < 1 || surahNumber > values.size) {
+                throw IllegalArgumentException("Bad Surah number ($surahNumber) passed in.")
             } else {
-                surahValues[surahNumber - 1]
+                values[surahNumber - 1]
             }
         }
     }

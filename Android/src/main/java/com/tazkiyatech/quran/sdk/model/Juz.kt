@@ -1,5 +1,7 @@
 package com.tazkiyatech.quran.sdk.model
 
+import java.lang.IllegalArgumentException
+
 /**
  * An enum representation of the Juzs that make up the Quran.
  *
@@ -56,12 +58,12 @@ enum class Juz(
          */
         @JvmStatic
         fun parse(juzNumber: Int): Juz {
-            val juzValues = values()
+            val values = values()
 
-            return if (juzNumber < 1 || juzNumber > juzValues.size) {
-                throw IllegalArgumentException("Bad Juz number passed in.")
+            return if (juzNumber < 1 || juzNumber > values.size) {
+                throw IllegalArgumentException("Bad Juz number ($juzNumber) passed in.")
             } else {
-                juzValues[juzNumber - 1]
+                values[juzNumber - 1]
             }
         }
     }
