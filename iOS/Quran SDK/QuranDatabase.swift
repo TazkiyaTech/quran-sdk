@@ -14,7 +14,7 @@ import SQLite3
  */
 public class QuranDatabase: NSObject {
 
-    private var db: OpaquePointer? = nil
+    private var database: OpaquePointer? = nil
 
     /**
      * Opens the Quran database for reading, if it's not already open.
@@ -59,7 +59,7 @@ public class QuranDatabase: NSObject {
             )
         }
 
-        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &db, SQLITE_OPEN_READONLY, nil)
+        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &database, SQLITE_OPEN_READONLY, nil)
 
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
@@ -79,13 +79,13 @@ public class QuranDatabase: NSObject {
             return;
         }
 
-        let resultCode = sqlite3_close(db)
+        let resultCode = sqlite3_close(database)
 
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedClosingDatabase("SQLite result code = \(resultCode)")
         }
 
-        db = nil;
+        database = nil;
     }
 
     /**
@@ -167,7 +167,7 @@ public class QuranDatabase: NSObject {
     }
 
     internal func isDatabaseOpen() -> Bool {
-        return db != nil;
+        return database != nil;
     }
 
     /**
@@ -187,7 +187,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementHandle)
         }
 
-        let resultCode = sqlite3_prepare_v2(db, sql, -1, &statementHandle, nil)
+        let resultCode = sqlite3_prepare_v2(database, sql, -1, &statementHandle, nil)
 
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedPreparingQuery("SQLite result code = \(resultCode)")
