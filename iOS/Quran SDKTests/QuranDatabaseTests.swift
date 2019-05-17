@@ -11,22 +11,22 @@ import XCTest
 
 class QuranDatabaseTests: XCTestCase {
 
-    private var quranDatabase: QuranDatabase?
+    private var quranDatabase: QuranDatabase!
 
     override func setUp() {
         quranDatabase = QuranDatabase()
     }
 
     override func tearDown() {
-        try! quranDatabase!.closeDatabase()
+        try! quranDatabase.closeDatabase()
     }
 
     func test_isDatabaseExistsInDocumentsDirectory_when_database_opened() throws {
         // Given.
-        try quranDatabase!.openDatabase();
+        try quranDatabase.openDatabase();
         
         // When.
-        let result = try quranDatabase!.isDatabaseExistsInDocumentsDirectory();
+        let result = try quranDatabase.isDatabaseExistsInDocumentsDirectory();
         
         // Then.
         XCTAssertTrue(result);
@@ -34,10 +34,10 @@ class QuranDatabaseTests: XCTestCase {
 
     func test_isDatabaseOpen_when_database_opened() throws {
         // Given.
-        try quranDatabase!.openDatabase();
+        try quranDatabase.openDatabase();
     
         // When.
-        let result = quranDatabase!.isDatabaseOpen();
+        let result = quranDatabase.isDatabaseOpen();
     
         // Then.
         XCTAssertTrue(result);
@@ -45,7 +45,7 @@ class QuranDatabaseTests: XCTestCase {
     
     func isDatabaseOpen_when_database_not_opened() throws {
         // When.
-        let result = quranDatabase!.isDatabaseOpen();
+        let result = quranDatabase.isDatabaseOpen();
     
         // Then.
         XCTAssertFalse(result);
@@ -171,14 +171,14 @@ class QuranDatabaseTests: XCTestCase {
         ]
 
         // When.
-        let actual = try quranDatabase!.getSurahNames()
+        let actual = try quranDatabase.getSurahNames()
 
         // Then.
         XCTAssertEqual(expected, actual);
     }
 
     func test_getSurahName() throws {
-        XCTAssertEqual("الفاتحة", try quranDatabase!.getSurahName(1));
+        XCTAssertEqual("الفاتحة", try quranDatabase.getSurahName(1));
     }
 
     func test_getAyahsInSurah() throws {
@@ -194,7 +194,7 @@ class QuranDatabaseTests: XCTestCase {
         ]
 
         // When.
-        let actual = try quranDatabase!.getAyahsInSurah(1)
+        let actual = try quranDatabase.getAyahsInSurah(1)
 
         // Then.
         XCTAssertEqual(expected, actual);
@@ -202,7 +202,7 @@ class QuranDatabaseTests: XCTestCase {
 
     func test_getAyah() throws {
         // When.
-        let actual = try quranDatabase!.getAyah(surahNumber: 1, ayahNumber: 1)
+        let actual = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
 
         // Then.
         XCTAssertEqual("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", actual);
