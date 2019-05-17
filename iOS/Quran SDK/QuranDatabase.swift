@@ -26,40 +26,40 @@ public class QuranDatabase: NSObject {
             return
         }
 
-        var databaseExistsInDocumentsDirectory: Bool
+        var databaseExistsInInternalStorage: Bool
 
         do {
-            databaseExistsInDocumentsDirectory = try isDatabaseExistsInDocumentsDirectory()
+            databaseExistsInInternalStorage = try isDatabaseExistsInInternalStorage()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed determining whether database exists in Documents directory",
+                    "Failed determining whether database exists in internal storage",
                     underlyingError: error
             )
         }
 
         do {
-            if (!databaseExistsInDocumentsDirectory) {
-                try copyDatabaseFromBundleToDocumentsDirectory()
+            if (!databaseExistsInInternalStorage) {
+                try copyDatabaseFromFrameworkBundleToInternalStorage()
             }
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed copying database from Bundle to Documents directory",
+                    "Failed copying database from framework bundle to internal storage",
                     underlyingError: error
             )
         }
 
-        var documentsDirectoryURL: URL
+        var internalStorageURL: URL
 
         do {
-            documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+            internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed created Documents directory URL",
+                    "Failed created internal storage URL for Quran database",
                     underlyingError: error
             )
         }
 
-        let resultCode = sqlite3_open_v2(documentsDirectoryURL.path, &database, SQLITE_OPEN_READONLY, nil)
+        let resultCode = sqlite3_open_v2(internalStorageURL.path, &database, SQLITE_OPEN_READONLY, nil)
 
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
@@ -160,10 +160,10 @@ public class QuranDatabase: NSObject {
         }
     }
 
-    internal func isDatabaseExistsInDocumentsDirectory() throws -> Bool {
-        let documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+    internal func isDatabaseExistsInInternalStorage() throws -> Bool {
+        let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
 
-        return (try? documentsDirectoryURL.checkResourceIsReachable()) ?? false
+        return (try? internalStorageURL.checkResourceIsReachable()) ?? false
     }
 
     internal func isDatabaseOpen() -> Bool {
@@ -204,17 +204,17 @@ public class QuranDatabase: NSObject {
         return rows
     }
 
-    private func copyDatabaseFromBundleToDocumentsDirectory() throws {
-        let documentsDirectoryURL = try getURLForQuranDatabaseInDocumentsDirectory()
+    private func copyDatabaseFromFrameworkBundleToInternalStorage() throws {
+        let storageURL = try getURLForQuranDatabaseInInternalStorage()
 
         guard let bundleURL = getURLForQuranDatabaseInFrameworkBundle() else {
             throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle
         }
 
-        try FileManager.default.copyItem(at: bundleURL, to: documentsDirectoryURL)
+        try FileManager.default.copyItem(at: bundleURL, to: storageURL)
     }
 
-    private func getURLForQuranDatabaseInDocumentsDirectory() throws -> URL {
+    private func getURLForQuranDatabaseInInternalStorage() throws -> URL {
         return try FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,

@@ -26,7 +26,7 @@ class QuranDatabaseTests: XCTestCase {
         try quranDatabase.openDatabase();
         
         // When.
-        let result = try quranDatabase.isDatabaseExistsInDocumentsDirectory();
+        let result = try quranDatabase.isDatabaseExistsInInternalStorage();
         
         // Then.
         XCTAssertTrue(result);
