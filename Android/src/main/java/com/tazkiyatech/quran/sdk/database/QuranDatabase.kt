@@ -23,7 +23,7 @@ import java.util.ArrayList
 class QuranDatabase(private val applicationContext: Context) {
 
     /**
-     * (Internal visibility for testing purposes only.)
+     * (Internal visibility for testing purposes.)
      */
     internal var sqLiteDatabase: SQLiteDatabase? = null
         private set
@@ -368,7 +368,7 @@ class QuranDatabase(private val applicationContext: Context) {
     }
 
     /**
-     * (Internal visibility for unit testing purposes only.)
+     * (Internal visibility for unit testing purposes.)
      *
      * @return true iff the Quran database is open for reading.
      */
@@ -376,7 +376,7 @@ class QuranDatabase(private val applicationContext: Context) {
     internal fun isDatabaseOpen() = sqLiteDatabase?.isOpen == true
 
     /**
-     * (Internal visibility for unit testing purposes only.)
+     * (Internal visibility for unit testing purposes.)
      *
      * @return true iff the file with the given name exists in internal storage.
      */

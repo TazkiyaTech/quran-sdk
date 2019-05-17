@@ -160,12 +160,18 @@ public class QuranDatabase: NSObject {
         }
     }
 
+    /**
+     * (Internal visibility for unit testing purposes.)
+     */
     internal func isDatabaseExistsInInternalStorage() throws -> Bool {
         let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
 
         return (try? internalStorageURL.checkResourceIsReachable()) ?? false
     }
 
+    /**
+     * (Internal visibility for unit testing purposes.)
+     */
     internal func isDatabaseOpen() -> Bool {
         return database != nil;
     }
