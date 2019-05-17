@@ -4,15 +4,12 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
-
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
 import com.tazkiyatech.quran.sdk.model.ChapterMetadata
 import com.tazkiyatech.quran.sdk.model.ChapterType
-import com.tazkiyatech.utils.streams.StreamCopier
-
 import java.io.File
 import java.io.IOException
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Helper class which handles the creation and opening of the SQLite-based Quran database
@@ -44,10 +41,11 @@ class QuranDatabase(private val applicationContext: Context) {
             copyFileFromAssetsToInternalStorage(DATABASE_NAME)
         }
 
-        val path = getPathToFileInInternalStorage(DATABASE_NAME)
+        val file = getFileInInternalStorage(DATABASE_NAME)
 
         try {
-            sqLiteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY)
+            sqLiteDatabase =
+                SQLiteDatabase.openDatabase(file.path, null, SQLiteDatabase.OPEN_READONLY)
         } catch (e: SQLiteException) {
             throw QuranDatabaseException("Failed opening the Quran database", e)
         }
@@ -368,6 +366,8 @@ class QuranDatabase(private val applicationContext: Context) {
     }
 
     /**
+     * Determines whether the database is open for reading.
+     *
      * (Internal visibility for unit testing purposes.)
      *
      * @return true iff the Quran database is open for reading.
@@ -376,32 +376,33 @@ class QuranDatabase(private val applicationContext: Context) {
     internal fun isDatabaseOpen() = sqLiteDatabase?.isOpen == true
 
     /**
+     * Determines whether a file with the given name exists in internal storage.
+     *
      * (Internal visibility for unit testing purposes.)
      *
      * @return true iff the file with the given name exists in internal storage.
      */
     @JvmName("isFileExistsInInternalStorage")
     internal fun isFileExistsInInternalStorage(filename: String): Boolean {
-        val path = getPathToFileInInternalStorage(filename)
-        val file = File(path)
-
-        return file.isFile
+        return getFileInInternalStorage(filename).isFile
     }
 
     /**
      * Deletes the file with the given name from internal storage.
      *
+     * (Internal visibility for unit testing purposes.)
+     *
      * @return true iff the file with the give name is deleted from internal storage.
      */
-    private fun deleteFileInInternalStorage(filename: String): Boolean {
-        val path = getPathToFileInInternalStorage(filename)
-        val file = File(path)
+    @JvmName("deleteFileInInternalStorage")
+    internal fun deleteFileInInternalStorage(filename: String): Boolean {
+        val file = getFileInInternalStorage(filename)
 
         return !file.exists() || file.delete()
     }
 
-    private fun getPathToFileInInternalStorage(filename: String): String =
-        File(applicationContext.filesDir, filename).path
+    private fun getFileInInternalStorage(filename: String): File =
+        File(applicationContext.filesDir, filename)
 
     /**
      * Copies the Quran database from assets to internal storage,
@@ -414,8 +415,7 @@ class QuranDatabase(private val applicationContext: Context) {
             applicationContext.assets.open(filename).use { inputStream ->
                 applicationContext.openFileOutput(filename, Context.MODE_PRIVATE)
                     .use { outputStream ->
-                        val streamCopier = StreamCopier()
-                        streamCopier.copy(inputStream, outputStream)
+                        inputStream.copyTo(outputStream)
                     }
             }
         } catch (e: IOException) {
@@ -455,7 +455,11 @@ class QuranDatabase(private val applicationContext: Context) {
     }
 
     companion object {
-        private const val DATABASE_NAME = "com.tazkiyatech.quran.db"
+        /**
+         * (Internal visibility for unit testing purposes.)
+         */
+        internal const val DATABASE_NAME = "com.tazkiyatech.quran.db"
+
         private const val LEGACY_DATABASE_NAME = "com.thinkincode.quran.db"
 
         private const val TABLE_NAME_QURAN_METADATA = "quran_metadata"

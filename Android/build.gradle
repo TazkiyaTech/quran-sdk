@@ -44,7 +44,6 @@ android {
 
 dependencies {
     implementation 'androidx.annotation:annotation:1.0.2'
-    implementation 'com.tazkiyatech:android-utils:0.0.5'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
@@ -53,6 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'com.tazkiyatech:android-utils:0.0.5'
     androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 }
 

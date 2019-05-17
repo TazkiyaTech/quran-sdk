@@ -31,6 +31,10 @@ public class QuranDatabaseTests {
     @Before
     public void setUp() {
         quranDatabase = new QuranDatabase(ApplicationProvider.getApplicationContext());
+
+        boolean deleteResult = quranDatabase.deleteFileInInternalStorage(QuranDatabase.DATABASE_NAME);
+
+        assertTrue("Failed deleting the Quran database file as part of the test setup", deleteResult);
     }
 
     @After
@@ -39,12 +43,21 @@ public class QuranDatabaseTests {
     }
 
     @Test
-    public void isDatabaseExistsInInternalStorage_when_database_opened() {
+    public void isFileExistsInInternalStorage_when_database_not_opened() {
+        // When.
+        boolean result = quranDatabase.isFileExistsInInternalStorage(QuranDatabase.DATABASE_NAME);
+
+        // Then.
+        assertFalse(result);
+    }
+
+    @Test
+    public void isFileExistsInInternalStorage_when_database_opened() {
         // Given.
         quranDatabase.openDatabase();
 
         // When.
-        boolean result = quranDatabase.isFileExistsInInternalStorage("com.tazkiyatech.quran.db");
+        boolean result = quranDatabase.isFileExistsInInternalStorage(QuranDatabase.DATABASE_NAME);
 
         // Then.
         assertTrue(result);
