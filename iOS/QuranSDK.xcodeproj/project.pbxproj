@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5D2214821AC122A00B65FBC /* Quran_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* Quran_SDK.framework */; };
-		C5D2214F21AC122A00B65FBC /* Quran_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C5D2214121AC122A00B65FBC /* Quran_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */; };
+		C5D2214F21AC122A00B65FBC /* QuranSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C5D2214121AC122A00B65FBC /* QuranSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5D2215921AC12B200B65FBC /* QuranDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2215821AC12B200B65FBC /* QuranDatabase.swift */; };
 		C5D2215B21AC12BA00B65FBC /* com.tazkiyatech.quran.db in Resources */ = {isa = PBXBuildFile; fileRef = C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */; };
 		C5D2215D21AC12C200B65FBC /* QuranDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */; };
@@ -25,10 +25,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C5D2213E21AC122A00B65FBC /* Quran_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quran_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5D2214121AC122A00B65FBC /* Quran_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quran_SDK.h; sourceTree = "<group>"; };
+		C5D2213E21AC122A00B65FBC /* QuranSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuranSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5D2214121AC122A00B65FBC /* QuranSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuranSDK.h; sourceTree = "<group>"; };
 		C5D2214221AC122A00B65FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5D2214721AC122A00B65FBC /* Quran SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quran SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5D2214721AC122A00B65FBC /* QuranSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuranSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D2214E21AC122A00B65FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D2215821AC12B200B65FBC /* QuranDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranDatabase.swift; sourceTree = "<group>"; };
 		C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.tazkiyatech.quran.db; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5D2214821AC122A00B65FBC /* Quran_SDK.framework in Frameworks */,
+				C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,8 +57,8 @@
 		C5D2213421AC122A00B65FBC = {
 			isa = PBXGroup;
 			children = (
-				C5D2214021AC122A00B65FBC /* Quran SDK */,
-				C5D2214B21AC122A00B65FBC /* Quran SDKTests */,
+				C5D2214021AC122A00B65FBC /* QuranSDK */,
+				C5D2214B21AC122A00B65FBC /* QuranSDKTests */,
 				C5D2213F21AC122A00B65FBC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,30 +66,30 @@
 		C5D2213F21AC122A00B65FBC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C5D2213E21AC122A00B65FBC /* Quran_SDK.framework */,
-				C5D2214721AC122A00B65FBC /* Quran SDKTests.xctest */,
+				C5D2213E21AC122A00B65FBC /* QuranSDK.framework */,
+				C5D2214721AC122A00B65FBC /* QuranSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C5D2214021AC122A00B65FBC /* Quran SDK */ = {
+		C5D2214021AC122A00B65FBC /* QuranSDK */ = {
 			isa = PBXGroup;
 			children = (
 				C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */,
-				C5D2215821AC12B200B65FBC /* QuranDatabase.swift */,
-				C5D2214121AC122A00B65FBC /* Quran_SDK.h */,
 				C5D2214221AC122A00B65FBC /* Info.plist */,
+				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
+				C5D2215821AC12B200B65FBC /* QuranDatabase.swift */,
 			);
-			path = "Quran SDK";
+			path = QuranSDK;
 			sourceTree = "<group>";
 		};
-		C5D2214B21AC122A00B65FBC /* Quran SDKTests */ = {
+		C5D2214B21AC122A00B65FBC /* QuranSDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */,
 				C5D2214E21AC122A00B65FBC /* Info.plist */,
+				C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */,
 			);
-			path = "Quran SDKTests";
+			path = QuranSDKTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,16 +99,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5D2214F21AC122A00B65FBC /* Quran_SDK.h in Headers */,
+				C5D2214F21AC122A00B65FBC /* QuranSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C5D2213D21AC122A00B65FBC /* Quran SDK */ = {
+		C5D2213D21AC122A00B65FBC /* QuranSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5D2215221AC122A00B65FBC /* Build configuration list for PBXNativeTarget "Quran SDK" */;
+			buildConfigurationList = C5D2215221AC122A00B65FBC /* Build configuration list for PBXNativeTarget "QuranSDK" */;
 			buildPhases = (
 				C5D2213921AC122A00B65FBC /* Headers */,
 				C5D2213A21AC122A00B65FBC /* Sources */,
@@ -119,14 +119,14 @@
 			);
 			dependencies = (
 			);
-			name = "Quran SDK";
+			name = QuranSDK;
 			productName = "Quran SDK";
-			productReference = C5D2213E21AC122A00B65FBC /* Quran_SDK.framework */;
+			productReference = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C5D2214621AC122A00B65FBC /* Quran SDKTests */ = {
+		C5D2214621AC122A00B65FBC /* QuranSDKTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5D2215521AC122A00B65FBC /* Build configuration list for PBXNativeTarget "Quran SDKTests" */;
+			buildConfigurationList = C5D2215521AC122A00B65FBC /* Build configuration list for PBXNativeTarget "QuranSDKTests" */;
 			buildPhases = (
 				C5D2214321AC122A00B65FBC /* Sources */,
 				C5D2214421AC122A00B65FBC /* Frameworks */,
@@ -137,9 +137,9 @@
 			dependencies = (
 				C5D2214A21AC122A00B65FBC /* PBXTargetDependency */,
 			);
-			name = "Quran SDKTests";
+			name = QuranSDKTests;
 			productName = "Quran SDKTests";
-			productReference = C5D2214721AC122A00B65FBC /* Quran SDKTests.xctest */;
+			productReference = C5D2214721AC122A00B65FBC /* QuranSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C5D2213821AC122A00B65FBC /* Build configuration list for PBXProject "Quran SDK" */;
+			buildConfigurationList = C5D2213821AC122A00B65FBC /* Build configuration list for PBXProject "QuranSDK" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,8 +175,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C5D2213D21AC122A00B65FBC /* Quran SDK */,
-				C5D2214621AC122A00B65FBC /* Quran SDKTests */,
+				C5D2213D21AC122A00B65FBC /* QuranSDK */,
+				C5D2214621AC122A00B65FBC /* QuranSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -221,7 +221,7 @@
 /* Begin PBXTargetDependency section */
 		C5D2214A21AC122A00B65FBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C5D2213D21AC122A00B65FBC /* Quran SDK */;
+			target = C5D2213D21AC122A00B65FBC /* QuranSDK */;
 			targetProxy = C5D2214921AC122A00B65FBC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -361,14 +361,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Quran SDK/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tazkiyatech.Quran-SDK";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tazkiyatech.QuranSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -386,14 +386,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Quran SDK/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tazkiyatech.Quran-SDK";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tazkiyatech.QuranSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -406,7 +406,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65Z3L5D55F;
-				INFOPLIST_FILE = "Quran SDKTests/Info.plist";
+				INFOPLIST_FILE = QuranSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,7 +424,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65Z3L5D55F;
-				INFOPLIST_FILE = "Quran SDKTests/Info.plist";
+				INFOPLIST_FILE = QuranSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,7 +439,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C5D2213821AC122A00B65FBC /* Build configuration list for PBXProject "Quran SDK" */ = {
+		C5D2213821AC122A00B65FBC /* Build configuration list for PBXProject "QuranSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5D2215021AC122A00B65FBC /* Debug */,
@@ -448,7 +448,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5D2215221AC122A00B65FBC /* Build configuration list for PBXNativeTarget "Quran SDK" */ = {
+		C5D2215221AC122A00B65FBC /* Build configuration list for PBXNativeTarget "QuranSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5D2215321AC122A00B65FBC /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5D2215521AC122A00B65FBC /* Build configuration list for PBXNativeTarget "Quran SDKTests" */ = {
+		C5D2215521AC122A00B65FBC /* Build configuration list for PBXNativeTarget "QuranSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5D2215621AC122A00B65FBC /* Debug */,

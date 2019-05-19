@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C5D2213D21AC122A00B65FBC"
-               BuildableName = "Quran_SDK.framework"
-               BlueprintName = "Quran SDK"
-               ReferencedContainer = "container:Quran SDK.xcodeproj">
+               BuildableName = "QuranSDK.framework"
+               BlueprintName = "QuranSDK"
+               ReferencedContainer = "container:QuranSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C5D2214621AC122A00B65FBC"
-               BuildableName = "Quran SDKTests.xctest"
-               BlueprintName = "Quran SDKTests"
-               ReferencedContainer = "container:Quran SDK.xcodeproj">
+               BuildableName = "QuranSDKTests.xctest"
+               BlueprintName = "QuranSDKTests"
+               ReferencedContainer = "container:QuranSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C5D2213D21AC122A00B65FBC"
-            BuildableName = "Quran_SDK.framework"
-            BlueprintName = "Quran SDK"
-            ReferencedContainer = "container:Quran SDK.xcodeproj">
+            BuildableName = "QuranSDK.framework"
+            BlueprintName = "QuranSDK"
+            ReferencedContainer = "container:QuranSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C5D2213D21AC122A00B65FBC"
-            BuildableName = "Quran_SDK.framework"
-            BlueprintName = "Quran SDK"
-            ReferencedContainer = "container:Quran SDK.xcodeproj">
+            BuildableName = "QuranSDK.framework"
+            BlueprintName = "QuranSDK"
+            ReferencedContainer = "container:QuranSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C5D2213D21AC122A00B65FBC"
-            BuildableName = "Quran_SDK.framework"
-            BlueprintName = "Quran SDK"
-            ReferencedContainer = "container:Quran SDK.xcodeproj">
+            BuildableName = "QuranSDK.framework"
+            BlueprintName = "QuranSDK"
+            ReferencedContainer = "container:QuranSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

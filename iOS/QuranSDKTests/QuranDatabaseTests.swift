@@ -1,13 +1,13 @@
 //
-//  Quran_SDKTests.swift
-//  Quran SDKTests
+//  QuranDatabaseTests.swift
+//  QuranSDKTests
 //
 //  Created by Adil Hussain on 23/11/2018.
 //  Copyright © 2018 Tazkiya Tech. All rights reserved.
 //
 
 import XCTest
-@testable import Quran_SDK
+@testable import QuranSDK
 
 class QuranDatabaseTests: XCTestCase {
 
