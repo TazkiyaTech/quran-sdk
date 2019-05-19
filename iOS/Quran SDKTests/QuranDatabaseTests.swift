@@ -15,12 +15,26 @@ class QuranDatabaseTests: XCTestCase {
 
     override func setUp() {
         quranDatabase = QuranDatabase()
+        
+        do {
+            try quranDatabase.deleteDatabaseInInternalStorage()
+        } catch {
+            XCTFail("Failed deleting the database file in the test setup: \(error)")
+        }
     }
 
     override func tearDown() {
         try! quranDatabase.closeDatabase()
     }
 
+    func test_isDatabaseExistsInDocumentsDirectory_when_database_not_opened() throws {
+        // When.
+        let result = try quranDatabase.isDatabaseExistsInInternalStorage();
+        
+        // Then.
+        XCTAssertFalse(result);
+    }
+    
     func test_isDatabaseExistsInDocumentsDirectory_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase();

@@ -161,21 +161,46 @@ public class QuranDatabase: NSObject {
     }
 
     /**
+     * Determines whether the database file exists in internal storage.
+     *
      * (Internal visibility for unit testing purposes.)
+     *
+     * - Returns: true if the database file exists in internal storage, and false otherwise.
      */
     internal func isDatabaseExistsInInternalStorage() throws -> Bool {
-        let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
-
-        return (try? internalStorageURL.checkResourceIsReachable()) ?? false
+        let path = try getURLForQuranDatabaseInInternalStorage().path
+        return FileManager.default.fileExists(atPath: path)
     }
 
     /**
+     * Determines whether the database is open for reading.
+     *
      * (Internal visibility for unit testing purposes.)
+     *
+     * - Returns: true if the Quran database is open for reading, and false otherwise.
      */
     internal func isDatabaseOpen() -> Bool {
         return database != nil;
     }
 
+    /**
+     * Deletes the database file from internal storage.
+     *
+     * (Internal visibility for unit testing purposes.)
+     */
+    internal func deleteDatabaseInInternalStorage() throws {
+        do {
+            let fileManager = FileManager.default
+            let path = try getURLForQuranDatabaseInInternalStorage().path
+
+            if fileManager.fileExists(atPath: path) {
+                try fileManager.removeItem(atPath: path)
+            }
+        } catch {
+            throw QuranDatabaseError.FailedDeletingDatabase(underlyingError: error)
+        }
+    }
+    
     /**
      * Queries the Quran database with the specified SQL query.
      *
@@ -237,6 +262,7 @@ public class QuranDatabase: NSObject {
 
 public enum QuranDatabaseError: Error {
 
+    case FailedDeletingDatabase(underlyingError: Error?)
     case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
     case FailedPreparingQuery(_ message: String)
     case FailedExecutingQuery(_ message: String, underlyingError: Error)
