@@ -64,6 +64,15 @@ public class QuranDatabaseTests {
     }
 
     @Test
+    public void isDatabaseOpen_when_database_not_opened() {
+        // When.
+        boolean result = quranDatabase.isDatabaseOpen();
+
+        // Then.
+        assertFalse(result);
+    }
+
+    @Test
     public void isDatabaseOpen_when_database_opened() {
         // Given.
         quranDatabase.openDatabase();
@@ -76,12 +85,15 @@ public class QuranDatabaseTests {
     }
 
     @Test
-    public void isDatabaseOpen_when_database_not_opened() {
+    public void openDatabase_on_two_separate_instances() {
+        // Given.
+        new QuranDatabase(ApplicationProvider.getApplicationContext()).openDatabase();
+
         // When.
-        boolean result = quranDatabase.isDatabaseOpen();
+        quranDatabase.openDatabase();
 
         // Then.
-        assertFalse(result);
+        assertTrue(quranDatabase.isDatabaseOpen());
     }
 
     @Test
