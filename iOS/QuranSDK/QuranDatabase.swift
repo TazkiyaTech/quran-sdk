@@ -95,12 +95,30 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah names from the database.
      */
     public func getSurahNames() throws -> [String] {
+        var statementObject: OpaquePointer? = nil
+        
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+        
+        let statement = "SELECT name FROM sura_names;";
+        
         do {
-            return try query("SELECT name FROM sura_names;")
+            try compile(statement, into: &statementObject)
+            
+            var rows: [String] = []
+            
+            while (sqlite3_step(statementObject) == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnText = String(cString: columnTextPointer!)
+                rows.append(columnText)
+            }
+            
+            return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                    "Failed getting Surah names",
-                    underlyingError: error
+                "Failed getting Surah names",
+                underlyingError: error
             )
         }
     }
@@ -113,12 +131,33 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah name from the database.
      */
     public func getSurahName(_ surahNumber: Int) throws -> String {
+        var statementObject: OpaquePointer? = nil
+        
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+        
+        let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber);";
+        
         do {
-            return try query("SELECT name FROM sura_names WHERE sura=\(surahNumber);")[0]
+            try compile(statement, into: &statementObject)
+            
+            let stepResult = sqlite3_step(statementObject)
+            
+            if (stepResult == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnText = String(cString: columnTextPointer!)
+                return columnText
+            } else {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                    "No rows returned in query. Step result was \(stepResult)",
+                    underlyingError: nil
+                )
+            }
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                    "Failed getting Surah name for Surah \(surahNumber)",
-                    underlyingError: error
+                "Failed getting Surah name for Surah \(surahNumber)",
+                underlyingError: error
             )
         }
     }
@@ -131,8 +170,26 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayahs from the database.
      */
     public func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
+        var statementObject: OpaquePointer? = nil
+
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber);";
+
         do {
-            return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber);")
+            try compile(statement, into: &statementObject)
+
+            var rows: [String] = []
+
+            while (sqlite3_step(statementObject) == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnText = String(cString: columnTextPointer!)
+                rows.append(columnText)
+            }
+
+            return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
                     "Failed getting Ayahs for Surah \(surahNumber)",
@@ -150,8 +207,29 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayah from the database.
      */
     public func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
+        var statementObject: OpaquePointer? = nil
+
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);";
+
         do {
-            return try query("SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);")[0]
+            try compile(statement, into: &statementObject)
+
+            let stepResult = sqlite3_step(statementObject)
+
+            if (stepResult == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnText = String(cString: columnTextPointer!)
+                return columnText
+            } else {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                        "No rows returned in query. Step result was \(stepResult)",
+                        underlyingError: nil
+                )
+            }
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
                     "Failed Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
@@ -200,39 +278,23 @@ public class QuranDatabase: NSObject {
             throw QuranDatabaseError.FailedDeletingDatabase(underlyingError: error)
         }
     }
-    
+
     /**
-     * Queries the Quran database with the specified SQL query.
+     * Prepares a query on the Quran database.
      *
-     * - Parameter sql: the SQL query to perform.
-     * - Returns: the result of the query.
+     * - Parameter statement: The SQL statement to compile.
+     * - Parameter statementObjectPointer: A pointer to the statement object into which the SQL statement will be compiled.
      */
-    private func query(_ sql: String) throws -> [String] {
+    private func compile(_ statement: String, into statementObjectPointer: UnsafeMutablePointer<OpaquePointer?>) throws {
         if (!isDatabaseOpen()) {
             try openDatabase()
         }
 
-        var statementHandle: OpaquePointer? = nil
-
-        defer {
-            sqlite3_finalize(statementHandle)
-        }
-
-        let resultCode = sqlite3_prepare_v2(database, sql, -1, &statementHandle, nil)
+        let resultCode = sqlite3_prepare_v2(database, statement, -1, statementObjectPointer, nil)
 
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedPreparingQuery("SQLite result code = \(resultCode)")
         }
-
-        var rows: [String] = []
-
-        while (sqlite3_step(statementHandle) == SQLITE_ROW) {
-            let columnTextPointer = sqlite3_column_text(statementHandle, 0)
-            let columnText = String(cString: columnTextPointer!)
-            rows.append(columnText)
-        }
-
-        return rows
     }
 
     private func copyDatabaseFromFrameworkBundleToInternalStorage() throws {
@@ -265,7 +327,7 @@ public enum QuranDatabaseError: Error {
     case FailedDeletingDatabase(underlyingError: Error?)
     case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
     case FailedPreparingQuery(_ message: String)
-    case FailedExecutingQuery(_ message: String, underlyingError: Error)
+    case FailedExecutingQuery(_ message: String, underlyingError: Error?)
     case FailedClosingDatabase(_ message: String)
     case FailedLocatingQuranDatabaseInFrameworkBundle
 

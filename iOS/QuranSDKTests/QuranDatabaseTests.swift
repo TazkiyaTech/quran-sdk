@@ -14,8 +14,10 @@ class QuranDatabaseTests: XCTestCase {
     private var quranDatabase: QuranDatabase!
 
     override func setUp() {
+        super.setUp()
+
         quranDatabase = QuranDatabase()
-        
+
         do {
             try quranDatabase.deleteDatabaseInInternalStorage()
         } catch {
@@ -24,24 +26,24 @@ class QuranDatabaseTests: XCTestCase {
     }
 
     override func tearDown() {
-        try! quranDatabase.closeDatabase()
+        try? quranDatabase.closeDatabase()
     }
-    
+
     func test_isDatabaseExistsInDocumentsDirectory_when_database_not_opened() throws {
         // When.
         let result = try quranDatabase.isDatabaseExistsInInternalStorage();
-        
+
         // Then.
         XCTAssertFalse(result);
     }
-    
+
     func test_isDatabaseExistsInDocumentsDirectory_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase();
-        
+
         // When.
         let result = try quranDatabase.isDatabaseExistsInInternalStorage();
-        
+
         // Then.
         XCTAssertTrue(result);
     }
@@ -49,33 +51,33 @@ class QuranDatabaseTests: XCTestCase {
     func isDatabaseOpen_when_database_not_opened() throws {
         // When.
         let result = quranDatabase.isDatabaseOpen();
-        
+
         // Then.
         XCTAssertFalse(result);
     }
-    
+
     func test_isDatabaseOpen_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase();
-    
+
         // When.
         let result = quranDatabase.isDatabaseOpen();
-    
+
         // Then.
         XCTAssertTrue(result);
     }
-    
+
     func test_openDatabase_on_two_separate_instances() throws {
         // Given.
         try QuranDatabase().openDatabase();
-        
+
         // When.
         try quranDatabase.openDatabase();
-        
+
         // Then.
         XCTAssertTrue(quranDatabase.isDatabaseOpen());
     }
-    
+
     func test_getSurahNames() throws {
         // Given.
         let expected = [
