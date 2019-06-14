@@ -15,6 +15,7 @@ class QuranDatabaseChapterMetadataTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        continueAfterFailure = false
         
         quranDatabase = QuranDatabase()
         

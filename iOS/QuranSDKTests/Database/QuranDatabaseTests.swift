@@ -15,6 +15,7 @@ class QuranDatabaseTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        continueAfterFailure = false
 
         quranDatabase = QuranDatabase()
 
@@ -29,7 +30,7 @@ class QuranDatabaseTests: XCTestCase {
         try? quranDatabase.closeDatabase()
     }
 
-    func test_isDatabaseExistsInDocumentsDirectory_when_database_not_opened() throws {
+    func test_isDatabaseExistsInInternalStorage_when_database_not_opened() throws {
         // When.
         let result = try quranDatabase.isDatabaseExistsInInternalStorage();
 
@@ -37,7 +38,7 @@ class QuranDatabaseTests: XCTestCase {
         XCTAssertFalse(result);
     }
 
-    func test_isDatabaseExistsInDocumentsDirectory_when_database_opened() throws {
+    func test_isDatabaseExistsInInternalStorage_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase();
 
@@ -78,6 +79,10 @@ class QuranDatabaseTests: XCTestCase {
         XCTAssertTrue(quranDatabase.isDatabaseOpen());
     }
 
+    func test_getSurahName_with_surah_number_1() throws {
+        XCTAssertEqual("الفاتحة", try quranDatabase.getSurahName(1));
+    }
+    
     func test_getSurahNames() throws {
         // Given.
         let expected = [
@@ -202,10 +207,6 @@ class QuranDatabaseTests: XCTestCase {
 
         // Then.
         XCTAssertEqual(expected, actual);
-    }
-
-    func test_getSurahName() throws {
-        XCTAssertEqual("الفاتحة", try quranDatabase.getSurahName(1));
     }
 
     func test_getAyahsInSurah() throws {

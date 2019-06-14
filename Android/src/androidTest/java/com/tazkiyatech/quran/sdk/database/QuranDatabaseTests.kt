@@ -97,7 +97,7 @@ class QuranDatabaseTests {
         val surahName = quranDatabase.getSurahName(1)
 
         // Then.
-        assertThat(surahName, `is`(not(nullValue())))
+        assertThat(surahName, `is`("الفاتحة"))
     }
 
     @Test(expected = QuranDatabaseException::class)
@@ -240,11 +240,12 @@ class QuranDatabaseTests {
 
         assertEquals(114, surahMetadataList.size)
 
-        for ((_, chapterNumber, expectedNumberOfVerses) in surahMetadataList) {
+        for (surahMetadata in surahMetadataList) {
             // Given.
+            val expectedNumberOfVerses = surahMetadata.numAyahs
 
             // When.
-            val actualNumberOfVerses = quranDatabase.getAyahsInSurah(chapterNumber).size
+            val actualNumberOfVerses = quranDatabase.getAyahsInSurah(surahMetadata.chapterNumber).size
 
             // Then.
             assertEquals(expectedNumberOfVerses, actualNumberOfVerses)
