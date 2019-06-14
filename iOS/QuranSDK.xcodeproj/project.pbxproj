@@ -69,6 +69,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C500445022B3C92600D93330 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C5D2215821AC12B200B65FBC /* QuranDatabase.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		C500445122B3C93900D93330 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */,
+				C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		C5D2213421AC122A00B65FBC = {
 			isa = PBXGroup;
 			children = (
@@ -90,11 +107,11 @@
 		C5D2214021AC122A00B65FBC /* QuranSDK */ = {
 			isa = PBXGroup;
 			children = (
+				C500445022B3C92600D93330 /* Database */,
 				C500444B22B3AD3100D93330 /* Models */,
 				C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */,
 				C5D2214221AC122A00B65FBC /* Info.plist */,
 				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
-				C5D2215821AC12B200B65FBC /* QuranDatabase.swift */,
 			);
 			path = QuranSDK;
 			sourceTree = "<group>";
@@ -102,9 +119,8 @@
 		C5D2214B21AC122A00B65FBC /* QuranSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				C500445122B3C93900D93330 /* Database */,
 				C5D2214E21AC122A00B65FBC /* Info.plist */,
-				C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */,
-				C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */,
 			);
 			path = QuranSDKTests;
 			sourceTree = "<group>";
