@@ -91,6 +91,7 @@
 			children = (
 				C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */,
 				C5D2214221AC122A00B65FBC /* Info.plist */,
+				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -126,7 +127,6 @@
 			children = (
 				C500445022B3C92600D93330 /* Database */,
 				C500444B22B3AD3100D93330 /* Models */,
-				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
 				C500445222B3C97C00D93330 /* Supporting Files */,
 			);
 			path = QuranSDK;
