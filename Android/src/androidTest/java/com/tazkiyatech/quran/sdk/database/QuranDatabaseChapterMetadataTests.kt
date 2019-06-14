@@ -67,10 +67,9 @@ class QuranDatabaseChapterMetadataTests {
         assertEquals(114, chapterMetadataList.size)
 
         // And.
-        assertChapterTypeAndChapterNumberInChapterMetadataList(chapterType, chapterMetadataList)
-
-        // And.
-        assertTotalNumberOfAyahsInChapterMetadataList(chapterMetadataList)
+        assertChapterTypesInChapterMetadataList(chapterType, chapterMetadataList)
+        assertChapterNumbersInChapterMetadataList(chapterMetadataList)
+        assertNumberOfAyahsInChapterMetadataList(chapterMetadataList)
     }
 
     @Test
@@ -85,10 +84,9 @@ class QuranDatabaseChapterMetadataTests {
         assertEquals(30, chapterMetadataList.size)
 
         // And.
-        assertChapterTypeAndChapterNumberInChapterMetadataList(chapterType, chapterMetadataList)
-
-        // And.
-        assertTotalNumberOfAyahsInChapterMetadataList(chapterMetadataList)
+        assertChapterTypesInChapterMetadataList(chapterType, chapterMetadataList)
+        assertChapterNumbersInChapterMetadataList(chapterMetadataList)
+        assertNumberOfAyahsInChapterMetadataList(chapterMetadataList)
     }
 
     @Test
@@ -103,10 +101,9 @@ class QuranDatabaseChapterMetadataTests {
         assertEquals(60, chapterMetadataList.size)
 
         // And.
-        assertChapterTypeAndChapterNumberInChapterMetadataList(chapterType, chapterMetadataList)
-
-        // And.
-        assertTotalNumberOfAyahsInChapterMetadataList(chapterMetadataList)
+        assertChapterTypesInChapterMetadataList(chapterType, chapterMetadataList)
+        assertChapterNumbersInChapterMetadataList(chapterMetadataList)
+        assertNumberOfAyahsInChapterMetadataList(chapterMetadataList)
     }
 
     @Test
@@ -121,10 +118,9 @@ class QuranDatabaseChapterMetadataTests {
         assertEquals(240, chapterMetadataList.size)
 
         // And.
-        assertChapterTypeAndChapterNumberInChapterMetadataList(chapterType, chapterMetadataList)
-
-        // And.
-        assertTotalNumberOfAyahsInChapterMetadataList(chapterMetadataList)
+        assertChapterTypesInChapterMetadataList(chapterType, chapterMetadataList)
+        assertChapterNumbersInChapterMetadataList(chapterMetadataList)
+        assertNumberOfAyahsInChapterMetadataList(chapterMetadataList)
     }
 
     @Test
@@ -142,7 +138,7 @@ class QuranDatabaseChapterMetadataTests {
                     + hizbQuarterMetadataList[i * 4 + 2].numAyahs
                     + hizbQuarterMetadataList[i * 4 + 3].numAyahs)
 
-            assertEquals("HIZB " + (i + 1), expected, actual)
+            assertEquals("HIZB ${i + 1}", expected, actual)
         }
     }
 
@@ -156,7 +152,7 @@ class QuranDatabaseChapterMetadataTests {
 
             val actual = hizbMetadataList[i * 2].numAyahs + hizbMetadataList[i * 2 + 1].numAyahs
 
-            assertEquals("JUZ " + (i + 1), expected, actual)
+            assertEquals("JUZ ${i + 1}", expected, actual)
         }
     }
 
@@ -174,41 +170,41 @@ class QuranDatabaseChapterMetadataTests {
 
     @Test
     fun surahNumber_and_ayahNumber_in_each_juz_is_as_expected() {
-        assertSurahAndVerseNumberOfFirstVerseInEachTarget(ChapterType.JUZ)
+        assertSurahAndVerseNumberOfFirstVerseInEachChapter(ChapterType.JUZ)
     }
 
     @Test
     fun surahNumber_and_ayahNumber_in_each_hizb_is_as_expected() {
-        assertSurahAndVerseNumberOfFirstVerseInEachTarget(ChapterType.HIZB)
+        assertSurahAndVerseNumberOfFirstVerseInEachChapter(ChapterType.HIZB)
     }
 
     @Test
     fun surahNumber_and_ayahNumber_in_each_hizb_quarter_is_as_expected() {
-        assertSurahAndVerseNumberOfFirstVerseInEachTarget(ChapterType.HIZB_QUARTER)
+        assertSurahAndVerseNumberOfFirstVerseInEachChapter(ChapterType.HIZB_QUARTER)
     }
 
-    private fun assertChapterTypeAndChapterNumberInChapterMetadataList(chapterType: ChapterType,
-                                                                       chapterMetadataList: List<ChapterMetadata>) {
-        for (i in chapterMetadataList.indices) {
-            val (chapterType1, chapterNumber) = chapterMetadataList[i]
+    private fun assertChapterTypesInChapterMetadataList(chapterType: ChapterType,
+                                                        chapterMetadataList: List<ChapterMetadata>) {
+        chapterMetadataList.forEach { assertEquals(chapterType.nameInDatabase, it.chapterType) }
+    }
 
-            assertEquals(chapterType.nameInDatabase, chapterType1)
-            assertEquals((i + 1), chapterNumber)
+    private fun assertChapterNumbersInChapterMetadataList(chapterMetadataList: List<ChapterMetadata>) {
+        for (i in chapterMetadataList.indices) {
+            assertEquals((i + 1), chapterMetadataList[i].chapterNumber)
         }
     }
 
-    private fun assertTotalNumberOfAyahsInChapterMetadataList(chapterMetadataList: List<ChapterMetadata>) {
+    private fun assertNumberOfAyahsInChapterMetadataList(chapterMetadataList: List<ChapterMetadata>) {
         var count = 0
 
         for (chapterMetadata in chapterMetadataList) {
             count += chapterMetadata.numAyahs
         }
 
-        // And.
         assertEquals(6236, count)
     }
 
-    private fun assertSurahAndVerseNumberOfFirstVerseInEachTarget(chapterType: ChapterType) {
+    private fun assertSurahAndVerseNumberOfFirstVerseInEachChapter(chapterType: ChapterType) {
         val chapterMetadataList = quranDatabase.getMetadataForChapterType(chapterType)
 
         for (i in chapterMetadataList.indices) {
@@ -234,7 +230,7 @@ class QuranDatabaseChapterMetadataTests {
             )
 
             assertEquals(
-                "Unexpected number of ayahs between " + chapterType.name + " " + (i + 1) + " and the next one.",
+                "Unexpected number of ayahs between ${chapterType.name} ${i + 1} and the next one.",
                 count,
                 chapterMetadataList[i].numAyahs
             )
