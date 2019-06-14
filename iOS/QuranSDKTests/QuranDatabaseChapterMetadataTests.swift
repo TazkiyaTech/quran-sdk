@@ -32,12 +32,12 @@ class QuranDatabaseChapterMetadataTests: XCTestCase {
     func test_getMetadataForChapter_with_chapter_type_surah_and_chapter_number_1() throws {
         // When.
         let chapterMetadata = try quranDatabase.getMetadataForChapter(
-            chapterType: "sura",
+            chapterType: .surah,
             chapterNumber: 1
         )
         
         // Then.
-        XCTAssertEqual("sura", chapterMetadata.chapterType)
+        XCTAssertEqual(.surah, chapterMetadata.chapterType)
         XCTAssertEqual(1, chapterMetadata.chapterNumber)
         XCTAssertEqual(7, chapterMetadata.numAyahs)
         XCTAssertEqual(1, chapterMetadata.surahNumber)
@@ -46,12 +46,45 @@ class QuranDatabaseChapterMetadataTests: XCTestCase {
     
     func test_getMetadataForChapterType_with_chapter_type_surah() throws {
         // Given.
-        let chapterType = "sura"
+        let chapterType = ChapterType.surah
         
         // When.
         let chapterMetadataList = try quranDatabase.getMetadataForChapterType(chapterType)
         
         // Then.
         XCTAssertEqual(114, chapterMetadataList.count)
+    }
+    
+    func test_getMetadataForChapterType_with_chapter_type_juz() throws {
+        // Given.
+        let chapterType = ChapterType.juz
+        
+        // When.
+        let chapterMetadataList = try quranDatabase.getMetadataForChapterType(chapterType)
+        
+        // Then.
+        XCTAssertEqual(30, chapterMetadataList.count)
+    }
+    
+    func test_getMetadataForChapterType_with_chapter_type_hizb() throws {
+        // Given.
+        let chapterType = ChapterType.hizb
+        
+        // When.
+        let chapterMetadataList = try quranDatabase.getMetadataForChapterType(chapterType)
+        
+        // Then.
+        XCTAssertEqual(60, chapterMetadataList.count)
+    }
+    
+    func test_getMetadataForChapterType_with_chapter_type_hizb_quarter() throws {
+        // Given.
+        let chapterType = ChapterType.hizbQuarter
+        
+        // When.
+        let chapterMetadataList = try quranDatabase.getMetadataForChapterType(chapterType)
+        
+        // Then.
+        XCTAssertEqual(240, chapterMetadataList.count)
     }
 }

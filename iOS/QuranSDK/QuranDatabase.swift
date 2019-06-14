@@ -245,14 +245,14 @@ public class QuranDatabase: NSObject {
      * - Returns: The metadata for the chapters of the specified chapter type.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForChapterType(_ chapterType: String) throws -> [ChapterMetadata] {
+    public func getMetadataForChapterType(_ chapterType: ChapterType) throws -> [ChapterMetadata] {
         var statementObject: OpaquePointer? = nil
         
         defer {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT chapter_type, chapter_number, aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType)';";
+        let statement = "SELECT chapter_type, chapter_number, aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType.rawValue)';";
         
         do {
             try compile(statement, into: &statementObject)
@@ -261,13 +261,15 @@ public class QuranDatabase: NSObject {
             
             while (sqlite3_step(statementObject) == SQLITE_ROW) {
                 let chapterTypePointer = sqlite3_column_text(statementObject, 0)
+                let chapterType = String(cString: chapterTypePointer!)
+                
                 let chapterNumber = sqlite3_column_int(statementObject, 1)
                 let ayahCount = sqlite3_column_int(statementObject, 2)
                 let surahNumber = sqlite3_column_int(statementObject, 3)
                 let ayahNumber = sqlite3_column_int(statementObject, 4)
                 
                 let chapterMetadata = ChapterMetadata(
-                    chapterType: String(cString: chapterTypePointer!),
+                    chapterType: ChapterType(rawValue: chapterType)!,
                     chapterNumber: Int(chapterNumber),
                     numAyahs: Int(ayahCount),
                     surahNumber: Int(surahNumber),
@@ -294,14 +296,14 @@ public class QuranDatabase: NSObject {
      * - Returns: The metadata for the specified chapter.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForChapter(chapterType: String, chapterNumber: Int) throws -> ChapterMetadata {
+    public func getMetadataForChapter(chapterType: ChapterType, chapterNumber: Int) throws -> ChapterMetadata {
         var statementObject: OpaquePointer? = nil
         
         defer {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType)' AND chapter_number=\(chapterNumber) LIMIT 1;";
+        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType.rawValue)' AND chapter_number=\(chapterNumber) LIMIT 1;";
         
         do {
             try compile(statement, into: &statementObject)

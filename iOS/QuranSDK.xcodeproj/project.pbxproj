@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C500444D22B3AD4700D93330 /* ChapterMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444C22B3AD4700D93330 /* ChapterMetadata.swift */; };
+		C500444F22B3C41600D93330 /* ChapterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444E22B3C41600D93330 /* ChapterType.swift */; };
 		C5A7F20B22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */; };
 		C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */; };
 		C5D2214F21AC122A00B65FBC /* QuranSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C5D2214121AC122A00B65FBC /* QuranSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		C500444C22B3AD4700D93330 /* ChapterMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterMetadata.swift; sourceTree = "<group>"; };
+		C500444E22B3C41600D93330 /* ChapterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterType.swift; sourceTree = "<group>"; };
 		C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranDatabaseChapterMetadataTests.swift; sourceTree = "<group>"; };
 		C5D2213E21AC122A00B65FBC /* QuranSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuranSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D2214121AC122A00B65FBC /* QuranSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuranSDK.h; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				C500444C22B3AD4700D93330 /* ChapterMetadata.swift */,
+				C500444E22B3C41600D93330 /* ChapterType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				C500444D22B3AD4700D93330 /* ChapterMetadata.swift in Sources */,
 				C5D2215921AC12B200B65FBC /* QuranDatabase.swift in Sources */,
+				C500444F22B3C41600D93330 /* ChapterType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

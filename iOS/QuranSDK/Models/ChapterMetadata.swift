@@ -10,7 +10,7 @@ import Foundation
 
 public struct ChapterMetadata {
     
-    let chapterType: String
+    let chapterType: ChapterType
     let chapterNumber: Int
     let numAyahs: Int
     let surahNumber: Int
