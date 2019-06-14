@@ -90,6 +90,15 @@
 			isa = PBXGroup;
 			children = (
 				C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */,
+				C5D2214221AC122A00B65FBC /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C500445322B3CD9500D93330 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5D2214E21AC122A00B65FBC /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -116,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				C500445022B3C92600D93330 /* Database */,
-				C5D2214221AC122A00B65FBC /* Info.plist */,
 				C500444B22B3AD3100D93330 /* Models */,
 				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
 				C500445222B3C97C00D93330 /* Supporting Files */,
@@ -128,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				C500445122B3C93900D93330 /* Database */,
-				C5D2214E21AC122A00B65FBC /* Info.plist */,
+				C500445322B3CD9500D93330 /* Supporting Files */,
 			);
 			path = QuranSDKTests;
 			sourceTree = "<group>";
@@ -405,7 +413,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -430,7 +438,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/QuranSDK/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +458,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65Z3L5D55F;
-				INFOPLIST_FILE = QuranSDKTests/Info.plist;
+				INFOPLIST_FILE = "QuranSDKTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,7 +476,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65Z3L5D55F;
-				INFOPLIST_FILE = QuranSDKTests/Info.plist;
+				INFOPLIST_FILE = "QuranSDKTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
