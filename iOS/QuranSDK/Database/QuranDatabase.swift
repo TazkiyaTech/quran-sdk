@@ -114,6 +114,13 @@ public class QuranDatabase: NSObject {
                 rows.append(columnText)
             }
             
+            if (rows.isEmpty) {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                    "No rows returned in query",
+                    underlyingError: nil
+                )
+            }
+            
             return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
@@ -189,6 +196,13 @@ public class QuranDatabase: NSObject {
                 rows.append(columnText)
             }
 
+            if (rows.isEmpty) {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                    "No rows returned in query for Surah \(surahNumber)",
+                    underlyingError: nil
+                )
+            }
+            
             return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
@@ -277,6 +291,13 @@ public class QuranDatabase: NSObject {
                 )
                 
                 rows.append(chapterMetadata)
+            }
+            
+            if (rows.isEmpty) {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                    "No rows returned in query for chapter type = \(chapterType)",
+                    underlyingError: nil
+                )
             }
             
             return rows

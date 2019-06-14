@@ -7,8 +7,6 @@ import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
 import com.tazkiyatech.quran.sdk.model.ChapterType
 import org.hamcrest.collection.IsIterableContainingInOrder.contains
 import org.hamcrest.core.Is.`is`
-import org.hamcrest.core.IsNot.not
-import org.hamcrest.core.IsNull.nullValue
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before

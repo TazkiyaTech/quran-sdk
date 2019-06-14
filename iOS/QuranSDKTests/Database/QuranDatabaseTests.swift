@@ -80,7 +80,16 @@ class QuranDatabaseTests: XCTestCase {
     }
 
     func test_getSurahName_with_surah_number_1() throws {
-        XCTAssertEqual("الفاتحة", try quranDatabase.getSurahName(1));
+        // When.
+        let surahName = try quranDatabase.getSurahName(1)
+        
+        // Then.
+        XCTAssertEqual("الفاتحة", surahName);
+    }
+    
+    func test_getSurahName_with_invalid_surah_number() {
+        // When. / Then.
+        XCTAssertThrowsError(try quranDatabase.getSurahName(115))
     }
     
     func test_getSurahNames() throws {
@@ -209,7 +218,7 @@ class QuranDatabaseTests: XCTestCase {
         XCTAssertEqual(expected, actual);
     }
 
-    func test_getAyahsInSurah() throws {
+    func test_getAyahsInSurah_with_valid_surah_number() throws {
         // Given.
         let expected = [
             "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
@@ -227,12 +236,59 @@ class QuranDatabaseTests: XCTestCase {
         // Then.
         XCTAssertEqual(expected, actual);
     }
+    
+    func test_getAyahsInSurah_for_each_and_every_surah() throws {
+        // Given.
+        let surahMetadataList = try quranDatabase.getMetadataForChapterType(ChapterType.surah)
+        
+        XCTAssertEqual(114, surahMetadataList.count)
+        
+        for surahMetadata in surahMetadataList {
+            // Given.
+            let expectedNumberOfVerses = surahMetadata.numAyahs
+            
+            // When.
+            let actualNumberOfVerses = try quranDatabase.getAyahsInSurah(surahMetadata.chapterNumber).count
+            
+            // Then.
+            XCTAssertEqual(expectedNumberOfVerses, actualNumberOfVerses)
+        }
+    }
 
-    func test_getAyah() throws {
+    func test_getAyahsInSurah_with_invalid_surah_number() {
+        // When. / Then.
+        XCTAssertThrowsError(try quranDatabase.getAyahsInSurah(115))
+    }
+    
+    func test_getAyah_with_surah_number_1_and_ayah_number_1() throws {
+        // Given.
+        let expected = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+        
         // When.
         let actual = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
 
         // Then.
-        XCTAssertEqual("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", actual);
+        XCTAssertEqual(expected, actual);
+    }
+    
+    func test_getAyah_with_surah_number_58_and_ayah_number_6() throws {
+        // Given.
+        let expected = "يَوْمَ يَبْعَثُهُمُ اللَّهُ جَمِيعًا فَيُنَبِّئُهُمْ بِمَا عَمِلُوا ۚ أَحْصَاهُ اللَّهُ وَنَسُوهُ ۚ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ شَهِيدٌ"
+        
+        // When.
+        let actual = try quranDatabase.getAyah(surahNumber: 58, ayahNumber: 6)
+        
+        // Then.
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func test_getAyah_with_invalid_surah_number() throws {
+        // When. / Then.
+        XCTAssertThrowsError(try quranDatabase.getAyah(surahNumber: 115, ayahNumber: 1))
+    }
+    
+    func test_getAyah_with_invalid_ayah_number() throws {
+        // When. / Then.
+        XCTAssertThrowsError(try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 8))
     }
 }
