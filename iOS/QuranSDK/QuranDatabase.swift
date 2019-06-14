@@ -232,8 +232,104 @@ public class QuranDatabase: NSObject {
             }
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                    "Failed Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
+                    "Failed getting Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
                     underlyingError: error
+            )
+        }
+    }
+    
+    /**
+     * Gets the metadata for the chapters of the specified chapter type.
+     *
+     * - Parameter chapterType: The chapter type for which to get metadata.
+     * - Returns: The metadata for the chapters of the specified chapter type.
+     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
+     */
+    public func getMetadataForChapterType(_ chapterType: String) throws -> [ChapterMetadata] {
+        var statementObject: OpaquePointer? = nil
+        
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+        
+        let statement = "SELECT chapter_type, chapter_number, aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType)';";
+        
+        do {
+            try compile(statement, into: &statementObject)
+            
+            var rows: [ChapterMetadata] = []
+            
+            while (sqlite3_step(statementObject) == SQLITE_ROW) {
+                let chapterTypePointer = sqlite3_column_text(statementObject, 0)
+                let chapterNumber = sqlite3_column_int(statementObject, 1)
+                let ayahCount = sqlite3_column_int(statementObject, 2)
+                let surahNumber = sqlite3_column_int(statementObject, 3)
+                let ayahNumber = sqlite3_column_int(statementObject, 4)
+                
+                let chapterMetadata = ChapterMetadata(
+                    chapterType: String(cString: chapterTypePointer!),
+                    chapterNumber: Int(chapterNumber),
+                    numAyahs: Int(ayahCount),
+                    surahNumber: Int(surahNumber),
+                    ayahNumber: Int(ayahNumber)
+                )
+                
+                rows.append(chapterMetadata)
+            }
+            
+            return rows
+        } catch {
+            throw QuranDatabaseError.FailedExecutingQuery(
+                "Failed getting metadata for chapter type = \(chapterType)",
+                underlyingError: error
+            )
+        }
+    }
+    
+    /**
+     * Gets the metadata for the specified chapter.
+     *
+     * - Parameter chapterType: The chapter type for which to get metadata.
+     * - Parameter chapterNumber: The number of the chapter within the given chapter type.
+     * - Returns: The metadata for the specified chapter.
+     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
+     */
+    public func getMetadataForChapter(chapterType: String, chapterNumber: Int) throws -> ChapterMetadata {
+        var statementObject: OpaquePointer? = nil
+        
+        defer {
+            sqlite3_finalize(statementObject)
+        }
+        
+        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType)' AND chapter_number=\(chapterNumber) LIMIT 1;";
+        
+        do {
+            try compile(statement, into: &statementObject)
+            
+            let stepResult = sqlite3_step(statementObject)
+            
+            if (stepResult == SQLITE_ROW) {
+                let ayahCount = sqlite3_column_int(statementObject, 0)
+                let surahNumber = sqlite3_column_int(statementObject, 1)
+                let ayahNumber = sqlite3_column_int(statementObject, 2)
+                
+                return ChapterMetadata(
+                    chapterType: chapterType,
+                    chapterNumber: chapterNumber,
+                    numAyahs: Int(ayahCount),
+                    surahNumber: Int(surahNumber),
+                    ayahNumber: Int(ayahNumber)
+                )
+            } else {
+                throw QuranDatabaseError.FailedExecutingQuery(
+                    "No rows returned in query. Step result was \(stepResult)",
+                    underlyingError: nil
+                )
+            }
+        } catch {
+            throw QuranDatabaseError.FailedExecutingQuery(
+                "Failed getting chapter metadata for chapter type = \(chapterType), chapter number = \(chapterNumber)",
+                underlyingError: error
             )
         }
     }
@@ -293,7 +389,7 @@ public class QuranDatabase: NSObject {
         let resultCode = sqlite3_prepare_v2(database, statement, -1, statementObjectPointer, nil)
 
         if (resultCode != SQLITE_OK) {
-            throw QuranDatabaseError.FailedPreparingQuery("SQLite result code = \(resultCode)")
+            throw QuranDatabaseError.FailedCompilingQuery("SQLite result code = \(resultCode)")
         }
     }
 
@@ -326,7 +422,7 @@ public enum QuranDatabaseError: Error {
 
     case FailedDeletingDatabase(underlyingError: Error?)
     case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
-    case FailedPreparingQuery(_ message: String)
+    case FailedCompilingQuery(_ message: String)
     case FailedExecutingQuery(_ message: String, underlyingError: Error?)
     case FailedClosingDatabase(_ message: String)
     case FailedLocatingQuranDatabaseInFrameworkBundle
