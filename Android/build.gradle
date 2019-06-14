@@ -11,12 +11,11 @@ File[] proGuardFileCollection = file('./proguard').listFiles()
 File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
 android {
-    buildToolsVersion '28.0.3'
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -43,15 +42,15 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.2'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13-beta-3'
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'com.tazkiyatech:android-utils:0.0.5'
     androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 }
