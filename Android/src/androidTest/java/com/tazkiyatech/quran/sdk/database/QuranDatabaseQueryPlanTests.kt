@@ -17,7 +17,7 @@ class QuranDatabaseQueryPlanTests {
 
     @Before
     fun setUp() {
-        val quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext<Context>())
+        val quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
         quranDatabase.openDatabase()
 
         val sqLiteDatabase = quranDatabase.sqLiteDatabase
@@ -122,23 +122,23 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getMetadataForChapterType() {
+    fun test_explainQueryPlan_for_getMetadataForSectionType() {
         // Given.
         val expected = listOf(
             QueryPlanRow(
                 0,
                 0,
                 0,
-                "SEARCH TABLE quran_metadata USING INDEX index_chapter_type_chapter_number_on_table_quran_metadata (chapter_type=?)"
+                "SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=?)"
             )
         )
 
         // When.
         val actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
             "quran_metadata", null,
-            "chapter_type = ?",
+            "section_type = ?",
             arrayOf("sura"), null, null,
-            "chapter_type ASC, chapter_number ASC", null
+            "section_type ASC, section_number ASC", null
         )
 
         // Then.
@@ -146,21 +146,21 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getMetadataForChapter() {
+    fun test_explainQueryPlan_for_getMetadataForSection() {
         // Given.
         val expected = listOf(
             QueryPlanRow(
                 0,
                 0,
                 0,
-                "SEARCH TABLE quran_metadata USING INDEX index_chapter_type_chapter_number_on_table_quran_metadata (chapter_type=? AND chapter_number=?)"
+                "SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=? AND section_number=?)"
             )
         )
 
         // When.
         val actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
             "quran_metadata", null,
-            "chapter_type = ? AND chapter_number = ?",
+            "section_type = ? AND section_number = ?",
             arrayOf("sura", "1"), null, null, null,
             "1"
         )

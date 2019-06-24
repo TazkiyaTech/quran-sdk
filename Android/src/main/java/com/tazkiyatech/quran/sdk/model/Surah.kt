@@ -1,14 +1,12 @@
 package com.tazkiyatech.quran.sdk.model
 
-import java.lang.IllegalArgumentException
-
 /**
  * An enum representation of the Surahs that make up the Quran.
  *
  * @property surahNumber The number (not index) of this Surah.
  * @property numVerses The number of Verses/Ayahs in this Surah.
  */
-@Deprecated("Use the {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapterType(ChapterType)} and {@link com.tazkiyatech.quran.sdk.database.QuranDatabase#getMetadataForChapter(ChapterType, int)} methods instead.")
+@Deprecated("Use the QuranDatabase.getMetadataForSectionType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
 enum class Surah(
     val surahNumber: Int,
     val numVerses: Int

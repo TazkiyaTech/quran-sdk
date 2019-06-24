@@ -1,8 +1,6 @@
 package com.tazkiyatech.quran.sdk.model
 
-import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -48,7 +46,7 @@ class JuzUnitTests {
         val numVerses = Juz.Juz_01.numVerses
 
         // Then.
-        assertThat(numVerses, equalTo(148))
+        assertEquals(148, numVerses)
     }
 
     @Test
@@ -57,7 +55,7 @@ class JuzUnitTests {
         val numVerses = Juz.Juz_27.numVerses
 
         // Then.
-        assertThat(numVerses, equalTo(399))
+        assertEquals(399, numVerses)
     }
 
     @Test
@@ -66,7 +64,7 @@ class JuzUnitTests {
         val numVerses = Juz.Juz_30.numVerses
 
         // Then.
-        assertThat(numVerses, equalTo(564))
+        assertEquals(564, numVerses)
     }
 
     @Test
@@ -83,6 +81,6 @@ class JuzUnitTests {
         }
 
         // Then.
-        assertThat(verseCount, equalTo(6236))
+        assertEquals(6236, verseCount)
     }
 }

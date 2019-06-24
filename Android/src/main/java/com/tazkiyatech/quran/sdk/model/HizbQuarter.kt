@@ -11,7 +11,7 @@ import java.lang.IllegalArgumentException
  * @property fromSurah The number (not index) of the Surah in which this Hizb-Quarter begins.
  * @property fromVerse The number (not index) of the Verse/Ayah within [fromSurah] at which this Hizb-Quarter begins.
  */
-@Deprecated("Use the QuranDatabase.getMetadataForChapterType(ChapterType) and QuranDatabase.getMetadataForChapter(ChapterType, int) methods instead.")
+@Deprecated("Use the QuranDatabase.getMetadataForSectionType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
 enum class HizbQuarter(
     val hizbNumber: Int,
     val quarterNumber: Int,

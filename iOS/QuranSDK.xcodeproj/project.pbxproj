@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C500444D22B3AD4700D93330 /* ChapterMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444C22B3AD4700D93330 /* ChapterMetadata.swift */; };
-		C500444F22B3C41600D93330 /* ChapterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444E22B3C41600D93330 /* ChapterType.swift */; };
-		C5A7F20B22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */; };
+		C500444D22B3AD4700D93330 /* SectionMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444C22B3AD4700D93330 /* SectionMetadata.swift */; };
+		C500444F22B3C41600D93330 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500444E22B3C41600D93330 /* SectionType.swift */; };
+		C5A7F20B22B2F7C000C6B30B /* QuranDatabaseSectionMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7F20A22B2F7C000C6B30B /* QuranDatabaseSectionMetadataTests.swift */; };
 		C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */; };
 		C5D2214F21AC122A00B65FBC /* QuranSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C5D2214121AC122A00B65FBC /* QuranSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5D2215921AC12B200B65FBC /* QuranDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2215821AC12B200B65FBC /* QuranDatabase.swift */; };
-		C5D2215B21AC12BA00B65FBC /* com.tazkiyatech.quran.db in Resources */ = {isa = PBXBuildFile; fileRef = C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */; };
 		C5D2215D21AC12C200B65FBC /* QuranDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */; };
+		C5E1F3FD22C126B100FC7682 /* com.tazkiyatech.quran.v2.db in Resources */ = {isa = PBXBuildFile; fileRef = C5E1F3FC22C126B100FC7682 /* com.tazkiyatech.quran.v2.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,17 +28,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C500444C22B3AD4700D93330 /* ChapterMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterMetadata.swift; sourceTree = "<group>"; };
-		C500444E22B3C41600D93330 /* ChapterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterType.swift; sourceTree = "<group>"; };
-		C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranDatabaseChapterMetadataTests.swift; sourceTree = "<group>"; };
+		C500444C22B3AD4700D93330 /* SectionMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionMetadata.swift; sourceTree = "<group>"; };
+		C500444E22B3C41600D93330 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
+		C5A7F20A22B2F7C000C6B30B /* QuranDatabaseSectionMetadataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranDatabaseSectionMetadataTests.swift; sourceTree = "<group>"; };
 		C5D2213E21AC122A00B65FBC /* QuranSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuranSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D2214121AC122A00B65FBC /* QuranSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuranSDK.h; sourceTree = "<group>"; };
 		C5D2214221AC122A00B65FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D2214721AC122A00B65FBC /* QuranSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuranSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D2214E21AC122A00B65FBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D2215821AC12B200B65FBC /* QuranDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranDatabase.swift; sourceTree = "<group>"; };
-		C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.tazkiyatech.quran.db; sourceTree = "<group>"; };
 		C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranDatabaseTests.swift; sourceTree = "<group>"; };
+		C5E1F3FC22C126B100FC7682 /* com.tazkiyatech.quran.v2.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = com.tazkiyatech.quran.v2.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 		C500444B22B3AD3100D93330 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C500444C22B3AD4700D93330 /* ChapterMetadata.swift */,
-				C500444E22B3C41600D93330 /* ChapterType.swift */,
+				C500444C22B3AD4700D93330 /* SectionMetadata.swift */,
+				C500444E22B3C41600D93330 /* SectionType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				C5D2215C21AC12C200B65FBC /* QuranDatabaseTests.swift */,
-				C5A7F20A22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift */,
+				C5A7F20A22B2F7C000C6B30B /* QuranDatabaseSectionMetadataTests.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -89,7 +89,7 @@
 		C500445222B3C97C00D93330 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C5D2215A21AC12BA00B65FBC /* com.tazkiyatech.quran.db */,
+				C5E1F3FC22C126B100FC7682 /* com.tazkiyatech.quran.v2.db */,
 				C5D2214221AC122A00B65FBC /* Info.plist */,
 				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
 			);
@@ -235,7 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5D2215B21AC12BA00B65FBC /* com.tazkiyatech.quran.db in Resources */,
+				C5E1F3FD22C126B100FC7682 /* com.tazkiyatech.quran.v2.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,9 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C500444D22B3AD4700D93330 /* ChapterMetadata.swift in Sources */,
+				C500444D22B3AD4700D93330 /* SectionMetadata.swift in Sources */,
 				C5D2215921AC12B200B65FBC /* QuranDatabase.swift in Sources */,
-				C500444F22B3C41600D93330 /* ChapterType.swift in Sources */,
+				C500444F22B3C41600D93330 /* SectionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5D2215D21AC12C200B65FBC /* QuranDatabaseTests.swift in Sources */,
-				C5A7F20B22B2F7C000C6B30B /* QuranDatabaseChapterMetadataTests.swift in Sources */,
+				C5A7F20B22B2F7C000C6B30B /* QuranDatabaseSectionMetadataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

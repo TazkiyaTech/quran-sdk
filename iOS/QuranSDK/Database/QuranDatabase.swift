@@ -253,49 +253,49 @@ public class QuranDatabase: NSObject {
     }
     
     /**
-     * Gets the metadata for the chapters of the specified chapter type.
+     * Gets the metadata for the sections of the specified section type.
      *
-     * - Parameter chapterType: The chapter type for which to get metadata.
-     * - Returns: The metadata for the chapters of the specified chapter type.
+     * - Parameter sectionType: The section type for which to get metadata.
+     * - Returns: The metadata for the sections of the specified section type.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForChapterType(_ chapterType: ChapterType) throws -> [ChapterMetadata] {
+    public func getMetadataForSections(ofType sectionType: SectionType) throws -> [SectionMetadata] {
         var statementObject: OpaquePointer? = nil
         
         defer {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT chapter_type, chapter_number, aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType.rawValue)';";
+        let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)';";
         
         do {
             try compile(statement, into: &statementObject)
             
-            var rows: [ChapterMetadata] = []
+            var rows: [SectionMetadata] = []
             
             while (sqlite3_step(statementObject) == SQLITE_ROW) {
-                let chapterTypePointer = sqlite3_column_text(statementObject, 0)
-                let chapterType = String(cString: chapterTypePointer!)
+                let sectionTypePointer = sqlite3_column_text(statementObject, 0)
+                let sectionType = String(cString: sectionTypePointer!)
                 
-                let chapterNumber = sqlite3_column_int(statementObject, 1)
+                let sectionNumber = sqlite3_column_int(statementObject, 1)
                 let ayahCount = sqlite3_column_int(statementObject, 2)
                 let surahNumber = sqlite3_column_int(statementObject, 3)
                 let ayahNumber = sqlite3_column_int(statementObject, 4)
                 
-                let chapterMetadata = ChapterMetadata(
-                    chapterType: ChapterType(rawValue: chapterType)!,
-                    chapterNumber: Int(chapterNumber),
+                let sectionMetadata = SectionMetadata(
+                    sectionType: SectionType(rawValue: sectionType)!,
+                    sectionNumber: Int(sectionNumber),
                     numAyahs: Int(ayahCount),
                     surahNumber: Int(surahNumber),
                     ayahNumber: Int(ayahNumber)
                 )
                 
-                rows.append(chapterMetadata)
+                rows.append(sectionMetadata)
             }
             
             if (rows.isEmpty) {
                 throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query for chapter type = \(chapterType)",
+                    "No rows returned in query for section type = \(sectionType)",
                     underlyingError: nil
                 )
             }
@@ -303,28 +303,28 @@ public class QuranDatabase: NSObject {
             return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting metadata for chapter type = \(chapterType)",
+                "Failed getting metadata for section type = \(sectionType)",
                 underlyingError: error
             )
         }
     }
     
     /**
-     * Gets the metadata for the specified chapter.
+     * Gets the metadata for the specified section.
      *
-     * - Parameter chapterType: The chapter type for which to get metadata.
-     * - Parameter chapterNumber: The number of the chapter within the given chapter type.
-     * - Returns: The metadata for the specified chapter.
+     * - Parameter sectionType: The section type for which to get metadata.
+     * - Parameter sectionNumber: The number of the section within the given section type.
+     * - Returns: The metadata for the specified section.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForChapter(chapterType: ChapterType, chapterNumber: Int) throws -> ChapterMetadata {
+    public func getMetadataForSection(sectionType: SectionType, sectionNumber: Int) throws -> SectionMetadata {
         var statementObject: OpaquePointer? = nil
         
         defer {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE chapter_type='\(chapterType.rawValue)' AND chapter_number=\(chapterNumber) LIMIT 1;";
+        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1;";
         
         do {
             try compile(statement, into: &statementObject)
@@ -336,9 +336,9 @@ public class QuranDatabase: NSObject {
                 let surahNumber = sqlite3_column_int(statementObject, 1)
                 let ayahNumber = sqlite3_column_int(statementObject, 2)
                 
-                return ChapterMetadata(
-                    chapterType: chapterType,
-                    chapterNumber: chapterNumber,
+                return SectionMetadata(
+                    sectionType: sectionType,
+                    sectionNumber: sectionNumber,
                     numAyahs: Int(ayahCount),
                     surahNumber: Int(surahNumber),
                     ayahNumber: Int(ayahNumber)
@@ -351,7 +351,7 @@ public class QuranDatabase: NSObject {
             }
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting chapter metadata for chapter type = \(chapterType), chapter number = \(chapterNumber)",
+                "Failed getting section metadata for section type = \(sectionType), section number = \(sectionNumber)",
                 underlyingError: error
             )
         }
@@ -432,12 +432,12 @@ public class QuranDatabase: NSObject {
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-        ).appendingPathComponent("com.tazkiyatech.quran.db")
+        ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
     }
 
     private func getURLForQuranDatabaseInFrameworkBundle() -> URL? {
         let bundle = Bundle(for: type(of: self))
-        return bundle.url(forResource: "com.tazkiyatech.quran", withExtension: "db")!
+        return bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db")!
     }
 }
 

@@ -37,6 +37,6 @@ class SurahUnitTests {
         }
 
         // Then.
-        assertThat(verseCount, equalTo(6236))
+        assertEquals(6236, verseCount)
     }
 }

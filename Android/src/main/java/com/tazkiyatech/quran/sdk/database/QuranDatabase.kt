@@ -5,8 +5,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
-import com.tazkiyatech.quran.sdk.model.ChapterMetadata
-import com.tazkiyatech.quran.sdk.model.ChapterType
+import com.tazkiyatech.quran.sdk.model.SectionMetadata
+import com.tazkiyatech.quran.sdk.model.SectionType
 import java.io.File
 import java.io.IOException
 import java.util.*
@@ -50,7 +50,8 @@ class QuranDatabase(private val applicationContext: Context) {
             throw QuranDatabaseException("Failed opening the Quran database", e)
         }
 
-        deleteFileInInternalStorage(LEGACY_DATABASE_NAME)
+        deleteFileInInternalStorage(VERSION_0_DATABASE_NAME)
+        deleteFileInInternalStorage(VERSION_1_DATABASE_NAME)
     }
 
     /**
@@ -236,19 +237,19 @@ class QuranDatabase(private val applicationContext: Context) {
     }
 
     /**
-     * Gets the metadata for the chapters of the specified chapter type.
+     * Gets the metadata for the sections of the specified section type.
      *
-     * @param chapterType the chapter type for which to get metadata.
-     * @return the metadata for the chapters of the specified chapter type.
+     * @param sectionType the section type for which to get metadata.
+     * @return the metadata for the sections of the specified section type.
      * @throws QuranDatabaseException if there was an error getting the metadata from the database.
      */
     @Throws(QuranDatabaseException::class)
-    fun getMetadataForChapterType(chapterType: ChapterType): List<ChapterMetadata> {
-        val chapterMetadataList = ArrayList<ChapterMetadata>()
+    fun getMetadataForSectionType(sectionType: SectionType): List<SectionMetadata> {
+        val sectionMetadataList = ArrayList<SectionMetadata>()
 
-        val selection = "$COLUMN_NAME_CHAPTER_TYPE = ? "
-        val selectionArgs = arrayOf(chapterType.nameInDatabase)
-        val orderBy = "$COLUMN_NAME_CHAPTER_TYPE ASC, $COLUMN_NAME_CHAPTER_NUMBER ASC"
+        val selection = "$COLUMN_NAME_SECTION_TYPE = ? "
+        val selectionArgs = arrayOf(sectionType.nameInDatabase)
+        val orderBy = "$COLUMN_NAME_SECTION_TYPE ASC, $COLUMN_NAME_SECTION_NUMBER ASC"
 
         val cursor: Cursor
 
@@ -263,21 +264,21 @@ class QuranDatabase(private val applicationContext: Context) {
             )
         } catch (ex: QuranDatabaseException) {
             val message =
-                String.format("Failed getting metadata for chapter type = %s", chapterType.name)
+                String.format("Failed getting metadata for section type = %s", sectionType.name)
             throw QuranDatabaseException(message, ex)
         }
 
-        val chapterTypeColumnIndex = cursor.getColumnIndex(COLUMN_NAME_CHAPTER_TYPE)
-        val chapterNumberColumnIndex = cursor.getColumnIndex(COLUMN_NAME_CHAPTER_NUMBER)
+        val sectionTypeColumnIndex = cursor.getColumnIndex(COLUMN_NAME_SECTION_TYPE)
+        val sectionNumberColumnIndex = cursor.getColumnIndex(COLUMN_NAME_SECTION_NUMBER)
         val ayaCountColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA_COUNT)
         val suraColumnIndex = cursor.getColumnIndex(COLUMN_NAME_SURA)
         val ayaColumnIndex = cursor.getColumnIndex(COLUMN_NAME_AYA)
 
         while (cursor.moveToNext()) {
-            chapterMetadataList.add(
-                ChapterMetadata(
-                    cursor.getString(chapterTypeColumnIndex),
-                    cursor.getInt(chapterNumberColumnIndex),
+            sectionMetadataList.add(
+                SectionMetadata(
+                    cursor.getString(sectionTypeColumnIndex),
+                    cursor.getInt(sectionNumberColumnIndex),
                     cursor.getInt(ayaCountColumnIndex),
                     cursor.getInt(suraColumnIndex),
                     cursor.getInt(ayaColumnIndex)
@@ -287,30 +288,30 @@ class QuranDatabase(private val applicationContext: Context) {
 
         cursor.close()
 
-        if (chapterMetadataList.isEmpty()) {
+        if (sectionMetadataList.isEmpty()) {
             val message =
-                String.format("Failed getting metadata for chapter type = %s", chapterType.name)
+                String.format("Failed getting metadata for section type = %s", sectionType.name)
             throw QuranDatabaseException(message)
         }
 
-        return chapterMetadataList
+        return sectionMetadataList
     }
 
     /**
-     * Gets the metadata for the specified chapter.
+     * Gets the metadata for the specified section.
      *
-     * @param chapterType   the chapter type for which to get metadata.
-     * @param chapterNumber the number of the chapter within the given chapter type.
-     * @return the metadata for the specified chapter.
+     * @param sectionType   the section type for which to get metadata.
+     * @param sectionNumber the number of the section within the given section type.
+     * @return the metadata for the specified section.
      * @throws QuranDatabaseException if there was an error getting the metadata from the database.
      */
     @Throws(QuranDatabaseException::class)
-    fun getMetadataForChapter(chapterType: ChapterType, chapterNumber: Int): ChapterMetadata {
-        var chapterMetadata: ChapterMetadata? = null
+    fun getMetadataForSection(sectionType: SectionType, sectionNumber: Int): SectionMetadata {
+        var sectionMetadata: SectionMetadata? = null
 
         val columns = arrayOf(COLUMN_NAME_AYA_COUNT, COLUMN_NAME_SURA, COLUMN_NAME_AYA)
-        val selection = "$COLUMN_NAME_CHAPTER_TYPE = ? AND $COLUMN_NAME_CHAPTER_NUMBER = ? "
-        val selectionArgs = arrayOf(chapterType.nameInDatabase, chapterNumber.toString())
+        val selection = "$COLUMN_NAME_SECTION_TYPE = ? AND $COLUMN_NAME_SECTION_NUMBER = ? "
+        val selectionArgs = arrayOf(sectionType.nameInDatabase, sectionNumber.toString())
         val limit = "1"
 
         val cursor: Cursor
@@ -326,9 +327,9 @@ class QuranDatabase(private val applicationContext: Context) {
             )
         } catch (ex: QuranDatabaseException) {
             val message = String.format(
-                "Failed getting chapter metadata for chapter type = %s, chapter number = %s",
-                chapterType.name,
-                chapterNumber
+                "Failed getting section metadata for section type = %s, section number = %s",
+                sectionType.name,
+                sectionNumber
             )
             throw QuranDatabaseException(message, ex)
         }
@@ -342,9 +343,9 @@ class QuranDatabase(private val applicationContext: Context) {
             val sura = cursor.getInt(suraColumnIndex)
             val aya = cursor.getInt(ayaColumnIndex)
 
-            chapterMetadata = ChapterMetadata(
-                chapterType.nameInDatabase,
-                chapterNumber,
+            sectionMetadata = SectionMetadata(
+                sectionType.nameInDatabase,
+                sectionNumber,
                 ayaCount,
                 sura,
                 aya
@@ -353,16 +354,16 @@ class QuranDatabase(private val applicationContext: Context) {
 
         cursor.close()
 
-        if (chapterMetadata == null) {
+        if (sectionMetadata == null) {
             val message = String.format(
-                "Failed getting chapter metadata for chapter type = %s, chapter number = %s",
-                chapterType.name,
-                chapterNumber
+                "Failed getting section metadata for section type = %s, section number = %s",
+                sectionType.name,
+                sectionNumber
             )
             throw QuranDatabaseException(message)
         }
 
-        return chapterMetadata
+        return sectionMetadata
     }
 
     /**
@@ -458,9 +459,10 @@ class QuranDatabase(private val applicationContext: Context) {
         /**
          * (Internal visibility for unit testing purposes.)
          */
-        internal const val DATABASE_NAME = "com.tazkiyatech.quran.db"
+        internal const val DATABASE_NAME = "com.tazkiyatech.quran.v2.db"
 
-        private const val LEGACY_DATABASE_NAME = "com.thinkincode.quran.db"
+        private const val VERSION_0_DATABASE_NAME = "com.thinkincode.quran.db"
+        private const val VERSION_1_DATABASE_NAME = "com.tazkiyatech.quran.db"
 
         private const val TABLE_NAME_QURAN_METADATA = "quran_metadata"
         private const val TABLE_NAME_QURAN_TEXT = "quran_text"
@@ -468,8 +470,8 @@ class QuranDatabase(private val applicationContext: Context) {
 
         private const val COLUMN_NAME_AYA = "aya"
         private const val COLUMN_NAME_AYA_COUNT = "aya_count"
-        private const val COLUMN_NAME_CHAPTER_TYPE = "chapter_type"
-        private const val COLUMN_NAME_CHAPTER_NUMBER = "chapter_number"
+        private const val COLUMN_NAME_SECTION_TYPE = "section_type"
+        private const val COLUMN_NAME_SECTION_NUMBER = "section_number"
         private const val COLUMN_NAME_NAME = "name"
         private const val COLUMN_NAME_SURA = "sura"
         private const val COLUMN_NAME_TEXT = "text"

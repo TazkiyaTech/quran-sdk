@@ -239,7 +239,7 @@ class QuranDatabaseTests: XCTestCase {
     
     func test_getAyahsInSurah_for_each_and_every_surah() throws {
         // Given.
-        let surahMetadataArray = try quranDatabase.getMetadataForChapterType(.surah)
+        let surahMetadataArray = try quranDatabase.getMetadataForSections(ofType: .surah)
         
         XCTAssertEqual(114, surahMetadataArray.count)
         
@@ -248,7 +248,7 @@ class QuranDatabaseTests: XCTestCase {
             let expectedNumberOfVerses = surahMetadata.numAyahs
             
             // When.
-            let actualNumberOfVerses = try quranDatabase.getAyahsInSurah(surahMetadata.chapterNumber).count
+            let actualNumberOfVerses = try quranDatabase.getAyahsInSurah(surahMetadata.sectionNumber).count
             
             // Then.
             XCTAssertEqual(expectedNumberOfVerses, actualNumberOfVerses)

@@ -1,5 +1,5 @@
 //
-//  ChapterMetadata.swift
+//  SectionMetadata.swift
 //  QuranSDK
 //
 //  Created by Adil on 14/06/2019.
@@ -8,10 +8,13 @@
 
 import Foundation
 
-public struct ChapterMetadata {
+/**
+ * Metadata which describes a section of the Quran.
+ */
+public struct SectionMetadata {
     
-    let chapterType: ChapterType
-    let chapterNumber: Int
+    let sectionType: SectionType
+    let sectionNumber: Int
     let numAyahs: Int
     let surahNumber: Int
     let ayahNumber: Int

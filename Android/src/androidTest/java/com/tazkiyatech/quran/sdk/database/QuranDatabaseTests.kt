@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
-import com.tazkiyatech.quran.sdk.model.ChapterType
+import com.tazkiyatech.quran.sdk.model.SectionType
 import org.hamcrest.collection.IsIterableContainingInOrder.contains
 import org.hamcrest.core.Is.`is`
 import org.junit.After
@@ -20,7 +20,7 @@ class QuranDatabaseTests {
 
     @Before
     fun setUp() {
-        quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext<Context>())
+        quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
 
         val deleteResult = quranDatabase.deleteFileInInternalStorage(QuranDatabase.DATABASE_NAME)
 
@@ -80,7 +80,7 @@ class QuranDatabaseTests {
     @Test
     fun openDatabase_on_two_separate_instances() {
         // Given.
-        QuranDatabase(ApplicationProvider.getApplicationContext<Context>()).openDatabase()
+        QuranDatabase(ApplicationProvider.getApplicationContext()).openDatabase()
 
         // When.
         quranDatabase.openDatabase()
@@ -234,7 +234,7 @@ class QuranDatabaseTests {
     @Test
     fun getAyahsInSurah_for_each_and_every_surah() {
         // Given.
-        val surahMetadataList = quranDatabase.getMetadataForChapterType(ChapterType.SURAH)
+        val surahMetadataList = quranDatabase.getMetadataForSectionType(SectionType.SURAH)
 
         assertEquals(114, surahMetadataList.size)
 
@@ -243,7 +243,7 @@ class QuranDatabaseTests {
             val expectedNumberOfVerses = surahMetadata.numAyahs
 
             // When.
-            val actualNumberOfVerses = quranDatabase.getAyahsInSurah(surahMetadata.chapterNumber).size
+            val actualNumberOfVerses = quranDatabase.getAyahsInSurah(surahMetadata.sectionNumber).size
 
             // Then.
             assertEquals(expectedNumberOfVerses, actualNumberOfVerses)
