@@ -24,7 +24,6 @@ class QuranDatabase(private val applicationContext: Context) {
      */
     internal var sqLiteDatabase: SQLiteDatabase? = null
         private set
-        @JvmName("getSQLiteDatabase") get
 
     /**
      * Opens the Quran database for reading, if it's not already open.
@@ -373,7 +372,6 @@ class QuranDatabase(private val applicationContext: Context) {
      *
      * @return true iff the Quran database is open for reading.
      */
-    @JvmName("isDatabaseOpen")
     internal fun isDatabaseOpen() = sqLiteDatabase?.isOpen == true
 
     /**
@@ -383,7 +381,6 @@ class QuranDatabase(private val applicationContext: Context) {
      *
      * @return true iff the file with the given name exists in internal storage.
      */
-    @JvmName("isFileExistsInInternalStorage")
     internal fun isFileExistsInInternalStorage(filename: String): Boolean {
         return getFileInInternalStorage(filename).isFile
     }
@@ -395,7 +392,6 @@ class QuranDatabase(private val applicationContext: Context) {
      *
      * @return true iff the file with the give name is deleted from internal storage.
      */
-    @JvmName("deleteFileInInternalStorage")
     internal fun deleteFileInInternalStorage(filename: String): Boolean {
         val file = getFileInInternalStorage(filename)
 
