@@ -6,7 +6,7 @@ package com.tazkiyatech.quran.sdk.model
  * @property surahNumber The number (not index) of this Surah.
  * @property numVerses The number of Verses/Ayahs in this Surah.
  */
-@Deprecated("Use the QuranDatabase.getMetadataForSectionType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
+@Deprecated("Use the QuranDatabase.getMetadataForSectionsOfType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
 enum class Surah(
     val surahNumber: Int,
     val numVerses: Int

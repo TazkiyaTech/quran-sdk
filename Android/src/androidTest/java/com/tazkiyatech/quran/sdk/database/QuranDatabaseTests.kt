@@ -233,7 +233,7 @@ class QuranDatabaseTests {
     @Test
     fun getAyahsInSurah_for_each_and_every_surah() {
         // Given.
-        val surahMetadataList = quranDatabase.getMetadataForSectionType(SectionType.SURAH)
+        val surahMetadataList = quranDatabase.getMetadataForSectionsOfType(SectionType.SURAH)
 
         assertEquals(114, surahMetadataList.size)
 

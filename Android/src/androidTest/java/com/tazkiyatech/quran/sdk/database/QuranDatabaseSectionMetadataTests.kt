@@ -55,12 +55,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_surah() {
+    fun getMetadataForSectionsOfType_surah() {
         // Given.
         val sectionType = SectionType.SURAH
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(114, sectionMetadataList.size)
@@ -72,12 +72,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_juz_in_madinah_mushaf() {
+    fun getMetadataForSectionsOfType_juz_in_madinah_mushaf() {
         // Given.
         val sectionType = SectionType.JUZ_IN_MADINAH_MUSHAF
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(30, sectionMetadataList.size)
@@ -89,12 +89,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_hizb_in_madinah_mushaf() {
+    fun getMetadataForSectionsOfType_hizb_in_madinah_mushaf() {
         // Given.
         val sectionType = SectionType.HIZB_IN_MADINAH_MUSHAF
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(60, sectionMetadataList.size)
@@ -106,12 +106,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_hizb_quarter_in_madinah_mushaf() {
+    fun getMetadataForSectionsOfType_hizb_quarter_in_madinah_mushaf() {
         // Given.
         val sectionType = SectionType.HIZB_QUARTER_IN_MADINAH_MUSHAF
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(240, sectionMetadataList.size)
@@ -123,12 +123,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_juz_in_majeedi_mushaf() {
+    fun getMetadataForSectionsOfType_juz_in_majeedi_mushaf() {
         // Given.
         val sectionType = SectionType.JUZ_IN_MAJEEDI_MUSHAF
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(30, sectionMetadataList.size)
@@ -140,12 +140,12 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     @Test
-    fun getMetadataForSectionType_with_section_type_juz_quarter_in_majeedi_mushaf() {
+    fun getMetadataForSectionsOfType_juz_quarter_in_majeedi_mushaf() {
         // Given.
         val sectionType = SectionType.JUZ_QUARTER_IN_MAJEEDI_MUSHAF
 
         // When.
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         // Then.
         assertEquals(120, sectionMetadataList.size)
@@ -159,10 +159,10 @@ class QuranDatabaseSectionMetadataTests {
     @Test
     fun number_of_verses_in_each_hizb_matches_the_number_of_verses_in_each_hizb_quarter() {
         val hizbMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.HIZB_IN_MADINAH_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.HIZB_IN_MADINAH_MUSHAF)
 
         val hizbQuarterMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.HIZB_QUARTER_IN_MADINAH_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.HIZB_QUARTER_IN_MADINAH_MUSHAF)
 
         for (i in hizbMetadataList.indices) {
             val expected = hizbMetadataList[i].numAyahs
@@ -179,10 +179,10 @@ class QuranDatabaseSectionMetadataTests {
     @Test
     fun number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_hizb() {
         val juzMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.JUZ_IN_MADINAH_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.JUZ_IN_MADINAH_MUSHAF)
 
         val hizbMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.HIZB_IN_MADINAH_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.HIZB_IN_MADINAH_MUSHAF)
 
         for (i in juzMetadataList.indices) {
             val expected = juzMetadataList[i].numAyahs
@@ -196,10 +196,10 @@ class QuranDatabaseSectionMetadataTests {
     @Test
     fun number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_juz_quarter() {
         val juzMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.JUZ_IN_MAJEEDI_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.JUZ_IN_MAJEEDI_MUSHAF)
 
         val juzQuarterMetadataList =
-            quranDatabase.getMetadataForSectionType(SectionType.JUZ_QUARTER_IN_MAJEEDI_MUSHAF)
+            quranDatabase.getMetadataForSectionsOfType(SectionType.JUZ_QUARTER_IN_MAJEEDI_MUSHAF)
 
         for (i in juzMetadataList.indices) {
             val expected = juzMetadataList[i].numAyahs
@@ -212,7 +212,7 @@ class QuranDatabaseSectionMetadataTests {
 
     @Test
     fun surahNumber_and_ayahNumber_in_each_surah_is_as_expected() {
-        val surahMetadataList = quranDatabase.getMetadataForSectionType(SectionType.SURAH)
+        val surahMetadataList = quranDatabase.getMetadataForSectionsOfType(SectionType.SURAH)
 
         for (i in surahMetadataList.indices) {
             val sectionMetadata = surahMetadataList[i]
@@ -270,7 +270,7 @@ class QuranDatabaseSectionMetadataTests {
     }
 
     private fun assertSurahAndVerseNumberOfFirstVerseInEachSection(sectionType: SectionType) {
-        val sectionMetadataList = quranDatabase.getMetadataForSectionType(sectionType)
+        val sectionMetadataList = quranDatabase.getMetadataForSectionsOfType(sectionType)
 
         for (i in sectionMetadataList.indices) {
             val surahNumberA = sectionMetadataList[i].surahNumber

@@ -243,7 +243,7 @@ class QuranDatabase(private val applicationContext: Context) {
      * @throws QuranDatabaseException if there was an error getting the metadata from the database.
      */
     @Throws(QuranDatabaseException::class)
-    fun getMetadataForSectionType(sectionType: SectionType): List<SectionMetadata> {
+    fun getMetadataForSectionsOfType(sectionType: SectionType): List<SectionMetadata> {
         val sectionMetadataList = ArrayList<SectionMetadata>()
 
         val selection = "$COLUMN_NAME_SECTION_TYPE = ? "

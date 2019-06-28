@@ -8,7 +8,7 @@ package com.tazkiyatech.quran.sdk.model
  * @property fromSurah The number (not index) of the Surah in which this Juz-Quarter begins.
  * @property fromVerse The number (not index) of the Verse/Ayah within [fromSurah] at which this Juz-Quarter begins.
  */
-@Deprecated("Use the QuranDatabase.getMetadataForSectionType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
+@Deprecated("Use the QuranDatabase.getMetadataForSectionsOfType(SectionType) and QuranDatabase.getMetadataForSection(SectionType, int) methods instead.")
 enum class JuzQuarter(
     val juzNumber: Int,
     val quarterNumber: Int,
