@@ -451,7 +451,7 @@ class QuranDatabase(private val applicationContext: Context) {
         )
     }
 
-    companion object {
+    internal companion object {
         /**
          * (Internal visibility for unit testing purposes.)
          */
