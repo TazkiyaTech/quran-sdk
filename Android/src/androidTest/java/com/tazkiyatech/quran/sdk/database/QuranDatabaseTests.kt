@@ -1,6 +1,5 @@
 package com.tazkiyatech.quran.sdk.database
 
-import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
@@ -90,18 +89,18 @@ class QuranDatabaseTests {
     }
 
     @Test
-    fun getSurahName_with_surah_number_1() {
+    fun getNameOfSurah_with_surah_number_1() {
         // When.
-        val surahName = quranDatabase.getSurahName(1)
+        val surahName = quranDatabase.getNameOfSurah(1)
 
         // Then.
         assertThat(surahName, `is`("الفاتحة"))
     }
 
     @Test(expected = QuranDatabaseException::class)
-    fun getSurahName_with_invalid_surah_number() {
+    fun getNameOfSurah_with_invalid_surah_number() {
         // When.
-        quranDatabase.getSurahName(115)
+        quranDatabase.getNameOfSurah(115)
     }
 
     @Test

@@ -137,7 +137,7 @@ public class QuranDatabase: NSObject {
      * - Returns: the name of the specified Surah.
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah name from the database.
      */
-    public func getSurahName(_ surahNumber: Int) throws -> String {
+    public func getNameOfSurah(_ surahNumber: Int) throws -> String {
         var statementObject: OpaquePointer? = nil
         
         defer {

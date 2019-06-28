@@ -108,7 +108,7 @@ class QuranDatabase(private val applicationContext: Context) {
      * @throws QuranDatabaseException if there was an error getting the Surah name from the database.
      */
     @Throws(QuranDatabaseException::class)
-    fun getSurahName(surahNumber: Int): String {
+    fun getNameOfSurah(surahNumber: Int): String {
         var surahName: String? = null
 
         val columns = arrayOf(COLUMN_NAME_NAME)

@@ -79,17 +79,17 @@ class QuranDatabaseTests: XCTestCase {
         XCTAssertTrue(quranDatabase.isDatabaseOpen());
     }
 
-    func test_getSurahName_with_surah_number_1() throws {
+    func test_getNameOfSurah_with_surah_number_1() throws {
         // When.
-        let surahName = try quranDatabase.getSurahName(1)
+        let surahName = try quranDatabase.getNameOfSurah(1)
         
         // Then.
         XCTAssertEqual("الفاتحة", surahName);
     }
     
-    func test_getSurahName_with_invalid_surah_number() {
+    func test_getNameOfSurah_with_invalid_surah_number() {
         // When. / Then.
-        XCTAssertThrowsError(try quranDatabase.getSurahName(115))
+        XCTAssertThrowsError(try quranDatabase.getNameOfSurah(115))
     }
     
     func test_getSurahNames() throws {
