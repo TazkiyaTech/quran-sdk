@@ -10,10 +10,10 @@ To start using this library you need to add the following `jcenter` repository d
         jcenter()
     }
 
-Next, you need to copy the following dependency declaration into the `build.gradle` file of your Android project:
+Next, you need to add the following `quran-sdk` dependency declaration into the `build.gradle` file of your Android project:
 
     dependencies {
-        compile 'com.tazkiyatech:quran-sdk:1.0.0'
+        implementation 'com.tazkiyatech:quran-sdk:1.0.0'
     }
 
 ## Initialisation
