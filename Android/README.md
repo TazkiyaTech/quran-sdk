@@ -18,16 +18,16 @@ Next, you need to copy the following dependency declaration into the `build.grad
 
 ## Initialisation
 
-On startup of your application, create a [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) instance as follows:
+On startup of your application, create a [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) instance as follows:
 
     QuranDatabase quranDatabase = new QuranDatabase(myApplicationContext);
     quranDatabase.openDatabase();
 
-Be sure to pass the application context into the [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
+Be sure to pass the application context into the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
 
 ## Accessing Surahs and Ayahs
 
-Once the Quran database is setup for your application (see above), you can call any of the public getter methods of the [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) class to access Surahs and Ayahs in the Quran database. These methods are as follows:
+Once the Quran database is setup for your application (see above), you can call any of the public getter methods of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class to access Surahs and Ayahs in the Quran database. These methods are as follows:
 
     // get the names of all of the Surahs in the Quran
     List<String> surahNames = quranDatabase.getSurahNames();
@@ -47,12 +47,12 @@ We advise calling all of the above methods in a background thread since the meth
 
 As a bonus feature we have also included within the library some short, concise quotes and tips as inspiration for those memorising the Quran.
 
-Quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranQuotes.java) class as follows:
+Quotes about the magnificence and virtues of the Quran can be accessed by means of the [QuranQuotes](src/main/java/com/tazkiyatech/quran/sdk/database/QuranQuotes.kt) class as follows:
 
     QuranQuotes quranQuotes = new QuranQuotes(myApplicationContext.getResources());
     String quranQuote = quranQuotes.getNextRandom();
 
-Practical tips about how to learn and remember the Quran can be accessed by means of the [HifdhTips](Android/src/main/java/com/tazkiyatech/quran/sdk/database/HifdhTips.java) class as follows:
+Practical tips about how to learn and remember the Quran can be accessed by means of the [HifdhTips](src/main/java/com/tazkiyatech/quran/sdk/database/HifdhTips.kt) class as follows:
 
     HifdhTips hifdhTips = new HifdhTips(myApplicationContext.getResources());
     String hifdhTip = hifdhTips.getNextRandom();
