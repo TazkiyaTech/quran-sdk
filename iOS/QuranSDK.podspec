@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'https://github.com/adil-hussain-84/quran-sdk/blob/master/iOS/README.md'
   s.homepage         = 'https://github.com/adil-hussain-84/quran-sdk'
   s.ios.deployment_target = '10.0'
-  s.license          = 'MIT'
+  s.license          = { :type => 'BSD' }
   s.name             = 'QuranSDK'
   s.version          = '1.0.0'
   s.social_media_url = 'https://twitter.com/TazkiyaTech'
