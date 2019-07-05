@@ -399,7 +399,7 @@ class QuranDatabase(private val applicationContext: Context) {
     }
 
     private fun getFileInInternalStorage(filename: String): File =
-        File(applicationContext.filesDir, filename)
+        File(applicationContext.noBackupFilesDir, filename)
 
     /**
      * Copies the Quran database from assets to internal storage,
@@ -410,7 +410,7 @@ class QuranDatabase(private val applicationContext: Context) {
     private fun copyFileFromAssetsToInternalStorage(filename: String) {
         try {
             applicationContext.assets.open(filename).use { inputStream ->
-                applicationContext.openFileOutput(filename, Context.MODE_PRIVATE)
+                getFileInInternalStorage(filename).outputStream()
                     .use { outputStream ->
                         inputStream.copyTo(outputStream)
                     }
