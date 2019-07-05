@@ -4,13 +4,13 @@ This library makes it easy for you to access verses of the Quran in your Android
 
 ## Setup
 
-To start using the library in your app you'll need to first declare the repository from which you'll get the library. You can do this by copying the following `jcenter` repository declaration into the `build.gradle` file of your app:
+To start using this library you need to add the following `jcenter` repository declaration into the `build.gradle` file of your Android project:
 
     repositories {
         jcenter()
     }
 
-Next, you need to add this library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
+Next, you need to copy the following dependency declaration into the `build.gradle` file of your Android project:
 
     dependencies {
         compile 'com.tazkiyatech:quran-sdk:1.0.0'
@@ -18,12 +18,12 @@ Next, you need to add this library as a dependency in your app. You can do this 
 
 ## Initialisation
 
-On startup of your app, create a [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) instance as follows:
+On startup of your application, create a [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) instance as follows:
 
     QuranDatabase quranDatabase = new QuranDatabase(myApplicationContext);
     quranDatabase.openDatabase();
 
-Be sure to pass the application context into the [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.initialise()` method in a background thread since it accesses file storage.
+Be sure to pass the application context into the [QuranDatabase](Android/src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.java) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
 
 ## Accessing Surahs and Ayahs
 
