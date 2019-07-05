@@ -10,6 +10,10 @@ import Foundation
 
 /**
  * An enum of the different ways that the Quran is sectioned in the Madinah and Majeedi mushafs.
+ *
+ * The Madinah script mushaf is the mushaf common in the Arab world which sections the Quran by Hizbs and Hizb-Quarters.
+ *
+ * The Majeedi script mushaf is the simplified mushaf common in South Asia which sections the Quran by Rukus and Juz-Quarters.
  */
 public enum SectionType: String {
     case surah = "surah"

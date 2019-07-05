@@ -1,11 +1,13 @@
 package com.tazkiyatech.quran.sdk.model
 
-import java.lang.IllegalArgumentException
-
 /**
  * An enum of the different ways that the Quran is sectioned in the Madinah and Majeedi mushafs.
  *
- * @property nameInDatabase The name of the section type in the 'section_type' column of the 'quran_metadata' table.
+ * The Madinah script mushaf is the mushaf common in the Arab world which sections the Quran by Hizbs and Hizb-Quarters.
+ *
+ * The Majeedi script mushaf is the simplified mushaf common in South Asia which sections the Quran by Rukus and Juz-Quarters.
+ *
+ * @param nameInDatabase The name of the section type in the 'section_type' column of the 'quran_metadata' table.
  */
 enum class SectionType(val nameInDatabase: String) {
 
