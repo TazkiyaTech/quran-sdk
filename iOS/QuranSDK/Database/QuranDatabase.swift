@@ -418,10 +418,7 @@ public class QuranDatabase: NSObject {
 
     private func copyDatabaseFromFrameworkBundleToInternalStorage() throws {
         let storageURL = try getURLForQuranDatabaseInInternalStorage()
-
-        guard let bundleURL = getURLForQuranDatabaseInFrameworkBundle() else {
-            throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle
-        }
+        let bundleURL = try getURLForQuranDatabaseInFrameworkBundle()
 
         try FileManager.default.copyItem(at: bundleURL, to: storageURL)
     }
@@ -435,9 +432,14 @@ public class QuranDatabase: NSObject {
         ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
     }
 
-    private func getURLForQuranDatabaseInFrameworkBundle() -> URL? {
+    private func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
         let bundle = Bundle(for: type(of: self))
-        return bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db")!
+        
+        guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db") else {
+            throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle
+        }
+        
+        return url
     }
 }
 
