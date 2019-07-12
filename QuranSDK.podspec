@@ -13,11 +13,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.license = { :type => "Apache 2.0", :file => "LICENSE" }
   s.name = 'QuranSDK'
-  s.version = '1.0.0'
+  s.resources = 'iOS/QuranSDK/**/*.db'
   s.social_media_url = 'https://twitter.com/TazkiyaTech'
   s.source = { :git => 'https://github.com/adil-hussain-84/quran-sdk.git', :tag => 'release_1.0.0' }
   s.source_files = 'iOS/QuranSDK/**/*.swift'
   s.summary = 'An iOS framework that makes it easy for you to access verses of the Quran in your iOS projects.'
   s.swift_version = '5.0'
+  s.version = '1.0.0'
 
 end
