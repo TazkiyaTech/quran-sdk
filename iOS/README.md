@@ -25,7 +25,7 @@ Be sure to call the `QuranDatabase.openDatabse()` method in a background thread 
 
 ## Accessing Surahs and Ayahs
 
-You can access the names of the Surahs and the text of the Ayahs in the Quran database by calling any of the following methods on an instance of the [QuranDatabase](QuranSDK/Database/QuranDatabase.swift) class:
+You can access the names of the Surahs and the text of the Ayahs in the Quran by calling any of the following methods on an instance of the [QuranDatabase](QuranSDK/Database/QuranDatabase.swift) class:
 
     // get the names of all of the Surahs in the Quran
     let surahNames: [String] = try quranDatabase.getSurahNames();

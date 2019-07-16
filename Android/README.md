@@ -28,7 +28,7 @@ Be sure to pass the application context into the [QuranDatabase](src/main/java/c
 
 ## Accessing Surahs and Ayahs
 
-You can access the names of the Surahs and the text of the Ayahs in the Quran database by calling any of the following methods on an instance of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class:
+You can access the names of the Surahs and the text of the Ayahs in the Quran by calling any of the following methods on an instance of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class:
 
     // get the names of all of the Surahs in the Quran
     val surahNames: List<String> = quranDatabase.getSurahNames()
