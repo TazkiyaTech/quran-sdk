@@ -12,7 +12,7 @@ Firstly, add the following pod declaration in the `Podfile` of your iOS project:
     use_frameworks!
     pod 'QuranSDK', '~> 1.0.0'
 
-Next, run the `pod install` command for your iOS project and you should then be able to add `import QuranSDK` in your Swift code.
+Next, run the `pod install` command for your iOS project and you should then be able to import the `QuranSDK` module in your Swift code.
 
 ## Initialisation
 
@@ -25,7 +25,7 @@ Be sure to call the `QuranDatabase.openDatabse()` method in a background thread 
 
 ## Accessing Surahs and Ayahs
 
-Once the Quran database is setup for your application (see above), you can call any of the public getter methods of the [QuranDatabase](QuranSDK/Database/QuranDatabase.swift) class to access Surahs and Ayahs in the Quran database. These methods are as follows:
+You can access the names of the Surahs and the text of the Ayahs in the Quran database by calling any of the following methods on an instance of the [QuranDatabase](QuranSDK/Database/QuranDatabase.swift) class:
 
     // get the names of all of the Surahs in the Quran
     let surahNames: [String] = try quranDatabase.getSurahNames();
@@ -39,4 +39,19 @@ Once the Quran database is setup for your application (see above), you can call 
     // get the text of the specified Ayah
     let ayah: String = try quranDatabase.getAyah(surahNumber: surahNumber, ayahNumber: ayahNumber);
 
-We advise calling all of the above methods in a background thread since the methods access file storage.
+Be sure to call these methods in a background thread since they access file storage.
+
+## Accessing Quran metadata
+
+You can access [metadata](QuranSDK/Models/SectionMetadata.swift) about the Quran by calling any of the following methods on an instance of the [QuranDatabase](QuranSDK/Database/QuranDatabase.swift) class:
+
+    // get metadata for all sections in the Quran of a particular type (i.e. for all Surahs, Juzs, Juz-Quarters, Hizbs or Hizb-Quarters)
+    let sectionType = SectionType.surah
+    let sectionMetadataArray: [SectionMetadata] = try getMetadataForSections(ofType: sectionType)
+
+    /// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
+    let sectionType = SectionType.surah
+    let sectionNumber = 1
+    let sectionMetadata: SectionMetadata = try getMetadataForSection(sectionType: sectionType, sectionNumber: sectionNumber)
+
+Be sure to call these methods in a background thread since they access file storage.

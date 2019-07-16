@@ -28,7 +28,7 @@ Be sure to pass the application context into the [QuranDatabase](src/main/java/c
 
 ## Accessing Surahs and Ayahs
 
-Once the Quran database is setup for your application (see above), you can call any of the public getter methods of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class to access Surahs and Ayahs in the Quran database. These methods are as follows:
+You can access the names of the Surahs and the text of the Ayahs in the Quran database by calling any of the following methods on an instance of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class:
 
     // get the names of all of the Surahs in the Quran
     val surahNames: List<String> = quranDatabase.getSurahNames()
@@ -42,7 +42,22 @@ Once the Quran database is setup for your application (see above), you can call 
     // get the text of the specified Ayah
     val ayah: String = quranDatabase.getAyah(surahNumber, ayahNumber)
 
-We advise calling all of the above methods in a background thread since the methods access file storage.
+Be sure to call these methods in a background thread since they access file storage.
+
+## Accessing Quran metadata
+
+You can access [metadata](src/main/java/com/tazkiyatech/quran/sdk/model/SectionMetadata.kt) about the Quran by calling any of the following methods on an instance of the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) class:
+
+    // get metadata for all sections in the Quran of a particular type (i.e. for all Surahs, Juzs, Juz-Quarters, Hizbs or Hizb-Quarters)
+    val sectionType = SectionType.SURAH
+    val sectionMetadataList: List<SectionMetadata> = getMetadataForSectionsOfType(sectionType)
+
+    /// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
+    val sectionType = SectionType.SURAH
+    val sectionNumber = 1
+    val sectionMetadata: SectionMetadata = getMetadataForSection(sectionType, sectionNumber)
+
+Be sure to call these methods in a background thread since they access file storage.
 
 ## Quran Quotes and Hifdh Tips
 
