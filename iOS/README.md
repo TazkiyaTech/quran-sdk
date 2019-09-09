@@ -10,7 +10,7 @@ Firstly, add the following pod declaration in the `Podfile` of your iOS project:
 
     platform :ios, '10.0'
     use_frameworks!
-    pod 'QuranSDK', '~> 1.0.0'
+    pod 'QuranSDK', '~> 1.0.1'
 
 Next, run the `pod install` command for your iOS project and you should then be able to import the `QuranSDK` module in your Swift code.
 

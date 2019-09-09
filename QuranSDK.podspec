@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
   s.name = 'QuranSDK'
   s.resources = 'iOS/QuranSDK/**/*.db'
   s.social_media_url = 'https://twitter.com/TazkiyaTech'
-  s.source = { :git => 'https://github.com/adil-hussain-84/quran-sdk.git', :tag => 'release_1.0.0' }
+  s.source = { :git => 'https://github.com/adil-hussain-84/quran-sdk.git', :tag => 'iOS_1.0.1' }
   s.source_files = 'iOS/QuranSDK/**/*.swift'
   s.summary = 'An iOS framework that makes it easy for you to access verses of the Quran in your iOS projects.'
   s.swift_version = '5.0'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
 
 end
