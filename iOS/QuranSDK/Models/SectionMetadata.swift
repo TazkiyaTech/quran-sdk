@@ -13,10 +13,10 @@ import Foundation
  */
 public struct SectionMetadata {
     
-    let sectionType: SectionType
-    let sectionNumber: Int
-    let numAyahs: Int
-    let surahNumber: Int
-    let ayahNumber: Int
+    public let sectionType: SectionType
+    public let sectionNumber: Int
+    public let numAyahs: Int
+    public let surahNumber: Int
+    public let ayahNumber: Int
     
 }
