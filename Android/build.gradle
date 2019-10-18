@@ -80,7 +80,8 @@ publishing {
     publications {
         QuranSDK(MavenPublication) {
             from components.android
-            artifact generateJavadocJar
+//            TODO: reinstate the Javadoc artifact once the following issue is resolved: https://github.com/Kotlin/dokka/issues/294
+//            artifact generateJavadocJar
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName').toString()
