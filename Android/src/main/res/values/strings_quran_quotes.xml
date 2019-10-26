@@ -4,21 +4,21 @@
     <string-array name="quran_quotes">
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; Be mindful of Allah, and He will teach you;
             He has full knowledge of everything.\"
 	        (2:282)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"And hold fast, all of you together, to the Rope of Allah
             and be not divided among yourselves&#8230;\"
 	        (3:103)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
             \"Alif, Lam, Mim, Sad.
             This Book has been sent down to you [Prophet]
             &#8212; let there not be anxiety in your heart because of it &#8212;
@@ -27,7 +27,7 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"The believers are those who&#8230;
             when His (Allah\'s) verses are recited to them,
             it increases them in faith;
@@ -36,28 +36,28 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"O mankind, there has come to you instruction from your Lord
             and healing for what is in the breasts&#8230;\"
 	        (10:57)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; This revelation is no fabrication:
             it is a confirmation of the truth of what was sent before it&#8230;\"
 	        (12:111)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; [This revelation] is an explanation of everything;
             a guide and a blessing for those who believe.\"
 	        (12:111)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; These are the verses of the Book.
             What has been sent down to you from your Lord is true,
             but most of the people do not believe.\"
@@ -65,66 +65,66 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; truly it is in the remembrance of Allah that hearts find peace.\"
 	        (13:28)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"Alif, Lam, Ra.
             These are the verses of the Book and a clear #Quran.\"
 		    (15:1)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"We have, without doubt, sent down the #Quran;
             and We will assuredly guard it.\"
 		    (15:9)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"&#8230; We have sent down to you the Book as clarification for all things
             and as guidance and mercy and good tidings for the Muslims.\"
 		    (16:89)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"So when you recite the #Quran, seek refuge in Allah from Satan, the expelled.\"
 		    (16:98)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"Indeed, this #Quran guides to that which is most suitable&#8230;\"
 		    (17:9)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"&#8230; [this #Quran] gives good tidings to the believers who do righteous deeds
             that they will have a great reward.\"
 		    (17:9)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"&#8230; and recite the #Quran in the early dawn.
             Verily, the recitation of the #Quran in the early dawn is ever witnessed.\"
 	        (17:78)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"And We send down of the #Quran that which is healing and a mercy for the believers&#8230;\"
 	        (17:82)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"We have divided the #Quran in portions,
             so that you may recite it to the people gradually,
             and We have revealed it little by little.\"
@@ -132,7 +132,7 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 	        \"And recite what has been revealed to you of the Book of your Lord.
             There is no one to change His words,
             and you will never find a refuge beside Him.\"
@@ -140,21 +140,21 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"&#8230; When the verses of the Most Merciful were recited to them,
             they would fall down prostrating and weeping.\"
 		    (19:52)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"It was not to distress you [Prophet] that We sent down the #Quran to you,
             but as a reminder for those who hold God in awe&#8230;\"
 		    (20:2-3)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
             \"&#8230; (the #Quran has been sent down) in this way (in parts)
             so that We make your heart firm,
             and We revealed it little by little.\"
@@ -162,19 +162,19 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
             \"Is it not sufficient for them that We have sent down to you the Book that is being recited to them?&#8230;\"
             (29:51)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
             \"&#8230; Indeed in that [the #Quran] is a mercy and reminder for a people who believe.\"
             (29:51)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"[This is] a blessed Book We have revealed to you, [O Muhammad],
             that they might reflect upon its verses
             and that those of understanding would be reminded.\"
@@ -182,20 +182,20 @@
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"And We have certainly made the #Quran easy for remembrance,
 	        so is there any who will remember?\"
 		    (54:17)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
 		    \"&#8230; recite the Quran slowly and distinctly&#8230;\"
 		    (73:4)
         </item>
 
         <item>
-            #VerseOfTheDay:
+            #AyahOfTheDay:
             \"We shall teach you [the #Quran] and you will not forget &#8212; unless God wishes;
             He knows both what is open and what is hidden.\"
             (87: 6-7)
