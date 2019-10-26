@@ -12,7 +12,7 @@ Firstly, add the following repository and dependency declaration in the `build.g
         jcenter()
     }
     dependencies {
-        implementation 'com.tazkiyatech:quran-sdk:1.0.0'
+        implementation 'com.tazkiyatech:quran-sdk:1.0.1'
     }
 
 Next, run a Gradle project sync in your IDE of choice and you should then be able to import classes from the `com.tazkiyatech.quran.sdk` package.
