@@ -94,7 +94,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT name FROM sura_names;"
+        let statement = "SELECT name FROM sura_names"
         
         do {
             try compile(statement, into: &statementObject)
@@ -137,7 +137,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber);"
+        let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber)"
         
         do {
             try compile(statement, into: &statementObject)
@@ -176,7 +176,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber);"
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber)"
         
         do {
             try compile(statement, into: &statementObject)
@@ -220,7 +220,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);"
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber)"
         
         do {
             try compile(statement, into: &statementObject)
@@ -259,7 +259,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)';"
+        let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)'"
         
         do {
             try compile(statement, into: &statementObject)
@@ -317,7 +317,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1;"
+        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1"
         
         do {
             try compile(statement, into: &statementObject)
