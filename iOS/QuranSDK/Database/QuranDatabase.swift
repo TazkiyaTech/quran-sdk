@@ -13,9 +13,9 @@ import SQLite3
  * and provides easy methods for accessing its content.
  */
 public class QuranDatabase: NSObject {
-
+    
     private var database: OpaquePointer? = nil
-
+    
     /**
      * Opens the Quran database for reading, if it's not already open.
      *
@@ -25,50 +25,43 @@ public class QuranDatabase: NSObject {
         if (isDatabaseOpen()) {
             return
         }
-
-        var databaseExistsInInternalStorage: Bool
-
+        
+        var internalStorageURL: URL
+        
         do {
-            databaseExistsInInternalStorage = try isDatabaseExistsInInternalStorage()
+            internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed determining whether database exists in internal storage",
-                    underlyingError: error
+                "Failed getting internal storage URL for Quran database",
+                underlyingError: error
             )
         }
-
+        
+        let internalStoragePath = internalStorageURL.path
+        
+        let databaseExistsInInternalStorage = fileExists(atPath: internalStoragePath)
+        
         do {
             if (!databaseExistsInInternalStorage) {
                 try copyDatabaseFromFrameworkBundleToInternalStorage()
             }
         } catch {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed copying database from framework bundle to internal storage",
-                    underlyingError: error
+                "Failed copying database from framework bundle to internal storage",
+                underlyingError: error
             )
         }
-
-        var internalStorageURL: URL
-
-        do {
-            internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
-        } catch {
-            throw QuranDatabaseError.FailedOpeningDatabase(
-                    "Failed created internal storage URL for Quran database",
-                    underlyingError: error
-            )
-        }
-
+        
         let resultCode = sqlite3_open_v2(internalStorageURL.path, &database, SQLITE_OPEN_READONLY, nil)
-
+        
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
-                    "SQLite result code = \(resultCode)",
-                    underlyingError: nil
+                "SQLite result code = \(resultCode)",
+                underlyingError: nil
             )
         }
     }
-
+    
     /**
      * Closes the Quran database.
      *
@@ -76,18 +69,18 @@ public class QuranDatabase: NSObject {
      */
     public func closeDatabase() throws {
         if (!isDatabaseOpen()) {
-            return;
+            return
         }
-
+        
         let resultCode = sqlite3_close(database)
-
+        
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedClosingDatabase("SQLite result code = \(resultCode)")
         }
-
-        database = nil;
+        
+        database = nil
     }
-
+    
     /**
      * Gets the names of all of the Surahs in the Quran.
      *
@@ -101,7 +94,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT name FROM sura_names;";
+        let statement = "SELECT name FROM sura_names;"
         
         do {
             try compile(statement, into: &statementObject)
@@ -129,7 +122,7 @@ public class QuranDatabase: NSObject {
             )
         }
     }
-
+    
     /**
      * Gets the name of the specified Surah.
      *
@@ -144,7 +137,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber);";
+        let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber);"
         
         do {
             try compile(statement, into: &statementObject)
@@ -168,7 +161,7 @@ public class QuranDatabase: NSObject {
             )
         }
     }
-
+    
     /**
      * Gets all of the Ayahs in the specified Surah.
      *
@@ -178,24 +171,24 @@ public class QuranDatabase: NSObject {
      */
     public func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
         var statementObject: OpaquePointer? = nil
-
+        
         defer {
             sqlite3_finalize(statementObject)
         }
-
-        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber);";
-
+        
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber);"
+        
         do {
             try compile(statement, into: &statementObject)
-
+            
             var rows: [String] = []
-
+            
             while (sqlite3_step(statementObject) == SQLITE_ROW) {
                 let columnTextPointer = sqlite3_column_text(statementObject, 0)
                 let columnText = String(cString: columnTextPointer!)
                 rows.append(columnText)
             }
-
+            
             if (rows.isEmpty) {
                 throw QuranDatabaseError.FailedExecutingQuery(
                     "No rows returned in query for Surah \(surahNumber)",
@@ -206,12 +199,12 @@ public class QuranDatabase: NSObject {
             return rows
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                    "Failed getting Ayahs for Surah \(surahNumber)",
-                    underlyingError: error
+                "Failed getting Ayahs for Surah \(surahNumber)",
+                underlyingError: error
             )
         }
     }
-
+    
     /**
      * Gets the text of the specified Ayah.
      *
@@ -222,32 +215,32 @@ public class QuranDatabase: NSObject {
      */
     public func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
         var statementObject: OpaquePointer? = nil
-
+        
         defer {
             sqlite3_finalize(statementObject)
         }
-
-        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);";
-
+        
+        let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber);"
+        
         do {
             try compile(statement, into: &statementObject)
-
+            
             let stepResult = sqlite3_step(statementObject)
-
+            
             if (stepResult == SQLITE_ROW) {
                 let columnTextPointer = sqlite3_column_text(statementObject, 0)
                 let columnText = String(cString: columnTextPointer!)
                 return columnText
             } else {
                 throw QuranDatabaseError.FailedExecutingQuery(
-                        "No rows returned in query. Step result was \(stepResult)",
-                        underlyingError: nil
+                    "No rows returned in query. Step result was \(stepResult)",
+                    underlyingError: nil
                 )
             }
         } catch {
             throw QuranDatabaseError.FailedExecutingQuery(
-                    "Failed getting Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
-                    underlyingError: error
+                "Failed getting Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
+                underlyingError: error
             )
         }
     }
@@ -266,7 +259,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)';";
+        let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)';"
         
         do {
             try compile(statement, into: &statementObject)
@@ -324,7 +317,7 @@ public class QuranDatabase: NSObject {
             sqlite3_finalize(statementObject)
         }
         
-        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1;";
+        let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1;"
         
         do {
             try compile(statement, into: &statementObject)
@@ -356,40 +349,40 @@ public class QuranDatabase: NSObject {
             )
         }
     }
-
+    
     /**
      * Determines whether the database file exists in internal storage.
      *
-     * (Internal visibility for unit testing purposes.)
+     * (Internal visibility for testing purposes.)
      *
      * - Returns: true if the database file exists in internal storage, and false otherwise.
      */
     internal func isDatabaseExistsInInternalStorage() throws -> Bool {
         let path = try getURLForQuranDatabaseInInternalStorage().path
-        return FileManager.default.fileExists(atPath: path)
+        return fileExists(atPath: path)
     }
-
+    
     /**
      * Determines whether the database is open for reading.
      *
-     * (Internal visibility for unit testing purposes.)
+     * (Internal visibility for testing purposes.)
      *
      * - Returns: true if the Quran database is open for reading, and false otherwise.
      */
     internal func isDatabaseOpen() -> Bool {
-        return database != nil;
+        return database != nil
     }
-
+    
     /**
      * Deletes the database file from internal storage.
      *
-     * (Internal visibility for unit testing purposes.)
+     * (Internal visibility for testing purposes.)
      */
     internal func deleteDatabaseInInternalStorage() throws {
         do {
             let fileManager = FileManager.default
             let path = try getURLForQuranDatabaseInInternalStorage().path
-
+            
             if fileManager.fileExists(atPath: path) {
                 try fileManager.removeItem(atPath: path)
             }
@@ -397,7 +390,7 @@ public class QuranDatabase: NSObject {
             throw QuranDatabaseError.FailedDeletingDatabase(underlyingError: error)
         }
     }
-
+    
     /**
      * Prepares a query on the Quran database.
      *
@@ -408,30 +401,37 @@ public class QuranDatabase: NSObject {
         if (!isDatabaseOpen()) {
             try openDatabase()
         }
-
+        
         let resultCode = sqlite3_prepare_v2(database, statement, -1, statementObjectPointer, nil)
-
+        
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedCompilingQuery("SQLite result code = \(resultCode)")
         }
     }
-
+    
     private func copyDatabaseFromFrameworkBundleToInternalStorage() throws {
         let storageURL = try getURLForQuranDatabaseInInternalStorage()
         let bundleURL = try getURLForQuranDatabaseInFrameworkBundle()
-
+        
         try FileManager.default.copyItem(at: bundleURL, to: storageURL)
     }
-
+    
+    /**
+     * - Returns: true if a file exists at the given path, and false otherwise.
+     */
+    private func fileExists(atPath path: String) -> Bool {
+        return FileManager.default.fileExists(atPath: path)
+    }
+    
     private func getURLForQuranDatabaseInInternalStorage() throws -> URL {
         return try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
         ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
     }
-
+    
     private func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
         let bundle = Bundle(for: type(of: self))
         
@@ -444,12 +444,12 @@ public class QuranDatabase: NSObject {
 }
 
 public enum QuranDatabaseError: Error {
-
+    
     case FailedDeletingDatabase(underlyingError: Error?)
     case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
     case FailedCompilingQuery(_ message: String)
     case FailedExecutingQuery(_ message: String, underlyingError: Error?)
     case FailedClosingDatabase(_ message: String)
     case FailedLocatingQuranDatabaseInFrameworkBundle
-
+    
 }
