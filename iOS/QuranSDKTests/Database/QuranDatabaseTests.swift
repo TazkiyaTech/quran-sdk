@@ -32,51 +32,51 @@ class QuranDatabaseTests: XCTestCase {
 
     func test_isDatabaseExistsInInternalStorage_when_database_not_opened() throws {
         // When.
-        let result = try quranDatabase.isDatabaseExistsInInternalStorage();
+        let result = try quranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
-        XCTAssertFalse(result);
+        XCTAssertFalse(result)
     }
 
     func test_isDatabaseExistsInInternalStorage_when_database_opened() throws {
         // Given.
-        try quranDatabase.openDatabase();
+        try quranDatabase.openDatabase()
 
         // When.
-        let result = try quranDatabase.isDatabaseExistsInInternalStorage();
+        let result = try quranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
-        XCTAssertTrue(result);
+        XCTAssertTrue(result)
     }
 
-    func isDatabaseOpen_when_database_not_opened() throws {
+    func isDatabaseOpen_when_database_not_opened() {
         // When.
-        let result = quranDatabase.isDatabaseOpen();
+        let result = quranDatabase.isDatabaseOpen()
 
         // Then.
-        XCTAssertFalse(result);
+        XCTAssertFalse(result)
     }
 
     func test_isDatabaseOpen_when_database_opened() throws {
         // Given.
-        try quranDatabase.openDatabase();
+        try quranDatabase.openDatabase()
 
         // When.
-        let result = quranDatabase.isDatabaseOpen();
+        let result = quranDatabase.isDatabaseOpen()
 
         // Then.
-        XCTAssertTrue(result);
+        XCTAssertTrue(result)
     }
 
     func test_openDatabase_on_two_separate_instances() throws {
         // Given.
-        try QuranDatabase().openDatabase();
+        try QuranDatabase().openDatabase()
 
         // When.
-        try quranDatabase.openDatabase();
+        try quranDatabase.openDatabase()
 
         // Then.
-        XCTAssertTrue(quranDatabase.isDatabaseOpen());
+        XCTAssertTrue(quranDatabase.isDatabaseOpen())
     }
 
     func test_getNameOfSurah_with_surah_number_1() throws {
@@ -84,7 +84,7 @@ class QuranDatabaseTests: XCTestCase {
         let surahName = try quranDatabase.getNameOfSurah(1)
         
         // Then.
-        XCTAssertEqual("الفاتحة", surahName);
+        XCTAssertEqual("الفاتحة", surahName)
     }
     
     func test_getNameOfSurah_with_invalid_surah_number() {
@@ -215,7 +215,7 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getSurahNames()
 
         // Then.
-        XCTAssertEqual(expected, actual);
+        XCTAssertEqual(expected, actual)
     }
 
     func test_getAyahsInSurah_with_valid_surah_number() throws {
@@ -234,7 +234,7 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getAyahsInSurah(1)
 
         // Then.
-        XCTAssertEqual(expected, actual);
+        XCTAssertEqual(expected, actual)
     }
     
     func test_getAyahsInSurah_for_each_and_every_surah() throws {
@@ -268,7 +268,7 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
 
         // Then.
-        XCTAssertEqual(expected, actual);
+        XCTAssertEqual(expected, actual)
     }
     
     func test_getAyah_with_surah_number_58_and_ayah_number_6() throws {
