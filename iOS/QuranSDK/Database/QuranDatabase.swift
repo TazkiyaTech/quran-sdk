@@ -88,21 +88,21 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah names from the database.
      */
     public func getSurahNames() throws -> [String] {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT name FROM sura_names"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
             var rows: [String] = []
             
-            while (sqlite3_step(statementObject) == SQLITE_ROW) {
-                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+            while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(compiledStatement, 0)
                 let columnText = String(cString: columnTextPointer!)
                 rows.append(columnText)
             }
@@ -131,21 +131,21 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah name from the database.
      */
     public func getNameOfSurah(_ surahNumber: Int) throws -> String {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT name FROM sura_names WHERE sura=\(surahNumber)"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
-            let stepResult = sqlite3_step(statementObject)
+            let stepResult = sqlite3_step(compiledStatement)
             
             if (stepResult == SQLITE_ROW) {
-                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnTextPointer = sqlite3_column_text(compiledStatement, 0)
                 let columnText = String(cString: columnTextPointer!)
                 return columnText
             } else {
@@ -170,21 +170,21 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayahs from the database.
      */
     public func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber)"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
             var rows: [String] = []
             
-            while (sqlite3_step(statementObject) == SQLITE_ROW) {
-                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+            while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                let columnTextPointer = sqlite3_column_text(compiledStatement, 0)
                 let columnText = String(cString: columnTextPointer!)
                 rows.append(columnText)
             }
@@ -214,21 +214,21 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayah from the database.
      */
     public func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT text FROM quran_text WHERE sura=\(surahNumber) AND aya=\(ayahNumber)"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
-            let stepResult = sqlite3_step(statementObject)
+            let stepResult = sqlite3_step(compiledStatement)
             
             if (stepResult == SQLITE_ROW) {
-                let columnTextPointer = sqlite3_column_text(statementObject, 0)
+                let columnTextPointer = sqlite3_column_text(compiledStatement, 0)
                 let columnText = String(cString: columnTextPointer!)
                 return columnText
             } else {
@@ -253,27 +253,27 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
     public func getMetadataForSections(ofType sectionType: SectionType) throws -> [SectionMetadata] {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT section_type, section_number, aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)'"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
             var rows: [SectionMetadata] = []
             
-            while (sqlite3_step(statementObject) == SQLITE_ROW) {
-                let sectionTypePointer = sqlite3_column_text(statementObject, 0)
+            while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                let sectionTypePointer = sqlite3_column_text(compiledStatement, 0)
                 let sectionType = String(cString: sectionTypePointer!)
                 
-                let sectionNumber = sqlite3_column_int(statementObject, 1)
-                let ayahCount = sqlite3_column_int(statementObject, 2)
-                let surahNumber = sqlite3_column_int(statementObject, 3)
-                let ayahNumber = sqlite3_column_int(statementObject, 4)
+                let sectionNumber = sqlite3_column_int(compiledStatement, 1)
+                let ayahCount = sqlite3_column_int(compiledStatement, 2)
+                let surahNumber = sqlite3_column_int(compiledStatement, 3)
+                let ayahNumber = sqlite3_column_int(compiledStatement, 4)
                 
                 let sectionMetadata = SectionMetadata(
                     sectionType: SectionType(rawValue: sectionType)!,
@@ -311,23 +311,23 @@ public class QuranDatabase: NSObject {
      * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
      */
     public func getMetadataForSection(sectionType: SectionType, sectionNumber: Int) throws -> SectionMetadata {
-        var statementObject: OpaquePointer? = nil
+        var compiledStatement: OpaquePointer? = nil
         
         defer {
-            sqlite3_finalize(statementObject)
+            sqlite3_finalize(compiledStatement)
         }
         
         let statement = "SELECT aya_count, sura, aya FROM quran_metadata WHERE section_type='\(sectionType.rawValue)' AND section_number=\(sectionNumber) LIMIT 1"
         
         do {
-            try compile(statement, into: &statementObject)
+            try compile(statement, into: &compiledStatement)
             
-            let stepResult = sqlite3_step(statementObject)
+            let stepResult = sqlite3_step(compiledStatement)
             
             if (stepResult == SQLITE_ROW) {
-                let ayahCount = sqlite3_column_int(statementObject, 0)
-                let surahNumber = sqlite3_column_int(statementObject, 1)
-                let ayahNumber = sqlite3_column_int(statementObject, 2)
+                let ayahCount = sqlite3_column_int(compiledStatement, 0)
+                let surahNumber = sqlite3_column_int(compiledStatement, 1)
+                let ayahNumber = sqlite3_column_int(compiledStatement, 2)
                 
                 return SectionMetadata(
                     sectionType: sectionType,
@@ -395,14 +395,14 @@ public class QuranDatabase: NSObject {
      * Prepares a query on the Quran database.
      *
      * - Parameter statement: The SQL statement to compile.
-     * - Parameter statementObjectPointer: A pointer to the statement object into which the SQL statement will be compiled.
+     * - Parameter compiledStatementPointer: A pointer to the object into which the SQL statement will be compiled.
      */
-    private func compile(_ statement: String, into statementObjectPointer: UnsafeMutablePointer<OpaquePointer?>) throws {
+    private func compile(_ statement: String, into compiledStatementPointer: UnsafeMutablePointer<OpaquePointer?>) throws {
         if (!isDatabaseOpen()) {
             try openDatabase()
         }
         
-        let resultCode = sqlite3_prepare_v2(database, statement, -1, statementObjectPointer, nil)
+        let resultCode = sqlite3_prepare_v2(database, statement, -1, compiledStatementPointer, nil)
         
         if (resultCode != SQLITE_OK) {
             throw QuranDatabaseError.FailedCompilingQuery("SQLite result code = \(resultCode)")
