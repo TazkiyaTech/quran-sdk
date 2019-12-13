@@ -1,13 +1,8 @@
 package com.tazkiyatech.quran.sdk.model
 
-import org.hamcrest.core.IsEqual.equalTo
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
-@RunWith(JUnit4::class)
 class SurahUnitTests {
 
     @Test
