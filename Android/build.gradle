@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'org.jetbrains.dokka'
 
 group = getProperty('projectGroupName').toString()
 version = getProperty('projectVersionName').toString()
@@ -17,10 +17,6 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-    }
-
-    lintOptions {
-        abortOnError true
     }
 
     buildTypes {
@@ -39,6 +35,21 @@ android {
             proguardFiles(proGuardFileCollection)
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -46,13 +57,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     testImplementation 'junit:junit:4.13-beta-3'
-    testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
+    testImplementation "org.hamcrest:hamcrest-core:$hamcrest_version"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
+    testImplementation "org.junit.vintage:junit-vintage-engine:$junit5_version"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'com.tazkiyatech:android-utils:0.1.0'
-    androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
+    androidTestImplementation "org.hamcrest:hamcrest-core:$hamcrest_version"
 }
 
 task generateSourcesJar(type: Jar) {
@@ -80,8 +94,7 @@ publishing {
     publications {
         QuranSDK(MavenPublication) {
             from components.android
-//            TODO: reinstate the Javadoc artifact once the following issue is resolved: https://github.com/Kotlin/dokka/issues/294
-//            artifact generateJavadocJar
+            artifact generateJavadocJar
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName').toString()
