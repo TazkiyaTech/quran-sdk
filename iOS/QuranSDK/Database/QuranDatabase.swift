@@ -26,6 +26,15 @@ public class QuranDatabase: NSObject {
             return
         }
         
+        do {
+            try copyDatabaseToInternalStorageIfMissing()
+        } catch {
+            throw QuranDatabaseError.FailedOpeningDatabase(
+                "Failed copying database from framework bundle to internal storage",
+                underlyingError: error
+            )
+        }
+        
         var internalStorageURL: URL
         
         do {
@@ -37,22 +46,7 @@ public class QuranDatabase: NSObject {
             )
         }
         
-        let internalStoragePath = internalStorageURL.path
-        
-        let databaseExistsInInternalStorage = fileExists(atPath: internalStoragePath)
-        
-        do {
-            if (!databaseExistsInInternalStorage) {
-                try copyDatabaseFromFrameworkBundleToInternalStorage()
-            }
-        } catch {
-            throw QuranDatabaseError.FailedOpeningDatabase(
-                "Failed copying database from framework bundle to internal storage",
-                underlyingError: error
-            )
-        }
-        
-        let resultCode = sqlite3_open_v2(internalStorageURL.path, &database, SQLITE_OPEN_READONLY, nil)
+        let resultCode = sqlite3_open_v2(internalStorageURL.path, &database, SQLITE_OPEN_READONLY|SQLITE_OPEN_FULLMUTEX, nil)
         
         if resultCode != SQLITE_OK {
             throw QuranDatabaseError.FailedOpeningDatabase(
@@ -379,6 +373,10 @@ public class QuranDatabase: NSObject {
      * (Internal visibility for testing purposes.)
      */
     internal func deleteDatabaseInInternalStorage() throws {
+        
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        
         do {
             let fileManager = FileManager.default
             let path = try getURLForQuranDatabaseInInternalStorage().path
@@ -409,11 +407,18 @@ public class QuranDatabase: NSObject {
         }
     }
     
-    private func copyDatabaseFromFrameworkBundleToInternalStorage() throws {
-        let storageURL = try getURLForQuranDatabaseInInternalStorage()
-        let bundleURL = try getURLForQuranDatabaseInFrameworkBundle()
+    private func copyDatabaseToInternalStorageIfMissing() throws {
         
-        try FileManager.default.copyItem(at: bundleURL, to: storageURL)
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        
+        let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
+        let databaseExistsInInternalStorage = fileExists(atPath: internalStorageURL.path)
+        
+        if (!databaseExistsInInternalStorage) {
+            let bundleURL = try getURLForQuranDatabaseInFrameworkBundle()
+            try FileManager.default.copyItem(at: bundleURL, to: internalStorageURL)
+        }
     }
     
     /**
