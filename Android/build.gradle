@@ -63,7 +63,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation 'com.tazkiyatech:android-utils:0.1.1'
+    androidTestImplementation 'com.tazkiyatech:android-utils:0.1.2'
     androidTestImplementation "org.hamcrest:hamcrest-core:$hamcrest_version"
 }
 
