@@ -1,18 +1,16 @@
 package com.tazkiyatech.quran.sdk.database
 
 import android.content.Context
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
 import com.tazkiyatech.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGreaterThan
 import com.tazkiyatech.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessThan
 import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertThat
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class HifdhTipsTests {

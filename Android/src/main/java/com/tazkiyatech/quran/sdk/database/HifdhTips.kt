@@ -1,10 +1,8 @@
 package com.tazkiyatech.quran.sdk.database
 
 import android.content.res.Resources
-
 import com.tazkiyatech.quran.sdk.R
-
-import java.util.Random
+import java.util.*
 
 /**
  * Helper class which provides Hifdh tips.
