@@ -19,8 +19,7 @@ class QuranQuotesTests {
 
     @Before
     fun setUp() {
-        quranQuotes =
-            QuranQuotes(ApplicationProvider.getApplicationContext<Context>().resources)
+        quranQuotes = QuranQuotes(ApplicationProvider.getApplicationContext<Context>().resources)
     }
 
     @Test
@@ -47,7 +46,7 @@ class QuranQuotesTests {
         for (i in 0 until quranQuotes.size) {
             val quote = quranQuotes.getQuote(i)
             assertThat(quote, hasLengthGreaterThan(0))
-            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH))
+            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH + 1))
         }
     }
 }

@@ -46,7 +46,7 @@ class HifdhTipsTests {
         for (i in 0 until hifdhTips.size) {
             val quote = hifdhTips.getTip(i)
             assertThat(quote, hasLengthGreaterThan(0))
-            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH))
+            assertThat(quote, hasLengthLessThan(Constants.MAX_QUOTE_LENGTH + 1))
         }
     }
 }
