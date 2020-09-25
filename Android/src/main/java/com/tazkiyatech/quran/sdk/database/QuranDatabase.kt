@@ -304,6 +304,7 @@ class QuranDatabase(private val applicationContext: Context) {
      * @return the metadata for the specified section.
      * @throws QuranDatabaseException if there was an error getting the metadata from the database.
      */
+    @Suppress("SameParameterValue")
     @Throws(QuranDatabaseException::class)
     fun getMetadataForSection(sectionType: SectionType, sectionNumber: Int): SectionMetadata {
         var sectionMetadata: SectionMetadata? = null
@@ -407,6 +408,7 @@ class QuranDatabase(private val applicationContext: Context) {
      *
      * @throws QuranDatabaseException if the database could not be copied.
      */
+    @Suppress("SameParameterValue")
     private fun copyFileFromAssetsToInternalStorage(filename: String) {
         try {
             applicationContext.assets.open(filename).use { inputStream ->
