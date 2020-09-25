@@ -1,6 +1,5 @@
 package com.tazkiyatech.quran.sdk.database
 
-import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tazkiyatech.utils.database.QueryPlanExplainer
