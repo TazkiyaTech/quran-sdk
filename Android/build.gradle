@@ -4,8 +4,8 @@ apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 
-group = getProperty('projectGroupName').toString()
-version = getProperty('projectVersionName').toString()
+group = getProperty('projectGroupName')
+version = getProperty('projectVersionName')
 
 File[] proGuardFileCollection = file('./proguard').listFiles()
 File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
@@ -94,28 +94,28 @@ publishing {
             artifact generateJavadocJar
             artifact generateSourcesJar
 
-            groupId getProperty('projectGroupName').toString()
-            artifactId getProperty('projectArtifactName').toString()
-            version getProperty('projectVersionName').toString()
+            groupId getProperty('projectGroupName')
+            artifactId getProperty('projectArtifactName')
+            version getProperty('projectVersionName')
         }
     }
 }
 
 bintray {
-    user = getProperty('bintray_user').toString()
-    key = getProperty('bintray_api_key').toString()
+    user = getProperty('bintray_user')
+    key = getProperty('bintray_api_key')
     publications = ['QuranSDK']
     pkg {
         repo = 'maven'
-        name = getProperty('projectArtifactName').toString()
+        name = getProperty('projectArtifactName')
         licenses = ['Apache-2.0']
         vcsUrl = 'https://bitbucket.org/adilson05uk/quran-sdk.git'
 
         version {
-            name = getProperty('projectVersionName').toString()
+            name = getProperty('projectVersionName')
             desc = 'Latest release!'
             released = new Date()
-            vcsTag = 'release_' + getProperty('projectVersionName').toString()
+            vcsTag = 'release_' + getProperty('projectVersionName')
         }
     }
 }
