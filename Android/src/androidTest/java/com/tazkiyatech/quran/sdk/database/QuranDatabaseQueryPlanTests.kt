@@ -27,12 +27,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getSurahNames() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SCAN TABLE sura_names USING INDEX index_sura_number_on_table_sura_names"
-            )
+            QueryPlanRow("SCAN TABLE sura_names USING INDEX index_sura_number_on_table_sura_names")
         )
 
         // When.
@@ -51,12 +46,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getSurahName() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)"
-            )
+            QueryPlanRow("SEARCH TABLE sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)")
         )
 
         // When.
@@ -76,12 +66,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getAyahsInSurah() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)"
-            )
+            QueryPlanRow("SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)")
         )
 
         // When.
@@ -100,12 +85,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getAyah() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)"
-            )
+            QueryPlanRow("SEARCH TABLE quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)")
         )
 
         // When.
@@ -124,12 +104,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getMetadataForSectionType() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=?)"
-            )
+            QueryPlanRow("SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=?)")
         )
 
         // When.
@@ -148,12 +123,7 @@ class QuranDatabaseQueryPlanTests {
     fun test_explainQueryPlan_for_getMetadataForSection() {
         // Given.
         val expected = listOf(
-            QueryPlanRow(
-                0,
-                0,
-                0,
-                "SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=? AND section_number=?)"
-            )
+            QueryPlanRow("SEARCH TABLE quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=? AND section_number=?)")
         )
 
         // When.
