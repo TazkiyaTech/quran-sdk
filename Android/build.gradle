@@ -62,7 +62,7 @@ dependencies {
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'com.tazkiyatech:android-utils:0.1.5'
+    androidTestImplementation 'com.tazkiyatech:android-test-utils:0.0.1'
     androidTestImplementation "org.hamcrest:hamcrest-core:$hamcrest_version"
 }
 
@@ -109,13 +109,13 @@ bintray {
         repo = 'maven'
         name = getProperty('projectArtifactName')
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://bitbucket.org/adilson05uk/quran-sdk.git'
+        vcsUrl = 'https://github.com/adil-hussain-84/quran-sdk.git'
 
         version {
             name = getProperty('projectVersionName')
             desc = 'Latest release!'
             released = new Date()
-            vcsTag = 'release_' + getProperty('projectVersionName')
+            vcsTag = 'release-' + getProperty('projectVersionName')
         }
     }
 }
