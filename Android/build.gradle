@@ -114,7 +114,7 @@ bintray {
             name = getProperty('projectVersionName')
             desc = 'Latest release!'
             released = new Date()
-            vcsTag = 'release-' + getProperty('projectVersionName')
+            vcsTag = 'Android-' + getProperty('projectVersionName')
         }
     }
 }
