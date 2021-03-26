@@ -6,6 +6,7 @@
 //  Copyright © 2018 Tazkiya Tech. All rights reserved.
 //
 
+import Foundation
 import SQLite3
 
 /**

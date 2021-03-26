@@ -11,6 +11,7 @@ local.properties
 *.iml
 
 # Build folders
+/.build
 /build
 /Android/build
 /iOS/build
