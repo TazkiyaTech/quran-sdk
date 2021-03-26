@@ -4,7 +4,16 @@ This library makes it easy for you to access verses of the Quran in your iOS pro
 
 ## Setup
 
-Getting setup by means of [Cocoapods](https://cocoapods.org/) is a simple two-step process.
+### Swift Package Manager
+
+Getting setup by means of [Swift Package Manager](https://swift.org/package-manager) is a simple two-step process, as follows:
+
+1. Add this library to your Xcode project's list of Swift packages by means of this repo's URL.
+2. Select the target(s) that you would like to add this Swift package to.
+
+### CocoaPods
+
+Getting setup by means of [Cocoapods](https://cocoapods.org) is a simple two-step process.
 
 Firstly, add the following pod declaration in the `Podfile` of your iOS project:
 
