@@ -114,7 +114,7 @@ afterEvaluate {
 bintray {
     user = getProperty('bintray_user')
     key = getProperty('bintray_api_key')
-    publications = ['QuranSDK']
+    publications = ['release']
     pkg {
         repo = 'maven'
         name = getProperty('projectArtifactName')
