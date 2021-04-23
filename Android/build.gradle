@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
 
 group = getProperty('projectGroupName')
@@ -86,16 +86,27 @@ task generateJavadocJar(type: Jar) {
     group = 'build'
 }
 
-publishing {
-    publications {
-        QuranSDK(MavenPublication) {
-            from components.android
-            artifact generateJavadocJar
-            artifact generateSourcesJar
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifact generateJavadocJar
+                artifact generateSourcesJar
 
-            groupId getProperty('projectGroupName')
-            artifactId getProperty('projectArtifactName')
-            version getProperty('projectVersionName')
+                groupId getProperty('projectGroupName')
+                artifactId getProperty('projectArtifactName')
+                version getProperty('projectVersionName')
+            }
+            debug(MavenPublication) {
+                from components.debug
+                artifact generateJavadocJar
+                artifact generateSourcesJar
+
+                groupId getProperty('projectGroupName')
+                artifactId getProperty('projectArtifactName')
+                version getProperty('projectVersionName')
+            }
         }
     }
 }
