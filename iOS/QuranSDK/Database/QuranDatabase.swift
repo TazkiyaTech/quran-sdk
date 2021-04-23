@@ -439,7 +439,11 @@ public class QuranDatabase: NSObject {
     }
     
     private func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: type(of: self))
+        #endif
         
         guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db") else {
             throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle

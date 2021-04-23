@@ -62,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC87E4132633229B00D333ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C5E1F3FC22C126B100FC7682 /* com.tazkiyatech.quran.v2.db */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C500444B22B3AD3100D93330 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +100,6 @@
 		C500445222B3C97C00D93330 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C5E1F3FC22C126B100FC7682 /* com.tazkiyatech.quran.v2.db */,
 				C5D2214221AC122A00B65FBC /* Info.plist */,
 				C5D2214121AC122A00B65FBC /* QuranSDK.h */,
 			);
@@ -130,6 +137,7 @@
 			children = (
 				C500445022B3C92600D93330 /* Database */,
 				C500444B22B3AD3100D93330 /* Models */,
+				BC87E4132633229B00D333ED /* Resources */,
 				C500445222B3C97C00D93330 /* Supporting Files */,
 			);
 			path = QuranSDK;
