@@ -59,7 +59,7 @@ You can access [metadata](src/main/java/com/tazkiyatech/quran/sdk/model/SectionM
 val sectionType = SectionType.SURAH
 val sectionMetadataList: List<SectionMetadata> = getMetadataForSectionsOfType(sectionType)
 
-/// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
+// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
 val sectionType = SectionType.SURAH
 val sectionNumber = 1
 val sectionMetadata: SectionMetadata = getMetadataForSection(sectionType, sectionNumber)

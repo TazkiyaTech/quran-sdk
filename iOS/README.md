@@ -65,7 +65,7 @@ You can access [metadata](QuranSDK/Models/SectionMetadata.swift) about the Quran
 let sectionType = SectionType.surah
 let sectionMetadataArray: [SectionMetadata] = try getMetadataForSections(ofType: sectionType)
 
-/// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
+// get metadata for a particular section of the Quran (i.e. a particular Surah, Juz, Juz-Quarter, Hizb or Hizb-Quarter)
 let sectionType = SectionType.surah
 let sectionNumber = 1
 let sectionMetadata: SectionMetadata = try getMetadataForSection(sectionType: sectionType, sectionNumber: sectionNumber)
