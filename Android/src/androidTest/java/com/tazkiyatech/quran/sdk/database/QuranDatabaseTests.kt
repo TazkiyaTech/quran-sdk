@@ -70,9 +70,23 @@ class QuranDatabaseTests {
     }
 
     @Test
-    fun openDatabase_on_two_separate_instances() {
+    fun isDatabaseOpen_when_database_closed() {
         // Given.
-        QuranDatabase(ApplicationProvider.getApplicationContext()).openDatabase()
+        quranDatabase.openDatabase()
+        quranDatabase.closeDatabase()
+
+        // When.
+        val result = quranDatabase.isDatabaseOpen()
+
+        // Then.
+        assertFalse(result)
+    }
+
+    @Test
+    fun openDatabase_on_closed_database() {
+        // Given.
+        quranDatabase.openDatabase()
+        quranDatabase.closeDatabase()
 
         // When.
         quranDatabase.openDatabase()

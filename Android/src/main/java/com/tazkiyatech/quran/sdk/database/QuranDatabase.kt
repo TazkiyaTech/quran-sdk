@@ -13,7 +13,7 @@ import java.util.*
 
 /**
  * Helper class which handles the creation and opening of the SQLite-based Quran database
- * and provides easy methods for accessing its content.
+ * and provides simple methods for accessing its content.
  *
  * @property applicationContext The application context (and not the activity or service context).
  */
@@ -26,7 +26,7 @@ class QuranDatabase(private val applicationContext: Context) {
         private set
 
     /**
-     * Opens the Quran database for reading, if it's not already open.
+     * Opens the Quran database for reading if it's not already open.
      *
      * @throws QuranDatabaseException if the database could not be opened.
      */
@@ -376,46 +376,54 @@ class QuranDatabase(private val applicationContext: Context) {
     internal fun isDatabaseOpen() = sqLiteDatabase?.isOpen == true
 
     /**
-     * Determines whether a file with the given name exists in internal storage.
+     * Determines whether a file with the given name exists in the application's internal storage area.
      *
      * (Internal visibility for unit testing purposes.)
      *
-     * @return true iff the file with the given name exists in internal storage.
+     * @return true iff the file with the given name exists in the application's internal storage area.
      */
     internal fun isFileExistsInInternalStorage(filename: String): Boolean {
         return getFileInInternalStorage(filename).isFile
     }
 
     /**
-     * Deletes the file with the given name from internal storage.
+     * Deletes the file with the given name from the application's internal storage area.
      *
-     * (Internal visibility for unit testing purposes.)
-     *
-     * @return true iff the file with the give name is deleted from internal storage.
+     * @return true iff the file with the give name is deleted from the application's internal storage area.
      */
-    internal fun deleteFileInInternalStorage(filename: String): Boolean {
+    private fun deleteFileInInternalStorage(filename: String): Boolean {
         val file = getFileInInternalStorage(filename)
 
         return !file.exists() || file.delete()
     }
 
+    /**
+     * A [File] representation of the Quran database file as it exists in the application's internal storage area.
+     */
     private fun getFileInInternalStorage(filename: String): File =
         File(applicationContext.noBackupFilesDir, filename)
 
     /**
-     * Copies the Quran database from assets to internal storage,
-     * so that it can be accessed and handled.
+     * Copies the Quran database file from the application's assets to the application's internal storage area
+     * so that it can be accessed as a database.
      *
-     * @throws QuranDatabaseException if the database could not be copied.
+     * @throws QuranDatabaseException if the database file could not be copied.
      */
     @Suppress("SameParameterValue")
     private fun copyFileFromAssetsToInternalStorage(filename: String) {
         try {
             applicationContext.assets.open(filename).use { inputStream ->
-                getFileInInternalStorage(filename).outputStream()
-                    .use { outputStream ->
-                        inputStream.copyTo(outputStream)
-                    }
+                // for thread safety: copy the contents of the assets file to a file with a unique name
+                // and then move the file to the desired destination
+
+                val uuid = UUID.randomUUID().toString()
+                val temporaryFile = File(applicationContext.cacheDir, "$filename-$uuid")
+
+                temporaryFile.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+
+                temporaryFile.renameTo(getFileInInternalStorage(filename))
             }
         } catch (e: IOException) {
             throw QuranDatabaseException(
@@ -429,7 +437,7 @@ class QuranDatabase(private val applicationContext: Context) {
      * Queries the Quran database with the specified parameters.
      *
      * @return the result of the query.
-     * @throws QuranDatabaseException if the database is not open for reading.
+     * @throws QuranDatabaseException if the database could not be opened.
      */
     @Throws(QuranDatabaseException::class)
     private fun queryDatabase(table: String,
