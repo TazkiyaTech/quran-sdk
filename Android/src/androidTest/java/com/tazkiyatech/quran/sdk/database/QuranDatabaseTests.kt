@@ -20,13 +20,6 @@ class QuranDatabaseTests {
     @Before
     fun setUp() {
         quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
-
-        val deleteResult = quranDatabase.deleteFileInInternalStorage(QuranDatabase.DATABASE_NAME)
-
-        assertTrue(
-            "Failed deleting the Quran database file as part of the test setup",
-            deleteResult
-        )
     }
 
     @After
