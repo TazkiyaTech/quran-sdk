@@ -375,8 +375,8 @@ public class QuranDatabase: NSObject {
      */
     internal func deleteDatabaseInInternalStorage() throws {
         
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
+        objc_sync_enter(QuranDatabase.self)
+        defer { objc_sync_exit(QuranDatabase.self) }
         
         do {
             let fileManager = FileManager.default
@@ -410,8 +410,8 @@ public class QuranDatabase: NSObject {
     
     private func copyDatabaseToInternalStorageIfMissing() throws {
         
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
+        objc_sync_enter(QuranDatabase.self)
+        defer { objc_sync_exit(QuranDatabase.self) }
         
         let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
         let databaseExistsInInternalStorage = fileExists(atPath: internalStorageURL.path)
