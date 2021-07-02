@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'signing'
 
 group = getProperty('projectGroupName')
 version = getProperty('projectVersionName')
@@ -99,6 +100,30 @@ afterEvaluate {
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
                 version getProperty('projectVersionName')
+
+                pom {
+                    name = getProperty('projectArtifactName')
+                    description = 'An Android library that makes it easy for you to access verses of the Quran in your Android projects.'
+                    url = 'https://github.com/TazkiyaTech/quran-sdk'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'adil-hussain-84'
+                            name = 'Adil Hussain'
+                            email = 'adilson05uk@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/TazkiyaTech/quran-sdk.git'
+                        developerConnection = 'scm:git:ssh://github.com:TazkiyaTech/quran-sdk.git'
+                        url = 'https://github.com/TazkiyaTech/quran-sdk/tree/master'
+                    }
+                }
             }
             debug(MavenPublication) {
                 from components.debug
@@ -110,5 +135,20 @@ afterEvaluate {
                 version getProperty('projectVersionName')
             }
         }
+
+        repositories {
+            maven {
+                url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username getProperty('sonatype_username')
+                    password getProperty('sonatype_password')
+                }
+            }
+        }
+    }
+
+    signing {
+        // the 'signing.keyId', 'signing.password' and 'signing.secretKeyRingFile' properties required by this task are defined outside of this project in the '~/.gradle/gradle.properties' file
+        sign publishing.publications.release
     }
 }
