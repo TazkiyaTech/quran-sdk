@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
@@ -63,8 +62,8 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'com.tazkiyatech:android-test-utils:0.0.7'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'com.tazkiyatech:android-test-utils:0.0.8'
     androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 }
 
@@ -110,25 +109,6 @@ afterEvaluate {
                 artifactId getProperty('projectArtifactName')
                 version getProperty('projectVersionName')
             }
-        }
-    }
-}
-
-bintray {
-    user = getProperty('bintray_user')
-    key = getProperty('bintray_api_key')
-    publications = ['release']
-    pkg {
-        repo = 'maven'
-        name = getProperty('projectArtifactName')
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/adil-hussain-84/quran-sdk.git'
-
-        version {
-            name = getProperty('projectVersionName')
-            desc = 'Latest release!'
-            released = new Date()
-            vcsTag = 'Android-' + getProperty('projectVersionName')
         }
     }
 }

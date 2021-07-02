@@ -1,17 +1,15 @@
 buildscript {
     ext.hamcrest_version = '2.2'
     ext.junit5_version = '5.7.1'
-    ext.kotlin_version = '1.5.10'
+    ext.kotlin_version = '1.5.20'
 
     repositories {
         google()
         mavenCentral()
-        jcenter() // needed for 'gradle-bintray-plugin'
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:0.10.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -21,10 +19,10 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // needed for 'android-test-utils'
     }
 }
 
 wrapper {
-    gradleVersion = '7.0.2'
+    // NOTE: The Gradle wrapper cannot be upgraded to version 7+ until the 'dokka' plugin is upgraded to the latest version
+    gradleVersion = '6.9'
 }
