@@ -10,10 +10,10 @@ Firstly, add the following repository and dependency declaration in the `build.g
 
 ```groovy
 repositories {
-    jcenter()
+    mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:quran-sdk:1.0.3'
+    implementation 'com.tazkiyatech:quran-sdk:1.0.4'
 }
 ```
 
