@@ -111,6 +111,10 @@ afterEvaluate {
                             url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
                     }
+                    organization {
+                        name = 'Tazkiya Tech'
+                        url = 'http://tazkiyatech.com'
+                    }
                     developers {
                         developer {
                             id = 'adil-hussain-84'
@@ -121,7 +125,7 @@ afterEvaluate {
                     scm {
                         connection = 'scm:git:git://github.com/TazkiyaTech/quran-sdk.git'
                         developerConnection = 'scm:git:ssh://github.com:TazkiyaTech/quran-sdk.git'
-                        url = 'https://github.com/TazkiyaTech/quran-sdk/tree/master'
+                        url = 'https://github.com/TazkiyaTech/quran-sdk'
                     }
                 }
             }
