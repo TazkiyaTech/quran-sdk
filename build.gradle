@@ -1,7 +1,7 @@
 buildscript {
     ext.hamcrest_version = '2.2'
     ext.junit5_version = '5.7.1'
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.5.21'
 
     repositories {
         google()
