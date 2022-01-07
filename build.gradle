@@ -1,7 +1,7 @@
 buildscript {
     ext.hamcrest_version = '2.2'
-    ext.junit5_version = '5.7.1'
-    ext.kotlin_version = '1.5.21'
+    ext.junit5_version = '5.8.2'
+    ext.kotlin_version = '1.6.10'
 
     repositories {
         google()
@@ -9,10 +9,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:0.10.1'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+}
+
+plugins {
+    id("org.jetbrains.dokka") version "$kotlin_version"
 }
 
 allprojects {
@@ -23,6 +26,5 @@ allprojects {
 }
 
 wrapper {
-    // NOTE: The Gradle wrapper cannot be upgraded to version 7+ until the 'dokka' plugin is upgraded to the latest version
-    gradleVersion = '6.9'
+    gradleVersion = '7.3.3'
 }
