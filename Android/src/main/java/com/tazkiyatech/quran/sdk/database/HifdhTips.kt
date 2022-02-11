@@ -2,6 +2,7 @@ package com.tazkiyatech.quran.sdk.database
 
 import android.content.res.Resources
 import com.tazkiyatech.quran.sdk.R
+import com.tazkiyatech.quran.sdk.extensions.getPackedDate
 import java.util.*
 
 /**
@@ -14,10 +15,22 @@ class HifdhTips(private val resources: Resources) {
     private val random: Random = Random()
 
     /**
-     * @return a randomly selected Hifdh tip.
+     * @return A randomly selected Hifdh tip.
      */
     val nextRandom: String
         get() = getTip(random.nextInt(size))
+
+    /**
+     * @return The Hifdh tip which is unique to the current day.
+     */
+    val tipOfTheDay: String
+        get() {
+            val packedDate = Calendar.getInstance().getPackedDate()
+
+            val tipOfTheDayIndex = packedDate.rem(size)
+
+            return getTip(tipOfTheDayIndex)
+        }
 
     /**
      * The number of Hifdh tips available.
@@ -32,8 +45,8 @@ class HifdhTips(private val resources: Resources) {
         get() = resources.getStringArray(R.array.hifdh_tips)
 
     /**
-     * @param index the index of the Hifdh tip to get.
-     * @return the Hifdh tip at the specified index.
+     * @param index The index of the Hifdh tip to get.
+     * @return The Hifdh tip at the specified index.
      */
     fun getTip(index: Int): String {
         return tipsArray[index]

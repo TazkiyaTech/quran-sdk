@@ -7,6 +7,7 @@ import com.tazkiyatech.quran.sdk.matchers.StringHasLengthGreaterThan.hasLengthGr
 import com.tazkiyatech.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessThan
 import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.core.Is.`is`
+import org.junit.Assert
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -29,6 +30,18 @@ class QuranQuotesTests {
 
         // Then.
         assertThat(quote, hasLengthGreaterThan(0))
+    }
+
+    @Test
+    fun getTipOfTheDay() {
+        // Give.
+        val quote1 = quranQuotes.quoteOfTheDay
+
+        // When.
+        val quote2 = quranQuotes.quoteOfTheDay
+
+        // Then.
+        Assert.assertEquals(quote1, quote2)
     }
 
     @Test
