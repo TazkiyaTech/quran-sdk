@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:quran-sdk:1.0.5'
+    implementation 'com.tazkiyatech:quran-sdk:1.1.0'
 }
 ```
 
@@ -75,12 +75,12 @@ Quotes about the magnificence and virtues of the Quran can be accessed by means 
 
 ```kotlin
 val quranQuotes = QuranQuotes(myApplicationContext.getResources());
-val quranQuote: String = quranQuotes.getNextRandom();
+val quranQuote: String = quranQuotes.quoteOfTheDay
 ```
 
 Practical tips about how to learn and remember the Quran can be accessed by means of the [HifdhTips](src/main/java/com/tazkiyatech/quran/sdk/database/HifdhTips.kt) class as follows:
 
 ```kotlin
 val hifdhTips = HifdhTips(myApplicationContext.getResources());
-val hifdhTip: String = hifdhTips.getNextRandom();
+val hifdhTip: String = hifdhTips.tipOfTheDay
 ```
