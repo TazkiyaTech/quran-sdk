@@ -1,6 +1,6 @@
 # Quran SDK for Android
 
-This library makes it easy for you to access verses of the Quran in your Android projects.
+This library gives you easy, offline access to verses of the Quran in your Android projects.
 
 ## Setup
 
