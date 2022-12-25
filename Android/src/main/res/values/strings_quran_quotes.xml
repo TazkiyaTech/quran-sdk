@@ -4,28 +4,28 @@
     <string-array name="quran_quotes">
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; Be mindful of Allah, and He will teach you;
             He has full knowledge of everything.\"
 	        (2:282)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"And hold fast, all of you together, to the Rope of Allah
             and be not divided among yourselves&#8230;\"
 	        (3:103)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"And this is a blessed Book We have sent down.
             So follow it and fear Allah, so that you may be favoured with mercy.\"
 	        (6:155)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
             \"Alif, Lam, Mim, Sad.
             This Book has been sent down to you [Prophet]
             &#8212; let there not be anxiety in your heart because of it &#8212;
@@ -34,7 +34,7 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"The believers are those who&#8230;
             when His (Allah\'s) verses are recited to them,
             it increases them in faith;
@@ -43,28 +43,28 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"O mankind, there has come to you instruction from your Lord
             and healing for what is in the breasts&#8230;\"
 	        (10:57)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; This revelation is no fabrication:
             it is a confirmation of the truth of what was sent before it&#8230;\"
 	        (12:111)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; [This revelation] is an explanation of everything;
             a guide and a blessing for those who believe.\"
 	        (12:111)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; These are the verses of the Book.
             What has been sent down to you from your Lord is true,
             but most of the people do not believe.\"
@@ -72,66 +72,66 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; truly it is in the remembrance of Allah that hearts find peace.\"
 	        (13:28)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"Alif, Lam, Ra.
             These are the verses of the Book and a clear #Quran.\"
 		    (15:1)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"We have, without doubt, sent down the #Quran;
             and We will assuredly guard it.\"
 		    (15:9)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"&#8230; We have sent down to you the Book as clarification for all things
             and as guidance and mercy and good tidings for those who devote themselves to God.\"
 		    (16:89)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"So when you recite the #Quran, seek refuge in Allah from Satan, the expelled.\"
 		    (16:98)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"Indeed, this #Quran guides to that which is most suitable&#8230;\"
 		    (17:9)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"&#8230; [this #Quran] gives good tidings to the believers who do righteous deeds
             that they will have a great reward.\"
 		    (17:9)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"&#8230; and recite the #Quran in the early dawn.
             Verily, the recitation of the #Quran in the early dawn is ever witnessed.\"
 	        (17:78)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"And We send down of the #Quran that which is healing and a mercy for the believers&#8230;\"
 	        (17:82)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"We have divided the #Quran in portions,
             so that you may recite it to the people gradually,
             and We have revealed it little by little.\"
@@ -139,7 +139,7 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 	        \"And recite what has been revealed to you of the Book of your Lord.
             There is no one to change His words,
             and you will never find a refuge beside Him.\"
@@ -147,21 +147,21 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"&#8230; When the verses of the Most Merciful were recited to them,
             they would fall down prostrating and weeping.\"
 		    (19:52)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"It was not to distress you [Prophet] that We sent down the #Quran to you,
             but as a reminder for those who hold God in awe&#8230;\"
 		    (20:2-3)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
             \"&#8230; (the #Quran has been sent down) in this way (in parts)
             so that We make your heart firm,
             and We revealed it little by little.\"
@@ -169,14 +169,14 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
             \"Is it not sufficient for them that We revealed to you the Book which is recited to them?
             Indeed in that is a mercy and reminder for a people who believe.\"
             (29:51)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"[This is] a blessed Book We have revealed to you, [O Muhammad],
             that they might reflect upon its verses
             and that those of understanding would be reminded.\"
@@ -184,40 +184,40 @@
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"And We have certainly made the #Quran easy for remembrance,
 	        so is there any who will remember?\"
 		    (54:17)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
 		    \"&#8230; recite the Quran slowly and distinctly&#8230;\"
 		    (73:4)
         </item>
 
         <item>
-            #AyahOfTheDay:
+            #Ayah:
             \"We shall teach you [the #Quran] and you will not forget &#8212; unless God wishes;
             He knows both what is open and what is hidden.\"
             (87: 6-7)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"The example of a believer who recites the #Quran regularly is like a citron &#8212;
             its smell is pleasant and its taste is pleasant&#8230;\"
 		    (Al-Bukhari)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"The best of you is the one who learns the #Quran and teaches it (to others).\"
 		    (Al-Bukhari)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"The example of someone who knows the #Quran is like the owner of tied camels.
             If he keeps them tied, he will control them,
             but if he releases them, they will run away.\"
@@ -225,14 +225,14 @@
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"&#8230; you must keep on reciting the #Quran
             because it escapes from the hearts of men faster than camels (escape).\"
             (Al-Bukhari)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"Keep on reciting the #Quran,
             for, by Him in Whose Hand my life is,
             it slips away (is forgotten) faster than camels that are released from their tying ropes.\"
@@ -243,7 +243,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"The likeness of the one who reads the #Quran and memorises it
             is that he is with the righteous honorable scribes (the angels)&#8230;\"
             (Al-Bukhari)
@@ -253,7 +253,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"&#8230; The likeness of one who reads it (the #Quran)
             and tries hard to memorise it even though it is difficult for him,
             he will have two rewards.\"
@@ -261,14 +261,14 @@
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"Do not make your houses as graveyards
             for Satan runs away from the house in which Surah Al-Baqarah is recited.\"
 		    (Muslim)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"Recite the #Quran regularly,
             for, by the One in Whose Hand is the soul of Muhammad,
             it escapes one\'s memory faster than camels that are released from their tying ropes.\"
@@ -279,7 +279,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"If the companion of the #Quran persists in reciting it by night and day,
             he will remember it,
             but if he does not do that he will forget it.\"
@@ -290,7 +290,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"Read the #Quran,
             for indeed it will come on the Day of Resurrection as an intercessor for its companion.\"
             (Muslim)
@@ -300,13 +300,13 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"&#8230; the #Quran is a proof for you or against you&#8230;\"
 		    (Muslim)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"It will be said to the companion of the #Quran:
             \'Recite and ascend!
             Recite measuredly just as you used to recite in the world!
@@ -315,13 +315,13 @@
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"Whoever recites a letter from the Book of Allah, he will be credited with a good deed&#8230;\"
             (Al-Tirmidhi)
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
             \"The superiority of the Speech of Allah over all other speech
             is like the superiority of Allah over His creation.\"
             (Al-Tirmidhi)
@@ -331,7 +331,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"The heart that has no #Quran in it is like an abandoned ruined dwelling.\"
 	        (Al-Tirmidhi)
         </item>
@@ -340,7 +340,7 @@
            - Quote found in 'The Crowning Venture' by Saadia Mian
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"The Lord, Blessed and Most High is He, has said:
             \'Whoever is too busy with the #Quran for remembering Me and asking Me,
             then I shall give him more than what I give to those who ask.\'\"
@@ -348,7 +348,7 @@
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"The people of the #Quran are the people of Allah and His special servants.\"
 	        (Al-Nasa\'i)
         </item>
@@ -357,7 +357,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"Beautify the #Quran with your voices.\"
 	        (Al-Nasa\'i)
         </item>
@@ -366,7 +366,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"Indeed, Allah has people from amongst mankind:
             the people of #Quran,
             they are the people of Allah and His characteristics&#8230;\"
@@ -374,7 +374,7 @@
         </item>
 
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"Hold fast to the recitation of the #Quran,
             for it will be a light for you on this earth and a treasure for you in the heavens.\"
 	        (Ibn Hibban)
@@ -384,7 +384,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"Indeed, this #Quran is the banquet of Allah,
             so learn as much as you can from the banquet of Allah&#8230;\"
 	        (Al-Hakim)
@@ -394,7 +394,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"&#8230; (this #Quran) is the strong rope of Allah
             and it is clear guidance and it is a beautiful cure&#8230;\"
 	        (Al-Hakim)
@@ -404,7 +404,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"&#8230; (this #Quran) is a protection for those who cling to it
             and a salvation for those who follow it&#8230;\"
 	        (Al-Hakim)
@@ -414,7 +414,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"&#8230; (the #Quran\'s) marvels do not fade
             nor is the sweetness of it decreased by the frequency of those who recite it&#8230;\"
 	        (Al-Hakim)
@@ -424,7 +424,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"&#8230; recite it (the #Quran),
             for indeed Allah will bestow upon you ten times the single reward
             for your recitation of each letter&#8230;\"
@@ -435,7 +435,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"If the #Quran was to be gathered inside a vessel (the heart),
             Allah will never punish it with the Hellfire.\"
 	        (Al-Bayhaqi)
@@ -445,7 +445,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"Purify your mouth with the Siwaak (tooth-stick),
             for indeed it (the mouth) is the pathway of the #Quran.\"
 	        (Al-Bayhaqi)
@@ -455,7 +455,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #HadithOfTheDay:
+            #Hadith:
 	        \"&#8230; the #Quran is learned by three types of people:
             A man who shows off by it,
             a man who eats (i.e. earns money) by it,
@@ -475,13 +475,13 @@
             ٤) لو طهرت قلوبكم ما شبعت من كلام ربكم
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"If our hearts were truly pure, we would never get enough of the words of our Lord&#8230;\"
 	        (Uthman ibn Affan)
         </item>
 
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"&#8230; I do not like for one day and night to pass by
             except that I have to look at the Book of Allah.\"
 	        (Uthman ibn Affan)
@@ -489,14 +489,14 @@
 
         <!-- Quote found in 'Uthman Ibn Affan – His Life & Times' by Dr Ali Muhammad Sallabi -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Truly, I would hate for a day to come during which I did not look at Allah's covenant [the #Quran].\"
 	        (Uthman ibn Affan)
         </item>
 
         <!-- Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The house in which the #Quran is not recited
             is like a derelict house that has no-one to maintain it.\"
 	        (Abdullah Ibn Mas\'ud)
@@ -506,7 +506,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Verily the emptiest of houses are those that are empty of the Book of Allah.\"
 	        (Abdullah Ibn Mas\'ud)
         </item>
@@ -515,7 +515,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The bearer of the #Quran should be known by his nighttime when the people are asleep;
             and by his daytime when the people are eating&#8230;\"
 	        (Abdullah Ibn Mas\'ud)
@@ -525,7 +525,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"(The house in which the #Quran is recited)
             becomes spacious for its inhabitants,
             the good of it becomes plentiful,
@@ -537,7 +537,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"&#8230; the house in which the #Quran is not recited
             becomes cramped for its inhabitants,
             has little good in it
@@ -549,7 +549,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Learn Arabic just as you learn to memorise the #Quran.\"
 	        (Ubayy Ibn Ka\'b)
         </item>
@@ -558,7 +558,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"&#8230; forgetting the #Quran is among the greatest calamities.\"
 	        (Ad-Dahhaak Ibn Muzaahim)
         </item>
@@ -567,7 +567,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The people before you considered the #Quran to be correspondence from their Lord,
             so they would ponder it by night and act upon it by day.\"
 	        (Al-Hasan Al-Basri)
@@ -577,7 +577,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"If anything will improve it (your memory), it is giving up sin.\"
 	        (Malik ibn Anas)
         </item>
@@ -587,7 +587,7 @@
            - and cited to Al Tibyaan, p.63 by al Nawawi
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Weeping is recommended while reciting the #Quran or witnessing its recitation&#8230;\"
 	        (Al-Ghazali)
         </item>
@@ -597,7 +597,7 @@
            - and cited to Fath al Baari (98/9)
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Crying when reciting the #Quran is the characteristic of those who knew Allah
             and is the distinguishing mark of the righteous.\"
 	        (Al-Nawawi)
@@ -607,7 +607,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The pious predecessors would never teach Hadith and Fiqh
             except to someone who had memorised the #Quran.\"
 	        (Al-Nawawi)
@@ -617,7 +617,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Reciting the #Quran is the most important of Adhkaar (remembrance of Allah)&#8230;
             No day or night should be without it and it may be attained by reciting a few verses.\"
 	        (Al-Nawawi)
@@ -627,7 +627,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Those who act according to what they learned
             will be guided by Allah to learn that which they do not know.\"
 	        (Ibn Abi Hatim)
@@ -637,7 +637,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"It is fitting for a student that he begins with memorisation of the Book of Allah,
             since it is the greatest of the branches of knowledge&#8230;\"
 	        (Al-Khatib Al-Baghdadi)
@@ -647,7 +647,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"As for seeking to memorise the #Quran
             then this is to be given preference over many of the things that people consider to be knowledge&#8230;\"
 	        (Ibn Taymiyyah)
@@ -657,7 +657,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"&#8230; (the seeker of knowledge) should begin by memorising the #Quran,
             as it is the foundation of the branches of knowledge of the religion.\"
 	        (Ibn Taymiyyah)
@@ -667,7 +667,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"When a believer truly believes that the #Quran is of the highest priority,
             he or she will find time for its companionship regardless of how busy life becomes.\"
 	        (Suleiman Hani)
@@ -677,7 +677,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"When your heart is inclined towards the #Quran,
             you will love to recite, memorise and listen to the words of Allah frequently.\"
 	        (Suleiman Hani)
@@ -687,7 +687,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"While people are pursuing wealth, fame, power, social validation
             and acceptance&#8230;
             the true believers are pursuing the #Quran and the love of their Lord.\"
@@ -698,7 +698,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The #Quran is a cure,
             a source of guidance,
             a salvation,
@@ -713,7 +713,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The wise believer takes advantage
             and holds firmly to the habit of reciting the #Quran
             as a cure for all types of illnesses in this world.\"
@@ -724,7 +724,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The more one studies the #Quran
             and increases in knowledge of its meanings and legislations,
             the more one increases in love for Allah.\"
@@ -735,7 +735,7 @@
            - Quote found in '114 Tips To Help You Finally Memorize The Quran' by Suleiman Hani
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The People of the #Quran do not think of the #Quran as a \'daily task\',
             but instead they view it as a part and parcel of life that they cannot do without.\"
 	        (Suleiman Hani)
@@ -745,7 +745,7 @@
            - Quote found in 'The Crowning Venture' by Saadia Mian
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Memorising the #Quran is not an achievement to be conquered,
             it\'s a journey to savour.\"
 	        (Saadia Mian)
@@ -755,7 +755,7 @@
            - Quote found in 'The Crowning Venture' by Saadia Mian
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"Always be grateful for any moment you spend with the #Quran
             and any amount you memorise.
             Consider it an invitation from Allah to spend time with His words.\"
@@ -766,7 +766,7 @@
            - Quote found in minute 18 of episode 49 of the IlmFeed Podcast (https://www.youtube.com/watch?v=V3koHDrJ7NY).
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
 	        \"The more you give the #Quran,
             the more the #Quran will give you.\"
 	        (Haifaa Younis)
@@ -777,7 +777,7 @@
            - https://blog.islamiconlineuniversity.com/question/seeking-refuge-allah-beginning-recitation-quran
            -->
         <item>
-            #QuoteOfTheDay:
+            #Quote:
             \"We are instructed to seek refuge in Allah from Satan
             before beginning the recitation of #Quran
             because it is the purest source of guidance
@@ -786,7 +786,7 @@
         </item>
 
         <item>
-            #DuaOfTheDay:
+            #Dua:
 	        \"[O Allah! I ask You that You make the #Quran]
             the life of my heart and the light of my chest,
             and a departure for my sorrow and a release for my anxiety.\"
@@ -794,7 +794,7 @@
         </item>
 
         <item>
-            #DuaOfTheDay:
+            #Dua:
             \"O Allah!
             Assist me in remembering You,
             in thanking You,
