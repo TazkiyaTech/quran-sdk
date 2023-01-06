@@ -9,6 +9,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.core.Is.`is`
 import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,7 +34,7 @@ class QuranQuotesTests {
     }
 
     @Test
-    fun getTipOfTheDay() {
+    fun getQuoteOfTheDay() {
         // Give.
         val quote1 = quranQuotes.quoteOfTheDay
 
@@ -41,7 +42,7 @@ class QuranQuotesTests {
         val quote2 = quranQuotes.quoteOfTheDay
 
         // Then.
-        Assert.assertEquals(quote1, quote2)
+        assertEquals(quote1, quote2)
     }
 
     @Test

@@ -583,8 +583,8 @@
         </item>
 
         <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Al Tibyaan, p.63 by al Nawawi
+           - Quote found in 'Meadows of the Divine' by Alomgir Ali.
+           - It cited page 63 of Al-Tibyaan by al-Nawawi as the source.
            -->
         <item>
             #Quote:
@@ -593,8 +593,8 @@
         </item>
 
         <!--
-           - Quote found in 'Meadows of the Divine' by Alomgir Ali
-           - and cited to Fath al Baari (98/9)
+           - Quote found in 'Meadows of the Divine' by Alomgir Ali.
+           - It cited Fath al-Bari (98/9) as the source.
            -->
         <item>
             #Quote:
@@ -770,6 +770,30 @@
 	        \"The more you give the #Quran,
             the more the #Quran will give you.\"
 	        (Haifaa Younis)
+        </item>
+
+        <!--
+           - Quote found in 'Fortifying Man Against Jinn and Satan' by Wahid Abdussalam Bali.
+           - It cited Ighaathat al-Lahfaan min masaa'id ash-Shaytaan (إغاثة اللهفان من مصائد الشيطان) as the source.
+          -->
+        <item>
+            #Quote:
+            \"Satan assaults the reader with his cavalry and infantry
+            in order to keep him from concentrating on understanding the meaning and true purpose of reciting the #Quran&#8230;
+            That is why man was ordered to seek refuge before starting the recitation.\"
+            (Ibn al-Qayyim)
+        </item>
+
+        <!--
+           - Quote found in 'Fortifying Man Against Jinn and Satan' by Wahid Abdussalam Bali.
+           - It cited Ighaathat al-Lahfaan min masaa'id ash-Shaytaan (إغاثة اللهفان من مصائد الشيطان) as the source.
+          -->
+        <item>
+            #Quote:
+            \"Satan tries to come between man and his heart to busy that heart with other things
+            so that the benefits (of recitation) will not be reaped.
+            That is why man was ordered to seek refuge before starting the recitation.\"
+            (Ibn al-Qayyim)
         </item>
 
         <!--
