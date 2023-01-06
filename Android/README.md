@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:quran-sdk:1.1.0'
+    implementation 'com.tazkiyatech:quran-sdk:1.2.0'
 }
 ```
 
