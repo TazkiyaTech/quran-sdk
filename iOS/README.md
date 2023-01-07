@@ -9,7 +9,7 @@ This library gives you easy, offline access to verses of the Quran in your iOS p
 Getting setup by means of [Swift Package Manager](https://swift.org/package-manager) is a simple
 two-step process, as follows:
 
-1. Add this library to your Xcode project's list of Swift packages by means of its URL,
+1. Add this library to your Xcode project's Swift package dependencies by means of its URL,
    i.e. `git@github.com:TazkiyaTech/quran-sdk.git` or `https://github.com/TazkiyaTech/quran-sdk.git`.
 2. Select the target(s) that you would like to add this Swift package to.
 
