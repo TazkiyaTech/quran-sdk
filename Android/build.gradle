@@ -1,22 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
-apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'signing'
 
-group = getProperty('projectGroupName')
-version = getProperty('projectVersionName')
-
-File[] proGuardFileCollection = file('./proguard').listFiles()
-File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
-
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     namespace 'com.tazkiyatech.quran.sdk'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
@@ -25,26 +18,32 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            proguardFile(getDefaultProguardFile('proguard-android.txt'))
-            proguardFiles(proGuardFileCollection)
-            proguardFiles(proGuardDebugFileCollection)
         }
 
         release {
             minifyEnabled false
             shrinkResources false
-            proguardFile(getDefaultProguardFile('proguard-android.txt'))
-            proguardFiles(proGuardFileCollection)
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     lintOptions {
         abortOnError true
+    }
+
+    publishing {
+        singleVariant('release') {
+            withJavadocJar()
+            withSourcesJar()
+        }
     }
 
     testOptions {
@@ -57,28 +56,15 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.annotation:annotation:1.6.0'
 
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'com.tazkiyatech:android-test-utils:1.8.0'
+    androidTestImplementation 'com.tazkiyatech:android-test-utils:1.9.0'
     androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
-}
-
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier.set('sources')
-    group = 'build'
-}
-
-task generateJavadocJar(type: Jar) {
-    from dokkaJavadoc
-    classifier 'javadoc'
-    description = "Builds up a jar of this module's Javadoc."
-    group = 'build'
 }
 
 afterEvaluate {
@@ -86,8 +72,6 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifact generateJavadocJar
-                artifact generateSourcesJar
 
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
@@ -120,15 +104,6 @@ afterEvaluate {
                         url = 'https://github.com/TazkiyaTech/quran-sdk'
                     }
                 }
-            }
-            debug(MavenPublication) {
-                from components.debug
-                artifact generateJavadocJar
-                artifact generateSourcesJar
-
-                groupId getProperty('projectGroupName')
-                artifactId getProperty('projectArtifactName')
-                version getProperty('projectVersionName')
             }
         }
 
