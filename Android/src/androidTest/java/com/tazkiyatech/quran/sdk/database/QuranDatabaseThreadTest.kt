@@ -19,7 +19,7 @@ class QuranDatabaseThreadTest {
 
         val quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
 
-        for (i in 0..100) {
+        repeat(100) {
             threads.add(createThread(quranDatabase))
         }
 
@@ -34,7 +34,7 @@ class QuranDatabaseThreadTest {
     fun openDatabase_in_multiple_simultaneous_threads_on_different_QuranDatabase_instances() {
         val threads = mutableListOf<Thread>()
 
-        for (i in 0..100) {
+        repeat(100) {
             threads.add(createThread())
         }
 

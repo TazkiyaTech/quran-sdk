@@ -4,23 +4,20 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.tazkiyatech.quran.sdk.exception.QuranDatabaseException
 import com.tazkiyatech.quran.sdk.model.SectionType
+import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.collection.IsIterableContainingInOrder.contains
 import org.hamcrest.core.Is.`is`
 import org.junit.After
-import org.junit.Assert.*
-import org.junit.Before
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class QuranDatabaseTests {
 
-    private lateinit var quranDatabase: QuranDatabase
-
-    @Before
-    fun setUp() {
-        quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
-    }
+    private val quranDatabase = QuranDatabase(ApplicationProvider.getApplicationContext())
 
     @After
     fun tearDown() {
@@ -249,10 +246,10 @@ class QuranDatabaseTests {
             val expectedNumberOfVerses = surahMetadata.numAyahs
 
             // When.
-            val actualNumberOfVerses = quranDatabase.getAyahsInSurah(surahMetadata.sectionNumber).size
+            val ayahs = quranDatabase.getAyahsInSurah(surahMetadata.sectionNumber)
 
             // Then.
-            assertEquals(expectedNumberOfVerses, actualNumberOfVerses)
+            assertEquals(expectedNumberOfVerses, ayahs.size)
         }
     }
 

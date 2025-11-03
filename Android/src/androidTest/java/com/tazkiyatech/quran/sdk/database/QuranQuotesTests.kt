@@ -8,7 +8,6 @@ import com.tazkiyatech.quran.sdk.matchers.StringHasLengthLessThan.hasLengthLessT
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.greaterThan
 import org.hamcrest.core.Is.`is`
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
