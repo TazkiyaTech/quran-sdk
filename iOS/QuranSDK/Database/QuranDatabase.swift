@@ -10,39 +10,38 @@ import Foundation
 import SQLite3
 
 /**
- * Helper class which handles the creation and opening of the SQLite-based Quran database
- * and provides easy methods for accessing its content.
+ * A wrapper around the SQLite Quran database.
+ * Provides easy methods for accessing the contents of the database.
  */
-public class QuranDatabase {
+public class QuranDatabase: @unchecked Sendable {
+    
+    private static let sharedLock = NSLock()
     
     private var database: OpaquePointer? = nil
     
     /**
-     * Opens the Quran database for reading, if it's not already open.
+     * Opens the Quran database for reading if it's not already open.
+     * Does nothing if the database is already open for reading.
+     *
+     * Calling this function is optional.
+     * The "get..." functions on this class take care of opening the database if it not already open.
+     * Call this function if you open to open the database ahead of time before the first "get..." function call in your app.
      *
      * - Throws: `QuranDatabaseError` if the database could not be opened.
      */
     public func openDatabase() throws(QuranDatabaseError) {
+        
         if (isDatabaseOpen()) {
             return
         }
         
+        let internalStorageURL: URL
+        
         do {
-            try copyDatabaseToInternalStorageIfMissing()
+            internalStorageURL = try QuranDatabase.copyDatabaseToInternalStorageIfMissing()
         } catch {
             throw QuranDatabaseError(
                 message: "Failed opening database. Failed copying database from framework bundle to internal storage.",
-                underlyingError: error,
-            )
-        }
-        
-        var internalStorageURL: URL
-        
-        do {
-            internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
-        } catch {
-            throw QuranDatabaseError(
-                message: "Failed opening database. Failed getting internal storage URL for Quran database.",
                 underlyingError: error,
             )
         }
@@ -63,6 +62,11 @@ public class QuranDatabase {
      * - Throws: `QuranDatabaseError` if the database could not be closed.
      */
     public func closeDatabase() throws(QuranDatabaseError) {
+        
+        Self.sharedLock.lock()
+        
+        defer { Self.sharedLock.unlock() }
+        
         if (!isDatabaseOpen()) {
             return
         }
@@ -350,11 +354,11 @@ public class QuranDatabase {
     /**
      * Determines whether the database file exists in internal storage.
      *
-     * (Internal visibility for testing purposes.)
+     * This function exists for testing purposes only.
      *
      * - Returns: true if the database file exists in internal storage, and false otherwise.
      */
-    internal func isDatabaseExistsInInternalStorage() throws -> Bool {
+    internal static func isDatabaseExistsInInternalStorage() throws -> Bool {
         let path = try getURLForQuranDatabaseInInternalStorage().path
         return fileExists(atPath: path)
     }
@@ -373,14 +377,11 @@ public class QuranDatabase {
     /**
      * Deletes the database file from internal storage.
      *
-     * (Internal visibility for testing purposes.)
+     * This function exists for testing purposes only.
      *
      * - Throws: `QuranDatabaseError` if there was an error deleting the database from internal storage.
      */
-    internal func deleteDatabaseInInternalStorage() throws {
-        
-        objc_sync_enter(QuranDatabase.self)
-        defer { objc_sync_exit(QuranDatabase.self) }
+    internal static func deleteDatabaseInInternalStorage() throws {
         
         do {
             let fileManager = FileManager.default
@@ -415,10 +416,12 @@ public class QuranDatabase {
         }
     }
     
-    private func copyDatabaseToInternalStorageIfMissing() throws {
+    /// - Returns: The location of the database in internal storage.
+    private static func copyDatabaseToInternalStorageIfMissing() throws -> URL {
         
-        objc_sync_enter(QuranDatabase.self)
-        defer { objc_sync_exit(QuranDatabase.self) }
+        Self.sharedLock.lock()
+        
+        defer { Self.sharedLock.unlock() }
         
         let internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
         let databaseExistsInInternalStorage = fileExists(atPath: internalStorageURL.path)
@@ -427,16 +430,19 @@ public class QuranDatabase {
             let bundleURL = try getURLForQuranDatabaseInFrameworkBundle()
             try FileManager.default.copyItem(at: bundleURL, to: internalStorageURL)
         }
+        
+        return internalStorageURL
     }
     
     /**
-     * - Returns: true if a file exists at the given path, and false otherwise.
+     * - Returns: `true` if a file exists at the given path, and `false` otherwise.
      */
-    private func fileExists(atPath path: String) -> Bool {
+    private static func fileExists(atPath path: String) -> Bool {
         return FileManager.default.fileExists(atPath: path)
     }
     
-    private func getURLForQuranDatabaseInInternalStorage() throws -> URL {
+    /// - Returns: The location of the database in internal storage.
+    private static func getURLForQuranDatabaseInInternalStorage() throws -> URL {
         if #available(iOS 16.0, macOS 13.0, *) {
             return try FileManager.default.url(
                 for: .documentDirectory,
@@ -454,11 +460,12 @@ public class QuranDatabase {
         }
     }
     
-    private func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
+    /// - Returns: The location of the database in the framework bundle.
+    private static func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
 #if SWIFT_PACKAGE
         let bundle = Bundle.module
 #else
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle(for: Self.self)
 #endif
         
         guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db") else {

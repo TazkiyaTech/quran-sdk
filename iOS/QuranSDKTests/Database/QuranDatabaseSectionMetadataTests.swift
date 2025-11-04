@@ -16,7 +16,7 @@ class QuranDatabaseSectionMetadataTests {
     
     init() throws {
         do {
-            try quranDatabase.deleteDatabaseInInternalStorage()
+            try QuranDatabase.deleteDatabaseInInternalStorage()
         } catch {
             throw QuranSDKTestsError(
                 message: "Failed deleting the database file in the test initialiser",

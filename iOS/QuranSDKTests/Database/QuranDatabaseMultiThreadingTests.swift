@@ -13,22 +13,11 @@ import Testing
 class QuranDatabaseMultiThreadingTests {
     
     init() throws {
-        let quranDatabase = QuranDatabase()
-        
         do {
-            try quranDatabase.deleteDatabaseInInternalStorage()
+            try QuranDatabase.deleteDatabaseInInternalStorage()
         } catch {
             throw QuranSDKTestsError(
                 message: "Failed deleting the database file in the test setup",
-                underlyingError: error
-            )
-        }
-        
-        do {
-            try quranDatabase.closeDatabase()
-        } catch {
-            throw QuranSDKTestsError(
-                message: "Failed closing the databse in the test setup",
                 underlyingError: error
             )
         }
@@ -56,8 +45,10 @@ class QuranDatabaseMultiThreadingTests {
         try await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 1...10 {
                 group.addTask {
-                    let ayah = try QuranDatabase().getAyah(surahNumber: 1, ayahNumber: 1)
+                    let quranDatabase = QuranDatabase()
+                    let ayah = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
                     #expect(ayah == "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ")
+                    try quranDatabase.closeDatabase()
                 }
             }
             try await group.waitForAll()

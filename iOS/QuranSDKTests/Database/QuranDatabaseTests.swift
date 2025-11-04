@@ -16,7 +16,7 @@ class QuranDatabaseTests {
 
     init() throws {
         do {
-            try quranDatabase.deleteDatabaseInInternalStorage()
+            try QuranDatabase.deleteDatabaseInInternalStorage()
         } catch {
             throw QuranSDKTestsError(
                 message: "Failed deleting the database file in the test initialiser",
@@ -32,7 +32,7 @@ class QuranDatabaseTests {
     @Test
     func isDatabaseExistsInInternalStorage_when_database_not_opened() throws {
         // When.
-        let result = try quranDatabase.isDatabaseExistsInInternalStorage()
+        let result = try QuranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
         #expect(result == false)
@@ -44,7 +44,7 @@ class QuranDatabaseTests {
         try quranDatabase.openDatabase()
 
         // When.
-        let result = try quranDatabase.isDatabaseExistsInInternalStorage()
+        let result = try QuranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
         #expect(result == true)
