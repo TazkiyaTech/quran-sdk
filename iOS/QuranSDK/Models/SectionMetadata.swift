@@ -11,7 +11,7 @@ import Foundation
 /**
  * Metadata which describes a section of the Quran.
  */
-public struct SectionMetadata {
+public struct SectionMetadata: Sendable {
     
     public let sectionType: SectionType
     public let sectionNumber: Int

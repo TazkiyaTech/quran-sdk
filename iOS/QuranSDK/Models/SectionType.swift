@@ -15,7 +15,7 @@ import Foundation
  *
  * The Majeedi script mushaf is the simplified mushaf common in South Asia which sections the Quran by Rukus and Juz-Quarters.
  */
-public enum SectionType: String {
+public enum SectionType: String, Sendable {
     case surah = "surah"
     case juzInMadinahMushaf = "juz_in_madinah_mushaf"
     case hizbInMadinahMushaf = "hizb_in_madinah_mushaf"

@@ -6,80 +6,61 @@
 //  Copyright © 2020 Tazkiya Tech. All rights reserved.
 //
 
-import XCTest
+import Testing
 @testable import QuranSDK
 
-class QuranDatabaseMultiThreadingTests: XCTestCase {
+@Suite(.serialized)
+class QuranDatabaseMultiThreadingTests {
     
-    private var quranDatabase: QuranDatabase!
-    
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
+    init() throws {
+        let quranDatabase = QuranDatabase()
         
         do {
-            try QuranDatabase().deleteDatabaseInInternalStorage()
+            try quranDatabase.deleteDatabaseInInternalStorage()
         } catch {
-            XCTFail("Failed deleting the database file in the test setup: \(error)")
+            throw QuranSDKTestsError(
+                message: "Failed deleting the database file in the test setup",
+                underlyingError: error
+            )
+        }
+        
+        do {
+            try quranDatabase.closeDatabase()
+        } catch {
+            throw QuranSDKTestsError(
+                message: "Failed closing the databse in the test setup",
+                underlyingError: error
+            )
         }
     }
     
-    func test_opening_the_database_in_multiple_simultaneous_threads_on_the_same_QuranDatabase_instance() throws {
-        let numberOfThreads = 10
-        
-        let expectation = XCTestExpectation(description: "Expect the Quran database open to complete")
-        expectation.expectedFulfillmentCount = numberOfThreads
-        
+    @Test
+    func openingDatabaseInMultipleSimultaneousThreadsOnSameQuranDatabaseInstance() async throws {
         let quranDatabase = QuranDatabase()
         
         defer { try? quranDatabase.closeDatabase() }
         
-        (1...numberOfThreads).forEach { _ in queryDatabaseInBackgroundThread(expectation, quranDatabase) }
-        
-        wait(for: [expectation], timeout: 5)
-    }
-    
-    func test_opening_the_database_in_multiple_simultaneous_threads_on_different_QuranDatabase_instances() throws {
-        let numberOfThreads = 10
-        
-        let expectation = XCTestExpectation(description: "Expect the Quran database query to complete")
-        expectation.expectedFulfillmentCount = numberOfThreads
-        
-        (1...numberOfThreads).forEach { _ in queryDatabaseInBackgroundThread(expectation) }
-        
-        wait(for: [expectation], timeout: 5)
-    }
-    
-    private func queryDatabaseInBackgroundThread(_ expectation: XCTestExpectation,
-                                                 _ quranDatabase: QuranDatabase) {
-        DispatchQueue.global().async {
-            do {
-                // the database query below will implicitly make a call to open the database
-                let ayah = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
-                XCTAssertEqual("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", ayah)
-            } catch {
-                XCTFail("\(error)")
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for _ in 1...10 {
+                group.addTask {
+                    let ayah = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
+                    #expect(ayah == "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ")
+                }
             }
-            
-            expectation.fulfill()
+            try await group.waitForAll()
         }
     }
     
-    private func queryDatabaseInBackgroundThread(_ expectation: XCTestExpectation) {
-        DispatchQueue.global().async {
-            let quranDatabase = QuranDatabase()
-            
-            defer { try? quranDatabase.closeDatabase() }
-            
-            do {
-                // the database query below will implicitly make a call to open the database
-                let ayah = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
-                XCTAssertEqual("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", ayah)
-            } catch {
-                XCTFail("\(error)")
+    @Test
+    func openingDatabaseInMultipleSimultaneousThreadsOnDifferentQuranDatabaseInstances() async throws {
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for _ in 1...10 {
+                group.addTask {
+                    let ayah = try QuranDatabase().getAyah(surahNumber: 1, ayahNumber: 1)
+                    #expect(ayah == "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ")
+                }
             }
-            
-            expectation.fulfill()
+            try await group.waitForAll()
         }
     }
 }

@@ -6,39 +6,40 @@
 //  Copyright © 2018 Tazkiya Tech. All rights reserved.
 //
 
-import XCTest
+import Testing
 @testable import QuranSDK
 
-class QuranDatabaseTests: XCTestCase {
+@Suite(.serialized)
+class QuranDatabaseTests {
 
-    private var quranDatabase: QuranDatabase!
+    private let quranDatabase = QuranDatabase()
 
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-
-        quranDatabase = QuranDatabase()
-
+    init() throws {
         do {
             try quranDatabase.deleteDatabaseInInternalStorage()
         } catch {
-            XCTFail("Failed deleting the database file in the test setup: \(error)")
+            throw QuranSDKTestsError(
+                message: "Failed deleting the database file in the test initialiser",
+                underlyingError: error,
+            )
         }
     }
 
-    override func tearDown() {
+    deinit {
         try? quranDatabase.closeDatabase()
     }
 
-    func test_isDatabaseExistsInInternalStorage_when_database_not_opened() throws {
+    @Test
+    func isDatabaseExistsInInternalStorage_when_database_not_opened() throws {
         // When.
         let result = try quranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
-        XCTAssertFalse(result)
+        #expect(result == false)
     }
 
-    func test_isDatabaseExistsInInternalStorage_when_database_opened() throws {
+    @Test
+    func isDatabaseExistsInInternalStorage_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase()
 
@@ -46,18 +47,20 @@ class QuranDatabaseTests: XCTestCase {
         let result = try quranDatabase.isDatabaseExistsInInternalStorage()
 
         // Then.
-        XCTAssertTrue(result)
+        #expect(result == true)
     }
 
+    @Test
     func isDatabaseOpen_when_database_not_opened() {
         // When.
         let result = quranDatabase.isDatabaseOpen()
 
         // Then.
-        XCTAssertFalse(result)
+        #expect(result == false)
     }
 
-    func test_isDatabaseOpen_when_database_opened() throws {
+    @Test
+    func isDatabaseOpen_when_database_opened() throws {
         // Given.
         try quranDatabase.openDatabase()
 
@@ -65,10 +68,11 @@ class QuranDatabaseTests: XCTestCase {
         let result = quranDatabase.isDatabaseOpen()
 
         // Then.
-        XCTAssertTrue(result)
+        #expect(result == true)
     }
 
-    func test_openDatabase_on_two_separate_instances() throws {
+    @Test
+    func openDatabase_on_two_separate_instances() throws {
         // Given.
         try QuranDatabase().openDatabase()
 
@@ -76,23 +80,35 @@ class QuranDatabaseTests: XCTestCase {
         try quranDatabase.openDatabase()
 
         // Then.
-        XCTAssertTrue(quranDatabase.isDatabaseOpen())
+        #expect(quranDatabase.isDatabaseOpen() == true)
     }
 
-    func test_getNameOfSurah_with_surah_number_1() throws {
+    @Test
+    func getNameOfSurah_with_surah_number_1() throws {
         // When.
         let surahName = try quranDatabase.getNameOfSurah(1)
         
         // Then.
-        XCTAssertEqual("الفاتحة", surahName)
+        #expect(surahName == "الفاتحة")
     }
     
-    func test_getNameOfSurah_with_invalid_surah_number() {
+    @Test
+    func getNameOfSurah_with_invalid_surah_number() throws {
         // When. / Then.
-        XCTAssertThrowsError(try quranDatabase.getNameOfSurah(115))
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getNameOfSurah(115)
+        }
+        
+        try #require(error.message == "Failed executing query. Failed getting Surah name for Surah 115.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query. Step result was 101.")
+        #expect(underlyingError.underlyingError == nil)
     }
     
-    func test_getSurahNames() throws {
+    @Test
+    func getSurahNames() throws {
         // Given.
         let expected = [
             "الفاتحة",
@@ -215,10 +231,11 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getSurahNames()
 
         // Then.
-        XCTAssertEqual(expected, actual)
+        #expect(actual == expected)
     }
 
-    func test_getAyahsInSurah_with_valid_surah_number() throws {
+    @Test
+    func getAyahsInSurah_with_valid_surah_number() throws {
         // Given.
         let expected = [
             "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
@@ -234,14 +251,15 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getAyahsInSurah(1)
 
         // Then.
-        XCTAssertEqual(expected, actual)
+        #expect(actual == expected)
     }
     
-    func test_getAyahsInSurah_for_each_and_every_surah() throws {
+    @Test
+    func getAyahsInSurah_for_each_and_every_surah() throws {
         // Given.
         let surahMetadataArray = try quranDatabase.getMetadataForSections(ofType: .surah)
         
-        XCTAssertEqual(114, surahMetadataArray.count)
+        try #require(surahMetadataArray.count == 114)
         
         for surahMetadata in surahMetadataArray {
             // Given.
@@ -251,16 +269,27 @@ class QuranDatabaseTests: XCTestCase {
             let actualNumberOfVerses = try quranDatabase.getAyahsInSurah(surahMetadata.sectionNumber).count
             
             // Then.
-            XCTAssertEqual(expectedNumberOfVerses, actualNumberOfVerses)
+            #expect(actualNumberOfVerses == expectedNumberOfVerses, "Mismatch for Surah number \(surahMetadata.sectionNumber)")
         }
     }
 
-    func test_getAyahsInSurah_with_invalid_surah_number() {
+    @Test
+    func getAyahsInSurah_with_invalid_surah_number() throws {
         // When. / Then.
-        XCTAssertThrowsError(try quranDatabase.getAyahsInSurah(115))
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getAyahsInSurah(115)
+        }
+        
+        #expect(error.message == "Failed executing query. Failed getting Ayahs for Surah 115.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query for Surah 115.")
+        #expect(underlyingError.underlyingError == nil)
     }
     
-    func test_getAyah_with_surah_number_1_and_ayah_number_1() throws {
+    @Test
+    func getAyah_with_surah_number_1_and_ayah_number_1() throws {
         // Given.
         let expected = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
         
@@ -268,10 +297,11 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 1)
 
         // Then.
-        XCTAssertEqual(expected, actual)
+        #expect(actual == expected)
     }
     
-    func test_getAyah_with_surah_number_58_and_ayah_number_6() throws {
+    @Test
+    func getAyah_with_surah_number_58_and_ayah_number_6() throws {
         // Given.
         let expected = "يَوْمَ يَبْعَثُهُمُ اللَّهُ جَمِيعًا فَيُنَبِّئُهُمْ بِمَا عَمِلُوا ۚ أَحْصَاهُ اللَّهُ وَنَسُوهُ ۚ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ شَهِيدٌ"
         
@@ -279,16 +309,36 @@ class QuranDatabaseTests: XCTestCase {
         let actual = try quranDatabase.getAyah(surahNumber: 58, ayahNumber: 6)
         
         // Then.
-        XCTAssertEqual(expected, actual)
+        #expect(actual == expected)
     }
     
-    func test_getAyah_with_invalid_surah_number() throws {
+    @Test
+    func getAyah_with_invalid_surah_number() throws {
         // When. / Then.
-        XCTAssertThrowsError(try quranDatabase.getAyah(surahNumber: 115, ayahNumber: 1))
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getAyah(surahNumber: 115, ayahNumber: 1)
+        }
+        
+        #expect(error.message == "Failed executing query. Failed getting Ayah for Surah 115, Ayah 1.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query. Step result was 101.")
+        #expect(underlyingError.underlyingError == nil)
     }
     
-    func test_getAyah_with_invalid_ayah_number() throws {
+    @Test
+    func getAyah_with_invalid_ayah_number() throws {
         // When. / Then.
-        XCTAssertThrowsError(try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 8))
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getAyah(surahNumber: 1, ayahNumber: 8)
+        }
+        
+        #expect(error.message == "Failed executing query. Failed getting Ayah for Surah 1, Ayah 8.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query. Step result was 101.")
+        #expect(underlyingError.underlyingError == nil)
     }
 }

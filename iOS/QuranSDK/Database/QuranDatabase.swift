@@ -20,9 +20,9 @@ public class QuranDatabase: NSObject {
     /**
      * Opens the Quran database for reading, if it's not already open.
      *
-     * - Throws: `QuranDatabaseError.FailedOpeningDatabase` if the database could not be opened.
+     * - Throws: `QuranDatabaseError` if the database could not be opened.
      */
-    public func openDatabase() throws {
+    public func openDatabase() throws(QuranDatabaseError) {
         if (isDatabaseOpen()) {
             return
         }
@@ -30,9 +30,9 @@ public class QuranDatabase: NSObject {
         do {
             try copyDatabaseToInternalStorageIfMissing()
         } catch {
-            throw QuranDatabaseError.FailedOpeningDatabase(
-                "Failed copying database from framework bundle to internal storage",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed opening database. Failed copying database from framework bundle to internal storage.",
+                underlyingError: error,
             )
         }
         
@@ -41,18 +41,18 @@ public class QuranDatabase: NSObject {
         do {
             internalStorageURL = try getURLForQuranDatabaseInInternalStorage()
         } catch {
-            throw QuranDatabaseError.FailedOpeningDatabase(
-                "Failed getting internal storage URL for Quran database",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed opening database. Failed getting internal storage URL for Quran database.",
+                underlyingError: error,
             )
         }
         
         let resultCode = sqlite3_open_v2(internalStorageURL.path, &database, SQLITE_OPEN_READONLY|SQLITE_OPEN_FULLMUTEX, nil)
         
         if resultCode != SQLITE_OK {
-            throw QuranDatabaseError.FailedOpeningDatabase(
-                "SQLite result code = \(resultCode)",
-                underlyingError: nil
+            throw QuranDatabaseError(
+                message: "Failed opening database. SQLite result code = \(resultCode).",
+                underlyingError: nil,
             )
         }
     }
@@ -60,9 +60,9 @@ public class QuranDatabase: NSObject {
     /**
      * Closes the Quran database.
      *
-     * - Throws: `QuranDatabaseError.FailedClosingDatabase` if the database could not be closed.
+     * - Throws: `QuranDatabaseError` if the database could not be closed.
      */
-    public func closeDatabase() throws {
+    public func closeDatabase() throws(QuranDatabaseError) {
         if (!isDatabaseOpen()) {
             return
         }
@@ -70,7 +70,9 @@ public class QuranDatabase: NSObject {
         let resultCode = sqlite3_close(database)
         
         if (resultCode != SQLITE_OK) {
-            throw QuranDatabaseError.FailedClosingDatabase("SQLite result code = \(resultCode)")
+            throw QuranDatabaseError(
+                message: "Failed closing database. SQLite result code = \(resultCode).",
+            )
         }
         
         database = nil
@@ -80,9 +82,9 @@ public class QuranDatabase: NSObject {
      * Gets the names of all of the Surahs in the Quran.
      *
      * - Returns: the names of all of the Surahs in the Quran.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah names from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the Surah names from the database.
      */
-    public func getSurahNames() throws -> [String] {
+    public func getSurahNames() throws(QuranDatabaseError) -> [String] {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -103,16 +105,13 @@ public class QuranDatabase: NSObject {
             }
             
             if (rows.isEmpty) {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query",
-                    underlyingError: nil
-                )
+                throw QuranDatabaseError(message: "No rows returned in query")
             }
             
             return rows
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting Surah names",
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting Surah names.",
                 underlyingError: error
             )
         }
@@ -123,9 +122,9 @@ public class QuranDatabase: NSObject {
      *
      * - Parameter surahNumber: is a value between 1 and 114 (inclusive).
      * - Returns: the name of the specified Surah.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Surah name from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the Surah name from the database.
      */
-    public func getNameOfSurah(_ surahNumber: Int) throws -> String {
+    public func getNameOfSurah(_ surahNumber: Int) throws(QuranDatabaseError) -> String {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -144,15 +143,14 @@ public class QuranDatabase: NSObject {
                 let columnText = String(cString: columnTextPointer!)
                 return columnText
             } else {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query. Step result was \(stepResult)",
-                    underlyingError: nil
+                throw QuranDatabaseError(
+                    message: "No rows returned in query. Step result was \(stepResult).",
                 )
             }
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting Surah name for Surah \(surahNumber)",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting Surah name for Surah \(surahNumber).",
+                underlyingError: error,
             )
         }
     }
@@ -162,9 +160,9 @@ public class QuranDatabase: NSObject {
      *
      * - Parameter surahNumber: is a value between 1 and 114 (inclusive).
      * - Returns: the Ayahs of the specified Surah.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayahs from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the Ayahs from the database.
      */
-    public func getAyahsInSurah(_ surahNumber: Int) throws -> [String] {
+    public func getAyahsInSurah(_ surahNumber: Int) throws(QuranDatabaseError) -> [String] {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -185,17 +183,16 @@ public class QuranDatabase: NSObject {
             }
             
             if (rows.isEmpty) {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query for Surah \(surahNumber)",
-                    underlyingError: nil
+                throw QuranDatabaseError(
+                    message: "No rows returned in query for Surah \(surahNumber).",
                 )
             }
             
             return rows
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting Ayahs for Surah \(surahNumber)",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting Ayahs for Surah \(surahNumber).",
+                underlyingError: error,
             )
         }
     }
@@ -206,9 +203,12 @@ public class QuranDatabase: NSObject {
      * - Parameter surahNumber: is a value between 1 and 114 (inclusive).
      * - Parameter ayahNumber: is a value greater than or equal to 1.
      * - Returns: the text of the specified Ayah.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the Ayah from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the Ayah from the database.
      */
-    public func getAyah(surahNumber: Int, ayahNumber: Int) throws -> String {
+    public func getAyah(
+        surahNumber: Int,
+        ayahNumber: Int,
+    ) throws(QuranDatabaseError) -> String {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -227,15 +227,14 @@ public class QuranDatabase: NSObject {
                 let columnText = String(cString: columnTextPointer!)
                 return columnText
             } else {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query. Step result was \(stepResult)",
-                    underlyingError: nil
+                throw QuranDatabaseError(
+                    message: "No rows returned in query. Step result was \(stepResult).",
                 )
             }
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting Ayah for Surah \(surahNumber), Ayah \(ayahNumber)",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting Ayah for Surah \(surahNumber), Ayah \(ayahNumber).",
+                underlyingError: error,
             )
         }
     }
@@ -245,9 +244,11 @@ public class QuranDatabase: NSObject {
      *
      * - Parameter sectionType: The section type for which to get metadata.
      * - Returns: The metadata for the sections of the specified section type.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForSections(ofType sectionType: SectionType) throws -> [SectionMetadata] {
+    public func getMetadataForSections(
+        ofType sectionType: SectionType
+    ) throws(QuranDatabaseError) -> [SectionMetadata] {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -282,16 +283,15 @@ public class QuranDatabase: NSObject {
             }
             
             if (rows.isEmpty) {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query for section type = \(sectionType)",
-                    underlyingError: nil
+                throw QuranDatabaseError(
+                    message: "No rows returned in query for section type = \(sectionType)",
                 )
             }
             
             return rows
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting metadata for section type = \(sectionType)",
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting metadata for section type = \(sectionType).",
                 underlyingError: error
             )
         }
@@ -303,9 +303,12 @@ public class QuranDatabase: NSObject {
      * - Parameter sectionType: The section type for which to get metadata.
      * - Parameter sectionNumber: The number of the section within the given section type.
      * - Returns: The metadata for the specified section.
-     * - Throws: `QuranDatabaseError.FailedExecutingQuery` if there was an error getting the metadata from the database.
+     * - Throws: `QuranDatabaseError` if there was an error getting the metadata from the database.
      */
-    public func getMetadataForSection(sectionType: SectionType, sectionNumber: Int) throws -> SectionMetadata {
+    public func getMetadataForSection(
+        sectionType: SectionType,
+        sectionNumber: Int
+    ) throws(QuranDatabaseError) -> SectionMetadata {
         var compiledStatement: OpaquePointer? = nil
         
         defer {
@@ -332,15 +335,14 @@ public class QuranDatabase: NSObject {
                     ayahNumber: Int(ayahNumber)
                 )
             } else {
-                throw QuranDatabaseError.FailedExecutingQuery(
-                    "No rows returned in query. Step result was \(stepResult)",
-                    underlyingError: nil
+                throw QuranDatabaseError(
+                    message: "No rows returned in query. Step result was \(stepResult).",
                 )
             }
         } catch {
-            throw QuranDatabaseError.FailedExecutingQuery(
-                "Failed getting section metadata for section type = \(sectionType), section number = \(sectionNumber)",
-                underlyingError: error
+            throw QuranDatabaseError(
+                message: "Failed executing query. Failed getting section metadata for section type = \(sectionType), section number = \(sectionNumber).",
+                underlyingError: error,
             )
         }
     }
@@ -372,6 +374,8 @@ public class QuranDatabase: NSObject {
      * Deletes the database file from internal storage.
      *
      * (Internal visibility for testing purposes.)
+     *
+     * - Throws: `QuranDatabaseError` if there was an error deleting the database from internal storage.
      */
     internal func deleteDatabaseInInternalStorage() throws {
         
@@ -386,7 +390,10 @@ public class QuranDatabase: NSObject {
                 try fileManager.removeItem(atPath: path)
             }
         } catch {
-            throw QuranDatabaseError.FailedDeletingDatabase(underlyingError: error)
+            throw QuranDatabaseError(
+                message: "Failed deleting database.",
+                underlyingError: error,
+            )
         }
     }
     
@@ -404,7 +411,9 @@ public class QuranDatabase: NSObject {
         let resultCode = sqlite3_prepare_v2(database, statement, -1, compiledStatementPointer, nil)
         
         if (resultCode != SQLITE_OK) {
-            throw QuranDatabaseError.FailedCompilingQuery("SQLite result code = \(resultCode)")
+            throw QuranDatabaseError(
+                message: "Failed compiling query. SQLite result code = \(resultCode)."
+            )
         }
     }
     
@@ -430,36 +439,36 @@ public class QuranDatabase: NSObject {
     }
     
     private func getURLForQuranDatabaseInInternalStorage() throws -> URL {
-        return try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
+        if #available(iOS 16.0, macOS 13.0, *) {
+            return try FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
+        } else {
+            return try FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
+        }
     }
     
     private func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
-        #if SWIFT_PACKAGE
+#if SWIFT_PACKAGE
         let bundle = Bundle.module
-        #else
+#else
         let bundle = Bundle(for: type(of: self))
-        #endif
+#endif
         
         guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db") else {
-            throw QuranDatabaseError.FailedLocatingQuranDatabaseInFrameworkBundle
+            throw QuranDatabaseError(
+                message: "Failed locating Quran Database in framework bundle."
+            )
         }
         
         return url
     }
-}
-
-public enum QuranDatabaseError: Error {
-    
-    case FailedDeletingDatabase(underlyingError: Error?)
-    case FailedOpeningDatabase(_ message: String, underlyingError: Error?)
-    case FailedCompilingQuery(_ message: String)
-    case FailedExecutingQuery(_ message: String, underlyingError: Error?)
-    case FailedClosingDatabase(_ message: String)
-    case FailedLocatingQuranDatabaseInFrameworkBundle
-    
 }

@@ -6,31 +6,31 @@
 //  Copyright © 2019 Tazkiya Tech. All rights reserved.
 //
 
-import XCTest
+import Testing
 @testable import QuranSDK
 
-class QuranDatabaseSectionMetadataTests: XCTestCase {
+@Suite(.serialized)
+class QuranDatabaseSectionMetadataTests {
     
-    private var quranDatabase: QuranDatabase!
+    private let quranDatabase = QuranDatabase()
     
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        
-        quranDatabase = QuranDatabase()
-        
+    init() throws {
         do {
             try quranDatabase.deleteDatabaseInInternalStorage()
         } catch {
-            XCTFail("Failed deleting the database file in the test setup: \(error)")
+            throw QuranSDKTestsError(
+                message: "Failed deleting the database file in the test initialiser",
+                underlyingError: error,
+            )
         }
     }
     
-    override func tearDown() {
+    deinit {
         try? quranDatabase.closeDatabase()
     }
     
-    func test_getMetadataForSection_with_section_type_surah_and_section_number_1() throws {
+    @Test
+    func getMetadataForSection_with_section_type_surah_and_section_number_1() throws {
         // When.
         let sectionMetadata = try quranDatabase.getMetadataForSection(
             sectionType: .surah,
@@ -38,24 +38,45 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         )
         
         // Then.
-        XCTAssertEqual(.surah, sectionMetadata.sectionType)
-        XCTAssertEqual(1, sectionMetadata.sectionNumber)
-        XCTAssertEqual(7, sectionMetadata.numAyahs)
-        XCTAssertEqual(1, sectionMetadata.surahNumber)
-        XCTAssertEqual(1, sectionMetadata.ayahNumber)
+        #expect(sectionMetadata.sectionType == .surah)
+        #expect(sectionMetadata.sectionNumber == 1)
+        #expect(sectionMetadata.numAyahs == 7)
+        #expect(sectionMetadata.surahNumber == 1)
+        #expect(sectionMetadata.ayahNumber == 1)
     }
     
-    func test_getMetadataForSection_with_section_type_surah_and_section_number_0() throws {
-        // When.
-        XCTAssertThrowsError(try quranDatabase.getMetadataForSection(sectionType: .surah, sectionNumber: 0))
+    @Test
+    func getMetadataForSection_with_section_type_surah_and_section_number_0() throws {
+        // When. / Then.
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getMetadataForSection(sectionType: .surah, sectionNumber: 0)
+        }
+        
+        #expect(error.message == "Failed executing query. Failed getting section metadata for section type = surah, section number = 0.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query. Step result was 101.")
+        #expect(underlyingError.underlyingError == nil)
     }
     
-    func test_getMetadataForSection_with_section_type_surah_and_section_number_115() throws {
-        // When.
-        XCTAssertThrowsError(try quranDatabase.getMetadataForSection(sectionType: .surah, sectionNumber: 115))
+    @Test
+    func getMetadataForSection_with_section_type_surah_and_section_number_115() throws {
+        // When. / Then.
+        let error = try #require(throws: QuranDatabaseError.self) {
+            try quranDatabase.getMetadataForSection(sectionType: .surah, sectionNumber: 115)
+        }
+        
+        #expect(error.message == "Failed executing query. Failed getting section metadata for section type = surah, section number = 115.")
+        
+        let underlyingError = try #require(error.underlyingError as? QuranDatabaseError)
+        
+        #expect(underlyingError.message == "No rows returned in query. Step result was 101.")
+        #expect(underlyingError.underlyingError == nil)
     }
     
-    func test_getMetadataForSections_of_type_surah() throws {
+    @Test
+    func getMetadataForSections_of_type_surah() throws {
         // Given.
         let sectionType = SectionType.surah
         
@@ -63,7 +84,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(114, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 114)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -71,7 +92,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: 6236)
     }
     
-    func test_getMetadataForSections_of_type_juz_in_madinah_mushaf() throws {
+    @Test
+    func getMetadataForSections_of_type_juz_in_madinah_mushaf() throws {
         // Given.
         let sectionType = SectionType.juzInMadinahMushaf
         
@@ -79,7 +101,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(30, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 30)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -87,7 +109,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: 6236)
     }
     
-    func test_getMetadataForSections_of_type_hizb() throws {
+    @Test
+    func getMetadataForSections_of_type_hizb() throws {
         // Given.
         let sectionType = SectionType.hizbInMadinahMushaf
         
@@ -95,7 +118,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(60, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 60)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -103,7 +126,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: 6236)
     }
     
-    func test_getMetadataForSections_of_type_hizb_quarter() throws {
+    @Test
+    func getMetadataForSections_of_type_hizb_quarter() throws {
         // Given.
         let sectionType = SectionType.hizbQuarterInMadinahMushaf
         
@@ -111,7 +135,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(240, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 240)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -119,7 +143,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: 6236)
     }
     
-    func test_getMetadataForSections_of_type_juz_in_majeedi_mushaf() throws {
+    @Test
+    func getMetadataForSections_of_type_juz_in_majeedi_mushaf() throws {
         // Given.
         let sectionType = SectionType.juzInMajeediMushaf
         
@@ -127,7 +152,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(30, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 30)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -135,7 +160,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: (6236 - 7))
     }
     
-    func test_getMetadataForSections_of_type_juz_quarter_in_majeedi_mushaf() throws {
+    @Test
+    func getMetadataForSections_of_type_juz_quarter_in_majeedi_mushaf() throws {
         // Given.
         let sectionType = SectionType.juzQuarterInMajeediMushaf
         
@@ -143,7 +169,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         let sectionMetadataArray = try quranDatabase.getMetadataForSections(ofType: sectionType)
         
         // Then.
-        XCTAssertEqual(120, sectionMetadataArray.count)
+        #expect(sectionMetadataArray.count == 120)
         
         // And.
         assert(eachItemIn: sectionMetadataArray, hasSectionType: sectionType)
@@ -151,7 +177,8 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
         assertTotalNumberOfAyahs(in: sectionMetadataArray, isEqualTo: (6236 - 7))
     }
     
-    func test_number_of_verses_in_each_hizb_matches_the_number_of_verses_in_each_hizb_quarter() throws {
+    @Test
+    func number_of_verses_in_each_hizb_matches_the_number_of_verses_in_each_hizb_quarter() throws {
         let hizbMetadataArray = try quranDatabase.getMetadataForSections(ofType: .hizbInMadinahMushaf)
         
         let hizbQuarterMetadataArray = try quranDatabase.getMetadataForSections(ofType: .hizbQuarterInMadinahMushaf)
@@ -164,11 +191,12 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
                 + hizbQuarterMetadataArray[i * 4 + 2].numAyahs
                 + hizbQuarterMetadataArray[i * 4 + 3].numAyahs)
             
-            XCTAssertEqual(expected, actual, "Failed comparison of Hizb \(i + 1)")
+            #expect(expected == actual, "Failed comparison of Hizb \(i + 1)")
         }
     }
     
-    func test_number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_hizb() throws {
+    @Test
+    func number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_hizb() throws {
         let juzMetadataArray = try quranDatabase.getMetadataForSections(ofType: .juzInMadinahMushaf)
         let hizbMetadataArray = try quranDatabase.getMetadataForSections(ofType: .hizbInMadinahMushaf)
         
@@ -177,11 +205,12 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
             
             let actual = hizbMetadataArray[i * 2].numAyahs + hizbMetadataArray[i * 2 + 1].numAyahs
             
-            XCTAssertEqual(expected, actual, "Failed comparison of Juz ${i + 1}")
+            #expect(expected == actual, "Failed comparison of Juz \(i + 1)")
         }
     }
     
-    func test_number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_juz_quarter() throws {
+    @Test
+    func number_of_verses_in_each_juz_matches_the_number_of_verses_in_each_juz_quarter() throws {
         let juzMetadataArray = try quranDatabase.getMetadataForSections(ofType: .juzInMajeediMushaf)
         let juzQuarterMetadataArray = try quranDatabase.getMetadataForSections(ofType: .juzQuarterInMajeediMushaf)
         
@@ -193,51 +222,57 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
                 + juzQuarterMetadataArray[i * 4 + 2].numAyahs
                 + juzQuarterMetadataArray[i * 4 + 3].numAyahs
             
-            XCTAssertEqual(expected, actual, "Failed comparison of Juz ${i + 1}")
+            #expect(expected == actual, "Failed comparison of Juz \(i + 1)")
         }
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_surah_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_surah_is_as_expected() throws {
         let surahMetadataArray = try quranDatabase.getMetadataForSections(ofType: .surah)
         
         for i in surahMetadataArray.indices {
             let sectionMetadata = surahMetadataArray[i]
             
-            XCTAssertEqual((i + 1), sectionMetadata.surahNumber)
-            XCTAssertEqual(1, sectionMetadata.ayahNumber)
+            #expect((i + 1) == sectionMetadata.surahNumber)
+            #expect(1 == sectionMetadata.ayahNumber)
         }
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_madinah_mushaf_juz_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_madinah_mushaf_juz_is_as_expected() throws {
         try assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(.juzInMadinahMushaf)
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_majeedi_mushaf_juz_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_majeedi_mushaf_juz_is_as_expected() throws {
         try assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(.juzInMajeediMushaf)
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_hizb_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_hizb_is_as_expected() throws {
         try assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(.hizbInMadinahMushaf)
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_hizb_quarter_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_hizb_quarter_is_as_expected() throws {
         try assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(.hizbQuarterInMadinahMushaf)
     }
     
-    func test_surahNumber_and_ayahNumber_in_each_juz_quarter_is_as_expected() throws {
+    @Test
+    func surahNumber_and_ayahNumber_in_each_juz_quarter_is_as_expected() throws {
         try assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(.juzQuarterInMajeediMushaf)
     }
     
     private func assert(eachItemIn sectionMetadataArray: Array<SectionMetadata>,
                         hasSectionType sectionType: SectionType) {
         sectionMetadataArray.forEach { (sectionMetadata) in
-            XCTAssertEqual(sectionType, sectionMetadata.sectionType)
+            #expect(sectionType == sectionMetadata.sectionType)
         }
     }
     
     private func assertSectionNumbers(in sectionMetadataArray: Array<SectionMetadata>) {
         for i in sectionMetadataArray.indices {
-            XCTAssertEqual((i + 1), sectionMetadataArray[i].sectionNumber)
+            #expect((i + 1) == sectionMetadataArray[i].sectionNumber)
         }
     }
     
@@ -249,7 +284,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
             count += sectionMetadata.numAyahs
         }
 
-        XCTAssertEqual(expectedNumberOfAyahs, count)
+        #expect(expectedNumberOfAyahs == count)
     }
     
     private func assertSurahAndVerseNumberOfFirstVerseInEachSectionOfType(_ sectionType: SectionType) throws {
@@ -277,11 +312,7 @@ class QuranDatabaseSectionMetadataTests: XCTestCase {
                 verseNumberB: verseNumberB
             )
             
-            XCTAssertEqual(
-                count,
-                sectionMetadataArray[i].numAyahs,
-                "Unexpected number of ayahs between \(sectionType) \(i + 1) and the next one."
-            )
+            try #require(count == sectionMetadataArray[i].numAyahs, "Unexpected number of ayahs between \(sectionType) \(i + 1) and the next one.")
         }
     }
     
