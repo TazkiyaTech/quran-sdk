@@ -13,7 +13,7 @@ import SQLite3
  * Helper class which handles the creation and opening of the SQLite-based Quran database
  * and provides easy methods for accessing its content.
  */
-public class QuranDatabase: NSObject {
+public class QuranDatabase {
     
     private var database: OpaquePointer? = nil
     
