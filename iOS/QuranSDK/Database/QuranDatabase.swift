@@ -404,9 +404,7 @@ public class QuranDatabase {
      * - Parameter compiledStatementPointer: A pointer to the object into which the SQL statement will be compiled.
      */
     private func compile(_ statement: String, into compiledStatementPointer: UnsafeMutablePointer<OpaquePointer?>) throws {
-        if (!isDatabaseOpen()) {
-            try openDatabase()
-        }
+        try openDatabase()
         
         let resultCode = sqlite3_prepare_v2(database, statement, -1, compiledStatementPointer, nil)
         
