@@ -34,5 +34,6 @@ let package = Package(
             path: "iOS/QuranSDKTests",
             exclude: ["Supporting Files"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
