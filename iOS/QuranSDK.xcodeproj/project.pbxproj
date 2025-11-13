@@ -370,7 +370,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tazkiyatech.QuranSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator watchos watchsimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 8.7;
 			};
@@ -396,7 +395,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tazkiyatech.QuranSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator watchos watchsimulator";
-				SUPPORTS_MACCATALYST = NO;
 				WATCHOS_DEPLOYMENT_TARGET = 8.7;
 			};
 			name = Release;
