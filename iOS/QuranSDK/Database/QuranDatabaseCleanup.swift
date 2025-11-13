@@ -10,24 +10,18 @@ import Foundation
 
 @concurrent func deleteLegacyDatabaseFiles() async {
     do {
-        try deleteDatabaseFromDocumentDirectory()
+        let databaseV1URL = try urlForDocument(named: "com.tazkiyatech.quran.db")
+        let databaseV2URL = try urlForDocument(named: "com.tazkiyatech.quran.v2.db")
+        
+        try deleteFile(at: databaseV1URL)
+        try deleteFile(at: databaseV2URL)
     } catch {
         // swallow the error as this is just a cleanup operation
     }
 }
 
-/// Deletes the database file from the Document directory.
-private func deleteDatabaseFromDocumentDirectory() throws {
-    let fileManager = FileManager.default
-    let path = try getURLForQuranDatabaseInDocumentDirectory().path
-    
-    if fileManager.fileExists(atPath: path) {
-        try fileManager.removeItem(atPath: path)
-    }
-}
-
-/// - Returns: The location of the database file in the Document directory.
-private func getURLForQuranDatabaseInDocumentDirectory() throws -> URL {
+/// - Returns: The location of the file with the given name within the Document directory.
+private func urlForDocument(named filename: String) throws -> URL {
     let baseURL = try FileManager.default.url(
         for: .documentDirectory,
         in: .userDomainMask,
@@ -36,8 +30,19 @@ private func getURLForQuranDatabaseInDocumentDirectory() throws -> URL {
     )
     
     if #available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-        return baseURL.appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
+        return baseURL.appending(path: filename, directoryHint: .notDirectory)
     } else {
-        return baseURL.appendingPathComponent("com.tazkiyatech.quran.v2.db")
+        return baseURL.appendingPathComponent(filename)
+    }
+}
+
+/// Deletes the file at the given location if it exists.
+/// Does nothing if the file does not exist.
+private func deleteFile(at url: URL) throws {
+    let fileManager = FileManager.default
+    let path = url.path
+    
+    if fileManager.fileExists(atPath: path) {
+        try fileManager.removeItem(atPath: path)
     }
 }
