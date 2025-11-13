@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */; platformFilter = ios; };
+		C5D2214821AC122A00B65FBC /* QuranSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D2213E21AC122A00B65FBC /* QuranSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,7 +152,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				ORGANIZATIONNAME = "Tazkiya Tech";
 				TargetAttributes = {
@@ -214,7 +214,6 @@
 /* Begin PBXTargetDependency section */
 		C5D2214A21AC122A00B65FBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = C5D2213D21AC122A00B65FBC /* QuranSDK */;
 			targetProxy = C5D2214921AC122A00B65FBC /* PBXContainerItemProxy */;
 		};
@@ -413,6 +412,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tazkiyatech.Quran-SDKTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
 			};
 			name = Debug;
 		};
@@ -427,6 +427,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tazkiyatech.Quran-SDKTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
 			};
 			name = Release;
 		};
