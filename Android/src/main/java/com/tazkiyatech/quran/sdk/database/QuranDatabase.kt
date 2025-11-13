@@ -449,12 +449,14 @@ class QuranDatabase(private val applicationContext: Context) {
      * @throws QuranDatabaseException if the database could not be opened.
      */
     @Throws(QuranDatabaseException::class)
-    private fun queryDatabase(table: String,
-                              columns: Array<String>?,
-                              selection: String?,
-                              selectionArgs: Array<String>?,
-                              orderBy: String?,
-                              limit: String?): Cursor {
+    private fun queryDatabase(
+        table: String,
+        columns: Array<String>?,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        orderBy: String?,
+        limit: String?,
+    ): Cursor {
         if (!isDatabaseOpen()) {
             openDatabase()
         }
