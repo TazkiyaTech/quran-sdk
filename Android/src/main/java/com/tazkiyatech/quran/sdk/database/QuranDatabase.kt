@@ -12,8 +12,11 @@ import java.io.IOException
 import java.util.*
 
 /**
- * Helper class which handles the creation and opening of the SQLite-based Quran database
- * and provides simple methods for accessing its content.
+ * A wrapper around the SQLite Quran database.
+ * Provides easy methods for accessing the contents of the database.
+ *
+ * It is safe to call the functions in this class on a single instance or on multiple instances
+ * in separate threads concurrently.
  *
  * @property applicationContext The application context (and not the activity or service context).
  */
@@ -27,6 +30,12 @@ class QuranDatabase(private val applicationContext: Context) {
 
     /**
      * Opens the Quran database for reading if it's not already open.
+     * Does nothing if the database is already open for reading.
+     *
+     * Calling this function is optional.
+     * The "get..." functions on this class take care of opening the database if it not already open.
+     * Call this function if you wish to open the database ahead of time
+     * before the first "get..." function call in your application.
      *
      * @throws QuranDatabaseException if the database could not be opened.
      */
