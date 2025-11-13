@@ -59,6 +59,8 @@ public class QuranDatabase: @unchecked Sendable {
                 underlyingError: nil,
             )
         }
+        
+        Task { await deleteLegacyDatabaseFiles() }
     }
     
     /**
@@ -446,7 +448,7 @@ public class QuranDatabase: @unchecked Sendable {
         return FileManager.default.fileExists(atPath: path)
     }
     
-    /// - Returns: The location of the database in internal storage.
+    /// - Returns: The location of the database file in internal storage.
     private static func getURLForQuranDatabaseInInternalStorage() throws -> URL {
         let baseURL = try FileManager.default.url(
             for: .applicationSupportDirectory,
@@ -455,7 +457,6 @@ public class QuranDatabase: @unchecked Sendable {
             create: true
         )
         
-        // TODO: Add call to delete file from document directory
         if #available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
             return baseURL.appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
         } else {
@@ -463,7 +464,7 @@ public class QuranDatabase: @unchecked Sendable {
         }
     }
     
-    /// - Returns: The location of the database in the framework bundle.
+    /// - Returns: The location of the database file in the framework bundle.
     private static func getURLForQuranDatabaseInFrameworkBundle() throws -> URL {
 #if SWIFT_PACKAGE
         let bundle = Bundle.module
