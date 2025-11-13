@@ -12,6 +12,10 @@ import SQLite3
 /**
  * A wrapper around the SQLite Quran database.
  * Provides easy methods for accessing the contents of the database.
+ *
+ * It is safe to call the functions in this class on a single instance or on multiple instances
+ * in separate threads concurrently.
+ *
  */
 public class QuranDatabase: @unchecked Sendable {
     
@@ -25,7 +29,8 @@ public class QuranDatabase: @unchecked Sendable {
      *
      * Calling this function is optional.
      * The "get..." functions on this class take care of opening the database if it not already open.
-     * Call this function if you open to open the database ahead of time before the first "get..." function call in your app.
+     * Call this function if you wish to open the database ahead of time
+     * before the first "get..." function call in your application.
      *
      * - Throws: `QuranDatabaseError` if the database could not be opened.
      */
