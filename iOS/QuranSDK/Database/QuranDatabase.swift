@@ -448,20 +448,18 @@ public class QuranDatabase: @unchecked Sendable {
     
     /// - Returns: The location of the database in internal storage.
     private static func getURLForQuranDatabaseInInternalStorage() throws -> URL {
-        if #available(iOS 16.0, macOS 13.0, watchOS 9.0, *) {
-            return try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            ).appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
+        let baseURL = try FileManager.default.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        )
+        
+        // TODO: Add call to delete file from document directory
+        if #available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+            return baseURL.appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
         } else {
-            return try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            ).appendingPathComponent("com.tazkiyatech.quran.v2.db")
+            return baseURL.appendingPathComponent("com.tazkiyatech.quran.v2.db")
         }
     }
     
