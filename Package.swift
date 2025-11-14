@@ -24,14 +24,14 @@ let package = Package(
         .target(
             name: "QuranSDK",
             dependencies: [],
-            path: "iOS/QuranSDK",
+            path: "apple/QuranSDK",
             exclude: ["Supporting Files"],
             resources: [.process("Resources/com.tazkiyatech.quran.v2.db")]
         ),
         .testTarget(
             name: "QuranSDKTests",
             dependencies: ["QuranSDK"],
-            path: "iOS/QuranSDKTests",
+            path: "apple/QuranSDKTests",
             exclude: ["Supporting Files"]
         ),
     ],
