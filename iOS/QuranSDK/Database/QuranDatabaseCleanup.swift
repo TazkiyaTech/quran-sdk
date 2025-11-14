@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Deletes legacy versions of the Quran database from the file system.
 @concurrent func deleteLegacyDatabaseFiles() async {
     do {
         let databaseV1URL = try urlForDocument(named: "com.tazkiyatech.quran.db")
@@ -20,8 +21,12 @@ import Foundation
     }
 }
 
+/// Creates a `URL` for the file with the given name within the Document directory.
+///
+/// Internal visibility for testing purposes.
+///
 /// - Returns: The location of the file with the given name within the Document directory.
-private func urlForDocument(named filename: String) throws -> URL {
+func urlForDocument(named filename: String) throws -> URL {
     let baseURL = try FileManager.default.url(
         for: .documentDirectory,
         in: .userDomainMask,
