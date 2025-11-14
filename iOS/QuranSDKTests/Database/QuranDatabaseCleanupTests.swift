@@ -10,7 +10,11 @@ import Foundation
 import Testing
 @testable import QuranSDK
 
+#if os(macOS) || targetEnvironment(macCatalyst)
+@Suite(.disabled("Writes files to ~/Documents which isn’t permitted on macOS."))
+#else
 @Suite(.serialized)
+#endif
 struct QuranDatabaseCleanupTests {
     
     @Test
@@ -21,15 +25,15 @@ struct QuranDatabaseCleanupTests {
         
         try Data("test1".utf8).write(to: dbV1URL)
         try Data("test2".utf8).write(to: dbV2URL)
-
+        
         let fm = FileManager.default
         
         #expect(fm.fileExists(atPath: dbV1URL.path))
         #expect(fm.fileExists(atPath: dbV2URL.path))
-
+        
         // When.
         await deleteLegacyDatabaseFiles()
-
+        
         // Then.
         #expect(!fm.fileExists(atPath: dbV1URL.path))
         #expect(!fm.fileExists(atPath: dbV2URL.path))
@@ -45,15 +49,15 @@ struct QuranDatabaseCleanupTests {
         
         if fm.fileExists(atPath: dbV1Path) { try fm.removeItem(atPath: dbV1Path) }
         if fm.fileExists(atPath: dbV2Path) { try fm.removeItem(atPath: dbV2Path) }
-
+        
         #expect(!fm.fileExists(atPath: dbV1Path))
-        #expect(!fm.fileExists(atPath: dbV1Path))
-
+        #expect(!fm.fileExists(atPath: dbV2Path))
+        
         // When.
         await deleteLegacyDatabaseFiles()
-
+        
         // Then.
         #expect(!fm.fileExists(atPath: dbV1Path))
-        #expect(!fm.fileExists(atPath: dbV1Path))
+        #expect(!fm.fileExists(atPath: dbV2Path))
     }
 }
