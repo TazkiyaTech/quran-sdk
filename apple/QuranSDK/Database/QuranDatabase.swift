@@ -23,6 +23,8 @@ public class QuranDatabase: @unchecked Sendable {
     
     private var database: OpaquePointer? = nil
     
+    public init() {}
+    
     /**
      * Opens the Quran database for reading if it's not already open.
      * Does nothing if the database is already open for reading.
