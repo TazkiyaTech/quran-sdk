@@ -7,7 +7,7 @@ plugins {
 }
 
 tasks.wrapper {
-    gradleVersion = "9.2.0"
+    gradleVersion = "9.2.1"
 }
 
 // Alter the default behaviour of the "com.github.ben-manes.versions" plugin
