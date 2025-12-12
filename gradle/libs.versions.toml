@@ -12,6 +12,6 @@ tazkiyatech-test-utils = { group = "com.tazkiyatech", name = "android-test-utils
 test-orchestrator = { group = "androidx.test", name = "orchestrator", version = "1.6.1" }
 
 [plugins]
-android-library = { id = "com.android.library", version = "8.13.1" }
+android-library = { id = "com.android.library", version = "8.13.2" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version = "0.53.0" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.2.21" }
