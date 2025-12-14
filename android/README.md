@@ -1,4 +1,4 @@
-# Quran SDK for Android
+# Quran SDK for Android platforms
 
 This library gives you easy, offline access to verses of the Quran in your Android projects.
 
@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:quran-sdk:1.3.0'
+    implementation 'com.tazkiyatech:quran-sdk:2.0.0'
 }
 ```
 
@@ -28,7 +28,8 @@ val quranDatabase = QuranDatabase(myApplicationContext);
 quranDatabase.openDatabase();
 ```
 
-Be sure to pass the application context into the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) constructor rather than the activity context. Also, be sure to call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
+Pass the application context into the [QuranDatabase](src/main/java/com/tazkiyatech/quran/sdk/database/QuranDatabase.kt) constructor rather than the activity context.
+Call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
 
 ## Accessing Surahs and Ayahs
 
@@ -48,7 +49,7 @@ val ayahs: List<String> = quranDatabase.getAyahsInSurah(surahNumber)
 val ayah: String = quranDatabase.getAyah(surahNumber, ayahNumber)
 ```
 
-Be sure to call these methods in a background thread since they access file storage.
+Call these methods in a background thread since they access file storage.
 
 ## Accessing Quran metadata
 
@@ -65,7 +66,7 @@ val sectionNumber = 1
 val sectionMetadata: SectionMetadata = getMetadataForSection(sectionType, sectionNumber)
 ```
 
-Be sure to call these methods in a background thread since they access file storage.
+Call these methods in a background thread since they access file storage.
 
 ## Quran Quotes and Hifdh Tips
 

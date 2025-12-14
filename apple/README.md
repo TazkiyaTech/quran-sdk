@@ -1,10 +1,8 @@
-# Quran SDK for iOS
+# Quran SDK for Apple platforms
 
-This library gives you easy, offline access to verses of the Quran in your iOS projects.
+This library gives you easy, offline access to verses of the Quran in your Apple projects.
 
 ## Setup
-
-### Swift Package Manager
 
 Getting setup by means of [Swift Package Manager](https://swift.org/package-manager) is a simple
 two-step process, as follows:
@@ -14,21 +12,6 @@ two-step process, as follows:
 2. Select the target(s) that you would like to add this Swift package to.
 
 You should now be able to import the `QuranSDK` module in your Swift code.
-
-### CocoaPods
-
-Getting setup by means of [Cocoapods](https://cocoapods.org) is a simple two-step process.
-
-Firstly, add the following pod declaration in the `Podfile` of your iOS project:
-
-```ruby
-platform :ios, '11.0'
-use_frameworks!
-pod 'QuranSDK', '~> 1.2.0'
-```
-
-Next, run the `pod install` command for your Xcode workspace and you should then be able to import
-the `QuranSDK` module in your Swift code.
 
 ## Initialisation
 
@@ -40,8 +23,7 @@ let quranDatabase = QuranDatabase();
 quranDatabase.openDatabase();
 ```
 
-Be sure to call the `QuranDatabase.openDatabse()` method in a background thread since it accesses
-file storage.
+Call the `QuranDatabase.openDatabse()` method in a background thread since it accesses file storage.
 
 ## Accessing Surahs and Ayahs
 
@@ -63,7 +45,7 @@ let ayahs: [String] = try quranDatabase.getAyahsInSurah(surahNumber);
 let ayah: String = try quranDatabase.getAyah(surahNumber: surahNumber, ayahNumber: ayahNumber);
 ```
 
-Be sure to call these methods in a background thread since they access file storage.
+Call these methods in a background thread since they access file storage.
 
 ## Accessing Quran metadata
 
@@ -82,4 +64,4 @@ let sectionNumber = 1
 let sectionMetadata: SectionMetadata = try getMetadataForSection(sectionType: sectionType, sectionNumber: sectionNumber)
 ```
 
-Be sure to call these methods in a background thread since they access file storage.
+Call these methods in a background thread since they access file storage.
