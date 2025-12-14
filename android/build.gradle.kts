@@ -4,9 +4,9 @@ private val targetSdk = 36
 
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.jreleaser)
     alias(libs.plugins.kotlin.android)
     `maven-publish`
-    signing
 }
 
 android {
@@ -123,14 +123,27 @@ publishing {
 
     repositories {
         maven {
-            name = "sonatype"
-            credentials(PasswordCredentials::class)
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
         }
     }
 }
 
-signing {
-    // the "signing.keyId", "signing.password" and "signing.secretKeyRingFile" properties required by this task are defined outside of this project in the "~/.gradle/gradle.properties" file
-    sign(publishing.publications["release"])
+// the "JRELEASER_..." properties required by the "jreleaserDeploy" task are defined outside of this project in the "~/.jreleaser/config.toml" file
+jreleaser {
+    gitRootSearch.set(true)
+    signing {
+        setActive("ALWAYS")
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    setActive("RELEASE")
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    stagingRepository("build/staging-deploy")
+                }
+            }
+        }
+    }
 }

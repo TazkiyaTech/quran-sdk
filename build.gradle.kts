@@ -3,6 +3,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.benmanes.versions)
+    alias(libs.plugins.jreleaser) apply false
     alias(libs.plugins.kotlin.android) apply false
 }
 
