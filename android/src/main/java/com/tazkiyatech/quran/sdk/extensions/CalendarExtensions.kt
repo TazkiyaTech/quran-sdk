@@ -8,7 +8,7 @@ import java.util.*
  *
  * @return A number in the form `YYYYMMdd`, e.g. `20220109`.
  */
-fun Calendar.getPackedDate(): Int {
+internal fun Calendar.getPackedDate(): Int {
     return getPackedDate(getYear(), getMonth(), getDayOfMonth())
 }
 
