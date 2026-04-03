@@ -126,7 +126,10 @@ publishing {
 jreleaser {
     gitRootSearch.set(true)
     signing {
-        setActive("ALWAYS")
+        pgp {
+            setActive("ALWAYS")
+            armored = true
+        }
     }
     deploy {
         maven {
@@ -135,6 +138,9 @@ jreleaser {
                     setActive("RELEASE")
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository("build/staging-deploy")
+
+                    // Setting "verifyPom" to "false" bypasses the "Unknown packaging: aar" error
+                    verifyPom = false
                 }
             }
         }
