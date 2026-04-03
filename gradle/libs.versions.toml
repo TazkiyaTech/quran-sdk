@@ -1,5 +1,5 @@
 [versions]
-junit = "6.0.1"
+junit = "6.0.3"
 
 [libraries]
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version = "1.9.1" }
@@ -14,5 +14,5 @@ test-orchestrator = { group = "androidx.test", name = "orchestrator", version = 
 [plugins]
 android-library = { id = "com.android.library", version = "8.13.2" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version = "0.53.0" }
-jreleaser = { id = "org.jreleaser", version = "1.21.0" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.2.21" }
+jreleaser = { id = "org.jreleaser", version = "1.23.0" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.3.20" }
