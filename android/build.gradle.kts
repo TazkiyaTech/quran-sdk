@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.LibraryExtension
 
 private val targetSdk = 36
 
@@ -9,12 +9,12 @@ plugins {
     `maven-publish`
 }
 
-android {
+configure<LibraryExtension> {
     compileSdk = targetSdk
     namespace = "com.tazkiyatech.quran.sdk"
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
     }
@@ -33,12 +33,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_21
-        }
     }
 
     lint {
@@ -133,7 +127,6 @@ jreleaser {
     gitRootSearch.set(true)
     signing {
         setActive("ALWAYS")
-        armored = true
     }
     deploy {
         maven {
