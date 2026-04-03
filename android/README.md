@@ -6,14 +6,14 @@ This library gives you easy, offline access to verses of the Quran in your Andro
 
 Getting setup by means of [Gradle](https://gradle.org/) is a simple two-step process.
 
-Firstly, add the following repository and dependency declaration in the `build.gradle` file of your Android project:
+Firstly, add the following repository and dependency declaration in the `build.gradle.kts` file of your Android project:
 
-```groovy
+```kotlin
 repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:quran-sdk:2.0.0'
+    implementation("com.tazkiyatech:quran-sdk:3.0.0")
 }
 ```
 
