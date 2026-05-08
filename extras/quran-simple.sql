@@ -3,9 +3,12 @@
 --
 -- Taken originally from http://tanzil.net/download
 --
--- Modified to include the 'android_metadata' and 'quran_metadata' tables.
+-- Modified from the original as follows:
+-- - Added 'android_metadata' table.
+-- - Added 'quran_metadata' table.
+-- - Removed the Bismillah from the first Ayah of all Surahs.
 --
--- Use a tool like DB Browser for SQLite (https://sqlitebrowser.org) to create a SQLite databse from this SQL script.
+-- Use a tool like DB Browser for SQLite (https://sqlitebrowser.org) to create a SQLite database from this SQL script.
 --
 
 DROP TABLE IF EXISTS `android_metadata`;
