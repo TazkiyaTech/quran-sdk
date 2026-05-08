@@ -24,7 +24,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getSurahNames() {
+    fun explainQueryPlan_for_getSurahNames() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SCAN sura_names USING INDEX index_sura_number_on_table_sura_names")
@@ -43,7 +43,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getSurahName() {
+    fun explainQueryPlan_for_getSurahName() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SEARCH sura_names USING INDEX index_sura_number_on_table_sura_names (sura=?)")
@@ -63,7 +63,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getAyahsInSurah() {
+    fun explainQueryPlan_for_getAyahsInSurah() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SEARCH quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=?)")
@@ -82,7 +82,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getAyah() {
+    fun explainQueryPlan_for_getAyah() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SEARCH quran_text USING INDEX index_sura_number_aya_number_on_table_quran_text (sura=? AND aya=?)")
@@ -101,7 +101,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getMetadataForSectionType() {
+    fun explainQueryPlan_for_getMetadataForSectionType() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SEARCH quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=?)")
@@ -120,7 +120,7 @@ class QuranDatabaseQueryPlanTests {
     }
 
     @Test
-    fun test_explainQueryPlan_for_getMetadataForSection() {
+    fun explainQueryPlan_for_getMetadataForSection() {
         // Given.
         val expected = listOf(
             QueryPlanRow("SEARCH quran_metadata USING INDEX index_section_type_section_number_on_table_quran_metadata (section_type=? AND section_number=?)")
