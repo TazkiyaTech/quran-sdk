@@ -17,4 +17,3 @@ test-orchestrator = { module = "androidx.test:orchestrator", version = "1.6.1" }
 android-library = { id = "com.android.library", version = "9.2.1" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version = "0.54.0" }
 jreleaser = { id = "org.jreleaser", version = "1.24.0" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.3.21" }
