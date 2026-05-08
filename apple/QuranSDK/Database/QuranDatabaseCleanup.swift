@@ -9,16 +9,12 @@
 import Foundation
 
 /// Deletes legacy versions of the Quran database from the file system.
-@concurrent func deleteLegacyDatabaseFiles() async {
-    do {
-        let databaseV1URL = try urlForDocument(named: "com.tazkiyatech.quran.db")
-        let databaseV2URL = try urlForDocument(named: "com.tazkiyatech.quran.v2.db")
-        
-        try deleteFile(at: databaseV1URL)
-        try deleteFile(at: databaseV2URL)
-    } catch {
-        // swallow the error as this is just a cleanup operation
-    }
+@concurrent func deleteLegacyDatabaseFiles() async throws {
+    let databaseV1URL = try urlForDocument(named: "com.tazkiyatech.quran.db")
+    let databaseV2URL = try urlForDocument(named: "com.tazkiyatech.quran.v2.db")
+    
+    try deleteFile(at: databaseV1URL)
+    try deleteFile(at: databaseV2URL)
 }
 
 /// Creates a `URL` for the file with the given name within the Document directory.

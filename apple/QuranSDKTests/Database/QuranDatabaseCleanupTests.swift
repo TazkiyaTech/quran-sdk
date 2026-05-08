@@ -32,7 +32,7 @@ struct QuranDatabaseCleanupTests {
         #expect(fm.fileExists(atPath: dbV2URL.path))
         
         // When.
-        await deleteLegacyDatabaseFiles()
+        try await deleteLegacyDatabaseFiles()
         
         // Then.
         #expect(!fm.fileExists(atPath: dbV1URL.path))
@@ -54,7 +54,7 @@ struct QuranDatabaseCleanupTests {
         #expect(!fm.fileExists(atPath: dbV2Path))
         
         // When.
-        await deleteLegacyDatabaseFiles()
+        try await deleteLegacyDatabaseFiles()
         
         // Then.
         #expect(!fm.fileExists(atPath: dbV1Path))

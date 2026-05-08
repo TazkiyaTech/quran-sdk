@@ -26,7 +26,7 @@ let package = Package(
             dependencies: [],
             path: "apple/QuranSDK",
             exclude: ["Supporting Files"],
-            resources: [.process("Resources/com.tazkiyatech.quran.v2.db")]
+            resources: [.process("Resources/com.tazkiyatech.quran.v3.db")]
         ),
         .testTarget(
             name: "QuranSDKTests",

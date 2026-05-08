@@ -49,7 +49,7 @@ class QuranDatabase(private val applicationContext: Context) {
             copyFileFromAssetsToInternalStorage(DATABASE_NAME)
         }
 
-        val file = getFileInInternalStorage(DATABASE_NAME)
+        val file = fileInInternalStorage(DATABASE_NAME)
 
         try {
             sqLiteDatabase =
@@ -58,8 +58,7 @@ class QuranDatabase(private val applicationContext: Context) {
             throw QuranDatabaseException("Failed opening the Quran database", e)
         }
 
-        deleteFileInInternalStorage(VERSION_0_DATABASE_NAME)
-        deleteFileInInternalStorage(VERSION_1_DATABASE_NAME)
+        deleteLegacyDatabaseFiles()
     }
 
     /**
@@ -392,7 +391,13 @@ class QuranDatabase(private val applicationContext: Context) {
      * @return true iff the file with the given name exists in the application's internal storage area.
      */
     internal fun isFileExistsInInternalStorage(filename: String): Boolean {
-        return getFileInInternalStorage(filename).isFile
+        return fileInInternalStorage(filename).isFile
+    }
+
+    private fun deleteLegacyDatabaseFiles() {
+        deleteFileInInternalStorage("com.thinkincode.quran.db")
+        deleteFileInInternalStorage("com.tazkiyatech.quran.db")
+        deleteFileInInternalStorage("com.tazkiyatech.quran.v2.db")
     }
 
     /**
@@ -401,7 +406,7 @@ class QuranDatabase(private val applicationContext: Context) {
      * @return true iff the file with the give name is deleted from the application's internal storage area.
      */
     private fun deleteFileInInternalStorage(filename: String): Boolean {
-        val file = getFileInInternalStorage(filename)
+        val file = fileInInternalStorage(filename)
 
         return !file.exists() || file.delete()
     }
@@ -409,7 +414,7 @@ class QuranDatabase(private val applicationContext: Context) {
     /**
      * A [File] representation of the Quran database file as it exists in the application's internal storage area.
      */
-    private fun getFileInInternalStorage(filename: String): File =
+    private fun fileInInternalStorage(filename: String): File =
         File(applicationContext.noBackupFilesDir, filename)
 
     /**
@@ -432,7 +437,7 @@ class QuranDatabase(private val applicationContext: Context) {
                     inputStream.copyTo(outputStream)
                 }
 
-                temporaryFile.renameTo(getFileInInternalStorage(filename))
+                temporaryFile.renameTo(fileInInternalStorage(filename))
             }
         } catch (e: IOException) {
             throw QuranDatabaseException(
@@ -476,10 +481,7 @@ class QuranDatabase(private val applicationContext: Context) {
         /**
          * (Internal visibility for unit testing purposes.)
          */
-        internal const val DATABASE_NAME = "com.tazkiyatech.quran.v2.db"
-
-        private const val VERSION_0_DATABASE_NAME = "com.thinkincode.quran.db"
-        private const val VERSION_1_DATABASE_NAME = "com.tazkiyatech.quran.db"
+        internal const val DATABASE_NAME = "com.tazkiyatech.quran.v3.db"
 
         private const val TABLE_NAME_QURAN_METADATA = "quran_metadata"
         private const val TABLE_NAME_QURAN_TEXT = "quran_text"

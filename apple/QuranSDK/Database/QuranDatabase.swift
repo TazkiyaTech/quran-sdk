@@ -62,7 +62,10 @@ public class QuranDatabase: @unchecked Sendable {
             )
         }
         
-        Task { await deleteLegacyDatabaseFiles() }
+        Task {
+            // ignore any error thrown as this is just a cleanup operation
+            try await deleteLegacyDatabaseFiles()
+        }
     }
     
     /**
@@ -460,9 +463,9 @@ public class QuranDatabase: @unchecked Sendable {
         )
         
         if #available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-            return baseURL.appending(path: "com.tazkiyatech.quran.v2.db", directoryHint: .notDirectory)
+            return baseURL.appending(path: "com.tazkiyatech.quran.v3.db", directoryHint: .notDirectory)
         } else {
-            return baseURL.appendingPathComponent("com.tazkiyatech.quran.v2.db")
+            return baseURL.appendingPathComponent("com.tazkiyatech.quran.v3.db")
         }
     }
     
@@ -474,7 +477,7 @@ public class QuranDatabase: @unchecked Sendable {
         let bundle = Bundle(for: Self.self)
 #endif
         
-        guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v2", withExtension: "db") else {
+        guard let url = bundle.url(forResource: "com.tazkiyatech.quran.v3", withExtension: "db") else {
             throw QuranDatabaseError(
                 message: "Failed locating Quran Database in framework bundle."
             )
