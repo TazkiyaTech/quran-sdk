@@ -5,7 +5,6 @@ private val targetSdk = 36
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jreleaser)
-    alias(libs.plugins.kotlin.android)
     `maven-publish`
 }
 
