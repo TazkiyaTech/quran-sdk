@@ -10,23 +10,10 @@ package com.tazkiyatech.quran.sdk.model
  * @param nameInDatabase The name of the section type in the 'section_type' column of the 'quran_metadata' table.
  */
 enum class SectionType(val nameInDatabase: String) {
-
     SURAH("surah"),
     JUZ_IN_MADINAH_MUSHAF("juz_in_madinah_mushaf"),
     HIZB_IN_MADINAH_MUSHAF("hizb_in_madinah_mushaf"),
     HIZB_QUARTER_IN_MADINAH_MUSHAF("hizb_quarter_in_madinah_mushaf"),
     JUZ_IN_MAJEEDI_MUSHAF("juz_in_majeedi_mushaf"),
     JUZ_QUARTER_IN_MAJEEDI_MUSHAF("juz_quarter_in_majeedi_mushaf");
-
-    companion object {
-        fun parseOrdinal(ordinal: Int): SectionType {
-            val values = values()
-
-            return if (ordinal < 0 || ordinal >= values.size) {
-                throw IllegalArgumentException("Bad section type ordinal ($ordinal) passed in.")
-            } else {
-                values[ordinal]
-            }
-        }
-    }
 }
