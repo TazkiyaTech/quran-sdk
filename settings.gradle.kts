@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "quran-sdk"
-include(":Android")
+include(":android")
